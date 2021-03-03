@@ -11,7 +11,7 @@ public class DbConnection {
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
-			con = DriverManager.getConnection("jdbc:sqlite:TimeTable.db");//connecting to our database
+			con = DriverManager.getConnection("jdbc:sqlite:timedb.db");//connecting to our database
 		System.out.println("Connected");
 		} catch (ClassNotFoundException| SQLException e) {
 			// TODO Auto-generated catch block
