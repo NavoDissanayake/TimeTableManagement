@@ -38,6 +38,9 @@ public class Add_StudentGroup {
 	private JFrame frmAddStudentGroup;
 	private JTextField textField_1;
 	private JTextField textField;
+	private JTable table;
+	private JTextField textField_2;
+	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -78,7 +81,7 @@ public class Add_StudentGroup {
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1344, 65);
-		panel.setBackground(new Color(51, 153, 153));
+		panel.setBackground(new Color(0, 139, 139));
 		frmAddStudentGroup.getContentPane().add(panel);
 		panel.setLayout(null);
 		/*
@@ -322,5 +325,116 @@ public class Add_StudentGroup {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(230, 230, 250));
 		tabbedPane.addTab("          Manage Student Group         ", null, panel_2, null);
+		panel_2.setLayout(null);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(114, 46, 860, 105);
+		panel_2.add(scrollPane_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane_1.setViewportView(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID", "YearSemester", "Programme", "Group ID", "Sub-Group ID", "Group ID", "Sub-GroupID"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Integer.class, String.class, String.class, String.class, String.class, String.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		scrollPane.setViewportView(table);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBorder(new LineBorder(new Color(102, 153, 255)));
+		panel_5.setBounds(116, 194, 860, 231);
+		panel_2.add(panel_5);
+		panel_5.setLayout(null);
+		
+		JLabel lblNewLabel_5 = new JLabel("Year Semster");
+		lblNewLabel_5.setBounds(12, 37, 100, 21);
+		panel_5.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("Programme");
+		lblNewLabel_6.setBounds(12, 90, 100, 21);
+		panel_5.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("Sub-Group Number");
+		lblNewLabel_7.setBounds(12, 194, 100, 21);
+		panel_5.add(lblNewLabel_7);
+		
+		JLabel lblNewLabel_7_1 = new JLabel("Group Number");
+		lblNewLabel_7_1.setBounds(12, 140, 100, 21);
+		panel_5.add(lblNewLabel_7_1);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setBounds(124, 36, 149, 21);
+		panel_5.add(comboBox_2);
+		
+		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setBounds(124, 89, 149, 22);
+		panel_5.add(comboBox_3);
+		
+		JSpinner spinner_2 = new JSpinner();
+		spinner_2.setBounds(124, 139, 149, 21);
+		panel_5.add(spinner_2);
+		
+		JSpinner spinner_3 = new JSpinner();
+		spinner_3.setBounds(124, 193, 149, 22);
+		panel_5.add(spinner_3);
+		
+		JLabel lblNewLabel_8 = new JLabel("Group ID");
+		lblNewLabel_8.setBounds(523, 37, 100, 21);
+		panel_5.add(lblNewLabel_8);
+		
+		JLabel lblNewLabel_9 = new JLabel("Sub-Group ID");
+		lblNewLabel_9.setBounds(523, 91, 113, 19);
+		panel_5.add(lblNewLabel_9);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(665, 36, 148, 22);
+		panel_5.add(textField_2);
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(665, 89, 148, 22);
+		panel_5.add(textField_3);
+		textField_3.setColumns(10);
+		
+		JButton btnNewButton_1_1 = new JButton("GENERATE ID");
+		btnNewButton_1_1.setForeground(Color.WHITE);
+		btnNewButton_1_1.setBackground(new Color(119, 136, 153));
+		btnNewButton_1_1.setBounds(665, 132, 149, 36);
+		panel_5.add(btnNewButton_1_1);
+		
+		JButton btnEdit_1 = new JButton("EDIT");
+		btnEdit_1.setForeground(Color.WHITE);
+		btnEdit_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEdit_1.setEnabled(true);
+		btnEdit_1.setBackground(new Color(0, 153, 153));
+		btnEdit_1.setBounds(227, 459, 141, 31);
+		panel_2.add(btnEdit_1);
+		
+		JButton btnEdit = new JButton("DELETE");
+		btnEdit.setForeground(Color.WHITE);
+		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEdit.setEnabled(true);
+		btnEdit.setBackground(new Color(0, 153, 153));
+		btnEdit.setBounds(503, 459, 141, 31);
+		panel_2.add(btnEdit);
+		
+		JButton btnClear_1 = new JButton("CLEAR");
+		btnClear_1.setForeground(Color.WHITE);
+		btnClear_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnClear_1.setEnabled(true);
+		btnClear_1.setBackground(new Color(0, 153, 153));
+		btnClear_1.setBounds(738, 459, 141, 31);
+		panel_2.add(btnClear_1);
 	}
 }

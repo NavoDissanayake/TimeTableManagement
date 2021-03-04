@@ -38,6 +38,9 @@ public class Add_Tags {
 	private JFrame frmAddStudentGroup;
 	private JTextField textField_1;
 	private JTextField textField;
+	private JTable table;
+	private JTextField textField_2;
+	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -78,7 +81,7 @@ public class Add_Tags {
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1344, 65);
-		panel.setBackground(new Color(51, 153, 153));
+		panel.setBackground(new Color(0, 139, 139));
 		frmAddStudentGroup.getContentPane().add(panel);
 		panel.setLayout(null);
 		/*
@@ -282,6 +285,83 @@ public class Add_Tags {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(230, 230, 250));
 		tabbedPane.addTab("          Manage Tags         ", null, panel_2, null);
+		panel_2.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(216, 36, 636, 144);
+		panel_2.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID", "Tag Name", "Related Name"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Integer.class, String.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBounds(216, 222, 636, 172);
+		panel_2.add(panel_5);
+		panel_5.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Tag Name");
+		lblNewLabel.setBounds(74, 23, 149, 24);
+		panel_5.add(lblNewLabel);
+		
+		JLabel lblNewLabel_5 = new JLabel("Tag Code");
+		lblNewLabel_5.setBounds(74, 72, 56, 16);
+		panel_5.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("Related  Name");
+		lblNewLabel_6.setBounds(74, 123, 111, 16);
+		panel_5.add(lblNewLabel_6);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(343, 23, 172, 24);
+		panel_5.add(textField_2);
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(343, 68, 172, 24);
+		panel_5.add(textField_3);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(343, 122, 172, 19);
+		panel_5.add(comboBox_1);
+		
+		JButton btnClear_1 = new JButton("CLEAR");
+		btnClear_1.setForeground(Color.WHITE);
+		btnClear_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnClear_1.setEnabled(true);
+		btnClear_1.setBackground(new Color(0, 153, 153));
+		btnClear_1.setBounds(711, 436, 141, 31);
+		panel_2.add(btnClear_1);
+		
+		JButton btnEdit = new JButton("EDIT");
+		btnEdit.setForeground(Color.WHITE);
+		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEdit.setEnabled(true);
+		btnEdit.setBackground(new Color(0, 153, 153));
+		btnEdit.setBounds(216, 436, 141, 31);
+		panel_2.add(btnEdit);
+		
+		JButton btnNewButton_2_1 = new JButton("DELETE");
+		btnNewButton_2_1.setForeground(Color.WHITE);
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNewButton_2_1.setEnabled(true);
+		btnNewButton_2_1.setBackground(new Color(0, 153, 153));
+		btnNewButton_2_1.setBounds(472, 436, 141, 31);
+		panel_2.add(btnNewButton_2_1);
 		
 		
 	}

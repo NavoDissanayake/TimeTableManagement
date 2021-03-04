@@ -37,6 +37,8 @@ import java.awt.Panel;
 public class Advanced_sessions {
 
 	private JFrame frmAddStudentGroup;
+	private JTable table_2;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -77,7 +79,7 @@ public class Advanced_sessions {
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1344, 65);
-		panel.setBackground(new Color(51, 153, 153));
+		panel.setBackground(new Color(0, 139, 139));
 		frmAddStudentGroup.getContentPane().add(panel);
 		panel.setLayout(null);
 		/*
@@ -214,6 +216,135 @@ public class Advanced_sessions {
 		tabbedPane.setBounds(262, 108, 1082, 540);
 		frmAddStudentGroup.getContentPane().add(tabbedPane);
 		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(230, 230, 250));
+		tabbedPane.addTab("          Parallel Sessions         ", null, panel_2, null);
+		panel_2.setLayout(null);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(240, 240, 240));
+		panel_5.setBounds(87, 43, 350, 371);
+		panel_2.add(panel_5);
+		panel_5.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Session 1");
+		lblNewLabel.setBounds(24, 50, 105, 27);
+		panel_5.add(lblNewLabel);
+		
+		JLabel lblSession = new JLabel("Session 2");
+		lblSession.setBounds(24, 115, 105, 27);
+		panel_5.add(lblSession);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setBounds(166, 52, 160, 27);
+		panel_5.add(comboBox_2);
+		
+		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setBounds(166, 117, 160, 27);
+		panel_5.add(comboBox_3);
+		
+		JButton btnNewButton_1_1 = new JButton("ADD");
+		btnNewButton_1_1.setBackground(new Color(0, 139, 139));
+		btnNewButton_1_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnNewButton_1_1.setBounds(166, 176, 160, 40);
+		panel_5.add(btnNewButton_1_1);
+		
+		JButton btnNewButton_1 = new JButton("CLEAR");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnNewButton_1.setBackground(new Color(0, 139, 139));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBounds(168, 237, 158, 40);
+		panel_5.add(btnNewButton_1);
+		
+		JScrollPane scrollPane_5 = new JScrollPane();
+		scrollPane_5.setBounds(580, 43, 457, 225);
+		panel_2.add(scrollPane_5);
+		
+		JScrollPane scrollPane_3_1 = new JScrollPane();
+		scrollPane_5.setViewportView(scrollPane_3_1);
+		
+		table_1 = new JTable();
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID", "Session_01", "Session_02"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Integer.class, String.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		scrollPane_3_1.setViewportView(table_1);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(230, 230, 250));
+		tabbedPane.addTab("Non Overlapping Sessions", null, panel_6, null);
+		panel_6.setLayout(null);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setBounds(87, 43, 350, 371);
+		panel_6.add(panel_7);
+		panel_7.setLayout(null);
+		
+		JLabel lblNewLabel_4 = new JLabel("Session 1");
+		lblNewLabel_4.setBounds(24, 77, 80, 21);
+		panel_7.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("Session 2");
+		lblNewLabel_5.setBounds(24, 144, 96, 16);
+		panel_7.add(lblNewLabel_5);
+		
+		JComboBox comboBox_4 = new JComboBox();
+		comboBox_4.setBounds(150, 76, 164, 22);
+		panel_7.add(comboBox_4);
+		
+		JComboBox comboBox_5 = new JComboBox();
+		comboBox_5.setBounds(150, 141, 164, 21);
+		panel_7.add(comboBox_5);
+		
+		JButton btnNewButton_2 = new JButton("ADD");
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnNewButton_2.setBackground(new Color(0, 139, 139));
+		btnNewButton_2.setBounds(147, 202, 167, 40);
+		panel_7.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("CLEAR");
+		btnNewButton_3.setBackground(new Color(0, 139, 139));
+		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnNewButton_3.setForeground(new Color(255, 255, 255));
+		btnNewButton_3.setBounds(150, 262, 164, 40);
+		panel_7.add(btnNewButton_3);
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(532, 46, 457, 225);
+		panel_6.add(scrollPane_3);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_3.setViewportView(scrollPane_2);
+		
+		table_2 = new JTable();
+		table_2.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID", "Session_02", "Session_01"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Integer.class, String.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		scrollPane_2.setViewportView(table_2);
+		
 	
 		
 		JPanel panel_3 = new JPanel();
@@ -267,86 +398,5 @@ public class Advanced_sessions {
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnClear.setEnabled(true);
 		btnClear.setBackground(new Color(0, 153, 153));
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(230, 230, 250));
-		tabbedPane.addTab("          Parallel Sessions         ", null, panel_2, null);
-		panel_2.setLayout(null);
-		
-		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(new Color(240, 240, 240));
-		panel_5.setBounds(87, 43, 350, 371);
-		panel_2.add(panel_5);
-		panel_5.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Session 1");
-		lblNewLabel.setBounds(24, 50, 105, 27);
-		panel_5.add(lblNewLabel);
-		
-		JLabel lblSession = new JLabel("Session 2");
-		lblSession.setBounds(24, 115, 105, 27);
-		panel_5.add(lblSession);
-		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(166, 52, 160, 27);
-		panel_5.add(comboBox_2);
-		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(166, 117, 160, 27);
-		panel_5.add(comboBox_3);
-		
-		JButton btnNewButton_1_1 = new JButton("ADD");
-		btnNewButton_1_1.setBackground(new Color(0, 128, 128));
-		btnNewButton_1_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnNewButton_1_1.setBounds(166, 176, 160, 27);
-		panel_5.add(btnNewButton_1_1);
-		
-		JButton btnNewButton_1 = new JButton("CLEAR");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnNewButton_1.setBackground(new Color(0, 128, 128));
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBounds(168, 237, 158, 27);
-		panel_5.add(btnNewButton_1);
-		
-		JPanel panel_6 = new JPanel();
-		panel_6.setBackground(new Color(230, 230, 250));
-		tabbedPane.addTab("Non Overlapping Sessions", null, panel_6, null);
-		panel_6.setLayout(null);
-		
-		JPanel panel_7 = new JPanel();
-		panel_7.setBounds(87, 43, 350, 371);
-		panel_6.add(panel_7);
-		panel_7.setLayout(null);
-		
-		JLabel lblNewLabel_4 = new JLabel("Session 1");
-		lblNewLabel_4.setBounds(24, 77, 80, 21);
-		panel_7.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("Session 2");
-		lblNewLabel_5.setBounds(24, 144, 96, 16);
-		panel_7.add(lblNewLabel_5);
-		
-		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(150, 76, 164, 22);
-		panel_7.add(comboBox_4);
-		
-		JComboBox comboBox_5 = new JComboBox();
-		comboBox_5.setBounds(150, 141, 164, 21);
-		panel_7.add(comboBox_5);
-		
-		JButton btnNewButton_2 = new JButton("ADD");
-		btnNewButton_2.setForeground(new Color(255, 255, 255));
-		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnNewButton_2.setBackground(new Color(0, 128, 128));
-		btnNewButton_2.setBounds(147, 202, 167, 25);
-		panel_7.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("CLEAR");
-		btnNewButton_3.setBackground(new Color(0, 128, 128));
-		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnNewButton_3.setForeground(new Color(255, 255, 255));
-		btnNewButton_3.setBounds(150, 262, 164, 25);
-		panel_7.add(btnNewButton_3);
 	}
 }
