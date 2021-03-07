@@ -24,26 +24,21 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
+import Lecturer.Add_Lecturer;
+import Subject.Add_Subjects;
+
 import javax.swing.JTextPane;
 import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
 import java.awt.ScrollPane;
 import javax.swing.UIManager;
-import java.awt.Panel;
-import java.awt.Label;
 
 public class Add_Session {
 
 	private JFrame frame;
 	private JTable table;
 	private JTable table_1;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTable table_2;
-	private JTable table_3;
-	private JTable table_4;
-	
-	
 
 	/**
 	 * Launch the application.
@@ -87,6 +82,14 @@ public class Add_Session {
 		panel.setBackground(new Color(51, 153, 153));
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel(" Sessions");
+		lblNewLabel_1.setBounds(262, 18, 1082, 36);
+		panel.add(lblNewLabel_1);
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setBackground(new Color(32, 178, 170));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 22));
 		/*
 		 * //JLabel lblNewLabel = new JLabel("Time Table Management System");
 		 * lblNewLabel.setBounds(261, 5, 822, 61); panel.add(lblNewLabel);
@@ -118,6 +121,14 @@ public class Add_Session {
 		panel_1.add(btnViewGroups_1);
 		
 		JButton button_7 = new JButton("Lecturers");
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Add_Lecturer add_Lecturer  = new Add_Lecturer();
+				add_Lecturer.main(null);
+				frame.dispose();
+			}
+		});
 		button_7.setForeground(Color.WHITE);
 		button_7.setFont(new Font("Tahoma", Font.BOLD, 19));
 		button_7.setBackground(new Color(0, 139, 139));
@@ -132,6 +143,14 @@ public class Add_Session {
 		panel_1.add(btnStudents);
 		
 		JButton btnSubjects = new JButton("Subjects");
+		btnSubjects.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Add_Subjects add_Subjects = new Add_Subjects();
+				add_Subjects.main(null);
+				frame.dispose();
+			}
+		});
 		btnSubjects.setForeground(Color.WHITE);
 		btnSubjects.setFont(new Font("Tahoma", Font.BOLD, 19));
 		btnSubjects.setBackground(new Color(0, 139, 139));
@@ -200,25 +219,11 @@ public class Add_Session {
 		 * lbli.setIcon(image); panel_1.add(lbli);
 		 */
 		
-		JLabel lblNewLabel_1 = new JLabel(" Sessions");
-		lblNewLabel_1.setForeground(new Color(32, 178, 170));
-		lblNewLabel_1.setBackground(new Color(32, 178, 170));
-		lblNewLabel_1.setBounds(262, 69, 1082, 36);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 22));
-		frame.getContentPane().add(lblNewLabel_1);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(262, 108, 1082, 14);
-		separator.setForeground(new Color(32, 178, 170));
-		separator.setBackground(new Color(0, 139, 139));
-		frame.getContentPane().add(separator);
-		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setForeground(new Color(47, 79, 79));
 		tabbedPane.setFont(new Font("Nirmala UI", Font.BOLD, 16));
 		tabbedPane.setBorder(new MatteBorder(0, 1, 1, 1, (Color) new Color(32, 178, 170)));
-		tabbedPane.setBounds(262, 108, 1082, 540);
+		tabbedPane.setBounds(262, 64, 1082, 596);
 		frame.getContentPane().add(tabbedPane);
 		
 		JPanel panel_2 = new JPanel();
@@ -227,7 +232,7 @@ public class Add_Session {
 		panel_2.setLayout(null);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 11, 1055, 140);
+		scrollPane_1.setBounds(10, 40, 1055, 165);
 		panel_2.add(scrollPane_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -262,7 +267,7 @@ public class Add_Session {
 		panel_6.setLayout(null);
 		panel_6.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel_6.setBackground(new Color(245, 245, 245));
-		panel_6.setBounds(10, 167, 1055, 325);
+		panel_6.setBounds(10, 213, 1055, 335);
 		panel_2.add(panel_6);
 		
 		JButton button_1 = new JButton("CLEAR");
@@ -270,7 +275,7 @@ public class Add_Session {
 		button_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button_1.setEnabled(true);
 		button_1.setBackground(new Color(0, 128, 128));
-		button_1.setBounds(632, 294, 141, 31);
+		button_1.setBounds(632, 296, 141, 31);
 		panel_6.add(button_1);
 		
 		JButton btnDelete = new JButton("DELETE");
@@ -278,7 +283,7 @@ public class Add_Session {
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnDelete.setEnabled(true);
 		btnDelete.setBackground(new Color(0, 128, 128));
-		btnDelete.setBounds(453, 294, 141, 31);
+		btnDelete.setBounds(453, 296, 141, 31);
 		panel_6.add(btnDelete);
 		
 		JButton btnEdit = new JButton("EDIT");
@@ -286,7 +291,7 @@ public class Add_Session {
 		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnEdit.setEnabled(true);
 		btnEdit.setBackground(new Color(0, 128, 128));
-		btnEdit.setBounds(271, 294, 141, 31);
+		btnEdit.setBounds(271, 296, 141, 31);
 		panel_6.add(btnEdit);
 		
 		JPanel panel_8 = new JPanel();
@@ -380,36 +385,31 @@ public class Add_Session {
 		spinner_3.setBounds(786, 212, 161, 22);
 		panel_6.add(spinner_3);
 		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(0, 30, 1082, 4);
+		panel_2.add(separator);
+		separator.setForeground(new Color(32, 178, 170));
+		separator.setBackground(new Color(0, 139, 139));
+		
+		JLabel lblManageSessions = new JLabel(" Manage Sessions");
+		lblManageSessions.setHorizontalAlignment(SwingConstants.CENTER);
+		lblManageSessions.setForeground(new Color(32, 178, 170));
+		lblManageSessions.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblManageSessions.setBackground(new Color(32, 178, 170));
+		lblManageSessions.setBounds(0, 0, 1082, 29);
+		panel_2.add(lblManageSessions);
+		
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(230, 230, 250));
 		tabbedPane.addTab("          Add New Session          ", null, panel_3, null);
 		panel_3.setLayout(null);
 		
-		JButton btnNewButton = new JButton("ADD");
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton.setBackground(new Color(0, 128, 128));
-		btnNewButton.setBounds(339, 472, 141, 31);
-		panel_3.add(btnNewButton);
-		
-		JButton btnClear = new JButton("CLEAR");
-		btnClear.setForeground(Color.WHITE);
-		btnClear.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnClear.setEnabled(true);
-		btnClear.setBackground(new Color(0, 128, 128));
-		btnClear.setBounds(620, 472, 141, 31);
-		panel_3.add(btnClear);
-		
 		JPanel panel_5 = new JPanel();
 		panel_5.setLayout(null);
 		panel_5.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5.setBackground(SystemColor.menu);
-		panel_5.setBounds(10, 11, 1055, 450);
+		panel_5.setBounds(10, 54, 1055, 491);
 		panel_3.add(panel_5);
 		
 		JLabel lblEmployeeName = new JLabel("Lecturer(s)");
@@ -502,12 +502,46 @@ public class Add_Session {
 		spinner_1.setBounds(770, 302, 161, 22);
 		panel_5.add(spinner_1);
 		
+		JButton btnNewButton = new JButton("ADD");
+		btnNewButton.setBounds(330, 445, 141, 31);
+		panel_5.add(btnNewButton);
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNewButton.setBackground(new Color(0, 128, 128));
+		
+		JButton btnClear = new JButton("CLEAR");
+		btnClear.setBounds(611, 445, 141, 31);
+		panel_5.add(btnClear);
+		btnClear.setForeground(Color.WHITE);
+		btnClear.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnClear.setEnabled(true);
+		btnClear.setBackground(new Color(0, 128, 128));
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setForeground(new Color(32, 178, 170));
+		separator_1.setBackground(new Color(0, 139, 139));
+		separator_1.setBounds(0, 43, 1082, 4);
+		panel_3.add(separator_1);
+		
+		JLabel lblAddNewSession = new JLabel("Add New Session");
+		lblAddNewSession.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAddNewSession.setForeground(new Color(32, 178, 170));
+		lblAddNewSession.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblAddNewSession.setBackground(new Color(32, 178, 170));
+		lblAddNewSession.setBounds(0, 11, 1082, 29);
+		panel_3.add(lblAddNewSession);
+		
 		JPanel panel_7 = new JPanel();
+		panel_7.setBackground(new Color(230, 230, 250));
 		tabbedPane.addTab("          Search Sessions          ", null, panel_7, null);
 		panel_7.setLayout(null);
 		
 		JScrollPane scrollPane_5 = new JScrollPane();
-		scrollPane_5.setBounds(38, 223, 1027, 253);
+		scrollPane_5.setBounds(38, 201, 1027, 321);
 		panel_7.add(scrollPane_5);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
@@ -534,182 +568,48 @@ public class Add_Session {
 		
 		JLabel lblNewLabel = new JLabel("Search by Lecturer :");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel.setBounds(89, 61, 169, 15);
+		lblNewLabel.setBounds(78, 61, 180, 37);
 		panel_7.add(lblNewLabel);
 		
 		JLabel lblSearchByGroupsub = new JLabel("Search by Group/Sub Group :");
 		lblSearchByGroupsub.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSearchByGroupsub.setBounds(455, 61, 204, 15);
+		lblSearchByGroupsub.setBounds(444, 61, 215, 37);
 		panel_7.add(lblSearchByGroupsub);
 		
 		JLabel lblSearchBySubject = new JLabel("Search by Subject :");
 		lblSearchBySubject.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSearchBySubject.setBounds(861, 61, 204, 15);
+		lblSearchBySubject.setBounds(850, 61, 215, 37);
 		panel_7.add(lblSearchBySubject);
 		
 		JComboBox comboBox_8 = new JComboBox();
-		comboBox_8.setBounds(50, 87, 206, 27);
+		comboBox_8.setBounds(50, 109, 206, 27);
 		panel_7.add(comboBox_8);
 		
 		JComboBox comboBox_9 = new JComboBox();
-		comboBox_9.setBounds(438, 88, 206, 26);
+		comboBox_9.setBounds(438, 109, 206, 26);
 		panel_7.add(comboBox_9);
 		
 		JComboBox comboBox_10 = new JComboBox();
-		comboBox_10.setBounds(812, 87, 206, 27);
+		comboBox_10.setBounds(812, 109, 206, 27);
 		panel_7.add(comboBox_10);
 		
-		Panel panel_9 = new Panel();
-		tabbedPane.addTab("Not Available Session", null, panel_9, null);
-		panel_9.setLayout(null);
+		JPanel panel_9 = new JPanel();
+		panel_9.setBounds(10, 49, 1065, 496);
+		panel_7.add(panel_9);
 		
-		Panel panel_10 = new Panel();
-		panel_10.setBackground(SystemColor.menu);
-		panel_10.setBounds(0, 0, 1065, 524);
-		panel_9.add(panel_10);
-		panel_10.setLayout(null);
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setForeground(new Color(32, 178, 170));
+		separator_2.setBackground(new Color(0, 139, 139));
+		separator_2.setBounds(-7, 42, 1082, 4);
+		panel_7.add(separator_2);
 		
-		JLabel lblNewLabel_2 = new JLabel("Select Lecturer                   :");
-		 lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_2.setBounds(28, 38, 182, 26);
-		panel_10.add(lblNewLabel_2);
-		
-		JComboBox comboBox_11 = new JComboBox();
-		comboBox_11.setBounds(220, 41, 182, 22);
-		panel_10.add(comboBox_11);
-		
-		JLabel lblSelectGroup = new JLabel("Select Group                       :");
-		lblSelectGroup.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSelectGroup.setBounds(28, 95, 182, 26);
-		panel_10.add(lblSelectGroup);
-		
-		JComboBox comboBox_12 = new JComboBox();
-		comboBox_12.setBounds(220, 98, 182, 22);
-		panel_10.add(comboBox_12);
-		
-		JLabel lblSelectSubGroup = new JLabel("Select Sub Group                :");
-		lblSelectSubGroup.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSelectSubGroup.setBounds(28, 154, 213, 26);
-		panel_10.add(lblSelectSubGroup);
-		
-		JComboBox comboBox_13 = new JComboBox();
-		comboBox_13.setBounds(220, 157, 182, 22);
-		panel_10.add(comboBox_13);
-		
-		JLabel lblSelectSessionId = new JLabel("Select Session ID                :");
-		lblSelectSessionId.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSelectSessionId.setBounds(28, 211, 213, 26);
-		panel_10.add(lblSelectSessionId);
-		
-		JComboBox comboBox_14 = new JComboBox();
-		comboBox_14.setBounds(220, 214, 182, 22);
-		panel_10.add(comboBox_14);
-		
-		JLabel lblStartTime = new JLabel("Start Time");
-		lblStartTime.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblStartTime.setBounds(28, 266, 105, 26);
-		panel_10.add(lblStartTime);
-		
-		textField = new JTextField();
-		textField.setBounds(220, 268, 183, 24);
-		panel_10.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblEndTime = new JLabel("End Time");
-		lblEndTime.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEndTime.setBounds(28, 322, 105, 26);
-		panel_10.add(lblEndTime);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(220, 324, 183, 24);
-		panel_10.add(textField_1);
-		
-		JButton btnNewButton_2 = new JButton("SUBMIT");
-		btnNewButton_2.setForeground(new Color(255, 255, 255));
-		btnNewButton_2.setBackground(new Color(0, 128, 128));
-		btnNewButton_2.setBounds(28, 374, 374, 26);
-		panel_10.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("VIEW");
-		btnNewButton_3.setBackground(new Color(0, 128, 128));
-		btnNewButton_3.setForeground(new Color(255, 255, 255));
-		btnNewButton_3.setBounds(86, 422, 124, 23);
-		panel_10.add(btnNewButton_3);
-		
-		JButton btnClear_1 = new JButton("CLEAR");
-		btnClear_1.setForeground(Color.WHITE);
-		btnClear_1.setBackground(new Color(0, 128, 128));
-		btnClear_1.setBounds(220, 422, 124, 23);
-		panel_10.add(btnClear_1);
-		
-		JScrollPane scrollPane_8 = new JScrollPane();
-		scrollPane_8.setBounds(424, 40, 631, 222);
-		panel_10.add(scrollPane_8);
-		
-		JScrollPane scrollPane_6 = new JScrollPane();
-		scrollPane_8.setViewportView(scrollPane_6);
-		
-		JScrollPane scrollPane_7 = new JScrollPane();
-		scrollPane_6.setViewportView(scrollPane_7);
-		
-		table_4 = new JTable();
-		table_4.setBackground(new Color(245, 245, 245));
-		table_4.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"ID", "Select_Lecturer",   "Group ID " ,"Sub Group ID", "Start Time", "End Time"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Integer.class, Object.class, Object.class, Object.class, Object.class, Object.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
-		table_4.getColumnModel().getColumn(0).setPreferredWidth(45);
-		table_4.getColumnModel().getColumn(1).setPreferredWidth(131);
-		table_4.getColumnModel().getColumn(3).setPreferredWidth(125);
-		table_4.getColumnModel().getColumn(4).setPreferredWidth(85);
-		table_4.getColumnModel().getColumn(5).setPreferredWidth(109);
-		scrollPane_6.setViewportView(table_4);
-		
-		JButton btnRefresh = new JButton("UPDATE");
-		btnRefresh.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnRefresh.setForeground(Color.WHITE);
-		btnRefresh.setBackground(new Color(0, 128, 128));
-		btnRefresh.setBounds(687, 295, 124, 23);
-		panel_10.add(btnRefresh);
-		
-		JButton btnEdit_1 = new JButton("EDIT");
-		btnEdit_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnEdit_1.setForeground(Color.WHITE);
-		btnEdit_1.setBackground(new Color(0, 128, 128));
-		btnEdit_1.setBounds(511, 295, 124, 23);
-		panel_10.add(btnEdit_1);
-		
-		JButton btnDelete_1 = new JButton("DELETE");
-		btnDelete_1.setForeground(Color.WHITE);
-		btnDelete_1.setBackground(new Color(0, 128, 128));
-		btnDelete_1.setBounds(859, 295, 124, 23);
-		panel_10.add(btnDelete_1);
-		
-		
-	
-
-		
-		
-		
+		JLabel lblSearchSessions = new JLabel(" Search Sessions");
+		lblSearchSessions.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSearchSessions.setForeground(new Color(32, 178, 170));
+		lblSearchSessions.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblSearchSessions.setBackground(new Color(32, 178, 170));
+		lblSearchSessions.setBounds(-7, 10, 1082, 29);
+		panel_7.add(lblSearchSessions);
 		
 		
 		
