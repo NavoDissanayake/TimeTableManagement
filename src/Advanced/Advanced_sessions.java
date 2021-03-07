@@ -39,6 +39,7 @@ public class Advanced_sessions {
 	private JFrame frmAddStudentGroup;
 	private JTable table_2;
 	private JTable table_1;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -71,7 +72,7 @@ public class Advanced_sessions {
 		frmAddStudentGroup.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		frmAddStudentGroup.setBackground(Color.YELLOW);
 		frmAddStudentGroup.setResizable(false);
-		frmAddStudentGroup.setTitle("Add Student Group");
+		frmAddStudentGroup.setTitle("Advanced Sessions");
 		frmAddStudentGroup.setSize(1400, 860);
 		frmAddStudentGroup.setBounds(0, 0, 1350, 700);
 		frmAddStudentGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -195,7 +196,7 @@ public class Advanced_sessions {
 		 * lbli.setIcon(image); panel_1.add(lbli);
 		 */
 		
-		JLabel lblNewLabel_1 = new JLabel("Add Student Group");
+		JLabel lblNewLabel_1 = new JLabel("Advanced");
 		lblNewLabel_1.setForeground(new Color(32, 178, 170));
 		lblNewLabel_1.setBackground(new Color(32, 178, 170));
 		lblNewLabel_1.setBounds(262, 69, 1082, 36);
@@ -366,13 +367,13 @@ public class Advanced_sessions {
 		panel_4.add(comboBox);
 		
 		JLabel lblNewLabel_2 = new JLabel("Session 1");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_2.setBounds(35, 57, 108, 23);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		panel_4.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Session 2");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_3.setBounds(35, 120, 108, 23);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		panel_4.add(lblNewLabel_3);
 		
 		JComboBox comboBox_1 = new JComboBox();
@@ -398,5 +399,29 @@ public class Advanced_sessions {
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnClear.setEnabled(true);
 		btnClear.setBackground(new Color(0, 153, 153));
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(546, 43, 466, 249);
+		panel_3.add(scrollPane_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane_1.setViewportView(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID", "Session_01", "Session_02"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Integer.class, String.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		scrollPane.setViewportView(table);
 	}
 }
