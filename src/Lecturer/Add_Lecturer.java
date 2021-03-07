@@ -33,9 +33,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import Advanced.Advanced_sessions;
+import Home.Home;
+import Locations.ManageLocations;
+import Rooms.ManageSessionsRooms;
 import Session.Add_Session;
+import Statistics.Statistics;
 import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
+import Tags.Add_Tags;
+import WorkingDays.AddWorkingdays;
 
 import javax.swing.JScrollBar;
 import javax.swing.JSlider;
@@ -136,6 +143,10 @@ public class Add_Lecturer {
 		btnManageGroups.setIcon(new ImageIcon(home_logo));
 		btnManageGroups.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				Home home = new Home();
+				home.main(null);
+				frame.dispose();
 			}
 		});
 		btnManageGroups.setForeground(new Color(255, 255, 255));
@@ -169,6 +180,14 @@ public class Add_Lecturer {
 		panel_1.add(button_7);
 		
 		JButton btnStudents = new JButton("Students");
+		btnStudents.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Add_StudentGroup add_StudentGroup = new Add_StudentGroup();
+				add_StudentGroup.main(null);
+				frame.dispose();
+			}
+		});
 		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStudents.setIcon(new ImageIcon(stu_logo));
 		btnStudents.setForeground(Color.WHITE);
@@ -212,6 +231,13 @@ public class Add_Lecturer {
 		panel_1.add(btnSessions);
 		
 		JButton btnTags = new JButton("Tags");
+		btnTags.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Add_Tags add_Tags = new Add_Tags();
+				add_Tags.main(null);
+				frame.dispose();
+			}
+		});
 		btnTags.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTags.setIcon(new ImageIcon(tag_logo));
 		btnTags.setForeground(Color.WHITE);
@@ -221,6 +247,13 @@ public class Add_Lecturer {
 		panel_1.add(btnTags);
 		
 		JButton btnRooms = new JButton("Rooms");
+		btnRooms.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ManageSessionsRooms manageSessionsRooms = new ManageSessionsRooms();
+				manageSessionsRooms.main(null);
+				frame.dispose();
+			}
+		});
 		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
 		btnRooms.setIcon(new ImageIcon(room_logo));
 		btnRooms.setForeground(Color.WHITE);
@@ -230,6 +263,13 @@ public class Add_Lecturer {
 		panel_1.add(btnRooms);
 		
 		JButton btnWorkingDays = new JButton("Working days & Hours");
+		btnWorkingDays.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddWorkingdays addWorkingdays = new AddWorkingdays();
+				addWorkingdays.main(null);
+				frame.dispose();
+			}
+		});
 		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
 		btnWorkingDays.setIcon(new ImageIcon(days_logo));
 		btnWorkingDays.setForeground(Color.WHITE);
@@ -239,6 +279,16 @@ public class Add_Lecturer {
 		panel_1.add(btnWorkingDays);
 		
 		JButton btnLocations = new JButton("Locations");
+btnLocations.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				ManageLocations m_locations= new ManageLocations();
+				m_locations.main(null);
+				frame.dispose();
+				
+			}
+		});
 		btnLocations.setHorizontalAlignment(SwingConstants.LEFT);
 		btnLocations.setIcon(new ImageIcon(location_logo));
 		btnLocations.setForeground(Color.WHITE);
@@ -248,6 +298,13 @@ public class Add_Lecturer {
 		panel_1.add(btnLocations);
 		
 		JButton btnStatistics = new JButton("Statistics");
+		btnStatistics.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Statistics statistics = new Statistics();
+				statistics.main(null);
+				frame.dispose();
+			}
+		});
 		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStatistics.setIcon(new ImageIcon(st_logo));
 		btnStatistics.setForeground(Color.WHITE);
@@ -257,6 +314,14 @@ public class Add_Lecturer {
 		panel_1.add(btnStatistics);
 		
 		JButton btnAdvanced = new JButton("Advanced");
+		btnAdvanced.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Advanced_sessions advanced_sessions = new Advanced_sessions();
+				advanced_sessions.main(null);
+				frame.dispose();
+			}
+			
+		});
 		btnAdvanced.setIcon(new ImageIcon(adv_logo));
 		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAdvanced.setForeground(Color.WHITE);

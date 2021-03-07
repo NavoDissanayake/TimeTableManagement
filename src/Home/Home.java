@@ -4,6 +4,7 @@ package Home;
 import java.awt.EventQueue;
 
 
+
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Image;
@@ -22,6 +23,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
@@ -370,5 +372,17 @@ public class Home {
 		btnHome.setForeground(new Color(255, 255, 255));
 		btnHome.setBackground(new Color(0, 139, 139));
 		btnHome.setFont(new Font("Tahoma", Font.BOLD, 17));
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(272, 76, 1062, 584);
+		
+		frmAddStudentGroup.getContentPane().add(panel_2);
+		panel_2.setLayout(null);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(0, -11, 1062, 605);
+		Image wallicon = new ImageIcon(this.getClass().getResource("/new.png")).getImage();
+		label.setIcon(new ImageIcon(wallicon));
+		panel_2.add(label);
 	}
 }
