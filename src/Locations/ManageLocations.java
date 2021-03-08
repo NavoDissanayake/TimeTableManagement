@@ -3,10 +3,12 @@ package Locations;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,8 +21,25 @@ import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
+import javax.tools.DocumentationTool.Location;
+
+import Lecturer.Add_Lecturer;
+import Student.Add_StudentGroup;
 
 public class ManageLocations {
+	
+	private Image home_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/home.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image lec_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/lecturer.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image stu_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/student.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image sub_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/subject.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image session_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/session.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image tag_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/tags.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image location_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/location.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image st_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/statics.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image days_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/Wdays.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 
 	private JFrame frmMangeLocationsGroup;
 	private JTable ltable;
@@ -68,12 +87,19 @@ public class ManageLocations {
 		frmMangeLocationsGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMangeLocationsGroup.getContentPane().setLayout(null);
 		
-		
 		JPanel panel = new JPanel();
+		panel.setForeground(Color.WHITE);
 		panel.setBounds(0, 0, 1344, 65);
 		panel.setBackground(new Color(0, 139, 139));
 		frmMangeLocationsGroup.getContentPane().add(panel);
 		panel.setLayout(null);
+		
+		JLabel lblNewLabel_10 = new JLabel("Locations");
+		lblNewLabel_10.setForeground(Color.WHITE);
+		lblNewLabel_10.setFont(new Font("Times New Roman", Font.BOLD, 27));
+		lblNewLabel_10.setBackground(Color.WHITE);
+		lblNewLabel_10.setBounds(723, 13, 179, 29);
+		panel.add(lblNewLabel_10);
 		/*
 		 * //JLabel lblNewLabel = new JLabel("Time Table Management System");
 		 * lblNewLabel.setBounds(261, 5, 822, 61); panel.add(lblNewLabel);
@@ -87,108 +113,145 @@ public class ManageLocations {
 		frmMangeLocationsGroup.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-		
-		JButton btnManageGroups = new JButton("Home");
-		btnManageGroups.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnManageGroups.setForeground(new Color(255, 255, 255));
-		btnManageGroups.setBackground(new Color(0, 139, 139));
-		btnManageGroups.setBounds(0, 10, 264, 38);
-		btnManageGroups.setFont(new Font("Tahoma", Font.BOLD, 19));
-		panel_1.add(btnManageGroups);
-		
-		JButton btnViewGroups_1 = new JButton("<<Back");
-		btnViewGroups_1.setBounds(12, 724, 238, 50);
-		btnViewGroups_1.setFont(new Font("Tahoma", Font.BOLD, 20));
-		panel_1.add(btnViewGroups_1);
-		
-		JButton button_7 = new JButton("Lecturers");
-		button_7.setForeground(Color.WHITE);
-		button_7.setFont(new Font("Tahoma", Font.BOLD, 19));
-		button_7.setBackground(new Color(0, 139, 139));
-		button_7.setBounds(0, 59, 264, 38);
-		panel_1.add(button_7);
+	
+		JButton btnLecturers = new JButton("Lecturers");
+		btnLecturers.setHorizontalAlignment(SwingConstants.LEFT);
+		btnLecturers.setIcon(new ImageIcon(lec_logo));
+		btnLecturers.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent e) {
+					
+					Add_Lecturer add_lecture = new Add_Lecturer();
+					add_lecture.main(null);
+					frmMangeLocationsGroup.dispose();
+					
+				}
+			});
+		btnLecturers.setForeground(Color.WHITE);
+		btnLecturers.setFont(new Font("Tahoma", Font.BOLD, 17));
+		btnLecturers.setBackground(new Color(0, 139, 139));
+		btnLecturers.setBounds(0, 59, 264, 38);
+		panel_1.add(btnLecturers);
 		
 		JButton btnStudents = new JButton("Students");
+		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
+		btnStudents.setIcon(new ImageIcon(stu_logo));
+		btnLecturers.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				Add_StudentGroup add_st = new Add_StudentGroup();
+				add_st.main(null);
+				frmMangeLocationsGroup.dispose();
+				
+			}
+		});
 		btnStudents.setForeground(Color.WHITE);
-		btnStudents.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnStudents.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnStudents.setBackground(new Color(0, 139, 139));
 		btnStudents.setBounds(0, 108, 264, 38);
 		panel_1.add(btnStudents);
 		
 		JButton btnSubjects = new JButton("Subjects");
+		btnSubjects.setHorizontalAlignment(SwingConstants.LEFT);
+		btnSubjects.setIcon(new ImageIcon(sub_logo));
 		btnSubjects.setForeground(Color.WHITE);
-		btnSubjects.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnSubjects.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnSubjects.setBackground(new Color(0, 139, 139));
 		btnSubjects.setBounds(0, 157, 264, 38);
 		panel_1.add(btnSubjects);
 		
 		JButton btnSessions = new JButton("Sessions");
+		btnSessions.setHorizontalAlignment(SwingConstants.LEFT);
+		btnSessions.setIcon(new ImageIcon(session_logo));
 		btnSessions.setForeground(Color.WHITE);
-		btnSessions.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnSessions.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnSessions.setBackground(new Color(0, 139, 139));
 		btnSessions.setBounds(0, 206, 264, 38);
 		panel_1.add(btnSessions);
 		
 		JButton btnTags = new JButton("Tags");
+		btnTags.setHorizontalAlignment(SwingConstants.LEFT);
+		btnTags.setIcon(new ImageIcon(tag_logo));
 		btnTags.setForeground(Color.WHITE);
-		btnTags.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnTags.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnTags.setBackground(new Color(0, 139, 139));
 		btnTags.setBounds(0, 255, 264, 38);
 		panel_1.add(btnTags);
 		
 		JButton btnRooms = new JButton("Rooms");
+		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
+		btnRooms.setIcon(new ImageIcon(room_logo));
 		btnRooms.setForeground(Color.WHITE);
-		btnRooms.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnRooms.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnRooms.setBackground(new Color(0, 139, 139));
 		btnRooms.setBounds(0, 304, 264, 38);
 		panel_1.add(btnRooms);
 		
 		JButton btnWorkingDays = new JButton("Working days & Hours");
+		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
+		btnWorkingDays.setIcon(new ImageIcon(days_logo));
 		btnWorkingDays.setForeground(Color.WHITE);
-		btnWorkingDays.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnWorkingDays.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnWorkingDays.setBackground(new Color(0, 139, 139));
 		btnWorkingDays.setBounds(0, 353, 264, 38);
 		panel_1.add(btnWorkingDays);
 		
 		JButton btnLocations = new JButton("Locations");
+		btnLocations.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ManageLocations manage_lo = new ManageLocations();
+				manage_lo.main(null);
+				frmMangeLocationsGroup.dispose();
+				
+				
+			}
+		});
+		btnLocations.setHorizontalAlignment(SwingConstants.LEFT);
+		btnLocations.setIcon(new ImageIcon(location_logo));
 		btnLocations.setForeground(Color.WHITE);
-		btnLocations.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnLocations.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnLocations.setBackground(new Color(0, 139, 139));
 		btnLocations.setBounds(0, 402, 264, 38);
 		panel_1.add(btnLocations);
 		
 		JButton btnStatistics = new JButton("Statistics");
+		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
+		btnStatistics.setIcon(new ImageIcon(st_logo));
 		btnStatistics.setForeground(Color.WHITE);
-		btnStatistics.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnStatistics.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnStatistics.setBackground(new Color(0, 139, 139));
 		btnStatistics.setBounds(0, 451, 264, 38);
 		panel_1.add(btnStatistics);
 		
 		JButton btnAdvanced = new JButton("Advanced");
+		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
+		btnAdvanced.setIcon(new ImageIcon(adv_logo));
 		btnAdvanced.setForeground(Color.WHITE);
-		btnAdvanced.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnAdvanced.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnAdvanced.setBackground(new Color(0, 139, 139));
 		btnAdvanced.setBounds(0, 500, 264, 38);
 		panel_1.add(btnAdvanced);
 		
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
+		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
+		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
 		btnTimetableGenerate.setForeground(Color.WHITE);
-		btnTimetableGenerate.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnTimetableGenerate.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnTimetableGenerate.setBackground(new Color(0, 139, 139));
 		btnTimetableGenerate.setBounds(0, 549, 264, 38);
 		panel_1.add(btnTimetableGenerate);
 		
-
-		JLabel lblNewLabel_1 = new JLabel("Locations");
-		lblNewLabel_1.setForeground(new Color(32, 178, 170));
-		lblNewLabel_1.setBackground(new Color(32, 178, 170));
-		lblNewLabel_1.setBounds(262, 69, 1082, 36);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 22));
-		frmMangeLocationsGroup.getContentPane().add(lblNewLabel_1);
+		
+		JButton btnManageGroups = new JButton("Home");
+		btnManageGroups.setHorizontalAlignment(SwingConstants.LEFT);
+		btnManageGroups.setIcon(new ImageIcon(home_logo));
+		btnManageGroups.setBounds(0, 13, 262, 33);
+		panel_1.add(btnManageGroups);
+		
+		btnManageGroups.setForeground(new Color(255, 255, 255));
+		btnManageGroups.setBackground(new Color(0, 139, 139));
+		btnManageGroups.setFont(new Font("Tahoma", Font.BOLD, 17));
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(262, 108, 1082, 14);
@@ -202,8 +265,9 @@ public class ManageLocations {
 		frmMangeLocationsGroup.getContentPane().add(lpanel_2);
 		lpanel_2.setLayout(null);
 		
+		
 		JPanel lpanel_3 = new JPanel();
-		lpanel_3.setBounds(112, 26, 882, 464);
+		lpanel_3.setBounds(115, 59, 882, 464);
 		lpanel_2.add(lpanel_3);
 		lpanel_3.setLayout(null);
 		
@@ -307,10 +371,17 @@ public class ManageLocations {
 		lcomboBox_1.setBounds(589, 77, 200, 31);
 		lpanel_3.add(lcomboBox_1);
 		
-		JLabel loclblNewLabel_5 = new JLabel("Manage Locations");
-		loclblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 15));
-		loclblNewLabel_5.setBounds(359, 36, 138, 23);
-		lpanel_3.add(loclblNewLabel_5);
+		JPanel lpanel_6 = new JPanel();
+		lpanel_6.setBounds(0, 0, 1082, 49);
+		lpanel_2.add(lpanel_6);
+		lpanel_6.setLayout(null);
+		
+		
+		JLabel lollblNewLabel_1 = new JLabel("Manage Locations");
+		lollblNewLabel_1.setForeground(new Color(0, 128, 128));
+		lollblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lollblNewLabel_1.setBounds(406, 13, 278, 31);
+		lpanel_6.add(lollblNewLabel_1);
 		
 	}
 }
