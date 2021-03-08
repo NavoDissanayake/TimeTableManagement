@@ -309,7 +309,7 @@ public class Home {
 		JButton btnStatistics = new JButton("Statistics");
 		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStatistics.setIcon(new ImageIcon(st_logo));
-        btnRooms.addActionListener(new ActionListener() {
+		btnStatistics.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
@@ -328,7 +328,7 @@ public class Home {
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAdvanced.setIcon(new ImageIcon(adv_logo));
-        btnRooms.addActionListener(new ActionListener() {
+		btnAdvanced.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				

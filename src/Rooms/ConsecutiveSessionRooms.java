@@ -1,4 +1,4 @@
-package Locations;
+package Rooms;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -10,23 +10,19 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JScrollPane;
-import javax.swing.JScrollBar;
-import javax.swing.JComboBox;
-import javax.swing.table.DefaultTableModel;
-import javax.tools.DocumentationTool.Location;
 
 import Advanced.Advanced_sessions;
-import Home.Home;
 import Lecturer.Add_Lecturer;
-import Rooms.ManageSessionsRooms;
+import Locations.ManageLocations;
 import Session.Add_Session;
 import Statistics.Statistics;
 import Student.Add_StudentGroup;
@@ -34,8 +30,10 @@ import Subject.Add_Subjects;
 import Tags.Add_Tags;
 import WorkingDays.AddWorkingdays;
 
-public class ManageLocations {
+public class ConsecutiveSessionRooms {
 	
+	
+
 	private Image home_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/home.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image lec_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/lecturer.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image stu_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/student.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
@@ -49,15 +47,13 @@ public class ManageLocations {
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 
-	private JFrame frmMangeLocationsGroup;
-	private JTable ltable;
-	private JTextField ltextField_2;
-	private JTextField ltextField_3;
-	private JTable ltable_1;
-	private JTextField ltextField;
-	private JTextField ltextField_1;
-	private JTextField ltextField_5;
-	private JTable ltable_2;
+	private JFrame crframe;
+	private JTable crtable;
+	private JTable crtable_1;
+	private JTable crtable_2;
+	private JTextField crtextField;
+	private JTextField crtextField_1;
+
 	/**
 	 * Launch the application.
 	 */
@@ -65,8 +61,8 @@ public class ManageLocations {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ManageLocations window = new ManageLocations();
-					window.frmMangeLocationsGroup.setVisible(true);
+					ConsecutiveSessionRooms window = new ConsecutiveSessionRooms();
+					window.crframe.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -77,7 +73,7 @@ public class ManageLocations {
 	/**
 	 * Create the application.
 	 */
-	public ManageLocations() {
+	public ConsecutiveSessionRooms() {
 		initialize();
 	}
 
@@ -85,28 +81,28 @@ public class ManageLocations {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmMangeLocationsGroup = new JFrame();
-		frmMangeLocationsGroup.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
-		frmMangeLocationsGroup.setBackground(Color.YELLOW);
-		frmMangeLocationsGroup.setResizable(false);
-		frmMangeLocationsGroup.setTitle("Add Student Group");
-		frmMangeLocationsGroup.setSize(1350, 728);
-		frmMangeLocationsGroup.setBounds(0,0, 1350, 700);
-		frmMangeLocationsGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmMangeLocationsGroup.getContentPane().setLayout(null);
+		crframe = new JFrame();
+		crframe.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
+		crframe.setBackground(Color.YELLOW);
+		crframe.setResizable(false);
+		crframe.setTitle("Sessions");
+		crframe.setSize(1400, 860);
+		crframe.setBounds(0, 0, 1350, 700);
+		crframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		crframe.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setForeground(Color.WHITE);
 		panel.setBounds(0, 0, 1344, 65);
 		panel.setBackground(new Color(0, 139, 139));
-		frmMangeLocationsGroup.getContentPane().add(panel);
+		crframe.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_10 = new JLabel("Locations");
+		JLabel lblNewLabel_10 = new JLabel("Manage Session Rooms");
 		lblNewLabel_10.setForeground(Color.WHITE);
 		lblNewLabel_10.setFont(new Font("Times New Roman", Font.BOLD, 27));
 		lblNewLabel_10.setBackground(Color.WHITE);
-		lblNewLabel_10.setBounds(723, 13, 179, 29);
+		lblNewLabel_10.setBounds(723, 13, 279, 29);
 		panel.add(lblNewLabel_10);
 		/*
 		 * //JLabel lblNewLabel = new JLabel("Time Table Management System");
@@ -118,7 +114,7 @@ public class ManageLocations {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 62, 262, 609);
 		panel_1.setBackground(new Color(230, 230, 250));
-		frmMangeLocationsGroup.getContentPane().add(panel_1);
+		crframe.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
 	
@@ -131,7 +127,7 @@ public class ManageLocations {
 					
 					Add_Lecturer add_lecture = new Add_Lecturer();
 					add_lecture.main(null);
-					frmMangeLocationsGroup.dispose();
+					crframe.dispose();
 					
 				}
 			});
@@ -150,7 +146,7 @@ public class ManageLocations {
 				
 				Add_StudentGroup add_st = new Add_StudentGroup();
 				add_st.main(null);
-				frmMangeLocationsGroup.dispose();
+				crframe.dispose();
 				
 			}
 		});
@@ -165,7 +161,7 @@ public class ManageLocations {
 			public void actionPerformed(ActionEvent e) {
 				Add_Subjects add_sub= new Add_Subjects();
 				add_sub.main(null);
-				frmMangeLocationsGroup.dispose();
+				crframe.dispose();
 			}
 		});
 		btnSubjects.setHorizontalAlignment(SwingConstants.LEFT);
@@ -181,7 +177,7 @@ public class ManageLocations {
 			public void actionPerformed(ActionEvent e) {
 				Add_Session add_session= new Add_Session();
 				add_session.main(null);
-				frmMangeLocationsGroup.dispose();
+				crframe.dispose();
 			}
 		});
 		btnSessions.setHorizontalAlignment(SwingConstants.LEFT);
@@ -195,10 +191,9 @@ public class ManageLocations {
 		JButton btnTags = new JButton("Tags");
 		btnTags.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				Add_Tags add_tag= new Add_Tags();
 				add_tag.main(null);
-				frmMangeLocationsGroup.dispose();
+				crframe.dispose();
 			}
 		});
 		btnTags.setHorizontalAlignment(SwingConstants.LEFT);
@@ -212,10 +207,9 @@ public class ManageLocations {
 		JButton btnRooms = new JButton("Rooms");
 		btnRooms.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
 				m_rooms.main(null);
-				frmMangeLocationsGroup.dispose();
+				crframe.dispose();
 			}
 		});
 		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
@@ -231,7 +225,7 @@ public class ManageLocations {
 			public void actionPerformed(ActionEvent e) {
 				AddWorkingdays w_days= new 	AddWorkingdays();
 				w_days.main(null);
-				frmMangeLocationsGroup.dispose();
+				crframe.dispose();
 			}
 		});
 		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
@@ -245,9 +239,10 @@ public class ManageLocations {
 		JButton btnLocations = new JButton("Locations");
 		btnLocations.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				ManageLocations m_locations= new ManageLocations();
 				m_locations.main(null);
-				frmMangeLocationsGroup.dispose();
+				crframe.dispose();
 				
 				
 			}
@@ -263,10 +258,9 @@ public class ManageLocations {
 		JButton btnStatistics = new JButton("Statistics");
 		btnStatistics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				Statistics stat= new Statistics ();
 				stat.main(null);
-				frmMangeLocationsGroup.dispose();
+				crframe.dispose();
 			}
 		});
 		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
@@ -280,9 +274,10 @@ public class ManageLocations {
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				Advanced_sessions a_session= new Advanced_sessions ();
 				a_session.main(null);
-				frmMangeLocationsGroup.dispose();
+				crframe.dispose();
 			}
 		});
 		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
@@ -306,10 +301,6 @@ public class ManageLocations {
 		JButton btnManageGroups = new JButton("Home");
 		btnManageGroups.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Home home = new Home();
-				home.main(null);
-				frmMangeLocationsGroup.dispose();
-				
 			}
 		});
 		btnManageGroups.setHorizontalAlignment(SwingConstants.LEFT);
@@ -321,135 +312,142 @@ public class ManageLocations {
 		btnManageGroups.setBackground(new Color(0, 139, 139));
 		btnManageGroups.setFont(new Font("Tahoma", Font.BOLD, 17));
 		
+		/*JLabel rlblNewLabel_1 = new JLabel(" Manage Sessions Rooms");
+		rlblNewLabel_1.setForeground(new Color(32, 178, 170));
+		rlblNewLabel_1.setBackground(new Color(32, 178, 170));
+		rlblNewLabel_1.setBounds(262, 69, 1082, 36);
+		rlblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		rlblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 22));
+		rframe.getContentPane().add(rlblNewLabel_1);*/
+		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(262, 108, 1082, 14);
+		separator.setBounds(262, 108, 1082, 12);
 		separator.setForeground(new Color(32, 178, 170));
 		separator.setBackground(new Color(0, 139, 139));
-		frmMangeLocationsGroup.getContentPane().add(separator);
+		crframe.getContentPane().add(separator);
 		
-		JPanel lpanel_2 = new JPanel();
-		lpanel_2.setBackground(new Color(230, 230, 250));
-		lpanel_2.setBounds(262, 115, 1082, 556);
-		frmMangeLocationsGroup.getContentPane().add(lpanel_2);
-		lpanel_2.setLayout(null);
+		JPanel crpanel_2 = new JPanel();
+		crpanel_2.setBackground(new Color(230, 230, 250));
+		crpanel_2.setBounds(262, 108, 1082, 563);
+		crframe.getContentPane().add(crpanel_2);
+		crpanel_2.setLayout(null);
 		
+		JPanel crpanel_3 = new JPanel();
+		crpanel_3.setBounds(138, 83, 756, 428);
+		crpanel_2.add(crpanel_3);
+		crpanel_3.setLayout(null);
 		
-		JPanel lpanel_3 = new JPanel();
-		lpanel_3.setBounds(115, 59, 882, 464);
-		lpanel_2.add(lpanel_3);
-		lpanel_3.setLayout(null);
+		JLabel crlblNewLabel = new JLabel("Select Consecutive Session");
+		crlblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		crlblNewLabel.setBounds(73, 79, 161, 13);
+		crpanel_3.add(crlblNewLabel);
 		
-		JLabel loclblNewLabel = new JLabel("Building Name");
-		loclblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		loclblNewLabel.setBounds(41, 83, 85, 16);
-		lpanel_3.add(loclblNewLabel);
+		JLabel lblNewLabel_1 = new JLabel("Select Room");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_1.setBounds(462, 79, 78, 13);
+		crpanel_3.add(lblNewLabel_1);
 		
-		JLabel loclblNewLabel_2 = new JLabel("Room Name");
-		loclblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		loclblNewLabel_2.setBounds(41, 136, 74, 16);
-		lpanel_3.add(loclblNewLabel_2);
+		crtextField = new JTextField();
+		crtextField.setBounds(550, 75, 161, 23);
+		crpanel_3.add(crtextField);
+		crtextField.setColumns(10);
 		
-		JLabel loclblNewLabel_3 = new JLabel("Room Type");
-		loclblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		loclblNewLabel_3.setBounds(41, 197, 85, 16);
-		lpanel_3.add(loclblNewLabel_3);
+		crtextField_1 = new JTextField();
+		crtextField_1.setBounds(276, 75, 161, 23);
+		crpanel_3.add(crtextField_1);
+		crtextField_1.setColumns(10);
 		
-		JLabel loclblNewLabel_4 = new JLabel("Capacity");
-		loclblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		loclblNewLabel_4.setBounds(41, 259, 59, 13);
-		lpanel_3.add(loclblNewLabel_4);
+		JLabel crlblNewLabel_2 = new JLabel("Selected ConsecutiveSession Room");
+		crlblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		crlblNewLabel_2.setBounds(73, 164, 200, 32);
+		crpanel_3.add(crlblNewLabel_2);
 		
-		JButton lbtnAddButton = new JButton("ADD");
-		lbtnAddButton.setForeground(new Color(255, 255, 255));
-		lbtnAddButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lbtnAddButton.setBackground(new Color(0, 139, 139));
-		lbtnAddButton.setBounds(41, 322, 105, 31);
-		lpanel_3.add(lbtnAddButton);
+		JTextArea crtextArea = new JTextArea();
+		crtextArea.setBounds(276, 169, 246, 82);
+		crpanel_3.add(crtextArea);
 		
-		JButton lbtnEditButton_1 = new JButton("EDIT");
-		lbtnEditButton_1.setForeground(new Color(255, 255, 255));
-		lbtnEditButton_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lbtnEditButton_1.setBackground(new Color(0, 139, 139));
-		lbtnEditButton_1.setBounds(195, 322, 105, 31);
-		lpanel_3.add(lbtnEditButton_1);
-		
-		JButton lbtnDelButton_2 = new JButton("DELETE");
-		lbtnDelButton_2.setForeground(new Color(255, 255, 255));
-		lbtnDelButton_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lbtnDelButton_2.setBackground(new Color(0, 139, 139));
-		lbtnDelButton_2.setBounds(41, 382, 105, 31);
-		lpanel_3.add(lbtnDelButton_2);
-		
-		JButton lbtnclrButton_3 = new JButton("CLEAR");
-		lbtnclrButton_3.setForeground(new Color(255, 255, 255));
-		lbtnclrButton_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lbtnclrButton_3.setBackground(new Color(0, 139, 139));
-		lbtnclrButton_3.setBounds(195, 382, 105, 31);
-		lpanel_3.add(lbtnclrButton_3);
-		
-		ltextField = new JTextField();
-		ltextField.setBounds(139, 134, 161, 23);
-		lpanel_3.add(ltextField);
-		ltextField.setColumns(10);
-		
-		ltextField_1 = new JTextField();
-		ltextField_1.setBounds(139, 81, 161, 23);
-		lpanel_3.add(ltextField_1);
-		ltextField_1.setColumns(10);
-		
-		ltextField_5 = new JTextField();
-		ltextField_5.setBounds(139, 255, 161, 23);
-		lpanel_3.add(ltextField_5);
-		ltextField_5.setColumns(10);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(139, 195, 161, 23);
-		lpanel_3.add(comboBox);
-		
-		JPanel lpanel_4 = new JPanel();
-		lpanel_4.setBounds(379, 115, 460, 298);
-		lpanel_3.add(lpanel_4);
-		lpanel_4.setLayout(null);
-		
-		JScrollPane lscrollPane_1 = new JScrollPane();
-		lscrollPane_1.setBounds(25, 22, 385, 252);
-		lpanel_4.add(lscrollPane_1);
-		
-		JScrollPane lscrollPane = new JScrollPane();
-		lscrollPane_1.setViewportView(lscrollPane);
-		
-		ltable_2 = new JTable();
-		ltable_2.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Location ID", "Building Name", "Room Name", "Room Type", "Capacity"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
+		JButton crbtnNewButton_4 = new JButton("SUBMIT");
+		crbtnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 12));
+		crbtnNewButton_4.setForeground(new Color(255, 255, 255));
+		crbtnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		lscrollPane.setViewportView(ltable_2);
+		crbtnNewButton_4.setBackground(new Color(0, 139, 139));
+		crbtnNewButton_4.setBounds(276, 291, 105, 32);
+		crpanel_3.add(crbtnNewButton_4);
 		
-		JComboBox lcomboBox_1 = new JComboBox();
-		lcomboBox_1.setBounds(589, 77, 200, 31);
-		lpanel_3.add(lcomboBox_1);
+		JButton crbtnNewButton_5 = new JButton("CLEAR");
+		crbtnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 12));
+		crbtnNewButton_5.setForeground(new Color(255, 255, 255));
+		crbtnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		crbtnNewButton_5.setBackground(new Color(0, 139, 139));
+		crbtnNewButton_5.setBounds(417, 290, 105, 32);
+		crpanel_3.add(crbtnNewButton_5);
 		
-		JPanel lpanel_6 = new JPanel();
-		lpanel_6.setBounds(0, 0, 1082, 49);
-		lpanel_2.add(lpanel_6);
-		lpanel_6.setLayout(null);
+	
+		
+		JPanel srpanel_6 = new JPanel();
+		srpanel_6.setBounds(0, 0, 1082, 49);
+		crpanel_2.add(srpanel_6);
+		srpanel_6.setLayout(null);
 		
 		
-		JLabel lollblNewLabel_1 = new JLabel("Manage Locations");
+		JLabel lollblNewLabel_1 = new JLabel("Add Consecutive Session Rooms");
 		lollblNewLabel_1.setForeground(new Color(0, 128, 128));
 		lollblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lollblNewLabel_1.setBounds(406, 13, 278, 31);
-		lpanel_6.add(lollblNewLabel_1);
+		srpanel_6.add(lollblNewLabel_1);
+		
+		JButton btnNewButton = new JButton("Add SessionRooms");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ManageSessionsRooms manage_ro = new ManageSessionsRooms();
+				manage_ro.main(null);
+				crframe.dispose();
+			}
+		});
+		btnNewButton.setBounds(262, 69, 179, 39);
+		crframe.getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("View Session Rooms");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewSeesionRooms view_ses = new ViewSeesionRooms();
+				view_ses.main(null);
+				crframe.dispose();
+			}
+		});
+		btnNewButton_1.setBounds(440, 69, 237, 39);
+		crframe.getContentPane().add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Add ConsecutiveSessionsRooms");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConsecutiveSessionRooms add_con = new ConsecutiveSessionRooms();
+				add_con.main(null);
+				crframe.dispose();
+			}
+		});
+		btnNewButton_2.setBounds(677, 69, 251, 39);
+		crframe.getContentPane().add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("View ConsecutiveSessionsRooms");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewConsecutiveRooms view_con = new ViewConsecutiveRooms();
+				view_con.main(null);
+				crframe.dispose();
+			}
+		});
+		btnNewButton_3.setBounds(927, 69, 246, 39);
+		crframe.getContentPane().add(btnNewButton_3);
 		
 	}
+	
+	
+
 }

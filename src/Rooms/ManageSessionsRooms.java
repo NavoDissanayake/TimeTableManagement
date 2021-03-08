@@ -22,10 +22,20 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Advanced.Advanced_sessions;
+import Home.Home;
+import Lecturer.Add_Lecturer;
+import Locations.ManageLocations;
+import Session.Add_Session;
+import Statistics.Statistics;
 import Student.Add_StudentGroup;
+import Subject.Add_Subjects;
+import Tags.Add_Tags;
+import WorkingDays.AddWorkingdays;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class ManageSessionsRooms {
 	private Image home_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/home.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
@@ -45,6 +55,8 @@ public class ManageSessionsRooms {
 	private JTable rtable;
 	private JTable rtable_1;
 	private JTable rtable_2;
+	private JTextField textField;
+	private JTextField textField_1;
 	
 	/**
 	 * Launch the application.
@@ -84,10 +96,18 @@ public class ManageSessionsRooms {
 		rframe.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setForeground(Color.WHITE);
 		panel.setBounds(0, 0, 1344, 65);
-		panel.setBackground(new Color(51, 153, 153));
+		panel.setBackground(new Color(0, 139, 139));
 		rframe.getContentPane().add(panel);
 		panel.setLayout(null);
+		
+		JLabel lblNewLabel_10 = new JLabel("Manage Session Rooms");
+		lblNewLabel_10.setForeground(Color.WHITE);
+		lblNewLabel_10.setFont(new Font("Times New Roman", Font.BOLD, 27));
+		lblNewLabel_10.setBackground(Color.WHITE);
+		lblNewLabel_10.setBounds(723, 13, 279, 29);
+		panel.add(lblNewLabel_10);
 		/*
 		 * //JLabel lblNewLabel = new JLabel("Time Table Management System");
 		 * lblNewLabel.setBounds(261, 5, 822, 61); panel.add(lblNewLabel);
@@ -101,376 +121,347 @@ public class ManageSessionsRooms {
 		rframe.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-		
-		JButton btnManageGroups = new JButton("Home");
-		btnManageGroups.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnManageGroups.setForeground(new Color(255, 255, 255));
-		btnManageGroups.setBackground(new Color(0, 139, 139));
-		btnManageGroups.setBounds(0, 10, 264, 38);
-		btnManageGroups.setFont(new Font("Tahoma", Font.BOLD, 19));
-		panel_1.add(btnManageGroups);
-		
-		JButton btnViewGroups_1 = new JButton("<<Back");
-		btnViewGroups_1.setBounds(12, 724, 238, 50);
-		btnViewGroups_1.setFont(new Font("Tahoma", Font.BOLD, 20));
-		panel_1.add(btnViewGroups_1);
-		
-		JButton button_7 = new JButton("Lecturers");
-		button_7.setForeground(Color.WHITE);
-		button_7.setFont(new Font("Tahoma", Font.BOLD, 19));
-		button_7.setBackground(new Color(0, 139, 139));
-		button_7.setBounds(0, 59, 264, 38);
-		panel_1.add(button_7);
+	
+		JButton btnLecturers = new JButton("Lecturers");
+		btnLecturers.setHorizontalAlignment(SwingConstants.LEFT);
+		btnLecturers.setIcon(new ImageIcon(lec_logo));
+		btnLecturers.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent e) {
+					
+					Add_Lecturer add_lecture = new Add_Lecturer();
+					add_lecture.main(null);
+					rframe.dispose();
+					
+				}
+			});
+		btnLecturers.setForeground(Color.WHITE);
+		btnLecturers.setFont(new Font("Tahoma", Font.BOLD, 17));
+		btnLecturers.setBackground(new Color(0, 139, 139));
+		btnLecturers.setBounds(0, 59, 264, 38);
+		panel_1.add(btnLecturers);
 		
 		JButton btnStudents = new JButton("Students");
+		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
+		btnStudents.setIcon(new ImageIcon(stu_logo));
+		btnLecturers.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				Add_StudentGroup add_st = new Add_StudentGroup();
+				add_st.main(null);
+				rframe.dispose();
+				
+			}
+		});
 		btnStudents.setForeground(Color.WHITE);
-		btnStudents.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnStudents.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnStudents.setBackground(new Color(0, 139, 139));
 		btnStudents.setBounds(0, 108, 264, 38);
 		panel_1.add(btnStudents);
 		
 		JButton btnSubjects = new JButton("Subjects");
+		btnSubjects.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Add_Subjects add_sub= new Add_Subjects();
+				add_sub.main(null);
+				rframe.dispose();
+			}
+		});
+		btnSubjects.setHorizontalAlignment(SwingConstants.LEFT);
+		btnSubjects.setIcon(new ImageIcon(sub_logo));
 		btnSubjects.setForeground(Color.WHITE);
-		btnSubjects.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnSubjects.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnSubjects.setBackground(new Color(0, 139, 139));
 		btnSubjects.setBounds(0, 157, 264, 38);
 		panel_1.add(btnSubjects);
 		
 		JButton btnSessions = new JButton("Sessions");
+		btnSessions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Add_Session add_session= new Add_Session();
+				add_session.main(null);
+				rframe.dispose();
+			}
+		});
+		btnSessions.setHorizontalAlignment(SwingConstants.LEFT);
+		btnSessions.setIcon(new ImageIcon(session_logo));
 		btnSessions.setForeground(Color.WHITE);
-		btnSessions.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnSessions.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnSessions.setBackground(new Color(0, 139, 139));
 		btnSessions.setBounds(0, 206, 264, 38);
 		panel_1.add(btnSessions);
 		
 		JButton btnTags = new JButton("Tags");
+		btnTags.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Add_Tags add_tag= new Add_Tags();
+				add_tag.main(null);
+				rframe.dispose();
+				
+			}
+		});
+		btnTags.setHorizontalAlignment(SwingConstants.LEFT);
+		btnTags.setIcon(new ImageIcon(tag_logo));
 		btnTags.setForeground(Color.WHITE);
-		btnTags.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnTags.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnTags.setBackground(new Color(0, 139, 139));
 		btnTags.setBounds(0, 255, 264, 38);
 		panel_1.add(btnTags);
 		
 		JButton btnRooms = new JButton("Rooms");
+		btnRooms.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
+				m_rooms.main(null);
+				rframe.dispose();
+				
+			}
+		});
+		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
+		btnRooms.setIcon(new ImageIcon(room_logo));
 		btnRooms.setForeground(Color.WHITE);
-		btnRooms.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnRooms.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnRooms.setBackground(new Color(0, 139, 139));
 		btnRooms.setBounds(0, 304, 264, 38);
 		panel_1.add(btnRooms);
 		
 		JButton btnWorkingDays = new JButton("Working days & Hours");
+		btnWorkingDays.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				AddWorkingdays w_days= new 	AddWorkingdays();
+				w_days.main(null);
+				rframe.dispose();
+			}
+		});
+		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
+		btnWorkingDays.setIcon(new ImageIcon(days_logo));
 		btnWorkingDays.setForeground(Color.WHITE);
-		btnWorkingDays.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnWorkingDays.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnWorkingDays.setBackground(new Color(0, 139, 139));
 		btnWorkingDays.setBounds(0, 353, 264, 38);
 		panel_1.add(btnWorkingDays);
 		
 		JButton btnLocations = new JButton("Locations");
+		btnLocations.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ManageLocations m_locations= new ManageLocations();
+				m_locations.main(null);
+				rframe.dispose();
+				
+				
+			}
+		});
+		btnLocations.setHorizontalAlignment(SwingConstants.LEFT);
+		btnLocations.setIcon(new ImageIcon(location_logo));
 		btnLocations.setForeground(Color.WHITE);
-		btnLocations.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnLocations.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnLocations.setBackground(new Color(0, 139, 139));
 		btnLocations.setBounds(0, 402, 264, 38);
 		panel_1.add(btnLocations);
 		
 		JButton btnStatistics = new JButton("Statistics");
+		btnStatistics.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Statistics stat= new Statistics ();
+				stat.main(null);
+				rframe.dispose();
+				
+			}
+		});
+		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
+		btnStatistics.setIcon(new ImageIcon(st_logo));
 		btnStatistics.setForeground(Color.WHITE);
-		btnStatistics.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnStatistics.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnStatistics.setBackground(new Color(0, 139, 139));
 		btnStatistics.setBounds(0, 451, 264, 38);
 		panel_1.add(btnStatistics);
 		
 		JButton btnAdvanced = new JButton("Advanced");
+		btnAdvanced.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Advanced_sessions a_session= new Advanced_sessions ();
+				a_session.main(null);
+				rframe.dispose();
+			}
+		});
+		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
+		btnAdvanced.setIcon(new ImageIcon(adv_logo));
 		btnAdvanced.setForeground(Color.WHITE);
-		btnAdvanced.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnAdvanced.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnAdvanced.setBackground(new Color(0, 139, 139));
 		btnAdvanced.setBounds(0, 500, 264, 38);
 		panel_1.add(btnAdvanced);
 		
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
+		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
+		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
 		btnTimetableGenerate.setForeground(Color.WHITE);
-		btnTimetableGenerate.setFont(new Font("Tahoma", Font.BOLD, 19));
+		btnTimetableGenerate.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnTimetableGenerate.setBackground(new Color(0, 139, 139));
 		btnTimetableGenerate.setBounds(0, 549, 264, 38);
 		panel_1.add(btnTimetableGenerate);
 		
-		/*
-		 * JLabel lbli = new JLabel("New label"); lbli.setBounds(0, 13, 264, 256);
-		 * ImageIcon image = new ImageIcon(this.getClass().getResource("/tt.png/"));
-		 * lbli.setIcon(image); panel_1.add(lbli);
-		 */
 		
-		JLabel rlblNewLabel_1 = new JLabel(" Manage Sessions Rooms");
+		JButton btnManageGroups = new JButton("Home");
+		btnManageGroups.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Home home = new Home();
+				home.main(null);
+				rframe.dispose();
+			}
+		});
+		btnManageGroups.setHorizontalAlignment(SwingConstants.LEFT);
+		btnManageGroups.setIcon(new ImageIcon(home_logo));
+		btnManageGroups.setBounds(0, 13, 262, 33);
+		panel_1.add(btnManageGroups);
+		
+		btnManageGroups.setForeground(new Color(255, 255, 255));
+		btnManageGroups.setBackground(new Color(0, 139, 139));
+		btnManageGroups.setFont(new Font("Tahoma", Font.BOLD, 17));
+		
+		/*JLabel rlblNewLabel_1 = new JLabel(" Manage Sessions Rooms");
 		rlblNewLabel_1.setForeground(new Color(32, 178, 170));
 		rlblNewLabel_1.setBackground(new Color(32, 178, 170));
 		rlblNewLabel_1.setBounds(262, 69, 1082, 36);
 		rlblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		rlblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 22));
-		rframe.getContentPane().add(rlblNewLabel_1);
+		rframe.getContentPane().add(rlblNewLabel_1);*/
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(262, 108, 1082, 14);
+		separator.setBounds(262, 108, 1082, 12);
 		separator.setForeground(new Color(32, 178, 170));
 		separator.setBackground(new Color(0, 139, 139));
 		rframe.getContentPane().add(separator);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setForeground(new Color(47, 79, 79));
-		tabbedPane.setFont(new Font("Nirmala UI", Font.BOLD, 16));
-		tabbedPane.setBorder(new MatteBorder(0, 1, 1, 1, (Color) new Color(32, 178, 170)));
-		tabbedPane.setBounds(262, 108, 1082, 540);
-		rframe.getContentPane().add(tabbedPane);
+		JPanel srpanel_2 = new JPanel();
+		srpanel_2.setBackground(new Color(230, 230, 250));
+		srpanel_2.setBounds(262, 108, 1082, 563);
+		rframe.getContentPane().add(srpanel_2);
+		srpanel_2.setLayout(null);
 		
-		JPanel rpanel_2 = new JPanel();
-		rpanel_2.setBackground(new Color(230, 230, 250));
-		tabbedPane.addTab("         Sessions Rooms          ", null, rpanel_2, null);
-		rpanel_2.setLayout(null);
+		JPanel srpanel_3 = new JPanel();
+		srpanel_3.setBounds(138, 83, 756, 428);
+		srpanel_2.add(srpanel_3);
+		srpanel_3.setLayout(null);
 		
-		JPanel rpanel_3 = new JPanel();
-		rpanel_3.setBounds(157, 31, 780, 408);
-		rpanel_2.add(rpanel_3);
-		rpanel_3.setLayout(null);
+		JLabel lblNewLabel = new JLabel("Select Session");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel.setBounds(108, 79, 85, 13);
+		srpanel_3.add(lblNewLabel);
 		
-		JLabel rlblNewLabel = new JLabel("Sessions Rooms ");
-		rlblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		rlblNewLabel.setBounds(310, 39, 129, 13);
-		rpanel_3.add(rlblNewLabel);
+		JLabel lblNewLabel_1 = new JLabel("Select Room");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_1.setBounds(462, 79, 78, 13);
+		srpanel_3.add(lblNewLabel_1);
 		
-		JLabel rlblNewLabel_2 = new JLabel("Select Sessions");
-		rlblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		rlblNewLabel_2.setBounds(69, 119, 117, 13);
-		rpanel_3.add(rlblNewLabel_2);
+		textField = new JTextField();
+		textField.setBounds(550, 75, 161, 23);
+		srpanel_3.add(textField);
+		textField.setColumns(10);
 		
-		JLabel rlblNewLabel_3 = new JLabel("Select Rooms");
-		rlblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		rlblNewLabel_3.setBounds(435, 119, 117, 13);
-		rpanel_3.add(rlblNewLabel_3);
+		textField_1 = new JTextField();
+		textField_1.setBounds(252, 75, 161, 23);
+		srpanel_3.add(textField_1);
+		textField_1.setColumns(10);
 		
-		JComboBox rcomboBox = new JComboBox();
-		rcomboBox.setBounds(217, 115, 161, 23);
-		rpanel_3.add(rcomboBox);
+		JLabel lblNewLabel_2 = new JLabel("Selected Session Room");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_2.setBounds(108, 164, 134, 32);
+		srpanel_3.add(lblNewLabel_2);
 		
-		JComboBox rcomboBox_1 = new JComboBox();
-		rcomboBox_1.setBounds(543, 115, 161, 23);
-		rpanel_3.add(rcomboBox_1);
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(252, 169, 246, 82);
+		srpanel_3.add(textArea);
 		
-		JTextArea rtextArea = new JTextArea();
-		rtextArea.setBounds(217, 196, 275, 88);
-		rpanel_3.add(rtextArea);
-		
-		JButton rbtnSubButton = new JButton("SUBMIT");
-		rbtnSubButton.setForeground(new Color(255, 255, 255));
-		rbtnSubButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		rbtnSubButton.setBackground(new Color(0, 139, 139));
-		rbtnSubButton.setBounds(217, 314, 105, 31);
-		rpanel_3.add(rbtnSubButton);
-		
-		JButton rbtnClrButton_1 = new JButton("CLEAR");
-		rbtnClrButton_1.setForeground(new Color(255, 255, 255));
-		rbtnClrButton_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		rbtnClrButton_1.setBackground(new Color(0, 139, 139));
-		rbtnClrButton_1.setBounds(384, 314, 105, 31);
-		rpanel_3.add(rbtnClrButton_1);
-		
-		JLabel rlblNewLabel_4 = new JLabel("Selected Session Rooms");
-		rlblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		rlblNewLabel_4.setBounds(69, 222, 145, 13);
-		rpanel_3.add(rlblNewLabel_4);
-		
-		
-		JPanel rpanel_4 = new JPanel();
-		rpanel_4.setBackground(new Color(230, 230, 250));
-		tabbedPane.addTab("View Sessions Rooms", null, rpanel_4, null);
-		rpanel_4.setLayout(null);
-		
-
-		JLabel rlblNewLabe5 = new JLabel("View Sessions Rooms ");
-		rlblNewLabe5.setFont(new Font("Tahoma", Font.BOLD, 15));
-		rlblNewLabe5.setBounds(450, 60, 200, 30);
-		rpanel_4.add(rlblNewLabe5);
-		
-
-		JPanel rpanel_5 = new JPanel();
-		rpanel_5.setLayout(null);
-		rpanel_5.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		rpanel_5.setBackground(SystemColor.menu);
-		rpanel_5.setBounds(157, 31, 780, 408);
-		rpanel_4.add(rpanel_5);
-		
-		JPanel rpanel_6 = new JPanel();
-		rpanel_6.setBounds(379, 115, 460, 298);
-		rpanel_4.add(rpanel_6);
-		rpanel_6.setLayout(null);
-		
-		JScrollPane rscrollPane_1 = new JScrollPane();
-		rscrollPane_1.setBounds(25, 80, 720, 200);
-		rpanel_5.add(rscrollPane_1);
-		
-		JScrollPane rscrollPane = new JScrollPane();
-		rscrollPane_1.setViewportView(rscrollPane);
-		
-		rtable_1 = new JTable();
-		rtable_1.setBackground(new Color(245, 245, 245));
-		rtable_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"RoomSessions ID", "Session Code", "Room", "Session Room Code"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
+		JButton btnNewButton_4 = new JButton("SUBMIT");
+		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_4.setForeground(new Color(255, 255, 255));
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		btnNewButton_4.setBackground(new Color(0, 139, 139));
+		btnNewButton_4.setBounds(252, 291, 105, 32);
+		srpanel_3.add(btnNewButton_4);
 		
-		rscrollPane.setViewportView(rtable_1);
-		
-		JButton rbtnSesViewButton = new JButton("ADD ROOM");
-		rbtnSesViewButton.setForeground(new Color(255, 255, 255));
-		rbtnSesViewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		rbtnSesViewButton.setBackground(new Color(0, 139, 139));
-		rbtnSesViewButton.setBounds(217, 314, 120, 31);
-		rpanel_5.add(rbtnSesViewButton);
-		
-		JButton rbtnRefresh_1 = new JButton("REFRESH");
-		rbtnRefresh_1.setForeground(new Color(255, 255, 255));
-		rbtnRefresh_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		rbtnRefresh_1.setBackground(new Color(0, 139, 139));
-		rbtnRefresh_1.setBounds(500, 314, 120, 31);
-		rpanel_5.add(rbtnRefresh_1);
-		
-		
-		JPanel  rpanel_7 = new JPanel();
-		rpanel_7.setBackground(new Color(230, 230, 250));
-		tabbedPane.addTab("         Consecutive Sessions Rooms          ", null, rpanel_7, null);
-		rpanel_7.setLayout(null);
-		
-		JPanel rpanel_8 = new JPanel();
-		rpanel_8.setBounds(157, 31, 780, 408);
-		rpanel_7.add(rpanel_8);
-		rpanel_8.setLayout(null);
-		
-		JLabel clblNewLabel = new JLabel("Consecutive Sessions Rooms ");
-		clblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		clblNewLabel.setBounds(290, 39, 280, 13);
-		rpanel_8.add(clblNewLabel);
-		
-		JLabel clblNewLabel_2 = new JLabel("Select Consecutive Sessions");
-		clblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		clblNewLabel_2.setBounds(69, 119, 145, 13);
-		rpanel_8.add(clblNewLabel_2);
-		
-		JLabel clblNewLabel_3 = new JLabel("Select Rooms");
-		clblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		clblNewLabel_3.setBounds(435, 119, 117, 13);
-		rpanel_8.add(clblNewLabel_3);
-		
-		JComboBox conComboBox_2 = new JComboBox();
-		conComboBox_2.setBounds(240, 115, 161, 23);
-		rpanel_8.add(conComboBox_2);
-		
-		JComboBox conComboBox_3 = new JComboBox();
-		conComboBox_3.setBounds(543, 115, 161, 23);
-		rpanel_8.add(conComboBox_3);
-		
-		JTextArea ctextArea_1 = new JTextArea();
-		ctextArea_1.setBounds(280, 196, 300, 88);
-		rpanel_8.add(ctextArea_1);
-		
-		JButton cbtnSubButton = new JButton("SUBMIT");
-		cbtnSubButton.setForeground(new Color(255, 255, 255));
-		cbtnSubButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		cbtnSubButton.setBackground(new Color(0, 139, 139));
-		cbtnSubButton.setBounds(280, 314, 105, 31);
-		rpanel_8.add(cbtnSubButton);
-		
-		JButton cbtnClrButton_1 = new JButton("CLEAR");
-		cbtnClrButton_1.setForeground(new Color(255, 255, 255));
-		cbtnClrButton_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		cbtnClrButton_1.setBackground(new Color(0, 139, 139));
-		cbtnClrButton_1.setBounds(470, 314, 105, 31);
-		rpanel_8.add(cbtnClrButton_1);
-		
-		JLabel clblNewLabel_5 = new JLabel("Selected Consecutive Session Rooms");
-		clblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		clblNewLabel_5.setBounds(69, 222, 200, 13);
-		rpanel_8.add(clblNewLabel_5);
-		
-		
-		
-
-		JPanel rpanel_9 = new JPanel();
-		rpanel_9.setBackground(new Color(230, 230, 250));
-		tabbedPane.addTab("View Consecutive Sessions Rooms", null, rpanel_9, null);
-		rpanel_9.setLayout(null);
-		
-
-		JLabel clblNewLabe5 = new JLabel("View Consecutive Sessions Rooms ");
-		clblNewLabe5.setFont(new Font("Tahoma", Font.BOLD, 15));
-		clblNewLabe5.setBounds(450, 60, 280, 30);
-		rpanel_9.add(clblNewLabe5);
-		
-
-		JPanel rpanel_10 = new JPanel();
-		rpanel_10.setLayout(null);
-		rpanel_10.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		rpanel_10.setBackground(SystemColor.menu);
-		rpanel_10.setBounds(157, 31, 850, 408);
-		rpanel_9.add(rpanel_10);
-		
-		JPanel rpanel_11 = new JPanel();
-		rpanel_11.setBounds(379, 115, 480, 298);
-		rpanel_9.add(rpanel_11);
-		rpanel_11.setLayout(null);
-		
-		JScrollPane cscrollPane_1 = new JScrollPane();
-		cscrollPane_1.setBounds(25, 80, 790, 200);
-		rpanel_10.add(cscrollPane_1);
-		
-		JScrollPane cscrollPane = new JScrollPane();
-		cscrollPane_1.setViewportView(cscrollPane);
-		
-		rtable_2 = new JTable();
-		rtable_2.setBackground(new Color(245, 245, 245));
-		rtable_2.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"RoomConSessions ID", "ConsecutiveSession Code", "Room", "ConsecutiveSession Room Code"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
+		JButton btnNewButton_5 = new JButton("CLEAR");
+		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_5.setForeground(new Color(255, 255, 255));
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		btnNewButton_5.setBackground(new Color(0, 139, 139));
+		btnNewButton_5.setBounds(395, 291, 105, 32);
+		srpanel_3.add(btnNewButton_5);
 		
-		cscrollPane.setViewportView(rtable_2);
+	
 		
-		JButton cbtnSesViewButton = new JButton("ADD ROOM");
-		cbtnSesViewButton.setForeground(new Color(255, 255, 255));
-		cbtnSesViewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		cbtnSesViewButton.setBackground(new Color(0, 139, 139));
-		cbtnSesViewButton.setBounds(217, 314, 120, 31);
-		rpanel_10.add(cbtnSesViewButton);
+		JPanel srpanel_6 = new JPanel();
+		srpanel_6.setBounds(0, 0, 1082, 49);
+		srpanel_2.add(srpanel_6);
+		srpanel_6.setLayout(null);
 		
-		JButton cbtnRefresh_2 = new JButton("REFRESH");
-		cbtnRefresh_2.setForeground(new Color(255, 255, 255));
-		cbtnRefresh_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-		cbtnRefresh_2.setBackground(new Color(0, 139, 139));
-		cbtnRefresh_2.setBounds(500, 314, 120, 31);
-		rpanel_10.add(cbtnRefresh_2);
 		
+		JLabel lollblNewLabel_1 = new JLabel("Add Session Rooms");
+		lollblNewLabel_1.setForeground(new Color(0, 128, 128));
+		lollblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lollblNewLabel_1.setBounds(406, 13, 278, 31);
+		srpanel_6.add(lollblNewLabel_1);
+		
+		JButton btnNewButton = new JButton("Add SessionRooms");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ManageSessionsRooms manage_ro = new ManageSessionsRooms();
+				manage_ro.main(null);
+				rframe.dispose();
+				
+			}
+		});
+		btnNewButton.setBounds(262, 70, 179, 38);
+		rframe.getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("View Session Rooms");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewSeesionRooms view_ses = new ViewSeesionRooms();
+				view_ses.main(null);
+				rframe.dispose();
+			}
+		});
+		btnNewButton_1.setBounds(440, 70, 237, 38);
+		rframe.getContentPane().add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Add ConsecutiveSessionsRooms");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConsecutiveSessionRooms add_con = new ConsecutiveSessionRooms();
+				add_con.main(null);
+				rframe.dispose();
+			
+			}
+		});
+		btnNewButton_2.setBounds(677, 70, 251, 38);
+		rframe.getContentPane().add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("View ConsecutiveSessionsRooms");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewConsecutiveRooms view_con = new ViewConsecutiveRooms();
+				view_con.main(null);
+				rframe.dispose();
+				
+			}
+		});
+		btnNewButton_3.setBounds(927, 70, 246, 38);
+		rframe.getContentPane().add(btnNewButton_3);
+		
+		
+		
+
 		
 		
 		
