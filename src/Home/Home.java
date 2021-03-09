@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 
 
 
+
+
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Image;
@@ -41,6 +43,7 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import Advanced.Consecutive_sessions;
+//import Advanced.Consecutive_sessions;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
 import Rooms.ManageSessionsRooms;

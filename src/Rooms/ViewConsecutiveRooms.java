@@ -1,6 +1,7 @@
 package Rooms;
 
 import java.awt.Color;
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -21,7 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Advanced.Advanced_sessions;
+import Advanced.Consecutive_sessions;
 import Home.Home;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
@@ -91,6 +92,9 @@ public class ViewConsecutiveRooms {
 		vcrframe.setBounds(0, 0, 1350, 700);
 		vcrframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		vcrframe.getContentPane().setLayout(null);
+		
+		vcrframe.setLocationRelativeTo(null);
+		vcrframe.setVisible(true);
 		
 		JPanel panel = new JPanel();
 		panel.setForeground(Color.WHITE);
@@ -276,9 +280,10 @@ public class ViewConsecutiveRooms {
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Advanced_sessions a_session= new Advanced_sessions ();
+				Consecutive_sessions a_session= new Consecutive_sessions ();
 				a_session.main(null);
 				vcrframe.dispose();
+				
 			}
 		});
 		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);

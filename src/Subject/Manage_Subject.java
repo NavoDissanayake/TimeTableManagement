@@ -1,6 +1,7 @@
 package Subject;
 
 import java.awt.Color;
+
 import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -15,7 +16,6 @@ import java.awt.Image;
 
 import javax.swing.SwingConstants;
 
-import Advanced.Advanced_sessions;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
 import Rooms.ManageSessionsRooms;
@@ -276,9 +276,7 @@ public class Manage_Subject {
 		JButton button_11 = new JButton("Advanced");
 		button_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Advanced_sessions advanced_sessions = new Advanced_sessions();
-				advanced_sessions.main(null);
-				MngSubFrm.dispose();
+				
 			}
 			
 		});

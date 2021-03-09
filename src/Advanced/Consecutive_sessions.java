@@ -1,6 +1,9 @@
 package Advanced;
 
 import java.awt.EventQueue;
+
+
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
@@ -47,7 +50,7 @@ import WorkingDays.AddWorkingdays;
 import javax.swing.border.LineBorder;
 import java.awt.Panel;
 
-public class Advanced_sessions {
+public class Consecutive_sessions {
 
 	
 	private Image home_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/home.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
@@ -76,7 +79,7 @@ public class Advanced_sessions {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Advanced_sessions window = new Advanced_sessions();
+					Consecutive_sessions window = new Consecutive_sessions();
 					window.frmAddStudentGroup.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -88,7 +91,7 @@ public class Advanced_sessions {
 	/**
 	 * Create the application.
 	 */
-	public Advanced_sessions() {
+	public Consecutive_sessions() {
 		initialize();
 	}
 
@@ -322,7 +325,8 @@ public class Advanced_sessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Advanced_sessions a_session= new Advanced_sessions ();
+
+				Consecutive_sessions a_session= new Consecutive_sessions ();
 				a_session.main(null);
 				frmAddStudentGroup.dispose();
 				

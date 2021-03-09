@@ -1,6 +1,7 @@
 package Rooms;
 
 import java.awt.Color;
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -20,7 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import Advanced.Advanced_sessions;
+import Advanced.Consecutive_sessions;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
 import Session.Add_Session;
@@ -90,6 +91,10 @@ public class ConsecutiveSessionRooms {
 		crframe.setBounds(0, 0, 1350, 700);
 		crframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		crframe.getContentPane().setLayout(null);
+		
+		crframe.setLocationRelativeTo(null);
+		crframe.setVisible(true);
+		
 		
 		JPanel panel = new JPanel();
 		panel.setForeground(Color.WHITE);
@@ -275,9 +280,11 @@ public class ConsecutiveSessionRooms {
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Advanced_sessions a_session= new Advanced_sessions ();
+				Consecutive_sessions a_session= new Consecutive_sessions ();
 				a_session.main(null);
 				crframe.dispose();
+
+				
 			}
 		});
 		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);

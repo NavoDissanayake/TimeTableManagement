@@ -1,6 +1,7 @@
 package Session;
 
 import java.awt.Color;
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -27,7 +28,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Advanced.Advanced_sessions;
+
 import Home.Home;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
@@ -296,9 +297,7 @@ btnLocations.addActionListener(new ActionListener() {
 		btnAdvanced.setIcon(new ImageIcon(adv_logo));
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Advanced_sessions advanced_sessions = new Advanced_sessions();
-				advanced_sessions.main(null);
-				AddsessFrm.dispose();
+				
 			}
 			
 		});

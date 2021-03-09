@@ -2,6 +2,7 @@ package Tags;
 
 import java.awt.EventQueue;
 
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
@@ -34,7 +35,6 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
-import Advanced.Advanced_sessions;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
 import Rooms.ManageSessionsRooms;
@@ -321,10 +321,6 @@ public class Add_Tags {
 		btnAdvanced.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				
-				Advanced_sessions a_session= new Advanced_sessions ();
-				a_session.main(null);
-				frmAddStudentGroup.dispose();
 				
 			}
 		});

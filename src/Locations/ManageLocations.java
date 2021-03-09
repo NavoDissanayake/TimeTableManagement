@@ -1,6 +1,7 @@
 package Locations;
 
 import java.awt.Color;
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -23,7 +24,7 @@ import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import javax.tools.DocumentationTool.Location;
 
-import Advanced.Advanced_sessions;
+import Advanced.Consecutive_sessions;
 import Home.Home;
 import Lecturer.Add_Lecturer;
 import Rooms.ManageSessionsRooms;
@@ -94,6 +95,9 @@ public class ManageLocations {
 		frmMangeLocationsGroup.setBounds(0,0, 1350, 700);
 		frmMangeLocationsGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMangeLocationsGroup.getContentPane().setLayout(null);
+		
+		frmMangeLocationsGroup.setLocationRelativeTo(null);
+		frmMangeLocationsGroup.setVisible(true);
 		
 		JPanel panel = new JPanel();
 		panel.setForeground(Color.WHITE);
@@ -280,9 +284,10 @@ public class ManageLocations {
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Advanced_sessions a_session= new Advanced_sessions ();
+				Consecutive_sessions a_session= new Consecutive_sessions ();
 				a_session.main(null);
 				frmMangeLocationsGroup.dispose();
+				
 			}
 		});
 		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);

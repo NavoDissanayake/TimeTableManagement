@@ -1,6 +1,7 @@
 package Lecturer;
 
 import java.awt.Color;
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -15,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import Advanced.Advanced_sessions;
+
 import Home.Home;
 import Locations.ManageLocations;
 import Rooms.ManageSessionsRooms;
@@ -299,9 +300,7 @@ btnLocations.addActionListener(new ActionListener() {
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Advanced_sessions advanced_sessions = new Advanced_sessions();
-				advanced_sessions.main(null);
-				ManageLecfrm.dispose();
+				
 			}
 			
 		});
