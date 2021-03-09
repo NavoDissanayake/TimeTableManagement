@@ -1,13 +1,7 @@
-package Home;
-
+package Advanced;
 
 import java.awt.EventQueue;
-
-
-
-
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Image;
 import java.awt.SystemColor;
 
@@ -24,7 +18,6 @@ import javax.swing.SwingConstants;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
@@ -40,7 +33,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
-import Advanced.Consecutive_sessions;
+import Home.Home;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
 import Rooms.ManageSessionsRooms;
@@ -52,30 +45,27 @@ import Tags.Add_Tags;
 import WorkingDays.AddWorkingdays;
 
 import javax.swing.border.LineBorder;
-import java.awt.Label;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.Panel;
 
-public class Home {
+public class Non_overlappingSessions {
 
 	
-	private Image home_logo = new ImageIcon(Home.class.getResource("/images/home.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image lec_logo = new ImageIcon(Home.class.getResource("/images/lecturer.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image stu_logo = new ImageIcon(Home.class.getResource("/images/student.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image sub_logo = new ImageIcon(Home.class.getResource("/images/subject.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image session_logo = new ImageIcon(Home.class.getResource("/images/session.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image tag_logo = new ImageIcon(Home.class.getResource("/images/tags.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image location_logo = new ImageIcon(Home.class.getResource("/images/location.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image st_logo = new ImageIcon(Home.class.getResource("/images/statics.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image days_logo = new ImageIcon(Home.class.getResource("/images/Wdays.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image time_logo = new ImageIcon(Home.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image adv_logo = new ImageIcon(Home.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image room_logo = new ImageIcon(Home.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image home_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/home.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image lec_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/lecturer.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image stu_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/student.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image sub_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/subject.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image session_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/session.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image tag_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/tags.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image location_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/location.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image st_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/statics.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image days_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/Wdays.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	
 	
 	private JFrame frmAddStudentGroup;
 
-	
 	/**
 	 * Launch the application.
 	 */
@@ -83,7 +73,7 @@ public class Home {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Home window = new Home();
+					Non_overlappingSessions window = new Non_overlappingSessions();
 					window.frmAddStudentGroup.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -95,7 +85,7 @@ public class Home {
 	/**
 	 * Create the application.
 	 */
-	public Home() {
+	public Non_overlappingSessions() {
 		initialize();
 	}
 
@@ -107,24 +97,23 @@ public class Home {
 		frmAddStudentGroup.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		frmAddStudentGroup.setBackground(Color.YELLOW);
 		frmAddStudentGroup.setResizable(false);
-		frmAddStudentGroup.setTitle("Home");
+		frmAddStudentGroup.setTitle(" Advanced ");
 		frmAddStudentGroup.setSize(1400, 860);
 		frmAddStudentGroup.setBounds(0, 0, 1350, 700);
 		frmAddStudentGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAddStudentGroup.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setForeground(Color.WHITE);
 		panel.setBounds(0, 0, 1344, 65);
 		panel.setBackground(new Color(0, 139, 139));
 		frmAddStudentGroup.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_10 = new JLabel("Time Table Management System");
+		JLabel lblNewLabel_10 = new JLabel("Advanced");
 		lblNewLabel_10.setForeground(Color.WHITE);
 		lblNewLabel_10.setFont(new Font("Times New Roman", Font.BOLD, 27));
 		lblNewLabel_10.setBackground(Color.WHITE);
-		lblNewLabel_10.setBounds(580, 13, 422, 29);
+		lblNewLabel_10.setBounds(753, 13, 179, 29);
 		panel.add(lblNewLabel_10);
 		/*
 		 * //JLabel lblNewLabel = new JLabel("Time Table Management System");
@@ -138,9 +127,6 @@ public class Home {
 		panel_1.setBackground(new Color(230, 230, 250));
 		frmAddStudentGroup.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
-		
-		
-		
 		
 		
 		JButton btnLecturers = new JButton("Lecturers");
@@ -310,7 +296,7 @@ public class Home {
 		JButton btnStatistics = new JButton("Statistics");
 		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStatistics.setIcon(new ImageIcon(st_logo));
-		btnStatistics.addActionListener(new ActionListener() {
+        btnRooms.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
@@ -329,11 +315,11 @@ public class Home {
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAdvanced.setIcon(new ImageIcon(adv_logo));
-		btnAdvanced.addActionListener(new ActionListener() {
+        btnRooms.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Consecutive_sessions a_session= new Consecutive_sessions ();
+				Non_overlappingSessions a_session= new Non_overlappingSessions ();
 				a_session.main(null);
 				frmAddStudentGroup.dispose();
 				
@@ -374,16 +360,78 @@ public class Home {
 		btnHome.setBackground(new Color(0, 139, 139));
 		btnHome.setFont(new Font("Tahoma", Font.BOLD, 17));
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(272, 76, 1062, 584);
+		JPanel panel_6 = new JPanel();
+		panel_6.setLayout(null);
+		panel_6.setBackground(new Color(230, 230, 250));
+		panel_6.setBounds(263, 62, 1081, 603);
+		frmAddStudentGroup.getContentPane().add(panel_6);
 		
-		frmAddStudentGroup.getContentPane().add(panel_2);
-		panel_2.setLayout(null);
+		JPanel panel_7 = new JPanel();
+		panel_7.setLayout(null);
+		panel_7.setBounds(88, 110, 350, 371);
+		panel_6.add(panel_7);
 		
-		JLabel label = new JLabel("");
-		label.setBounds(0, -11, 1062, 605);
-		Image wallicon = new ImageIcon(this.getClass().getResource("/new.png")).getImage();
-		label.setIcon(new ImageIcon(wallicon));
-		panel_2.add(label);
+		JLabel lblNewLabel_4 = new JLabel("Session 1");
+		lblNewLabel_4.setBounds(24, 77, 80, 21);
+		panel_7.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("Session 2");
+		lblNewLabel_5.setBounds(24, 144, 96, 16);
+		panel_7.add(lblNewLabel_5);
+		
+		JComboBox comboBox_4 = new JComboBox();
+		comboBox_4.setBounds(150, 76, 164, 22);
+		panel_7.add(comboBox_4);
+		
+		JComboBox comboBox_5 = new JComboBox();
+		comboBox_5.setBounds(150, 141, 164, 21);
+		panel_7.add(comboBox_5);
+		
+		JButton btnNewButton_2 = new JButton("ADD");
+		btnNewButton_2.setForeground(Color.WHITE);
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnNewButton_2.setBackground(new Color(0, 139, 139));
+		btnNewButton_2.setBounds(147, 202, 167, 40);
+		panel_7.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("CLEAR");
+		btnNewButton_3.setForeground(Color.WHITE);
+		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnNewButton_3.setBackground(new Color(0, 139, 139));
+		btnNewButton_3.setBounds(150, 262, 164, 40);
+		panel_7.add(btnNewButton_3);
+		
+		JPanel panel_6_1_1 = new JPanel();
+		panel_6_1_1.setLayout(null);
+		panel_6_1_1.setBounds(0, 40, 1081, 38);
+		panel_6.add(panel_6_1_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Non overlapping Sessions");
+		lblNewLabel_1_1.setForeground(new Color(0, 128, 128));
+		lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblNewLabel_1_1.setBounds(494, 0, 278, 31);
+		panel_6_1_1.add(lblNewLabel_1_1);
+		
+		JButton btnNewButton_2_1 = new JButton("Conseccutive Sessions");
+		btnNewButton_2_1.setBounds(0, 0, 268, 37);
+		panel_6.add(btnNewButton_2_1);
+		
+		JButton btnNewButton_2_1_1 = new JButton("Parallel Sessions");
+		btnNewButton_2_1_1.setBounds(269, 0, 275, 37);
+		panel_6.add(btnNewButton_2_1_1);
+		
+		JButton btnNewButton_2_1_2 = new JButton("Non Overlapping Sessions");
+		btnNewButton_2_1_2.setBounds(540, 0, 275, 37);
+		panel_6.add(btnNewButton_2_1_2);
+		
+		JButton btnNewButton_2_1_3 = new JButton("");
+		btnNewButton_2_1_3.setBounds(813, 0, 268, 37);
+		panel_6.add(btnNewButton_2_1_3);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(0, 37, 1094, 19);
+		panel_6.add(separator_1);
+		separator_1.setForeground(new Color(32, 178, 170));
+		separator_1.setBackground(new Color(0, 139, 139));
 	}
 }
