@@ -47,7 +47,7 @@ public class ManageWorkingDays {
 	
 	public JFrame frmWorkingDays;
 	private JTable table;
-	protected Object frame;
+	public JFrame frame;
 
 	
 	/**
@@ -405,11 +405,34 @@ public class ManageWorkingDays {
 		JButton button = new JButton("Not available time");
 		button.setBounds(511, 2, 258, 37);
 		panel_3.add(button);
+	button.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				NotAvailableTime m_stgroup = new NotAvailableTime ();
+				m_stgroup.main(null);
+				frame.dispose();
+				
+			}
+		});
 		
 		
-		JButton button_1 = new JButton("Add Not Available Time");
+		
+		
+		
+		JButton button_1 = new JButton("Not Avaiilable Location");
 		button_1.setBounds(766, 2, 258, 37);
 		panel_3.add(button_1);
+		button_1.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				NotAvailableLocation m_stgroup = new NotAvailableLocation ();
+				m_stgroup.main(null);
+				frame.dispose();
+				
+			}
+		});
 		
 		JButton btnDelete = new JButton("DELETE");
 		btnDelete.setForeground(Color.WHITE);

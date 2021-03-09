@@ -345,38 +345,38 @@ public class NotAvailableLocation {
 		
 		JLabel lblStartTime = new JLabel("Start Time");
 		lblStartTime.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblStartTime.setBounds(106, 243, 91, 23);
+		lblStartTime.setBounds(106, 195, 91, 23);
 		panel_4.add(lblStartTime);
 		
 		JLabel lblEndTime = new JLabel("End Time");
 		lblEndTime.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblEndTime.setBounds(398, 243, 57, 23);
+		lblEndTime.setBounds(390, 197, 57, 23);
 		panel_4.add(lblEndTime);
 		
 		textField = new JTextField();
-		textField.setBounds(207, 245, 86, 20);
+		textField.setBounds(198, 197, 86, 20);
 		panel_4.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(478, 245, 86, 20);
+		textField_1.setBounds(473, 197, 86, 20);
 		panel_4.add(textField_1);
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("AM");
-		rdbtnNewRadioButton.setBounds(299, 244, 57, 23);
+		rdbtnNewRadioButton.setBounds(289, 196, 57, 23);
 		panel_4.add(rdbtnNewRadioButton);
 		
 		JRadioButton radioButton = new JRadioButton("AM");
-		radioButton.setBounds(570, 244, 57, 23);
+		radioButton.setBounds(565, 196, 57, 23);
 		panel_4.add(radioButton);
 		
 		JRadioButton rdbtnPm = new JRadioButton("PM");
-		rdbtnPm.setBounds(299, 270, 57, 23);
+		rdbtnPm.setBounds(289, 222, 57, 23);
 		panel_4.add(rdbtnPm);
 		
 		JRadioButton rdbtnPm_1 = new JRadioButton("PM");
-		rdbtnPm_1.setBounds(570, 270, 57, 23);
+		rdbtnPm_1.setBounds(565, 222, 57, 23);
 		panel_4.add(rdbtnPm_1);
 		
 		JButton btnNewButton = new JButton("DELETE");

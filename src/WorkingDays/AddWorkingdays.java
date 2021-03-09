@@ -436,7 +436,7 @@ public class AddWorkingdays {
 			}
 		});
 		
-		JButton button_1 = new JButton("Add Not Available Time");
+		JButton button_1 = new JButton("Not Available Location");
 		button_1.setBounds(766, 2, 258, 37);
 		panel_3.add(button_1);
 		

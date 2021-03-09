@@ -427,11 +427,22 @@ public class NotAvailableTime {
 		
 		JButton button = new JButton("Not available time");
 		button.setBounds(511, 2, 258, 37);
-		panel_3.add(button);
+		panel_3.add(button);	
+		button.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				NotAvailableTime m_stgroup = new NotAvailableTime ();
+				m_stgroup.main(null);
+				frame.dispose();
+				
+			}
+		});
 		
 		
 		
-		JButton button_1 = new JButton("Add Not Available Time");
+		
+		JButton button_1 = new JButton("Not Available Location");
 		button_1.setBounds(766, 2, 258, 37);
 		panel_3.add(button_1);
 		
