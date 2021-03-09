@@ -84,7 +84,7 @@ public class NotAvailableLocation {
 		frame.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		frame.setBackground(Color.YELLOW);
 		frame.setResizable(false);
-		frame.setTitle("Student");
+		frame.setTitle("Working Days & Hours");
 		frame.setSize(1350, 728);
 		frame.setBounds(0, 0, 1350, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
