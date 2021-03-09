@@ -90,6 +90,25 @@ public class Manage_studentGroup {
 	private JTextField id;
 
 	
+	public void refreshTable() {
+		
+		try {
+			Connection con = DbConnection.connect();
+			
+			String query="select * from StudentGroup ";
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -596,7 +615,7 @@ public class Manage_studentGroup {
 		JScrollPane scrollPane = new JScrollPane();
 		
 		
-		scrollPane.setBounds(142, 105, 852, 137);
+		scrollPane.setBounds(122, 105, 852, 137);
 		panel_2.add(scrollPane);
 		
 		
@@ -682,6 +701,7 @@ public class Manage_studentGroup {
 					label.setHorizontalAlignment(SwingConstants.CENTER);
 					JOptionPane.showMessageDialog(null, label);
 					//JOptionPane.showMessageDialog(null, "Data Updated");
+					refreshTable();
 					pst.close();
 					
 				}
@@ -718,6 +738,7 @@ public class Manage_studentGroup {
 					JOptionPane.showMessageDialog(null, label);
 					
 					//JOptionPane.showMessageDialog(null, "Data Deleted");
+					refreshTable();
 					pst.close();
 					
 					}
@@ -740,10 +761,31 @@ public class Manage_studentGroup {
 		
 		//clear operation
 		JButton btnNewButton_3 = new JButton("CLEAR");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				comboBox_1.setSelectedIndex(0);
+				comboBox.setSelectedIndex(0);
+				//grpNo.clear();
+				//subGrpNo_1.
+				//grpNo.getAdapter().remove((String)grpNo.getSelectedItem());groupID.setText("");
+				groupID.setText("");
+				subGroupID.setText("");
+				grpNo.setValue(0);
+				subGrpNo_1.setValue(0);
+				    
+				  
+				
+			}
+		});
+		
+		
+		
+		
 	    btnNewButton_3.setForeground(Color.WHITE);
 		btnNewButton_3.setFont(new Font("2, 542", Font.BOLD, 14));
 		btnNewButton_3.setBackground(new Color(0, 139, 139));
-		btnNewButton_3.setBounds(872, 542, 123, 33);
+		btnNewButton_3.setBounds(855, 542, 123, 33);
 		panel_2.add(btnNewButton_3);
 		
 	}

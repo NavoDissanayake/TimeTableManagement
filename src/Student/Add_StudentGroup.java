@@ -657,6 +657,27 @@ public class Add_StudentGroup {
 		
 		//CLEAR button
 		JButton btnClear = new JButton("CLEAR");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Ysem.setSelectedIndex(0);
+				programme.setSelectedIndex(0);
+				//grpNo.clear();
+				//subGrpNo_1.
+				//grpNo.getAdapter().remove((String)grpNo.getSelectedItem());groupID.setText("");
+				GrpID .setText("");
+				subGrpID.setText("");
+				GrpNumber.setValue(0);
+				subGrpNumber.setValue(0);
+				    
+				  
+				
+			}
+		});
+		
+		
+		
+		
 		btnClear.setForeground(Color.WHITE);
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnClear.setEnabled(true);

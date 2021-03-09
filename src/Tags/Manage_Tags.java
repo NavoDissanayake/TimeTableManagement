@@ -19,6 +19,7 @@ import javax.swing.JSeparator;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -79,6 +80,30 @@ public class Manage_Tags {
 	private JTable table;
 	private JComboBox r_tag;
 	private JTextField textField;
+	
+	
+	public void refreshtable() {
+		
+		try {
+			
+			Connection con = DbConnection.connect();
+			
+			String query="select * from Tags ";
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
 	
 	/**
 	 * Launch the application.
@@ -589,6 +614,10 @@ public class Manage_Tags {
 					label.setHorizontalAlignment(SwingConstants.CENTER);
 					JOptionPane.showMessageDialog(null, label);
 					//JOptionPane.showMessageDialog(null, "Data Updated");
+					//pst.close();
+				
+					refreshtable();
+					
 					pst.close();
 					
 				}
@@ -626,6 +655,8 @@ public class Manage_Tags {
 					JOptionPane.showMessageDialog(null, label);
 					
 					//JOptionPane.showMessageDialog(null, "Data Deleted");
+					
+					refreshtable();
 					pst.close();
 					
 					}
@@ -638,6 +669,8 @@ public class Manage_Tags {
 				
 			}
 		});
+		
+		
 		btnNewButton_2_1.setForeground(Color.WHITE);
 		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_2_1.setEnabled(true);
@@ -649,6 +682,17 @@ public class Manage_Tags {
 		
 		//clear details
 		JButton btnClear_1 = new JButton("CLEAR");
+		btnClear_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				txt_tagName.setText("");
+				txt_tagCode.setText("");
+				r_tag.setSelectedIndex(0);
+				
+				
+				
+			}
+		});
 		btnClear_1.setForeground(Color.WHITE);
 		btnClear_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnClear_1.setEnabled(true);

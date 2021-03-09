@@ -554,6 +554,16 @@ public class Add_Tags {
 		panel_3.add(btnNewButton);
 		
 		JButton btnClear = new JButton("CLEAR");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				txt_tagname.setText("");
+				txt_tagcode.setText("");
+				comboBox_tag.setSelectedIndex(0);
+				
+				
+			}
+		});
 		btnClear.setForeground(Color.WHITE);
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnClear.setEnabled(true);
