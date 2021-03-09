@@ -38,6 +38,8 @@ import javax.swing.border.MatteBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import Advanced.Consecutive_sessions;
+
 public class Manage_Lecturer {
 
 	private JFrame ManageLecfrm;
@@ -300,7 +302,9 @@ btnLocations.addActionListener(new ActionListener() {
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Consecutive_sessions consecutive_sessions = new Consecutive_sessions();
+				consecutive_sessions.main(null);
+				ManageLecfrm.dispose();
 			}
 			
 		});

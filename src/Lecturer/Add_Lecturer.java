@@ -34,7 +34,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-
+import Advanced.Consecutive_sessions;
 import Home.Home;
 import Locations.ManageLocations;
 import Rooms.ManageSessionsRooms;
@@ -50,6 +50,7 @@ import javax.swing.JSlider;
 import javax.swing.JList;
 import javax.swing.border.EmptyBorder;
 import java.awt.Window.Type;
+import javax.swing.DefaultComboBoxModel;
 
 public class Add_Lecturer {
 
@@ -68,9 +69,9 @@ public class Add_Lecturer {
 	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField EmpidTxt;
+	private JTextField RankTxt;
+	private JTextField EmpNameTxt;
 	
 
 	/**
@@ -314,7 +315,9 @@ btnLocations.addActionListener(new ActionListener() {
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				Consecutive_sessions consecutive_sessions = new Consecutive_sessions();
+				consecutive_sessions.main(null);
+				addLecframe.dispose();
 			}
 			
 		});
@@ -348,42 +351,50 @@ btnLocations.addActionListener(new ActionListener() {
 		panel_3.setBounds(10, 52, 1044, 113);
 		panel_2.add(panel_3);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(127, 19, 161, 23);
-		panel_3.add(textField);
+		EmpidTxt = new JTextField();
+		EmpidTxt.setColumns(10);
+		EmpidTxt.setBounds(127, 19, 161, 23);
+		panel_3.add(EmpidTxt);
 		
 		JLabel label = new JLabel("Employee ID");
 		label.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label.setBounds(42, 18, 108, 23);
 		panel_3.add(label);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(456, 19, 191, 23);
-		panel_3.add(comboBox);
+		JComboBox levelCmb = new JComboBox();
+		levelCmb.setModel(new DefaultComboBoxModel(new String[] {"", "Professor", "Assistant Professor", "Senior Lecturer(HG)", "Senior Lecturer", "Lecturer", "Assistant Lecturer"}));
+		levelCmb.setBounds(456, 19, 191, 23);
+		panel_3.add(levelCmb);
 		
 		JLabel label_1 = new JLabel("Level");
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_1.setBounds(398, 18, 108, 23);
 		panel_3.add(label_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setForeground(SystemColor.controlDkShadow);
-		textField_1.setColumns(10);
-		textField_1.setBounds(824, 19, 191, 23);
-		panel_3.add(textField_1);
+		RankTxt = new JTextField();
+		RankTxt.setForeground(SystemColor.controlDkShadow);
+		RankTxt.setColumns(10);
+		RankTxt.setBounds(824, 19, 191, 23);
+		panel_3.add(RankTxt);
 		
 		JLabel label_2 = new JLabel("Rank");
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_2.setBounds(764, 18, 108, 23);
 		panel_3.add(label_2);
 		
-		JButton button = new JButton("GENERATE RANK");
-		button.setForeground(Color.WHITE);
-		button.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button.setBackground(new Color(119, 136, 153));
-		button.setBounds(398, 64, 249, 33);
-		panel_3.add(button);
+		JButton btnGenRankAdd = new JButton("GENERATE RANK");
+		btnGenRankAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				
+			}
+		});
+		btnGenRankAdd.setForeground(Color.WHITE);
+		btnGenRankAdd.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnGenRankAdd.setBackground(new Color(119, 136, 153));
+		btnGenRankAdd.setBounds(398, 64, 249, 33);
+		panel_3.add(btnGenRankAdd);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
@@ -397,14 +408,15 @@ btnLocations.addActionListener(new ActionListener() {
 		label_3.setBounds(110, 38, 96, 23);
 		panel_4.add(label_3);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(225, 39, 161, 23);
-		panel_4.add(textField_2);
+		EmpNameTxt = new JTextField();
+		EmpNameTxt.setColumns(10);
+		EmpNameTxt.setBounds(225, 39, 161, 23);
+		panel_4.add(EmpNameTxt);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(225, 92, 161, 23);
-		panel_4.add(comboBox_1);
+		JComboBox Fac = new JComboBox();
+		Fac.setModel(new DefaultComboBoxModel(new String[] {"", "Computing", "Engineering", "Buisness Management", "Humanities and Science"}));
+		Fac.setBounds(225, 92, 161, 23);
+		panel_4.add(Fac);
 		
 		JLabel label_4 = new JLabel("Faculty");
 		label_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -416,55 +428,59 @@ btnLocations.addActionListener(new ActionListener() {
 		label_5.setBounds(110, 148, 87, 23);
 		panel_4.add(label_5);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(225, 149, 161, 23);
-		panel_4.add(comboBox_2);
+		JComboBox Dept = new JComboBox();
+		Dept.setModel(new DefaultComboBoxModel(new String[] {"", "IT", "SE", "DS", "CS", "IM", "CSNE", "----", "HCM", "AF", "BA", "MM", "----", "EEE", "ME", "QS", "----", "MU", "ELT"}));
+		Dept.setBounds(225, 149, 161, 23);
+		panel_4.add(Dept);
 		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(225, 209, 161, 23);
-		panel_4.add(comboBox_3);
+		JComboBox Campus = new JComboBox();
+		Campus.setModel(new DefaultComboBoxModel(new String[] {"", "Malabe", "Metro", "Kandy", "Jaffna", "Matara", "Kurunegala"}));
+		Campus.setBounds(225, 209, 161, 23);
+		panel_4.add(Campus);
 		
 		JLabel label_6 = new JLabel("Campus/Center");
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_6.setBounds(110, 208, 87, 23);
 		panel_4.add(label_6);
 		
-		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(225, 268, 161, 23);
-		panel_4.add(comboBox_4);
+		JComboBox build = new JComboBox();
+		build.setModel(new DefaultComboBoxModel(new String[] {"", "Main Building", "New Building", "Engineering Building", "Buisness Building", "D-block"}));
+		build.setBounds(225, 268, 161, 23);
+		panel_4.add(build);
 		
 		JLabel label_7 = new JLabel("Building");
 		label_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_7.setBounds(110, 267, 87, 23);
 		panel_4.add(label_7);
 		
-		JCheckBox checkBox = new JCheckBox("Monday");
-		checkBox.setBounds(787, 39, 96, 23);
-		panel_4.add(checkBox);
+		JCheckBox checkMndy = new JCheckBox("Monday");
+		checkMndy.setHorizontalAlignment(SwingConstants.LEFT);
+		checkMndy.setBounds(787, 39, 96, 23);
+		panel_4.add(checkMndy);
 		
-		JCheckBox checkBox_1 = new JCheckBox("Saturday");
-		checkBox_1.setBounds(898, 38, 87, 23);
-		panel_4.add(checkBox_1);
+		JCheckBox checkSatur = new JCheckBox("Saturday");
+		checkSatur.setBounds(898, 38, 87, 23);
+		panel_4.add(checkSatur);
 		
-		JCheckBox checkBox_2 = new JCheckBox("Tuesday");
-		checkBox_2.setBounds(787, 64, 96, 23);
-		panel_4.add(checkBox_2);
+		JCheckBox checkTues = new JCheckBox("Tuesday");
+		checkTues.setBounds(787, 64, 96, 23);
+		panel_4.add(checkTues);
 		
-		JCheckBox checkBox_3 = new JCheckBox("Wednesday");
-		checkBox_3.setBounds(787, 91, 96, 23);
-		panel_4.add(checkBox_3);
+		JCheckBox checkWednes = new JCheckBox("Wednesday");
+		checkWednes.setBounds(787, 91, 96, 23);
+		panel_4.add(checkWednes);
 		
-		JCheckBox checkBox_4 = new JCheckBox("Thursday");
-		checkBox_4.setBounds(787, 116, 96, 23);
-		panel_4.add(checkBox_4);
+		JCheckBox checkThurs = new JCheckBox("Thursday");
+		checkThurs.setBounds(787, 116, 96, 23);
+		panel_4.add(checkThurs);
 		
-		JCheckBox checkBox_5 = new JCheckBox("Friday");
-		checkBox_5.setBounds(787, 142, 96, 23);
-		panel_4.add(checkBox_5);
+		JCheckBox checkFri = new JCheckBox("Friday");
+		checkFri.setBounds(787, 142, 96, 23);
+		panel_4.add(checkFri);
 		
-		JCheckBox checkBox_6 = new JCheckBox("Sunday");
-		checkBox_6.setBounds(898, 64, 87, 23);
-		panel_4.add(checkBox_6);
+		JCheckBox checkSund = new JCheckBox("Sunday");
+		checkSund.setBounds(898, 64, 87, 23);
+		panel_4.add(checkSund);
 		
 		JLabel label_8 = new JLabel("Active days");
 		label_8.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -476,9 +492,9 @@ btnLocations.addActionListener(new ActionListener() {
 		label_9.setBounds(662, 208, 108, 23);
 		panel_4.add(label_9);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(787, 210, 73, 22);
-		panel_4.add(spinner);
+		JSpinner hourAdd = new JSpinner();
+		hourAdd.setBounds(787, 210, 73, 22);
+		panel_4.add(hourAdd);
 		
 		JLabel label_10 = new JLabel("hrs");
 		label_10.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -490,11 +506,17 @@ btnLocations.addActionListener(new ActionListener() {
 		label_11.setBounds(971, 208, 33, 23);
 		panel_4.add(label_11);
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setBounds(898, 209, 73, 22);
-		panel_4.add(spinner_1);
+		JSpinner minsAdd = new JSpinner();
+		minsAdd.setBounds(898, 209, 73, 22);
+		panel_4.add(minsAdd);
 		
 		JButton button_1 = new JButton("ADD");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
 		button_1.setForeground(Color.WHITE);
 		button_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button_1.setBackground(new Color(0, 128, 128));

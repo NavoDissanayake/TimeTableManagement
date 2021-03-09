@@ -6,9 +6,13 @@ import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.ComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -16,6 +20,9 @@ import java.awt.Image;
 
 import javax.swing.SwingConstants;
 
+
+import Advanced.Consecutive_sessions;
+import DB.DbConnection;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
 import Rooms.ManageSessionsRooms;
@@ -24,16 +31,24 @@ import Statistics.Statistics;
 import Student.Add_StudentGroup;
 import Tags.Add_Tags;
 import WorkingDays.AddWorkingdays;
+import net.proteanit.sql.DbUtils;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.text.TabExpander;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.DefaultComboBoxModel;
 
 public class Manage_Subject {
 
@@ -53,6 +68,7 @@ public class Manage_Subject {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTable table;
+	private JTextField textFieldID;
 	
 
 
@@ -85,14 +101,13 @@ public class Manage_Subject {
 	private void initialize() {
 		
 		MngSubFrm = new JFrame();
-		MngSubFrm.setAlwaysOnTop(true);
 
 		MngSubFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 		MngSubFrm.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		MngSubFrm.setBackground(Color.YELLOW);
 		MngSubFrm.setTitle("Sessions");
-		MngSubFrm.setSize(1400, 860);
+		MngSubFrm.setSize(900, 860);
 		MngSubFrm.setBounds(0, 0, 1350, 700);
 		//ManageSesFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		MngSubFrm.getContentPane().setLayout(null);
@@ -276,7 +291,9 @@ public class Manage_Subject {
 		JButton button_11 = new JButton("Advanced");
 		button_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Consecutive_sessions consecutive_sessions = new Consecutive_sessions();
+				consecutive_sessions.main(null);
+				MngSubFrm.dispose();
 			}
 			
 		});
@@ -350,11 +367,113 @@ public class Manage_Subject {
 		scrollPane.setBounds(10, 52, 1055, 172);
 		panel_2.add(scrollPane);
 		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4"}));
+		comboBox.setBounds(251, 134, 161, 23);
+		
+		JComboBox comboBox_5 = new JComboBox();
+		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
+		comboBox_5.setBounds(255, 198, 157, 23);
+		
+		
+		JComboBox comboBox_4 = new JComboBox();
+		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5"}));
+		comboBox_4.setBounds(792, 12, 161, 23);
+		
+		
+		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5"}));
+		comboBox_3.setBounds(792, 71, 161, 23);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5"}));
+		comboBox_2.setBounds(792, 134, 161, 23);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5"}));
+		comboBox_1.setBounds(792, 197, 161, 23);
+		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane.setViewportView(scrollPane_1);
 		
+		//Display selected row
 		table = new JTable();
+		
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				int i = table.getSelectedRow();
+				TableModel model = table.getModel();
+				
+				
+				textField_1.setText(model.getValueAt(i, 4).toString());
+				textField.setText(model.getValueAt(i, 3).toString());
+				textFieldID.setText(model.getValueAt(i, 0).toString());
+				//String yr = model.getValueAt(i, 1).toString();
+			
+				String combolevel1 = table.getValueAt(i, 1).toString();
+				for(int j=0 ;j<comboBox.getItemCount();j++) {
+					
+					if(comboBox.getItemAt(j).toString().equalsIgnoreCase(combolevel1)) {
+						comboBox.setSelectedIndex(j);
+					}
+				}
+				
+				String combolevel2 = table.getValueAt(i, 2).toString();
+				for(int j=0 ;j<comboBox_5.getItemCount();j++) {
+					
+					if(comboBox_5.getItemAt(j).toString().equalsIgnoreCase(combolevel2)) {
+						comboBox_5.setSelectedIndex(j);
+					}
+				}
+				String combolevel3 = table.getValueAt(i, 5).toString();
+				for(int j=0 ;j<comboBox_4.getItemCount();j++) {
+					
+					if(comboBox_4.getItemAt(j).toString().equalsIgnoreCase(combolevel3)) {
+						comboBox_4.setSelectedIndex(j);
+					}
+				}
+				String combolevel4 = table.getValueAt(i, 6).toString();
+				for(int j=0 ;j<comboBox_3.getItemCount();j++) {
+					
+					if(comboBox_3.getItemAt(j).toString().equalsIgnoreCase(combolevel4)) {
+						comboBox_3.setSelectedIndex(j);
+					}
+				}
+				String combolevel5 = table.getValueAt(i, 7).toString();
+				for(int j=0 ;j<comboBox_2.getItemCount();j++) {
+					
+					if(comboBox_2.getItemAt(j).toString().equalsIgnoreCase(combolevel5)) {
+						comboBox_2.setSelectedIndex(j);
+					}
+				}
+				String combolevel6 = table.getValueAt(i, 8).toString();
+				for(int j=0 ;j<comboBox_1.getItemCount();j++) {
+					
+					if(comboBox_1.getItemAt(j).toString().equalsIgnoreCase(combolevel6)) {
+						comboBox_1.setSelectedIndex(j);
+					}
+				}
+					
+				
+			}
+		});
+		//display details in a table
 		scrollPane_1.setViewportView(table);
+		
+		try {
+			Connection con = DbConnection.connect();
+			
+			String query="select subID As SubID,year As Year,semester As Semester,subName As SubjectName,subCode As SubjectCode ,lectureHours As LectureHours,tuteHours As TuteHours,labHours As LabHours,evaluationHours As EvaluationHours from subjects ";
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
@@ -362,6 +481,10 @@ public class Manage_Subject {
 		panel_3.setBackground(new Color(245, 245, 245));
 		panel_3.setBounds(10, 235, 1055, 326);
 		panel_2.add(panel_3);
+		
+		
+		
+		panel_3.add(comboBox_5);
 		
 		JButton button_13 = new JButton("CLEAR");
 		button_13.setForeground(Color.WHITE);
@@ -372,6 +495,7 @@ public class Manage_Subject {
 		panel_3.add(button_13);
 		
 		JButton button_14 = new JButton("DELETE");
+		
 		button_14.setForeground(Color.WHITE);
 		button_14.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button_14.setEnabled(true);
@@ -380,6 +504,7 @@ public class Manage_Subject {
 		panel_3.add(button_14);
 		
 		JButton button_15 = new JButton("EDIT");
+		
 		button_15.setForeground(Color.WHITE);
 		button_15.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button_15.setEnabled(true);
@@ -407,22 +532,7 @@ public class Manage_Subject {
 		label_4.setBounds(123, 196, 122, 23);
 		panel_3.add(label_4);
 		
-		JRadioButton radioButton = new JRadioButton("1st");
-		radioButton.setHorizontalAlignment(SwingConstants.LEFT);
-		radioButton.setForeground(new Color(0, 139, 139));
-		radioButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-		radioButton.setBounds(251, 197, 67, 23);
-		panel_3.add(radioButton);
 		
-		JRadioButton radioButton_1 = new JRadioButton("2nd");
-		radioButton_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		radioButton_1.setForeground(new Color(0, 139, 139));
-		radioButton_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		radioButton_1.setBounds(361, 197, 51, 23);
-		panel_3.add(radioButton_1);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(251, 134, 161, 23);
 		panel_3.add(comboBox);
 		
 		textField = new JTextField();
@@ -435,8 +545,7 @@ public class Manage_Subject {
 		textField_1.setBounds(251, 12, 161, 23);
 		panel_3.add(textField_1);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(792, 197, 161, 23);
+		
 		panel_3.add(comboBox_1);
 		
 		JLabel label_5 = new JLabel("No Of Evaluation Hours");
@@ -449,12 +558,10 @@ public class Manage_Subject {
 		label_6.setBounds(632, 133, 150, 23);
 		panel_3.add(label_6);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(792, 134, 161, 23);
+		
 		panel_3.add(comboBox_2);
 		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(792, 71, 161, 23);
+		
 		panel_3.add(comboBox_3);
 		
 		JLabel label_7 = new JLabel("No Of Tutorial Hours");
@@ -467,9 +574,16 @@ public class Manage_Subject {
 		label_8.setBounds(632, 11, 150, 23);
 		panel_3.add(label_8);
 		
-		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(792, 12, 161, 23);
+		
+		
 		panel_3.add(comboBox_4);
+		
+		textFieldID = new JTextField();
+		textFieldID.setBounds(10, 13, 45, 20);
+		panel_3.add(textFieldID);
+		textFieldID.setColumns(10);
+		
+		
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
@@ -483,6 +597,56 @@ public class Manage_Subject {
 		lblManageSubbjects.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblManageSubbjects.setBounds(405, 0, 278, 38);
 		panel_4.add(lblManageSubbjects);
-	}
+		
+		
+		//Update Subject
+		button_15.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				/*
+				 * DefaultTableModel defaultTableModel =(DefaultTableModel) table.getModel();
+				 * defaultTableModel.fireTableChanged(e);
+				 */
+				
+				  try {
+				  
+				  Connection con = DbConnection.connect();
+				  String query="Update subjects set subCode='"+textField_1.getText()+"',subName='"+ textField.getText()+"',year='"+comboBox.getSelectedItem()+"',semester='"+ comboBox_5.getSelectedItem()+"',lectureHours='"+comboBox_4.getSelectedItem()+"',labHours='"+comboBox_3.getSelectedItem()+"',tuteHours='"+comboBox_2. getSelectedItem()+"',evaluationHours='"+comboBox_1.getSelectedItem() +"' where subID= '"+textFieldID.getText()+"'"; 
+				  PreparedStatement pst=con.prepareStatement(query);
+				  pst.executeUpdate();
+				  JOptionPane.showMessageDialog(null, "Data Updated"); 
+				  pst.close();
+				  
+				  } catch(Exception ea)
+				  { ea.printStackTrace(); }
+				 
+			}
+		});
+		
+		
+		//delete subject
+		button_14.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
 
+				
+				
+				try {
+					Connection con = DbConnection.connect();
+					String query="Delete from subjects where subID='"+textFieldID.getText()+"'";
+					PreparedStatement pst=con.prepareStatement(query);
+					pst.execute();
+					
+					JOptionPane.showMessageDialog(null, "Data Deleted");
+					pst.close();
+					//table.revalidate();
+					
+					}
+					catch(Exception en) {
+						en.printStackTrace();
+						
+					}
+				
+			}
+		});
+	}
 }
