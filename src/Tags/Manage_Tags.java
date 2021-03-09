@@ -1,13 +1,13 @@
-package Student;
+package Tags;
 
 import java.awt.EventQueue;
 
 
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Image;
 import java.awt.SystemColor;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,6 +23,9 @@ import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.border.MatteBorder;
@@ -39,56 +42,43 @@ import javax.swing.table.DefaultTableModel;
 
 import Advanced.Consecutive_sessions;
 import DB.DbConnection;
-import Home.Home;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
 import Rooms.ManageSessionsRooms;
 import Session.Add_Session;
 import Statistics.Statistics;
+import Student.Add_StudentGroup;
+import Student.Manage_studentGroup;
 import Subject.Add_Subjects;
-import Tags.Add_Tags;
 import WorkingDays.AddWorkingdays;
 import net.proteanit.sql.DbUtils;
-
+import Home.Home;
 import javax.swing.border.LineBorder;
-import java.awt.Label;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
-import javax.swing.AbstractButton;
-import javax.swing.DefaultComboBoxModel;
+public class Manage_Tags {
 
-public class Manage_studentGroup {
-
-	
-	private Image home_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/home.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image lec_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/lecturer.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image stu_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/student.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image sub_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/subject.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image session_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/session.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image tag_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/tags.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image location_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/location.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image st_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/statics.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image days_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/Wdays.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image time_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image adv_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image room_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image home_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/home.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image lec_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/lecturer.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image stu_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/student.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image sub_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/subject.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image session_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/session.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image tag_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/tags.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image location_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/location.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image st_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/statics.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image days_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/Wdays.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	
 	
-	private JFrame frame2;
-	private JTextField subGroupID;
-	private JTextField groupID;
+	private JFrame frmAddStudentGroup;
+	private JTextField txt_tagName;
+	private JTextField txt_tagCode;
 	private JTable table;
-	protected AbstractButton textField;
-	private JComboBox comboBox_1;
-	private JComboBox comboBox;
-	private JSpinner subGrpNo_1;
-	private JSpinner grpNo;
-	private JTextField id;
-
+	private JComboBox r_tag;
+	private JTextField textField;
 	
 	/**
 	 * Launch the application.
@@ -97,8 +87,8 @@ public class Manage_studentGroup {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Manage_studentGroup window = new Manage_studentGroup();
-					window.frame2.setVisible(true);
+					Manage_Tags window = new Manage_Tags();
+					window.frmAddStudentGroup.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -109,7 +99,7 @@ public class Manage_studentGroup {
 	/**
 	 * Create the application.
 	 */
-	public Manage_studentGroup() {
+	public Manage_Tags() {
 		initialize();
 	}
 
@@ -117,32 +107,31 @@ public class Manage_studentGroup {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame2 = new JFrame();
-		frame2.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
-		frame2.setBackground(Color.YELLOW);
-		frame2.setResizable(false);
-		frame2.setTitle("Student");
-		frame2.setSize(1350, 728);
-		frame2.setBounds(320,  120, 1350, 700);
-		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame2.getContentPane().setLayout(null);
+		frmAddStudentGroup = new JFrame();
+		frmAddStudentGroup.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
+		frmAddStudentGroup.setBackground(Color.YELLOW);
+		frmAddStudentGroup.setResizable(false);
+		frmAddStudentGroup.setTitle("Tags");
+		frmAddStudentGroup.setSize(1400, 860);
+		frmAddStudentGroup.setBounds(320, 120, 1350, 700);
+		frmAddStudentGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmAddStudentGroup.getContentPane().setLayout(null);
 		
 
-		frame2.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
-		frame2.setVisible(true);
+		frmAddStudentGroup.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
+		frmAddStudentGroup.setVisible(true);
 		
 		JPanel panel = new JPanel();
-		panel.setForeground(Color.WHITE);
 		panel.setBounds(0, 0, 1344, 65);
 		panel.setBackground(new Color(0, 139, 139));
-		frame2.getContentPane().add(panel);
+		frmAddStudentGroup.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_10 = new JLabel("Student");
+		JLabel lblNewLabel_10 = new JLabel("Tags");
 		lblNewLabel_10.setForeground(Color.WHITE);
 		lblNewLabel_10.setFont(new Font("Times New Roman", Font.BOLD, 27));
 		lblNewLabel_10.setBackground(Color.WHITE);
-		lblNewLabel_10.setBounds(723, 13, 179, 29);
+		lblNewLabel_10.setBounds(691, 23, 179, 29);
 		panel.add(lblNewLabel_10);
 		/*
 		 * //JLabel lblNewLabel = new JLabel("Time Table Management System");
@@ -154,31 +143,33 @@ public class Manage_studentGroup {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 62, 262, 609);
 		panel_1.setBackground(new Color(230, 230, 250));
-		frame2.getContentPane().add(panel_1);
+		frmAddStudentGroup.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
+		
+		
 		
 		//home button
 		JButton btnHome = new JButton("Home");
 		btnHome.setHorizontalAlignment(SwingConstants.LEFT);
 		btnHome.setIcon(new ImageIcon(home_logo));
 		btnHome.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				Home home = new Home();
-				home.main(null);
-				frame2.dispose();
-				
-			}
-		});
+					
+				public void actionPerformed(ActionEvent e) {
+						
+					Home home = new Home();
+					home.main(null);
+					frmAddStudentGroup.dispose();
+						
+				}
+			});
 		btnHome.setBounds(0, 13, 262, 33);
 		panel_1.add(btnHome);
 		btnHome.setForeground(new Color(255, 255, 255));
 		btnHome.setBackground(new Color(0, 139, 139));
 		btnHome.setFont(new Font("Tahoma", Font.BOLD, 17));
 		
-	
-		//lecture button
+		
+		//lecture buttton
 		JButton btnLecturers = new JButton("Lecturers");
 		btnLecturers.setHorizontalAlignment(SwingConstants.LEFT);
 		btnLecturers.setIcon(new ImageIcon(lec_logo));
@@ -188,7 +179,7 @@ public class Manage_studentGroup {
 					
 					Add_Lecturer add_lecture = new Add_Lecturer();
 					add_lecture.main(null);
-					frame2.dispose();
+					frmAddStudentGroup.dispose();
 					
 				}
 			});
@@ -210,7 +201,7 @@ public class Manage_studentGroup {
 				
 				Add_StudentGroup add_st= new Add_StudentGroup();
 				add_st.main(null);
-				frame2.dispose();
+				frmAddStudentGroup.dispose();
 				
 			}
 		});
@@ -221,7 +212,7 @@ public class Manage_studentGroup {
 				
 				Home add_st = new Home();
 				add_st.main(null);
-				frame2.dispose();
+				frmAddStudentGroup.dispose();
 				
 			}
 		});
@@ -242,7 +233,7 @@ public class Manage_studentGroup {
 				
 				Add_Subjects add_sub= new Add_Subjects();
 				add_sub.main(null);
-				frame2.dispose();
+				frmAddStudentGroup.dispose();
 				
 			}
 		});
@@ -263,7 +254,7 @@ public class Manage_studentGroup {
 				
 				Add_Session add_session= new Add_Session();
 				add_session.main(null);
-				frame2.dispose();
+				frmAddStudentGroup.dispose();
 				
 			}
 		});
@@ -284,7 +275,7 @@ public class Manage_studentGroup {
 				
 				Add_Tags add_tag= new Add_Tags();
 				add_tag.main(null);
-				frame2.dispose();
+				frmAddStudentGroup.dispose();
 				
 			}
 		});
@@ -295,7 +286,7 @@ public class Manage_studentGroup {
 		panel_1.add(btnTags);
 		
 		
-		//room button
+		//rooms button
 		JButton btnRooms = new JButton("Rooms");
 		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
 		btnRooms.setIcon(new ImageIcon(room_logo));
@@ -305,7 +296,7 @@ public class Manage_studentGroup {
 				
 				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
 				m_rooms.main(null);
-				frame2.dispose();
+				frmAddStudentGroup.dispose();
 				
 			}
 		});
@@ -315,8 +306,7 @@ public class Manage_studentGroup {
 		btnRooms.setBounds(0, 304, 264, 38);
 		panel_1.add(btnRooms);
 		
-		
-		//working days hours button
+		//workin days hours button
 		JButton btnWorkingDays = new JButton("Working days & Hours");
 		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
 		btnWorkingDays.setIcon(new ImageIcon(days_logo));
@@ -326,7 +316,7 @@ public class Manage_studentGroup {
 				
 				AddWorkingdays w_days= new 	AddWorkingdays();
 				w_days.main(null);
-				frame2.dispose();
+				frmAddStudentGroup.dispose();
 				
 			}
 		});
@@ -335,7 +325,6 @@ public class Manage_studentGroup {
 		btnWorkingDays.setBackground(new Color(0, 139, 139));
 		btnWorkingDays.setBounds(0, 353, 264, 38);
 		panel_1.add(btnWorkingDays);
-		
 		
 		
 		//location button
@@ -348,7 +337,7 @@ public class Manage_studentGroup {
 				
 				ManageLocations m_locations= new ManageLocations();
 				m_locations.main(null);
-				frame2.dispose();
+				frmAddStudentGroup.dispose();
 				
 			}
 		});
@@ -369,7 +358,7 @@ public class Manage_studentGroup {
 				
 				Statistics stat= new Statistics ();
 				stat.main(null);
-				frame2.dispose();
+				frmAddStudentGroup.dispose();
 				
 			}
 		});
@@ -390,7 +379,7 @@ public class Manage_studentGroup {
 				
 				Consecutive_sessions a_session= new Consecutive_sessions ();
 				a_session.main(null);
-				frame2.dispose();
+				frmAddStudentGroup.dispose();
 				
 			}
 		});
@@ -414,238 +403,154 @@ public class Manage_studentGroup {
 		
 		
 		
-		
-		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
 		panel_2.setBackground(new Color(230, 230, 250));
-		panel_2.setBounds(263, 62, 1081, 603);
-		frame2.getContentPane().add(panel_2);
+		panel_2.setBounds(261, 67, 1083, 598);
+		frmAddStudentGroup.getContentPane().add(panel_2);
 		
-		JPanel panel_6 = new JPanel();
-		panel_6.setLayout(null);
-		panel_6.setBounds(0, 43, 1082, 49);
-		panel_2.add(panel_6);
+		JPanel panel_5 = new JPanel();
+		panel_5.setLayout(null);
+		panel_5.setBounds(216, 261, 636, 192);
+		panel_2.add(panel_5);
 		
-		JLabel lblNewLabel_1 = new JLabel("Manage Student Group");
-		lblNewLabel_1.setForeground(new Color(0, 128, 128));
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblNewLabel_1.setBounds(406, 13, 278, 31);
-		panel_6.add(lblNewLabel_1);
+		JLabel lblNewLabel = new JLabel("Tag Name");
+		lblNewLabel.setBounds(74, 23, 149, 24);
+		panel_5.add(lblNewLabel);
 		
-		//add student group 
-		JButton btnNewButton_2 = new JButton("Add Student Group");
-		btnNewButton_2.setBounds(0, 2, 258, 37);
-		panel_2.add(btnNewButton_2);
+		
+		txt_tagName = new JTextField();
+		txt_tagName.setColumns(10);
+		txt_tagName.setBounds(343, 23, 172, 24);
+		panel_5.add(txt_tagName);
+		
+		JLabel lblNewLabel_5 = new JLabel("Tag Code");
+		lblNewLabel_5.setBounds(74, 72, 56, 16);
+		panel_5.add(lblNewLabel_5);
+		
+		
+		txt_tagCode = new JTextField();
+		txt_tagCode.setColumns(10);
+		txt_tagCode.setBounds(343, 68, 172, 24);
+		panel_5.add(txt_tagCode);
+		
+		JLabel lblNewLabel_6 = new JLabel("Related  Name");
+		lblNewLabel_6.setBounds(74, 123, 111, 16);
+		panel_5.add(lblNewLabel_6);
+		
+		
+		r_tag = new JComboBox();
+		r_tag.setModel(new DefaultComboBoxModel(new String[] {"Lecture", "Tutorial", "Lab"}));
+		r_tag.setBounds(343, 122, 172, 19);
+		panel_5.add(r_tag);
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setForeground(Color.WHITE);
+		textField.setEnabled(false);
+		textField.setBounds(190, 24, 116, 22);
+		panel_5.add(textField);
+		textField.setColumns(10);
+		
+		
+		
+		
+	
+		
+	
+		
+		JPanel panel_6_1 = new JPanel();
+		panel_6_1.setLayout(null);
+		panel_6_1.setBounds(0, 39, 1082, 49);
+		panel_2.add(panel_6_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Manage Tags");
+		lblNewLabel_1_1.setForeground(new Color(0, 128, 128));
+		lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblNewLabel_1_1.setBounds(422, 13, 278, 31);
+		panel_6_1.add(lblNewLabel_1_1);
+		
+		
+		//add tags button
+		JButton btnNewButton_2 = new JButton("Add Tags");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
 				//Add_StudentGroup add_stgroup = new Add_StudentGroup();
 				//add_stgroup.main(null);
-				frame2.dispose();
-				new Add_StudentGroup();
+				frmAddStudentGroup.dispose();
+				new Add_Tags();
+				
 				
 			}
 		});
 		
 		
-		//manage student group
-		JButton btnNewButton_2_1 = new JButton("Manage Student Group");
-		btnNewButton_2_1.setBounds(255, 2, 258, 37);
-		panel_2.add(btnNewButton_2_1);
+		btnNewButton_2.setBounds(0, 0, 258, 37);
+		panel_2.add(btnNewButton_2);
 		
-		btnNewButton_2_1.addActionListener(new ActionListener() {
+		
+		
+		
+		
+		
+		//add manage button
+		JButton btnNewButton_2_2 = new JButton("Manage Tags");
+		
+		btnNewButton_2_2.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				//Manage_studentGroup m_stgroup = new Manage_studentGroup();
-				//m_stgroup.main(null);
-				frame2.dispose();
-				new Manage_studentGroup();
+				//Manage_Tags m_tag = new Manage_Tags();
+				//m_tag.main(null);
+				frmAddStudentGroup.dispose();
+				new Manage_Tags();
 				
 			}
 		});
+		btnNewButton_2_2.setBounds(258, 0, 258, 37);
+		panel_2.add(btnNewButton_2_2);
 		
-		
-		
-		
-		JPanel panel_4 = new JPanel();
-		panel_4.setLayout(null);
-		panel_4.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_4.setBackground(SystemColor.menu);
-		panel_4.setBounds(122, 278, 853, 251);
-		panel_2.add(panel_4);
-		
-	
-		
-
-		id = new JTextField();
-		id.setEnabled(false);
-		id.setBounds(146, 13, 161, 22);
-		panel_4.add(id);
-		
-	
-		
-		JLabel lblNewLabel_2 = new JLabel("Year Semester");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2.setBounds(35, 57, 108, 23);
-		panel_4.add(lblNewLabel_2);
-		
-		
-		comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Y1.S1", "Y1.S2", "Y2.S1", "Y2.S2", "Y3.S1", "Y3.S2", "Y4.S1", "Y4.S2"}));
-		comboBox_1.setBounds(146, 57, 161, 23);
-		panel_4.add(comboBox_1);
-		
-		
-		
-		JLabel lblNewLabel_3 = new JLabel("Progrmme");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_3.setBounds(35, 106, 108, 23);
-		panel_4.add(lblNewLabel_3);
-		
-		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"IT", "CSSE", "IM", "CSE"}));
-		comboBox.setBounds(146, 106, 161, 23);
-		panel_4.add(comboBox);
-		
-		JLabel lblNewLabel_4 = new JLabel("Group Number");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_4.setBounds(35,157,108,23); 
-		panel_4.add(lblNewLabel_4);
-		
-		
-		grpNo = new JSpinner();
-		grpNo.setBounds(146, 157, 161, 23);
-		panel_4.add(grpNo);
-		
-				
-		JLabel lblNewLabel = new JLabel("Sub-Group Number");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(35, 204, 108, 23);
-		panel_4.add(lblNewLabel);
-		
-		subGrpNo_1 = new JSpinner();
-		subGrpNo_1.setBounds(146, 204, 161, 22);
-		panel_4.add(subGrpNo_1);
-		
-		JLabel lblRank = new JLabel("Group ID");
-		lblRank.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblRank.setBounds(539, 57, 108, 23);
-		panel_4.add(lblRank);
-		
-		
-		groupID = new JTextField();
-		groupID .setForeground(SystemColor.controlDkShadow);
-		groupID .setColumns(10);
-		groupID .setBounds(625, 57, 174, 23);
-		panel_4.add(groupID );
-		
-		JLabel lblSubgroupId = new JLabel("Sub-Group ID");
-		lblSubgroupId.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSubgroupId.setBounds(539, 106, 108, 23);
-		panel_4.add(lblSubgroupId);
-		
-	
-
-		subGroupID = new JTextField();
-		subGroupID.setForeground(SystemColor.controlDkShadow);
-		subGroupID.setColumns(10);
-		subGroupID.setBounds(625, 106, 174, 23);
-		panel_4.add(subGroupID);
-		
-		
-
-		JButton btnNewButton_1 = new JButton("GENERATE ID");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			
-			
-				groupID.setText(comboBox_1.getSelectedItem().toString()+"."+comboBox.getSelectedItem().toString()+"."+grpNo.getValue().toString());
-		
-				subGroupID.setText(comboBox_1.getSelectedItem().toString()+"."+comboBox.getSelectedItem().toString()+"."+grpNo.getValue().toString()+"."+subGrpNo_1.getValue().toString());
-			
-				
-				
-			}
-		});
-		
-		
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setBackground(new Color(119, 136, 153));
-		btnNewButton_1.setBounds(625, 157, 174, 38);
-		panel_4.add(btnNewButton_1);
-	
-		
-	
-		
-		
-		
-			
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(32, 178, 170));
 		separator.setBackground(new Color(0, 139, 139));
-		separator.setBounds(0, 40, 1082, 31);
+		separator.setBounds(0, 37, 1082, 14);
 		panel_2.add(separator);
 		
 		
 		
-		//Table view
+		//table view
 		JScrollPane scrollPane = new JScrollPane();
 		
 		
-		scrollPane.setBounds(142, 105, 852, 137);
+		
+		scrollPane.setBounds(216, 111, 636, 137);
 		panel_2.add(scrollPane);
 		
-		
-	
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent e) {
 				
 				
-
+				int selectedRow=table.getSelectedRow();
+			    
+				txt_tagName.setText(table.getValueAt(selectedRow, 1).toString());
+				txt_tagCode.setText(table.getValueAt(selectedRow, 2).toString());
+				textField.setText(table.getValueAt(selectedRow, 0).toString());
 				
 				
-				 	int selectedRow=table.getSelectedRow();
-				 
-					groupID.setText(table.getValueAt(selectedRow, 5).toString());
-					subGroupID.setText(table.getValueAt(selectedRow, 6).toString());
-					id.setText(table.getValueAt(selectedRow, 0).toString());
-					
-					
-				    
-					
-				    String comboLevel = table.getValueAt(selectedRow, 2).toString();
-					for(int i=0; i<comboBox.getItemCount();i++) {
-						if(comboBox.getItemAt(i).toString().equalsIgnoreCase(comboLevel)) {
-							comboBox.setSelectedIndex(i);
-						}
+			    
+				
+			    String comboLevel = table.getValueAt(selectedRow, 3).toString();
+				for(int i=0; i<r_tag.getItemCount();i++) {
+					if(r_tag.getItemAt(i).toString().equalsIgnoreCase(comboLevel)) {
+						r_tag.setSelectedIndex(i);
 					}
-					
-					
-					String comboLevel1 = table.getValueAt(selectedRow, 1).toString();
-					for(int i=0; i<comboBox_1.getItemCount();i++) {
-						if(comboBox_1.getItemAt(i).toString().equalsIgnoreCase(comboLevel1)) {
-							comboBox_1.setSelectedIndex(i);
-						}
-					}
-					
-					
-					//grpNo.setValue(table.getValueAt(selectedRow, 3).toString());
-					//subGrpNo_1.setValue(table.getValueAt(selectedRow, 4).Integer.parseInt());
-					//subGrpNo_1.setValue(table.getModel().getValueAt(selectedRow,4).toString());
-					
-					
-					//grpNo.setValue(Integer.parseInt((String)table.getValueAt(selectedRow,3)));
-					//subGrpNo_1.setValue(Integer.parseInt((String)table.getValueAt(selectedRow,4)));
-					
-					grpNo.setValue((Integer)table.getValueAt(selectedRow,3));
-					subGrpNo_1.setValue((Integer)table.getValueAt(selectedRow,4));
-					 
+				}
+				
+				
 				
 			}
 		});
@@ -653,7 +558,7 @@ public class Manage_studentGroup {
 		try {
 			Connection con = DbConnection.connect();
 			
-			String query="select * from StudentGroup ";
+			String query="select * from Tags ";
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -667,14 +572,16 @@ public class Manage_studentGroup {
 		
 		
 		
-		//update details
-		JButton btnNewButton = new JButton("EDIT");
-		btnNewButton.addActionListener(new ActionListener() {
+		//update tags details
+		JButton btnEdit = new JButton("EDIT");
+		
+		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
+					
 					Connection con = DbConnection.connect();					
-					String query="Update StudentGroup set AcademicYearSemester='"+comboBox_1.getSelectedItem()+"',Programme='"+comboBox.getSelectedItem()+"',GroupNo='"+grpNo.getValue()+"',SubGroupNo='"+subGrpNo_1.getValue()+"',GroupID='"+groupID.getText()+"',SubGroupID='"+subGroupID.getText()+"' where StudenttGroupID='"+id.getText()+"'";
+					String query="Update Tags set TagName='"+txt_tagName.getText()+"',TagCode='"+txt_tagCode.getText()+"',RelatedTag='"+r_tag.getSelectedItem()+"' where TagID='"+textField.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.executeUpdate();
 					
@@ -692,16 +599,17 @@ public class Manage_studentGroup {
 				
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(0, 139, 139));
-		btnNewButton.setBounds(142, 542, 123, 33);
-		panel_2.add(btnNewButton);
+		btnEdit.setForeground(Color.WHITE);
+		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEdit.setEnabled(true);
+		btnEdit.setBackground(new Color(0, 153, 153));
+		btnEdit.setBounds(222, 488, 141, 31);
+		panel_2.add(btnEdit);
 		
 		
-		//delete details
-		JButton btnDelete = new JButton("DELETE");
-		btnDelete.addActionListener(new ActionListener() {
+		//delete tags details
+		JButton btnNewButton_2_1 = new JButton("DELETE");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				
@@ -709,10 +617,10 @@ public class Manage_studentGroup {
 					
 					
 					Connection con = DbConnection.connect();
-					String query="Delete from StudentGroup where StudenttGroupID='"+id.getText()+"'";
+					String query="Delete from Tags where TagID='"+textField.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.execute();
-					
+
 					JLabel label = new JLabel("Data Deleted");
 					label.setHorizontalAlignment(SwingConstants.CENTER);
 					JOptionPane.showMessageDialog(null, label);
@@ -730,21 +638,25 @@ public class Manage_studentGroup {
 				
 			}
 		});
-		btnDelete.setForeground(Color.WHITE);
-		btnDelete.setFont(new Font("Tahoma", Font.BOLD,14));
-		btnDelete.setBackground(new Color(0, 139, 139));
-		btnDelete.setBounds(507, 542, 123, 33);
-		panel_2.add(btnDelete);
+		btnNewButton_2_1.setForeground(Color.WHITE);
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNewButton_2_1.setEnabled(true);
+		btnNewButton_2_1.setBackground(new Color(0, 153, 153));
+		btnNewButton_2_1.setBounds(473, 488, 141, 31);
+		panel_2.add(btnNewButton_2_1);
+		
+
+		
+		//clear details
+		JButton btnClear_1 = new JButton("CLEAR");
+		btnClear_1.setForeground(Color.WHITE);
+		btnClear_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnClear_1.setEnabled(true);
+		btnClear_1.setBackground(new Color(0, 153, 153));
+		btnClear_1.setBounds(709, 488, 141, 31);
+		panel_2.add(btnClear_1);
 		
 		
-		
-		//clear operation
-		JButton btnNewButton_3 = new JButton("CLEAR");
-	    btnNewButton_3.setForeground(Color.WHITE);
-		btnNewButton_3.setFont(new Font("2, 542", Font.BOLD, 14));
-		btnNewButton_3.setBackground(new Color(0, 139, 139));
-		btnNewButton_3.setBounds(872, 542, 123, 33);
-		panel_2.add(btnNewButton_3);
 		
 	}
 }
