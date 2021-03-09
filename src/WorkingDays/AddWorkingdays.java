@@ -83,7 +83,7 @@ public class AddWorkingdays {
 		frame.setResizable(false);
 		frame.setTitle("Student");
 		frame.setSize(1350, 728);
-		frame.setBounds(350, 90, 1350, 700);
+		frame.setBounds(0, 0, 1350, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -395,7 +395,7 @@ public class AddWorkingdays {
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.setEnabled(true);
 		btnNewButton.setBackground(new Color(0, 153, 153));
-		btnNewButton.setBounds(804, 562, 141, 31);
+		btnNewButton.setBounds(766, 561, 141, 31);
 		panel_3.add(btnNewButton);
 	btnNewButton.addActionListener(new ActionListener() {
 			
@@ -425,9 +425,30 @@ public class AddWorkingdays {
 		button.setBounds(511, 2, 258, 37);
 		panel_3.add(button);
 		
+	button.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				NotAvailableTime m_stgroup = new NotAvailableTime ();
+				m_stgroup.main(null);
+				frame.dispose();
+				
+			}
+		});
 		
 		JButton button_1 = new JButton("Add Not Available Time");
 		button_1.setBounds(766, 2, 258, 37);
 		panel_3.add(button_1);
+		
+	button_1.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				NotAvailableLocation m_stgroup = new NotAvailableLocation ();
+				m_stgroup.main(null);
+				frame.dispose();
+				
+			}
+		});
 	}
 }

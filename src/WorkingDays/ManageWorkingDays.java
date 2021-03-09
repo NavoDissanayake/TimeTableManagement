@@ -83,7 +83,7 @@ public class ManageWorkingDays {
 		frmWorkingDays.setResizable(false);
 		frmWorkingDays.setTitle("Working Days & Hours");
 		frmWorkingDays.setSize(1350, 728);
-		frmWorkingDays.setBounds(350, 90, 1350, 700);
+		frmWorkingDays.setBounds(0, 0, 1350, 700);
 		frmWorkingDays.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmWorkingDays.getContentPane().setLayout(null);
 		
