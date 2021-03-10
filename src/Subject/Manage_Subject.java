@@ -71,6 +71,26 @@ public class Manage_Subject {
 	private JTextField textFieldID;
 	
 
+public void refreshtable() {
+		
+		try {
+			
+			Connection con = DbConnection.connect();
+			
+			String query="select subID As SubID,year As Year,semester As Semester,subName As SubjectName,subCode As SubjectCode ,lectureHours As LectureHours,tuteHours As TuteHours,labHours As LabHours,evaluationHours As EvaluationHours from subjects ";
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 
 	/**
 	 * Launch the application.
@@ -109,8 +129,10 @@ public class Manage_Subject {
 		MngSubFrm.setTitle("Sessions");
 		MngSubFrm.setSize(900, 860);
 		MngSubFrm.setBounds(0, 0, 1350, 700);
+		MngSubFrm.setVisible(true);
 		//ManageSesFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		MngSubFrm.getContentPane().setLayout(null);
+		MngSubFrm.setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -338,9 +360,13 @@ public class Manage_Subject {
 		btnManageSubjects.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Manage_Subject manage_Subject = new Manage_Subject();
-				manage_Subject.main(null);
 				MngSubFrm.dispose();
+				  Manage_Subject manage_Subject = new Manage_Subject();
+				  manage_Subject.main(null);
+				 
+			
+				
+				
 			}
 		});
 		btnManageSubjects.setBounds(517, 66, 258, 37);
@@ -349,9 +375,10 @@ public class Manage_Subject {
 		JButton btnAddNewSubject = new JButton("Add New Subject");
 		btnAddNewSubject.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Add_Subjects add_Subjects = new Add_Subjects();
-				 add_Subjects.main(null);
+				
+				
 				 MngSubFrm.dispose();
+				 new Add_Subjects();
 			}
 		});
 		btnAddNewSubject.setBounds(262, 66, 258, 37);
@@ -368,11 +395,11 @@ public class Manage_Subject {
 		panel_2.add(scrollPane);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "1", "2", "3", "4"}));
 		comboBox.setBounds(251, 134, 161, 23);
 		
 		JComboBox comboBox_5 = new JComboBox();
-		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
+		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"", "1", "2"}));
 		comboBox_5.setBounds(255, 198, 157, 23);
 		
 		
@@ -487,6 +514,7 @@ public class Manage_Subject {
 		panel_3.add(comboBox_5);
 		
 		JButton button_13 = new JButton("CLEAR");
+		
 		button_13.setForeground(Color.WHITE);
 		button_13.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button_13.setEnabled(true);
@@ -579,7 +607,11 @@ public class Manage_Subject {
 		panel_3.add(comboBox_4);
 		
 		textFieldID = new JTextField();
-		textFieldID.setBounds(10, 13, 45, 20);
+		textFieldID.setBackground(SystemColor.controlHighlight);
+		textFieldID.setEditable(false);
+		textFieldID.setEnabled(false);
+		textFieldID.setFont(new Font("Tahoma", Font.PLAIN, 5));
+		textFieldID.setBounds(10, 13, 2, 3);
 		panel_3.add(textFieldID);
 		textFieldID.setColumns(10);
 		
@@ -613,7 +645,10 @@ public class Manage_Subject {
 				  String query="Update subjects set subCode='"+textField_1.getText()+"',subName='"+ textField.getText()+"',year='"+comboBox.getSelectedItem()+"',semester='"+ comboBox_5.getSelectedItem()+"',lectureHours='"+comboBox_4.getSelectedItem()+"',labHours='"+comboBox_3.getSelectedItem()+"',tuteHours='"+comboBox_2. getSelectedItem()+"',evaluationHours='"+comboBox_1.getSelectedItem() +"' where subID= '"+textFieldID.getText()+"'"; 
 				  PreparedStatement pst=con.prepareStatement(query);
 				  pst.executeUpdate();
-				  JOptionPane.showMessageDialog(null, "Data Updated"); 
+				  refreshtable();
+				  JLabel label = new JLabel("Data Updated Successfully");
+				  label.setHorizontalAlignment(SwingConstants.CENTER);
+				  JOptionPane.showMessageDialog(null, label);
 				  pst.close();
 				  
 				  } catch(Exception ea)
@@ -635,8 +670,8 @@ public class Manage_Subject {
 					String query="Delete from subjects where subID='"+textFieldID.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.execute();
-					
-					JOptionPane.showMessageDialog(null, "Data Deleted");
+					 refreshtable();
+					 JOptionPane.showMessageDialog(null, "Data Deleted","Alert",JOptionPane.WARNING_MESSAGE);
 					pst.close();
 					//table.revalidate();
 					
@@ -645,6 +680,25 @@ public class Manage_Subject {
 						en.printStackTrace();
 						
 					}
+				
+			}
+		});
+		
+		
+		//clear button
+		
+		button_13.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				textField.setText("");
+				textField_1.setText("");
+				comboBox_1.setSelectedIndex(0);
+				comboBox.setSelectedIndex(0);
+				comboBox_2.setSelectedIndex(0);
+				comboBox_3.setSelectedIndex(0);
+				comboBox_4.setSelectedIndex(0);
+				comboBox_5.setSelectedIndex(0);
 				
 			}
 		});

@@ -20,6 +20,8 @@ import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.border.MatteBorder;
@@ -35,6 +37,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Advanced.Consecutive_sessions;
+import DB.DbConnection;
 import Home.Home;
 import Locations.ManageLocations;
 import Rooms.ManageSessionsRooms;
@@ -48,9 +51,15 @@ import WorkingDays.AddWorkingdays;
 import javax.swing.JScrollBar;
 import javax.swing.JSlider;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Window.Type;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.AbstractListModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Add_Lecturer {
 
@@ -102,7 +111,8 @@ public class Add_Lecturer {
 	 */
 	private void initialize() {
 		addLecframe = new JFrame();
-		addLecframe.setAlwaysOnTop(true);
+		
+	
 		addLecframe.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		addLecframe.setBackground(Color.YELLOW);
 		addLecframe.setTitle("Lecturers");
@@ -110,6 +120,9 @@ public class Add_Lecturer {
 		addLecframe.setBounds(0, 0, 1350, 700);
 		addLecframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		addLecframe.getContentPane().setLayout(null);
+		addLecframe.setLocationRelativeTo(null);
+		addLecframe.setVisible(true);
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1344, 65);
@@ -382,11 +395,60 @@ btnLocations.addActionListener(new ActionListener() {
 		label_2.setBounds(764, 18, 108, 23);
 		panel_3.add(label_2);
 		
+		
+		//Generate Rank
 		JButton btnGenRankAdd = new JButton("GENERATE RANK");
 		btnGenRankAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				String levelNum ;
 				
+				
+				 if(EmpidTxt.getText().equals("") || levelCmb.getSelectedItem().equals("")) {
+		            	//JLabel label9 = new JLabel("Please Enter Values");
+						//label9.setHorizontalAlignment(SwingConstants.CENTER);
+						JOptionPane.showMessageDialog(null, "Please Enter Values","Alert",JOptionPane.WARNING_MESSAGE);
+						
+
+					}else {
+				
+				if(levelCmb.getSelectedItem().toString() == "Professor")
+				{
+					levelNum = "1";
+				}
+				else if(levelCmb.getSelectedItem().toString() == "Assistant Professor")
+				{
+					levelNum = "2" ;
+				}
+				else if(levelCmb.getSelectedItem().toString() == "Senior Lecturer(HG)")
+				{
+					levelNum = "3" ;
+				}
+				else if(levelCmb.getSelectedItem().toString() == "Senior Lecturer")
+				{
+					levelNum = "4" ;
+				}
+				else if(levelCmb.getSelectedItem().toString() == "Lecturer")
+				{
+					levelNum = "5" ;
+				}
+				else if(levelCmb.getSelectedItem().toString() == "Assistant Lecturer")
+				{
+					levelNum = "6" ;
+				}
+				else
+				{
+					levelNum = " ";
+				}
+				
+				RankTxt.setText(levelNum + "." + EmpidTxt.getText());
+				
+				JLabel label8 = new JLabel("Rank Generated Successfully");
+				label8.setHorizontalAlignment(SwingConstants.CENTER);
+				JOptionPane.showMessageDialog(null, label8);
+				
+				 
+					}
 				
 			}
 		});
@@ -453,35 +515,6 @@ btnLocations.addActionListener(new ActionListener() {
 		label_7.setBounds(110, 267, 87, 23);
 		panel_4.add(label_7);
 		
-		JCheckBox checkMndy = new JCheckBox("Monday");
-		checkMndy.setHorizontalAlignment(SwingConstants.LEFT);
-		checkMndy.setBounds(787, 39, 96, 23);
-		panel_4.add(checkMndy);
-		
-		JCheckBox checkSatur = new JCheckBox("Saturday");
-		checkSatur.setBounds(898, 38, 87, 23);
-		panel_4.add(checkSatur);
-		
-		JCheckBox checkTues = new JCheckBox("Tuesday");
-		checkTues.setBounds(787, 64, 96, 23);
-		panel_4.add(checkTues);
-		
-		JCheckBox checkWednes = new JCheckBox("Wednesday");
-		checkWednes.setBounds(787, 91, 96, 23);
-		panel_4.add(checkWednes);
-		
-		JCheckBox checkThurs = new JCheckBox("Thursday");
-		checkThurs.setBounds(787, 116, 96, 23);
-		panel_4.add(checkThurs);
-		
-		JCheckBox checkFri = new JCheckBox("Friday");
-		checkFri.setBounds(787, 142, 96, 23);
-		panel_4.add(checkFri);
-		
-		JCheckBox checkSund = new JCheckBox("Sunday");
-		checkSund.setBounds(898, 64, 87, 23);
-		panel_4.add(checkSund);
-		
 		JLabel label_8 = new JLabel("Active days");
 		label_8.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_8.setBounds(662, 38, 108, 23);
@@ -510,9 +543,99 @@ btnLocations.addActionListener(new ActionListener() {
 		minsAdd.setBounds(898, 209, 73, 22);
 		panel_4.add(minsAdd);
 		
+		
+		JCheckBox checkBox = new JCheckBox("Wednesday");
+		checkBox.setBounds(787, 91, 101, 23);
+		panel_4.add(checkBox);
+		
+		JCheckBox checkBox_1 = new JCheckBox("Thursday");
+		checkBox_1.setBounds(787, 116, 101, 23);
+		panel_4.add(checkBox_1);
+		
+		JCheckBox checkBox_2 = new JCheckBox("Friday");
+		checkBox_2.setBounds(787, 142, 101, 23);
+		panel_4.add(checkBox_2);
+		
+		JCheckBox checkBox_3 = new JCheckBox("Tuesday");
+		checkBox_3.setBounds(787, 64, 101, 23);
+		panel_4.add(checkBox_3);
+		
+		JCheckBox checkBox_4 = new JCheckBox("Monday");
+		checkBox_4.setBounds(787, 39, 101, 23);
+		
+		//Add lecturer
 		JButton button_1 = new JButton("ADD");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				String Empid= EmpidTxt.getText();
+				String lvl= levelCmb.getSelectedItem().toString();
+				String monday="-";
+				String tuesday="- ";
+				String wednesday="- ";
+				String thursday="- ";
+				String friday=" -";
+				String rank = RankTxt.getText();
+				String name= EmpNameTxt.getText();
+				String faculty= Fac.getSelectedItem().toString();
+				String dept = Dept.getSelectedItem().toString();
+				String campus = Campus.getSelectedItem().toString();
+				String building = build.getSelectedItem().toString();
+				String hr = hourAdd.getValue().toString();
+				String min = minsAdd.getValue().toString();
+				
+				
+				  if(checkBox_4.isSelected()) { monday="Monday"; }
+				  if(checkBox_3.isSelected()) { tuesday="Tuesday"; }
+				  if(checkBox.isSelected()) { wednesday="Wednesday"; }
+				  if(checkBox_1.isSelected()) { thursday="Thursday"; }
+				  if(checkBox_2.isSelected()) { friday="Friday"; }
+				 
+				 
+				
+	            if(RankTxt.getText().equals("")) {
+	            	JLabel label3 = new JLabel("Please Genarate Rank First!");
+					label3.setHorizontalAlignment(SwingConstants.CENTER);
+					JOptionPane.showMessageDialog(null, label3);
+					
+
+				}else {
+				
+				try {
+					
+					 Connection con = DbConnection.connect();
+
+	                    String query = "INSERT INTO lecturers values(null, '" + name + "','" + Empid + "','" + faculty + "', '" + dept + "', '" + campus + "', '" + building + "','"+lvl+"','"+rank+"','"+hr+"','"+min+"','"+monday+"' , '"+tuesday+"','"+wednesday+"','"+thursday+"','"+friday+"')";
+
+	                    Statement sta = con.createStatement();
+	                    int x = sta.executeUpdate(query);
+	                    if (x == 0) {
+	                    	
+	                    	
+	                    	JLabel label = new JLabel("This is alredy exist");
+	    					label.setHorizontalAlignment(SwingConstants.CENTER);
+	    					JOptionPane.showMessageDialog(null, label);
+	    					
+	                       
+	                       // JOptionPane.showMessageDialog(btnNewButton, "This is alredy exist");
+	                    } else {
+	                        //JOptionPane.showMessageDialog(btnNewButton,"Welcome, Student Group details successfully inserted!");
+	                    	
+	                    	JLabel label = new JLabel("Lecturer Details Inserted Successfully");
+	    					label.setHorizontalAlignment(SwingConstants.CENTER);
+	    					JOptionPane.showMessageDialog(null, label);
+	    					
+	                 	
+	                	
+	                    }
+	                    con.close();
+	                } catch (Exception exception) {
+	                    System.out.println("Error!!");
+	                	
+	                }
+				
+				}
 				
 				
 			}
@@ -524,12 +647,16 @@ btnLocations.addActionListener(new ActionListener() {
 		panel_4.add(button_1);
 		
 		JButton button_2 = new JButton("CLEAR");
+		
 		button_2.setForeground(Color.WHITE);
 		button_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button_2.setEnabled(true);
 		button_2.setBackground(new Color(0, 128, 128));
 		button_2.setBounds(607, 345, 141, 31);
 		panel_4.add(button_2);
+		
+		
+		panel_4.add(checkBox_4);
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setLayout(null);
@@ -554,9 +681,10 @@ btnLocations.addActionListener(new ActionListener() {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				
+				addLecframe.dispose();
 				Add_Lecturer add_Lecturer = new Add_Lecturer();
 				add_Lecturer.main(null);
-				addLecframe.dispose();
 			}
 		});
 		button_3.setBounds(269, 67, 258, 37);
@@ -566,12 +694,38 @@ btnLocations.addActionListener(new ActionListener() {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				addLecframe.dispose();
 				Manage_Lecturer manage_Lecturer = new Manage_Lecturer();
 				manage_Lecturer.main(null);
-				addLecframe.dispose();
+				
 			}
 		});
 		button_4.setBounds(524, 67, 258, 37);
 		addLecframe.getContentPane().add(button_4);
+		
+		
+		//clear button
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				EmpidTxt.setText("");
+				EmpNameTxt.setText("");
+				RankTxt.setText("");
+				levelCmb.setSelectedIndex(0);
+				Fac.setSelectedIndex(0);
+				Dept.setSelectedIndex(0);
+				Campus.setSelectedIndex(0);
+				build.setSelectedIndex(0);
+				hourAdd.setValue(0);
+				minsAdd.setValue(0);
+				checkBox.setSelected(false);
+				checkBox_1.setSelected(false);
+				checkBox_2.setSelected(false);
+				checkBox_3.setSelected(false);
+				checkBox_4.setSelected(false);
+				
+				
+			}
+		});
 	}
 }
