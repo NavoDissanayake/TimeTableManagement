@@ -9,12 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -24,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import DB.DbConnection;
 import Lecturer.Add_Lecturer;
 import Student.Manage_studentGroup;
 import javax.swing.SpinnerNumberModel;
@@ -374,13 +378,72 @@ public class AddWorkingdays {
 		chckbxFriday.setBounds(219, 162, 97, 23);
 		panel_4.add(chckbxFriday);
 		
-		JButton btnDelete = new JButton("ADD");
-		btnDelete.setBounds(671, 57, 141, 31);
-		panel_4.add(btnDelete);
-		btnDelete.setForeground(Color.WHITE);
-		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnDelete.setEnabled(true);
-		btnDelete.setBackground(new Color(0, 153, 153));
+		JButton btnAdd = new JButton("ADD");
+		btnAdd.setBounds(671, 57, 141, 31);
+		panel_4.add(btnAdd);
+		btnAdd.setForeground(Color.WHITE);
+		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnAdd.setEnabled(true);
+		btnAdd.setBackground(new Color(0, 153, 153));
+		btnAdd.addActionListener(new ActionListener() {
+			
+
+			public void actionPerformed(ActionEvent arg0) {
+				String NoOfWorkingDays= spinner_2.getValue().toString();
+				String hours= spinner.getValue().toString();
+				String minutes=spinner_1.getValue().toString();
+				
+				String monday="-";
+				String tuesday="-";
+				String wednesday="-";
+				String thursday="-";
+				String friday="-";
+				String saturday="-";
+				String sunday="-";
+				
+				
+				if(chckbxNewCheckBox .isSelected()) {
+					monday="Monday";
+				}
+				if( chckbxTeusday.isSelected()) {
+					tuesday="Tuesday";
+				}
+				if(chckbxWednesday.isSelected()) {
+					wednesday="Wednesday";
+				}
+				if( chckbxThursday.isSelected()) {
+					thursday="Thursday";
+				}
+				if(chckbxFriday.isSelected()) {
+					friday="Friday";
+				}
+				if(chckbxSaturday.isSelected()) {
+					saturday="Saturday";
+				}
+				if(chckbxSunday .isSelected()) {
+					sunday="Sunday";
+				}
+				 try {
+					 Connection con = DbConnection.connect();
+
+	                    String query = "INSERT INTO main values(1, '" + NoOfWorkingDays + "','" + monday + "','" + tuesday + "','" +
+	                    		wednesday + "','" + thursday + "','" + friday + "','"+ saturday +"','"+ sunday +"','"+ hours +"','"+ minutes +"')";
+
+	                    Statement sta = con.createStatement();
+	                    int x = sta.executeUpdate(query);
+	                    if (x == 0) {
+	                        JOptionPane.showMessageDialog(btnAdd, "This is alredy exist");
+	                    } else {
+	                        JOptionPane.showMessageDialog(btnAdd,
+	                            "Welcome, Your Working Days Details Save Successfully");
+	                    }
+	                    con.close();
+	                } catch (Exception exception) {
+	                    //exception.printStackTrace();
+	                	JOptionPane.showMessageDialog(btnAdd, "This is alredy exist");
+	                }
+			}
+		});
 		
 		JButton btnClear = new JButton("CLEAR");
 		btnClear.setBounds(671, 130, 141, 31);
