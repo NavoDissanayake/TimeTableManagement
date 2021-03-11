@@ -399,6 +399,7 @@ public class AddWorkingdays {
 				String hours= spinner.getValue().toString();
 				String minutes=spinner_1.getValue().toString();
 				
+				
 				if(chckbxNewCheckBox .isSelected()) 
 				{
 					monday="Monday";
