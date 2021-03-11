@@ -365,6 +365,10 @@ public class AddWorkingdays {
 		JCheckBox chckbxThursday = new JCheckBox("Thursday");
 		chckbxThursday.setBounds(219, 136, 80, 23);
 		panel_4.add(chckbxThursday);
+				
+		JCheckBox chckbxFriday = new JCheckBox("Friday");
+		chckbxFriday.setBounds(219, 162, 97, 23);
+		panel_4.add(chckbxFriday);
 		
 		JCheckBox chckbxSaturday = new JCheckBox("Saturday");
 		chckbxSaturday.setBounds(219, 186, 97, 23);
@@ -374,21 +378,16 @@ public class AddWorkingdays {
 		chckbxSunday.setBounds(219, 212, 97, 23);
 		panel_4.add(chckbxSunday);
 		
-		JCheckBox chckbxFriday = new JCheckBox("Friday");
-		chckbxFriday.setBounds(219, 162, 97, 23);
-		panel_4.add(chckbxFriday);
+
 		
+		
+		//Add Working Days
 		JButton btnAdd = new JButton("ADD");
-		
-		btnAdd.setEnabled(true);
-		btnAdd.setBackground(new Color(0, 153, 153));
 		btnAdd.addActionListener(new ActionListener() {
 			
-
 			public void actionPerformed(ActionEvent arg0) {
 				String NoOfWorkingDays= spinner_2.getValue().toString();
-				String hours= spinner.getValue().toString();
-				String minutes=spinner_1.getValue().toString();
+				
 				
 				String monday="-";
 				String tuesday="-";
@@ -397,51 +396,71 @@ public class AddWorkingdays {
 				String friday="-";
 				String saturday="-";
 				String sunday="-";
+				String hours= spinner.getValue().toString();
+				String minutes=spinner_1.getValue().toString();
 				
-				
-				if(chckbxNewCheckBox .isSelected()) {
+				if(chckbxNewCheckBox .isSelected()) 
+				{
 					monday="Monday";
 				}
-				if( chckbxTeusday.isSelected()) {
+				if( chckbxTeusday.isSelected())
+				{
 					tuesday="Tuesday";
 				}
-				if(chckbxWednesday.isSelected()) {
+				if(chckbxWednesday.isSelected()) 
+				{
 					wednesday="Wednesday";
 				}
-				if( chckbxThursday.isSelected()) {
+				if( chckbxThursday.isSelected())
+				{
 					thursday="Thursday";
 				}
-				if(chckbxFriday.isSelected()) {
+				if(chckbxFriday.isSelected()) 
+				{
 					friday="Friday";
 				}
-				if(chckbxSaturday.isSelected()) {
+				if(chckbxSaturday.isSelected()) 
+				{
 					saturday="Saturday";
 				}
-				if(chckbxSunday .isSelected()) {
+				if(chckbxSunday .isSelected())
+				{
 					sunday="Sunday";
 				}
-				 try {
+				else {
+					try {
 					 Connection con = DbConnection.connect();
 
-	                    String query = "INSERT INTO main values(1, '" + NoOfWorkingDays + "','" + monday + "','" + tuesday + "','" +
+	                    String query = "INSERT INTO WorkingDays values(null, '" + NoOfWorkingDays + "','" + monday + "','" + tuesday + "','" +
 	                    		wednesday + "','" + thursday + "','" + friday + "','"+ saturday +"','"+ sunday +"','"+ hours +"','"+ minutes +"')";
 
 	                    Statement sta = con.createStatement();
 	                    int x = sta.executeUpdate(query);
-	                    if (x == 0) {
-	                        JOptionPane.showMessageDialog(btnAdd, "This is alredy exist");
-	                    } else {
-	                        JOptionPane.showMessageDialog(btnAdd,
-	                            "Welcome, Your Working Days Details Save Successfully");
+	                    if (x == 0) 
+	                    {
+	                    	JLabel label = new JLabel("This is alredy exist");
+	    					label.setHorizontalAlignment(SwingConstants.CENTER);
+	    					JOptionPane.showMessageDialog(null, label);
+	                    } 
+	                    else
+	                    {
+	                    	JLabel label = new JLabel("Working Days Details Inserted Successfully");
+	    					label.setHorizontalAlignment(SwingConstants.CENTER);
+	    					JOptionPane.showMessageDialog(null, label);
 	                    } 
 	                    con.close();
-	                } catch (Exception exception) {
-	                    //exception.printStackTrace();
-	                	JOptionPane.showMessageDialog(btnAdd, "This is alredy exist");
 	                }
+					catch (Exception exception) 
+					{
+	                	 System.out.println("Error!!");
+	                }
+				}
 			}
 		});
 		
+
+		btnAdd.setEnabled(true);
+		btnAdd.setBackground(new Color(0, 153, 153));
 		btnAdd.setBounds(671, 57, 141, 31);
 		panel_4.add(btnAdd);
 		btnAdd.setForeground(Color.WHITE);
