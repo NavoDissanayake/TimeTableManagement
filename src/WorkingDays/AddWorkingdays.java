@@ -379,10 +379,7 @@ public class AddWorkingdays {
 		panel_4.add(chckbxFriday);
 		
 		JButton btnAdd = new JButton("ADD");
-		btnAdd.setBounds(671, 57, 141, 31);
-		panel_4.add(btnAdd);
-		btnAdd.setForeground(Color.WHITE);
-		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 14));
+		
 		btnAdd.setEnabled(true);
 		btnAdd.setBackground(new Color(0, 153, 153));
 		btnAdd.addActionListener(new ActionListener() {
@@ -436,7 +433,7 @@ public class AddWorkingdays {
 	                    } else {
 	                        JOptionPane.showMessageDialog(btnAdd,
 	                            "Welcome, Your Working Days Details Save Successfully");
-	                    }
+	                    } 
 	                    con.close();
 	                } catch (Exception exception) {
 	                    //exception.printStackTrace();
@@ -444,6 +441,11 @@ public class AddWorkingdays {
 	                }
 			}
 		});
+		
+		btnAdd.setBounds(671, 57, 141, 31);
+		panel_4.add(btnAdd);
+		btnAdd.setForeground(Color.WHITE);
+		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		JButton btnClear = new JButton("CLEAR");
 		btnClear.setBounds(671, 130, 141, 31);
