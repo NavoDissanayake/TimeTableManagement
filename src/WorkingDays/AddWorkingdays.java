@@ -517,7 +517,7 @@ public class AddWorkingdays {
 
 		//Table View
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(92, 488, 853, 73);
+		scrollPane.setBounds(92, 439, 853, 114);
 		panel_3.add(scrollPane);
 		
 		 table = new JTable();
@@ -604,11 +604,31 @@ public class AddWorkingdays {
 		button_1.setBounds(766, 2, 258, 37);
 		panel_3.add(button_1);
 		
-		JLabel lblPreviousDetails = new JLabel("Previous Details");
-		lblPreviousDetails.setForeground(new Color(0, 128, 128));
-		lblPreviousDetails.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblPreviousDetails.setBounds(92, 450, 436, 31);
-		panel_3.add(lblPreviousDetails);
+		JButton btnRefresh = new JButton("REFRESH");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Connection con = DbConnection.connect();
+					
+					String query="select * from WorkingDays ";
+					PreparedStatement pst=con.prepareStatement(query);
+					ResultSet rs=pst.executeQuery();
+					table.setModel(DbUtils.resultSetToTableModel(rs));
+					
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		btnRefresh.setForeground(Color.WHITE);
+		btnRefresh.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnRefresh.setEnabled(true);
+		btnRefresh.setBackground(new Color(0, 153, 153));
+		btnRefresh.setBounds(611, 564, 141, 31);
+		panel_3.add(btnRefresh);
+		
+		
 		
 		
 

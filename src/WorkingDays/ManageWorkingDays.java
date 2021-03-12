@@ -9,12 +9,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -23,9 +27,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.TableModel;
 
+import DB.DbConnection;
 import Lecturer.Add_Lecturer;
 import Student.Manage_studentGroup;
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JCheckBox;
 
@@ -46,8 +54,29 @@ public class ManageWorkingDays {
 	
 	
 	public JFrame frmWorkingDays;
-	private JTable table;
-	public JFrame frame;
+	private JTable table;	
+	private JTextField id;
+	
+public void refreshtable() {
+		
+		try {
+			
+			Connection con = DbConnection.connect();
+			
+			String query="select *  from WorkingDays ";
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 
 	
 	/**
@@ -313,15 +342,16 @@ public class ManageWorkingDays {
 		
 		JLabel lblNewLabel_2 = new JLabel("Number Of Working Days");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2.setBounds(35, 11, 185, 23);
+		lblNewLabel_2.setBounds(35, 48, 185, 23);
 		panel_4.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Select Days");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_3.setBounds(35, 57, 108, 23);
+		lblNewLabel_3.setBounds(35, 95, 108, 23);
 		panel_4.add(lblNewLabel_3);
 		
 		JSpinner spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(0, 0, 24, 1));
 		spinner.setBounds(219, 205, 80, 23);
 		panel_4.add(spinner);
 		
@@ -332,7 +362,7 @@ public class ManageWorkingDays {
 		
 		JSpinner spinner_2 = new JSpinner();
 		spinner_2.setModel(new SpinnerNumberModel(0, 0, 7, 1));
-		spinner_2.setBounds(219, 12, 161, 23);
+		spinner_2.setBounds(219, 49, 161, 23);
 		panel_4.add(spinner_2);
 		
 		JLabel lblHours = new JLabel("Hours");
@@ -346,48 +376,57 @@ public class ManageWorkingDays {
 		panel_4.add(lblMinutes);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Monday");
-		chckbxNewCheckBox.setBounds(219, 58, 97, 23);
+		chckbxNewCheckBox.setBounds(219, 96, 80, 23);
 		panel_4.add(chckbxNewCheckBox);
 		
 		JCheckBox chckbxTeusday = new JCheckBox("Tuesday");
-		chckbxTeusday.setBounds(318, 58, 97, 23);
+		chckbxTeusday.setBounds(309, 96, 80, 23);
 		panel_4.add(chckbxTeusday);
 		
 		JCheckBox chckbxWednesday = new JCheckBox("Wednesday");
-		chckbxWednesday.setBounds(417, 58, 97, 23);
+		chckbxWednesday.setBounds(397, 96, 97, 23);
 		panel_4.add(chckbxWednesday);
 		
 		JCheckBox chckbxThursday = new JCheckBox("Thursday");
-		chckbxThursday.setBounds(516, 58, 80, 23);
+		chckbxThursday.setBounds(496, 96, 80, 23);
 		panel_4.add(chckbxThursday);
 		
 		JCheckBox chckbxSaturday = new JCheckBox("Saturday");
-		chckbxSaturday.setBounds(219, 96, 97, 23);
+		chckbxSaturday.setBounds(219, 140, 85, 23);
 		panel_4.add(chckbxSaturday);
 		
 		JCheckBox chckbxSunday = new JCheckBox("Sunday");
-		chckbxSunday.setBounds(318, 96, 97, 23);
+		chckbxSunday.setBounds(309, 140, 108, 23);
 		panel_4.add(chckbxSunday);
 		
 		JCheckBox chckbxFriday = new JCheckBox("Friday");
-		chckbxFriday.setBounds(601, 58, 97, 23);
+		chckbxFriday.setBounds(589, 96, 97, 23);
 		panel_4.add(chckbxFriday);
 		
-		JButton btnNewButton = new JButton("EDIT");
+		id = new JTextField();
+		id.setBounds(219, 11, 86, 20);
+		panel_4.add(id);
+		panel_4.add(chckbxFriday);
+		
+
+			//Edit
+			JButton btnNewButton = new JButton("EDIT");
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.setEnabled(true);
 		btnNewButton.setBackground(new Color(0, 153, 153));
-		btnNewButton.setBounds(387, 547, 141, 31);
+		btnNewButton.setBounds(142, 540, 141, 31);
 		panel_3.add(btnNewButton);
 		
-		JButton btnClear = new JButton("UPDATE");
-		btnClear.setForeground(Color.WHITE);
-		btnClear.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnClear.setEnabled(true);
-		btnClear.setBackground(new Color(0, 153, 153));
-		btnClear.setBounds(619, 547, 141, 31);
-		panel_3.add(btnClear);
+		
+		//Update
+		JButton btnupdate = new JButton("UPDATE");
+		btnupdate.setForeground(Color.WHITE);
+		btnupdate.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnupdate.setEnabled(true);
+		btnupdate.setBackground(new Color(0, 153, 153));
+		btnupdate.setBounds(393, 540, 141, 31);
+		panel_3.add(btnupdate);
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(32, 178, 170));
@@ -400,6 +439,36 @@ public class ManageWorkingDays {
 		panel_3.add(scrollPane);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int selectedRow=table.getSelectedRow();
+				 
+					spinner_2.setValue(table.getValueAt(selectedRow, 2).toString());
+					spinner.setValue(table.getValueAt(selectedRow, 9).toString());
+					spinner.setValue(table.getValueAt(selectedRow, 10).toString());
+					
+					 
+				
+			}
+		});
+		scrollPane.setViewportView(table);
+		
+		try {
+			Connection con = DbConnection.connect();
+			
+			String query="SELECT * FROM WorkingDays ";
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		scrollPane.setViewportView(table);
 		
 		JButton button = new JButton("Not available time");
@@ -411,13 +480,11 @@ public class ManageWorkingDays {
 				
 				NotAvailableTime m_stgroup = new NotAvailableTime ();
 				m_stgroup.main(null);
-				frame.dispose();
+				frmWorkingDays.dispose();
 				
 			}
 		});
-		
-		
-		
+
 		
 		
 		JButton button_1 = new JButton("Not Avaiilable Location");
@@ -429,17 +496,77 @@ public class ManageWorkingDays {
 				
 				NotAvailableLocation m_stgroup = new NotAvailableLocation ();
 				m_stgroup.main(null);
-				frame.dispose();
+				frmWorkingDays.dispose();
 				
 			}
 		});
 		
+		
+		//Delete
 		JButton btnDelete = new JButton("DELETE");
+		
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				try {
+					
+					
+					Connection con = DbConnection.connect();
+					String query="Delete from WorkingDays where WID='"+id.getText()+"'";
+					PreparedStatement pst=con.prepareStatement(query);
+					pst.execute();
+					
+				
+					  JOptionPane.showMessageDialog(null, "Data Deleted","Alert",JOptionPane.WARNING_MESSAGE);
+				
+					
+					refreshtable();
+					pst.close();
+					
+					}
+					catch(Exception en) {
+						en.printStackTrace();
+						
+					}
+				
+				
+				
+			}
+		});
 		btnDelete.setForeground(Color.WHITE);
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnDelete.setEnabled(true);
 		btnDelete.setBackground(new Color(0, 153, 153));
-		btnDelete.setBounds(855, 547, 141, 31);
+		btnDelete.setBounds(854, 540, 141, 31);
 		panel_3.add(btnDelete);
+		
+		
+		//clear
+		JButton btnClear_1 = new JButton("CLEAR");
+		btnClear_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				spinner_2.setValue(0);
+				spinner.setValue(0);
+				spinner_1.setValue(0);
+				chckbxNewCheckBox.setSelected(false);
+				chckbxTeusday.setSelected(false);
+				chckbxWednesday.setSelected(false);
+				chckbxThursday.setSelected(false);
+				chckbxFriday.setSelected(false);
+				chckbxSaturday.setSelected(false);
+				chckbxSunday.setSelected(false);
+				
+			
+			}
+		});
+		
+		btnClear_1.setForeground(Color.WHITE);
+		btnClear_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnClear_1.setEnabled(true);
+		btnClear_1.setBackground(new Color(0, 153, 153));
+		btnClear_1.setBounds(628, 540, 141, 31);
+		panel_3.add(btnClear_1);
 	}
 }
