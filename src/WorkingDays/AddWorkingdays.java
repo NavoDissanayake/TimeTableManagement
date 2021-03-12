@@ -339,16 +339,7 @@ public class AddWorkingdays {
 		spinner_2.setModel(new SpinnerNumberModel(0, 0, 7, 1));
 		spinner_2.setBounds(219, 12, 161, 23);
 		panel_4.add(spinner_2);
-		
-		JLabel lblHours = new JLabel("Hours");
-		lblHours.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblHours.setBounds(232, 276, 42, 23);
-		panel_4.add(lblHours);
-		
-		JLabel lblMinutes = new JLabel("Minutes");
-		lblMinutes.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMinutes.setBounds(354, 276, 55, 23);
-		panel_4.add(lblMinutes);
+
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Monday");
 		chckbxNewCheckBox.setBounds(219, 58, 97, 23);
@@ -378,8 +369,15 @@ public class AddWorkingdays {
 		chckbxSunday.setBounds(219, 212, 97, 23);
 		panel_4.add(chckbxSunday);
 		
-
+		JLabel lblHours = new JLabel("Hours");
+		lblHours.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblHours.setBounds(232, 276, 42, 23);
+		panel_4.add(lblHours);
 		
+		JLabel lblMinutes = new JLabel("Minutes");
+		lblMinutes.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblMinutes.setBounds(354, 276, 55, 23);
+		panel_4.add(lblMinutes);
 		
 		//Add Working Days
 		JButton btnAdd = new JButton("ADD");
@@ -428,6 +426,8 @@ public class AddWorkingdays {
 				{
 					sunday="Sunday";
 				}
+				
+				
 				else {
 					try {
 					 Connection con = DbConnection.connect();
