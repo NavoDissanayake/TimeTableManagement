@@ -517,7 +517,7 @@ public class AddWorkingdays {
 
 		//Table View
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(92, 450, 853, 112);
+		scrollPane.setBounds(92, 488, 853, 73);
 		panel_3.add(scrollPane);
 		
 		 table = new JTable();
@@ -580,6 +580,8 @@ public class AddWorkingdays {
 		separator.setBounds(0, 40, 1082, 31);
 		panel_3.add(separator);
 		
+
+		
 		
 		//not available time button
 		JButton button = new JButton("Not available time");
@@ -601,6 +603,15 @@ public class AddWorkingdays {
 		JButton button_1 = new JButton("Not Available Location");
 		button_1.setBounds(766, 2, 258, 37);
 		panel_3.add(button_1);
+		
+		JLabel lblPreviousDetails = new JLabel("Previous Details");
+		lblPreviousDetails.setForeground(new Color(0, 128, 128));
+		lblPreviousDetails.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblPreviousDetails.setBounds(92, 450, 436, 31);
+		panel_3.add(lblPreviousDetails);
+		
+		
+
 		button_1.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
