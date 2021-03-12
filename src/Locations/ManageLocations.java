@@ -2,17 +2,23 @@ package Locations;
 
 import java.awt.Color;
 
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
@@ -25,6 +31,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.tools.DocumentationTool.Location;
 
 import Advanced.Consecutive_sessions;
+import DB.DbConnection;
 import Home.Home;
 import Lecturer.Add_Lecturer;
 import Rooms.ManageSessionsRooms;
@@ -34,6 +41,13 @@ import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
 import WorkingDays.AddWorkingdays;
+import net.proteanit.sql.DbUtils;
+
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class ManageLocations {
 	
@@ -55,10 +69,14 @@ public class ManageLocations {
 	private JTextField ltextField_2;
 	private JTextField ltextField_3;
 	private JTable ltable_1;
-	private JTextField ltextField;
-	private JTextField ltextField_1;
-	private JTextField ltextField_5;
-	private JTable ltable_2;
+	private JTextField rName;
+	private JTextField bName;
+	private JTextField capacity;
+	private JComboBox type;
+	private JTable table;
+	private JTable table_1;
+	private JTable table_2;
+	private JTextField locationId;
 	/**
 	 * Launch the application.
 	 */
@@ -137,6 +155,7 @@ public class ManageLocations {
 					add_lecture.main(null);
 					frmMangeLocationsGroup.dispose();
 					
+					
 				}
 			});
 		btnLecturers.setForeground(Color.WHITE);
@@ -156,6 +175,7 @@ public class ManageLocations {
 				add_st.main(null);
 				frmMangeLocationsGroup.dispose();
 				
+				
 			}
 		});
 		btnStudents.setForeground(Color.WHITE);
@@ -170,6 +190,7 @@ public class ManageLocations {
 				Add_Subjects add_sub= new Add_Subjects();
 				add_sub.main(null);
 				frmMangeLocationsGroup.dispose();
+				
 			}
 		});
 		btnSubjects.setHorizontalAlignment(SwingConstants.LEFT);
@@ -186,6 +207,7 @@ public class ManageLocations {
 				Add_Session add_session= new Add_Session();
 				add_session.main(null);
 				frmMangeLocationsGroup.dispose();
+				
 			}
 		});
 		btnSessions.setHorizontalAlignment(SwingConstants.LEFT);
@@ -203,6 +225,7 @@ public class ManageLocations {
 				Add_Tags add_tag= new Add_Tags();
 				add_tag.main(null);
 				frmMangeLocationsGroup.dispose();
+				
 			}
 		});
 		btnTags.setHorizontalAlignment(SwingConstants.LEFT);
@@ -220,6 +243,7 @@ public class ManageLocations {
 				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
 				m_rooms.main(null);
 				frmMangeLocationsGroup.dispose();
+				
 			}
 		});
 		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
@@ -236,6 +260,7 @@ public class ManageLocations {
 				AddWorkingdays w_days= new 	AddWorkingdays();
 				w_days.main(null);
 				frmMangeLocationsGroup.dispose();
+				
 			}
 		});
 		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
@@ -252,6 +277,7 @@ public class ManageLocations {
 				ManageLocations m_locations= new ManageLocations();
 				m_locations.main(null);
 				frmMangeLocationsGroup.dispose();
+				
 				
 				
 			}
@@ -271,6 +297,7 @@ public class ManageLocations {
 				Statistics stat= new Statistics ();
 				stat.main(null);
 				frmMangeLocationsGroup.dispose();
+				
 			}
 		});
 		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
@@ -287,6 +314,7 @@ public class ManageLocations {
 				Consecutive_sessions a_session= new Consecutive_sessions ();
 				a_session.main(null);
 				frmMangeLocationsGroup.dispose();
+				
 				
 			}
 		});
@@ -314,6 +342,7 @@ public class ManageLocations {
 				Home home = new Home();
 				home.main(null);
 				frmMangeLocationsGroup.dispose();
+				
 				
 			}
 		});
@@ -363,86 +392,225 @@ public class ManageLocations {
 		loclblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		loclblNewLabel_4.setBounds(41, 259, 59, 13);
 		lpanel_3.add(loclblNewLabel_4);
-		
+	//insert location	
 		JButton lbtnAddButton = new JButton("ADD");
-		lbtnAddButton.setForeground(new Color(255, 255, 255));
+		lbtnAddButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String buildName=bName.getText().toString();
+				String roomName=rName.getText().toString();
+				String roomtype=type.getSelectedItem().toString();
+				String rcapacity=capacity.getText().toString();
+				
+				try {
+					Connection con = DbConnection.connect();
+					
+					String query = "INSERT INTO location values (null,'"+buildName+"','"+roomName+"','"+roomtype+"','"+rcapacity+"')";
+					Statement sta = con.createStatement();
+					int x = sta.executeUpdate(query);
+					if(x==0) {
+						JLabel label = new JLabel("This is alredy exist");
+    					label.setHorizontalAlignment(SwingConstants.CENTER);
+    					JOptionPane.showMessageDialog(null, label);
+					}else {
+    						JLabel label = new JLabel("Inserted Group Details Sucessfully");
+	    					label.setHorizontalAlignment(SwingConstants.CENTER);
+	    					JOptionPane.showMessageDialog(null, label);
+	    					
+    					}
+    					con.close();
+					
+				}catch(Exception exception) {
+					System.out.println("xxxxxxxxxxxxxxxxx");
+					
+				}
+				
+			
+			
+			}
+		});
+		lbtnAddButton.setForeground(new Color(255, 255, 255)); 
 		lbtnAddButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lbtnAddButton.setBackground(new Color(0, 139, 139));
 		lbtnAddButton.setBounds(41, 322, 105, 31);
 		lpanel_3.add(lbtnAddButton);
 		
-		JButton lbtnEditButton_1 = new JButton("EDIT");
+		//update location
+		JButton lbtnEditButton_1 = new JButton("EDIT"); 
+		lbtnEditButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					Connection con = DbConnection.connect();					
+					String query="Update location set buildingName='"+bName.getText()+"',roomName='"+rName.getText()+"',type='"+type.getSelectedItem()+"',capacity='"+capacity.getText()+"' where locationID='"+locationId.getText()+"'";
+					PreparedStatement pst=con.prepareStatement(query);
+					pst.executeUpdate();
+					
+					JLabel label = new JLabel("Suceesfully Updated");
+					label.setHorizontalAlignment(SwingConstants.CENTER);
+					JOptionPane.showMessageDialog(null, label);
+					//JOptionPane.showMessageDialog(null, "Data Updated");
+					pst.close();
+					
+				}
+				catch(Exception ea) {
+					ea.printStackTrace();
+				}
+			}
+		});
 		lbtnEditButton_1.setForeground(new Color(255, 255, 255));
 		lbtnEditButton_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lbtnEditButton_1.setBackground(new Color(0, 139, 139));
 		lbtnEditButton_1.setBounds(195, 322, 105, 31);
 		lpanel_3.add(lbtnEditButton_1);
 		
+		//delete
 		JButton lbtnDelButton_2 = new JButton("DELETE");
+		lbtnDelButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					
+					
+					Connection con = DbConnection.connect();
+					String query="Delete from location where locationID='"+locationId.getText()+"'";
+					PreparedStatement pst=con.prepareStatement(query);
+					pst.execute();
+					
+					JLabel label = new JLabel("Suceesfully Deleted");
+					label.setHorizontalAlignment(SwingConstants.CENTER);
+					JOptionPane.showMessageDialog(null, label);
+					
+					//JOptionPane.showMessageDialog(null, "Data Deleted");
+					pst.close();
+					
+					}
+					catch(Exception en) {
+						en.printStackTrace();
+						
+					}
+				
+			}
+		});
 		lbtnDelButton_2.setForeground(new Color(255, 255, 255));
 		lbtnDelButton_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lbtnDelButton_2.setBackground(new Color(0, 139, 139));
 		lbtnDelButton_2.setBounds(41, 382, 105, 31);
 		lpanel_3.add(lbtnDelButton_2);
 		
+		//clear
 		JButton lbtnclrButton_3 = new JButton("CLEAR");
+		lbtnclrButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bName.setText("");
+				rName.setText("");
+				type.setSelectedIndex(0);
+				capacity.setText("");
+				
+				
+			}
+		});
 		lbtnclrButton_3.setForeground(new Color(255, 255, 255));
 		lbtnclrButton_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lbtnclrButton_3.setBackground(new Color(0, 139, 139));
 		lbtnclrButton_3.setBounds(195, 382, 105, 31);
 		lpanel_3.add(lbtnclrButton_3);
 		
-		ltextField = new JTextField();
-		ltextField.setBounds(139, 134, 161, 23);
-		lpanel_3.add(ltextField);
-		ltextField.setColumns(10);
+
+		locationId = new JTextField();
+		locationId.setEnabled(false);
+		locationId.setBounds(139, 42, 161, 23);
+		lpanel_3.add(locationId);
+		locationId.setColumns(10);
 		
-		ltextField_1 = new JTextField();
-		ltextField_1.setBounds(139, 81, 161, 23);
-		lpanel_3.add(ltextField_1);
-		ltextField_1.setColumns(10);
+		rName = new JTextField();
+		rName.setBounds(139, 134, 161, 23);
+		lpanel_3.add(rName);
+		rName.setColumns(10);
 		
-		ltextField_5 = new JTextField();
-		ltextField_5.setBounds(139, 255, 161, 23);
-		lpanel_3.add(ltextField_5);
-		ltextField_5.setColumns(10);
+		bName = new JTextField();
+		bName.setBounds(139, 81, 161, 23);
+		lpanel_3.add(bName);
+		bName.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(139, 195, 161, 23);
-		lpanel_3.add(comboBox);
+		capacity = new JTextField();
+		capacity.setBounds(139, 255, 161, 23);
+		lpanel_3.add(capacity);
+		capacity.setColumns(10);
 		
-		JPanel lpanel_4 = new JPanel();
-		lpanel_4.setBounds(379, 115, 460, 298);
-		lpanel_3.add(lpanel_4);
-		lpanel_4.setLayout(null);
+		type = new JComboBox();
+		type.setModel(new DefaultComboBoxModel(new String[] {"Lecture Hall", "Laboratory"}));
+		type.setBounds(139, 195, 161, 23);
+		lpanel_3.add(type);
+		lpanel_3.add(type);
 		
-		JScrollPane lscrollPane_1 = new JScrollPane();
-		lscrollPane_1.setBounds(25, 22, 385, 252);
-		lpanel_4.add(lscrollPane_1);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(391, 138, 464, 236);
+		lpanel_3.add(scrollPane);
 		
-		JScrollPane lscrollPane = new JScrollPane();
-		lscrollPane_1.setViewportView(lscrollPane);
-		
-		ltable_2 = new JTable();
-		ltable_2.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Location ID", "Building Name", "Room Name", "Room Type", "Capacity"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
+		//seleced row on location table
+		table_2 = new JTable();
+		table_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selectedRow=table_2.getSelectedRow();
+				
+				bName.setText(table_2.getValueAt(selectedRow, 1).toString());
+				rName.setText(table_2.getValueAt(selectedRow, 2).toString());
+				capacity.setText(table_2.getValueAt(selectedRow, 4).toString());
+				locationId.setText(table_2.getValueAt(selectedRow, 0).toString());
+				
+				String combolevel = table_2.getValueAt(selectedRow, 3).toString();
+				for(int i = 0;i<type.getItemCount();i++) {
+					if(type.getItemAt(i).toString().equalsIgnoreCase(combolevel)) {
+						type.setSelectedIndex(i);
+					}
+				}
 			}
 		});
-		lscrollPane.setViewportView(ltable_2);
+		scrollPane.setViewportView(table_2);
+		//retrive table
+		try {
+			Connection con = DbConnection.connect();
+			
+			String query="select * from location ";
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			table_2.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}
 		
-		JComboBox lcomboBox_1 = new JComboBox();
-		lcomboBox_1.setBounds(589, 77, 200, 31);
-		lpanel_3.add(lcomboBox_1);
+		//search
+		JComboBox searchcomboBox = new JComboBox();
+		searchcomboBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 try {
+					 Connection con = DbConnection.connect();
+					// String selection=(String)searchcomboBox.getSelectedItem();
+					 String query="select * from location where buildingName=?";
+					 PreparedStatement pst= con.prepareStatement(query);
+					 pst.setString(1,(String)searchcomboBox.getSelectedItem());
+					 ResultSet rs=pst.executeQuery();
+
+					 table_2.setModel(DbUtils.resultSetToTableModel(rs));
+					 pst.close();
+					 
+				 }catch(Exception ep) {
+					 ep.printStackTrace();
+				 }
+			}
+			
+		});
+		searchcomboBox.setModel(new DefaultComboBoxModel(new String[] {"Faculty of Computing", "Faculty of Engineering", "Faculty of Business", "New Building"}));
+		searchcomboBox.setBounds(676, 59, 176, 21);
+		lpanel_3.add(searchcomboBox);
+		
+		
+		
 		
 		JPanel lpanel_6 = new JPanel();
 		lpanel_6.setBounds(0, 0, 1082, 49);
@@ -455,6 +623,10 @@ public class ManageLocations {
 		lollblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lollblNewLabel_1.setBounds(406, 13, 278, 31);
 		lpanel_6.add(lollblNewLabel_1);
+		
+		
+	
+
 		
 	}
 }

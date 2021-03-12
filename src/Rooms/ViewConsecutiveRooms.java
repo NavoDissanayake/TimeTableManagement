@@ -384,46 +384,53 @@ public class ViewConsecutiveRooms {
 		btnNewButton_5.setBounds(601, 346, 105, 32);
 		panel_2.add(btnNewButton_5);
 	
-		
+		//addsessionroom button
 		JButton btnNewButton = new JButton("Add SessionRooms");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ManageSessionsRooms manage_ro = new ManageSessionsRooms();
-				manage_ro.main(null);
+				//ManageSessionsRooms manage_ro = new ManageSessionsRooms();
+				//manage_ro.main(null);
 				vcrframe.dispose();
+				new ManageSessionsRooms();
 			}
 		});
 		btnNewButton.setBounds(262, 75, 179, 33);
 		vcrframe.getContentPane().add(btnNewButton);
 		
+		//viewsession button
 		JButton btnNewButton_1 = new JButton("View Session Rooms");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewSeesionRooms view_ses = new ViewSeesionRooms();
-				view_ses.main(null);
+				//ViewSeesionRooms view_ses = new ViewSeesionRooms();
+				//view_ses.main(null);
 				vcrframe.dispose();
+				new ViewSeesionRooms();
 			}
 		});
 		btnNewButton_1.setBounds(440, 75, 237, 33);
 		vcrframe.getContentPane().add(btnNewButton_1);
 		
+		//add consession button
 		JButton btnNewButton_2 = new JButton("Add ConsecutiveSessionsRooms");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ConsecutiveSessionRooms add_con = new ConsecutiveSessionRooms();
-				add_con.main(null);
+				//ConsecutiveSessionRooms add_con = new ConsecutiveSessionRooms();
+				//add_con.main(null);
 				vcrframe.dispose();
+				new ConsecutiveSessionRooms();
 			}
 		});
 		btnNewButton_2.setBounds(677, 75, 251, 33);
 		vcrframe.getContentPane().add(btnNewButton_2);
 		
+		//view consessionroom
 		JButton btnNewButton_3 = new JButton("View ConsecutiveSessionsRooms");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewConsecutiveRooms view_con = new ViewConsecutiveRooms();
-				view_con.main(null);
+				//ViewConsecutiveRooms view_con = new ViewConsecutiveRooms();
+				//view_con.main(null);
 				vcrframe.dispose();
+				new ViewConsecutiveRooms();
 			}
 		});
 		btnNewButton_3.setBounds(927, 75, 246, 33);
