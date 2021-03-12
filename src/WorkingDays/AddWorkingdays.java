@@ -1,6 +1,7 @@
 package WorkingDays;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -10,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.swing.ImageIcon;
@@ -30,6 +33,8 @@ import javax.swing.border.TitledBorder;
 import DB.DbConnection;
 import Lecturer.Add_Lecturer;
 import Student.Manage_studentGroup;
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JCheckBox;
 
@@ -156,6 +161,7 @@ public class AddWorkingdays {
 		btnStudents.setBounds(0, 108, 264, 38);
 		panel_1.add(btnStudents);
 		
+		//subject button
 		JButton btnSubjects = new JButton("Subjects");
 		btnSubjects.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSubjects.setIcon(new ImageIcon(sub_logo));
@@ -165,6 +171,7 @@ public class AddWorkingdays {
 		btnSubjects.setBounds(0, 157, 264, 38);
 		panel_1.add(btnSubjects);
 		
+		//session Button
 		JButton btnSessions = new JButton("Sessions");
 		btnSessions.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSessions.setIcon(new ImageIcon(session_logo));
@@ -174,6 +181,7 @@ public class AddWorkingdays {
 		btnSessions.setBounds(0, 206, 264, 38);
 		panel_1.add(btnSessions);
 		
+		//Tags Button
 		JButton btnTags = new JButton("Tags");
 		btnTags.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTags.setIcon(new ImageIcon(tag_logo));
@@ -183,6 +191,8 @@ public class AddWorkingdays {
 		btnTags.setBounds(0, 255, 264, 38);
 		panel_1.add(btnTags);
 		
+		
+		//Rooms Button
 		JButton btnRooms = new JButton("Rooms");
 		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
 		btnRooms.setIcon(new ImageIcon(room_logo));
@@ -192,6 +202,7 @@ public class AddWorkingdays {
 		btnRooms.setBounds(0, 304, 264, 38);
 		panel_1.add(btnRooms);
 		
+		//working Days and hours button
 		JButton btnWorkingDays = new JButton("Working days & Hours");
 		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
 		btnWorkingDays.setIcon(new ImageIcon(days_logo));
@@ -201,6 +212,7 @@ public class AddWorkingdays {
 		btnWorkingDays.setBounds(0, 353, 264, 38);
 		panel_1.add(btnWorkingDays);
 		
+		//Location button
 		JButton btnLocations = new JButton("Locations");
 		btnLocations.setHorizontalAlignment(SwingConstants.LEFT);
 		btnLocations.setIcon(new ImageIcon(location_logo));
@@ -210,6 +222,7 @@ public class AddWorkingdays {
 		btnLocations.setBounds(0, 402, 264, 38);
 		panel_1.add(btnLocations);
 		
+		//statistcs button
 		JButton btnStatistics = new JButton("Statistics");
 		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStatistics.setIcon(new ImageIcon(st_logo));
@@ -219,6 +232,7 @@ public class AddWorkingdays {
 		btnStatistics.setBounds(0, 451, 264, 38);
 		panel_1.add(btnStatistics);
 		
+		//advanced button
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAdvanced.setIcon(new ImageIcon(adv_logo));
@@ -228,6 +242,7 @@ public class AddWorkingdays {
 		btnAdvanced.setBounds(0, 500, 264, 38);
 		panel_1.add(btnAdvanced);
 		
+		//Time table genereate button
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
@@ -237,7 +252,7 @@ public class AddWorkingdays {
 		btnTimetableGenerate.setBounds(0, 549, 264, 38);
 		panel_1.add(btnTimetableGenerate);
 		
-		
+		//home button
 		JButton btnManageGroups = new JButton("Home");
 		btnManageGroups.setHorizontalAlignment(SwingConstants.LEFT);
 		btnManageGroups.setIcon(new ImageIcon(home_logo));
@@ -267,12 +282,14 @@ public class AddWorkingdays {
 		panel_6.setBounds(10, 50, 1082, 49);
 		panel_3.add(panel_6);
 		
+		
 		JLabel lblNewLabel_1 = new JLabel("Add Working Days And Hours");
 		lblNewLabel_1.setForeground(new Color(0, 128, 128));
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_1.setBounds(406, 13, 436, 31);
 		panel_6.add(lblNewLabel_1);
 		
+		//add working days button
 		JButton btnNewButton_2 = new JButton("Add Working Days");
 		btnNewButton_2.setBounds(0, 2, 258, 37);
 		panel_3.add(btnNewButton_2);
@@ -287,7 +304,7 @@ public class AddWorkingdays {
 			}
 		});
 		
-		
+		//manage working days button
 		JButton btnNewButton_2_1 = new JButton("Manage Working Days");
 		btnNewButton_2_1.setBounds(255, 2, 258, 37);
 		panel_3.add(btnNewButton_2_1);
@@ -303,12 +320,15 @@ public class AddWorkingdays {
 		});
 		
 		
+	//process
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
 		panel_4.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_4.setBackground(SystemColor.menu);
 		panel_4.setBounds(92, 129, 853, 310);
 		panel_3.add(panel_4);
+		
+
 		
 		JLabel lblNewLabel = new JLabel("Working Hours");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -467,7 +487,26 @@ public class AddWorkingdays {
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
+		//CLEAR 
 		JButton btnClear = new JButton("CLEAR");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				spinner_2.setValue(0);
+				spinner.setValue(0);
+				spinner_1.setValue(0);
+				chckbxNewCheckBox.setSelected(false);
+				chckbxTeusday.setSelected(false);
+				chckbxWednesday.setSelected(false);
+				chckbxThursday.setSelected(false);
+				chckbxFriday.setSelected(false);
+				chckbxSaturday.setSelected(false);
+				chckbxSunday.setSelected(false);
+				
+			
+			}
+		});
+		
 		btnClear.setBounds(671, 130, 141, 31);
 		panel_4.add(btnClear);
 		btnClear.setForeground(Color.WHITE);
@@ -475,12 +514,54 @@ public class AddWorkingdays {
 		btnClear.setEnabled(true);
 		btnClear.setBackground(new Color(0, 153, 153));
 		
+
+		//Table View
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(92, 450, 853, 112);
+		panel_3.add(scrollPane);
+		
+		 table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int selectedRow=table.getSelectedRow();
+				 
+					spinner_2.setValue(table.getValueAt(selectedRow, 2).toString());
+					spinner.setValue(table.getValueAt(selectedRow, 9).toString());
+					spinner.setValue(table.getValueAt(selectedRow, 10).toString());
+					
+					 
+				
+			}
+		});
+		scrollPane.setViewportView(table);
+		
+		try {
+			Connection con = DbConnection.connect();
+			
+			String query="SELECT * FROM WorkingDays ";
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+
+		
+
+		
+		//Manage button redirect to the manage working days 
 		JButton btnNewButton = new JButton("MANAGE");
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.setEnabled(true);
 		btnNewButton.setBackground(new Color(0, 153, 153));
-		btnNewButton.setBounds(766, 561, 141, 31);
+		btnNewButton.setBounds(766, 564, 141, 31);
 		panel_3.add(btnNewButton);
 	btnNewButton.addActionListener(new ActionListener() {
 			
@@ -499,13 +580,8 @@ public class AddWorkingdays {
 		separator.setBounds(0, 40, 1082, 31);
 		panel_3.add(separator);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(92, 450, 852, 111);
-		panel_3.add(scrollPane);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		
+		//not available time button
 		JButton button = new JButton("Not available time");
 		button.setBounds(511, 2, 258, 37);
 		panel_3.add(button);
@@ -521,11 +597,11 @@ public class AddWorkingdays {
 			}
 		});
 		
+	//not available Location button
 		JButton button_1 = new JButton("Not Available Location");
 		button_1.setBounds(766, 2, 258, 37);
 		panel_3.add(button_1);
-		
-	button_1.addActionListener(new ActionListener() {
+		button_1.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
@@ -535,5 +611,6 @@ public class AddWorkingdays {
 				
 			}
 		});
+		
 	}
 }
