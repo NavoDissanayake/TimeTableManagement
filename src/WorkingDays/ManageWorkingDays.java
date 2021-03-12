@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -39,6 +40,7 @@ import javax.swing.JCheckBox;
 
 public class ManageWorkingDays {
 
+
 	private Image home_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/home.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image lec_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/lecturer.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image stu_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/student.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
@@ -56,6 +58,7 @@ public class ManageWorkingDays {
 	public JFrame frmWorkingDays;
 	private JTable table;	
 	private JTextField id;
+
 	
 public void refreshtable() {
 		
@@ -406,21 +409,41 @@ public void refreshtable() {
 		id = new JTextField();
 		id.setBounds(219, 11, 86, 20);
 		panel_4.add(id);
-		panel_4.add(chckbxFriday);
-		
-
-			//Edit
-			JButton btnNewButton = new JButton("EDIT");
-		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton.setEnabled(true);
-		btnNewButton.setBackground(new Color(0, 153, 153));
-		btnNewButton.setBounds(142, 540, 141, 31);
-		panel_3.add(btnNewButton);
+	
 		
 		
 		//Update
 		JButton btnupdate = new JButton("UPDATE");
+		
+		
+		
+		btnupdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				try {
+					Connection con = DbConnection.connect();					
+					String query="Update WorkingDays set NoOfDays='"+spinner_2.getValue()+"',monday='"+chckbxNewCheckBox.isSelected()+"',tuesday='"+chckbxTeusday.isSelected()+"',wednesday='"+chckbxWednesday.isSelected()+"',thursday='"+chckbxThursday.isSelected()+"',friday='"+chckbxFriday.isSelected()+"'"
+							+ " where WID='"+id.getText()+"'";
+					PreparedStatement pst=con.prepareStatement(query);
+					pst.executeUpdate();
+					
+					JLabel label = new JLabel("Data Updated");
+					label.setHorizontalAlignment(SwingConstants.CENTER);
+					JOptionPane.showMessageDialog(null, label);
+					//JOptionPane.showMessageDialog(null, "Data Updated");
+					refreshtable();
+					pst.close();
+					
+				}
+				catch(Exception ea) {
+					ea.printStackTrace();
+				}
+				
+				
+			}
+		});
 		btnupdate.setForeground(Color.WHITE);
 		btnupdate.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnupdate.setEnabled(true);
@@ -440,15 +463,52 @@ public void refreshtable() {
 		
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
+
+
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				int selectedRow=table.getSelectedRow();
+
+				 	int selectedRow=table.getSelectedRow();
 				 
-					spinner_2.setValue(table.getValueAt(selectedRow, 2).toString());
-					spinner.setValue(table.getValueAt(selectedRow, 9).toString());
-					spinner.setValue(table.getValueAt(selectedRow, 10).toString());
-					
-					 
+					spinner_2.setValue((Integer)table.getValueAt(selectedRow, 1));
+					spinner.setValue((Integer)table.getValueAt(selectedRow, 9));
+					spinner_1.setValue((Integer)table.getValueAt(selectedRow, 10));
+					id.setText(table.getValueAt(selectedRow, 0).toString());
+				
+					 String checkDay1 = table.getValueAt(selectedRow, 2).toString();
+					  if(checkDay1.equals("Monday")) {
+					  
+						  chckbxNewCheckBox.setSelected(true); } 
+					  else {
+					  
+							  chckbxNewCheckBox.setSelected(false); }
+					  
+					  String checkDay2 = table.getValueAt(selectedRow, 3).toString();
+					  if(checkDay2.equals("Tuesday")) {
+					  
+						  chckbxTeusday.setSelected(true); } else {
+					  
+						 chckbxTeusday.setSelected(false); }
+					  
+					  String checkDay3 = table.getValueAt(selectedRow,4).toString();
+					  if(checkDay3.equals("Wednesday")) {
+					  
+						  chckbxWednesday.setSelected(true); } else { chckbxWednesday.setSelected(false); }
+					  
+					  String checkDay4 = table.getValueAt(selectedRow, 5).toString();
+					  if(checkDay4.equals("Thursday")) {
+					  
+						  chckbxThursday.setSelected(true); } else {
+					  
+							  chckbxThursday.setSelected(false); }
+					  
+					  String checkDay5 = table.getValueAt(selectedRow, 6).toString();
+					  if(checkDay5.equals("Friday")) {
+					  
+						  chckbxFriday.setSelected(true); }
+					  else { chckbxFriday.setSelected(false); }
+					  
+					  
 				
 			}
 		});
