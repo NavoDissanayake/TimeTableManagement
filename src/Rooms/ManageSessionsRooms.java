@@ -417,47 +417,55 @@ public class ManageSessionsRooms {
 		lollblNewLabel_1.setBounds(406, 13, 278, 31);
 		srpanel_6.add(lollblNewLabel_1);
 		
+		//addsessionroom button
 		JButton btnNewButton = new JButton("Add SessionRooms");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ManageSessionsRooms manage_ro = new ManageSessionsRooms();
-				manage_ro.main(null);
+				//ManageSessionsRooms manage_ro = new ManageSessionsRooms();
+				//manage_ro.main(null);
 				rframe.dispose();
+				new ManageSessionsRooms();
 				
 			}
 		});
 		btnNewButton.setBounds(262, 70, 179, 38);
 		rframe.getContentPane().add(btnNewButton);
 		
+		//viewsession button
 		JButton btnNewButton_1 = new JButton("View Session Rooms");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewSeesionRooms view_ses = new ViewSeesionRooms();
-				view_ses.main(null);
+				//ViewSeesionRooms view_ses = new ViewSeesionRooms();
+				//view_ses.main(null);
 				rframe.dispose();
+				new ViewSeesionRooms();
 			}
 		});
 		btnNewButton_1.setBounds(440, 70, 237, 38);
 		rframe.getContentPane().add(btnNewButton_1);
 		
+		//add consession button
 		JButton btnNewButton_2 = new JButton("Add ConsecutiveSessionsRooms");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ConsecutiveSessionRooms add_con = new ConsecutiveSessionRooms();
-				add_con.main(null);
+				//ConsecutiveSessionRooms add_con = new ConsecutiveSessionRooms();
+				//add_con.main(null);
 				rframe.dispose();
+				new ConsecutiveSessionRooms();
 			
 			}
 		});
 		btnNewButton_2.setBounds(677, 70, 251, 38);
 		rframe.getContentPane().add(btnNewButton_2);
 		
+		//view consessionroom
 		JButton btnNewButton_3 = new JButton("View ConsecutiveSessionsRooms");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewConsecutiveRooms view_con = new ViewConsecutiveRooms();
-				view_con.main(null);
+				//ViewConsecutiveRooms view_con = new ViewConsecutiveRooms();
+				//view_con.main(null);
 				rframe.dispose();
+				new ViewConsecutiveRooms();
 				
 			}
 		});
