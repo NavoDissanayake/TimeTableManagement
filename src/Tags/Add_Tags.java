@@ -140,261 +140,260 @@ public class Add_Tags {
 		frmAddStudentGroup.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-
 		//home button
-		JButton btnHome = new JButton("Home");
-		btnHome.setHorizontalAlignment(SwingConstants.LEFT);
-		btnHome.setIcon(new ImageIcon(home_logo));
-		btnHome.addActionListener(new ActionListener() {
+				JButton btnHome = new JButton("Home");
+				btnHome.setHorizontalAlignment(SwingConstants.LEFT);
+				btnHome.setIcon(new ImageIcon(home_logo));
+				btnHome.addActionListener(new ActionListener() {
 					
-				public void actionPerformed(ActionEvent e) {
+					public void actionPerformed(ActionEvent e) {
 						
-					Home home = new Home();
-					home.main(null);
-					frmAddStudentGroup.dispose();
+						//Home home = new Home();
+						//home.main(null);
+						frmAddStudentGroup.dispose();
+						new Home();
 						
-				}
-			});
-		btnHome.setBounds(0, 13, 262, 33);
-		panel_1.add(btnHome);
-		btnHome.setForeground(new Color(255, 255, 255));
-		btnHome.setBackground(new Color(0, 139, 139));
-		btnHome.setFont(new Font("Tahoma", Font.BOLD, 17));
-		
-		
-		//lecture buttton
-		JButton btnLecturers = new JButton("Lecturers");
-		btnLecturers.setHorizontalAlignment(SwingConstants.LEFT);
-		btnLecturers.setIcon(new ImageIcon(lec_logo));
-		btnLecturers.addActionListener(new ActionListener() {
+					}
+				});
+				btnHome.setBounds(0, 13, 262, 33);
+				panel_1.add(btnHome);
+				btnHome.setForeground(new Color(255, 255, 255));
+				btnHome.setBackground(new Color(0, 139, 139));
+				btnHome.setFont(new Font("Tahoma", Font.BOLD, 17));
 				
-				public void actionPerformed(ActionEvent e) {
+				
+				//lecture button
+				JButton btnLecturers = new JButton("Lecturers");
+				btnLecturers.setHorizontalAlignment(SwingConstants.LEFT);
+				btnLecturers.setIcon(new ImageIcon(lec_logo));
+				btnLecturers.addActionListener(new ActionListener() {
+						
+						public void actionPerformed(ActionEvent e) {
+							
+							//Add_Lecturer add_lecture = new Add_Lecturer();
+							//add_lecture.main(null);
+							frmAddStudentGroup.dispose();
+							new  Add_Lecturer();
+							
+						}
+					});
+				
+				btnLecturers.setForeground(Color.WHITE);
+				btnLecturers.setFont(new Font("Tahoma", Font.BOLD, 17));
+				btnLecturers.setBackground(new Color(0, 139, 139));
+				btnLecturers.setBounds(0, 59, 264, 38);
+				panel_1.add(btnLecturers);
+				
+				
+				//student button
+				JButton btnStudents = new JButton("Students");
+				btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
+				btnStudents.setIcon(new ImageIcon(stu_logo));
+		        btnStudents.addActionListener(new ActionListener() {
 					
-					Add_Lecturer add_lecture = new Add_Lecturer();
-					add_lecture.main(null);
-					frmAddStudentGroup.dispose();
+					public void actionPerformed(ActionEvent e) {
+						
+						//Add_StudentGroup add_st= new Add_StudentGroup();
+						//add_st.main(null);
+						frmAddStudentGroup.dispose();
+						new Add_StudentGroup();
+						
+					}
+				});
+			
+				
+				btnStudents.setForeground(Color.WHITE);
+				btnStudents.setFont(new Font("Tahoma", Font.BOLD, 17));
+				btnStudents.setBackground(new Color(0, 139, 139));
+				btnStudents.setBounds(0, 108, 264, 38);
+				panel_1.add(btnStudents);
+				
+				
+				//subject button
+				JButton btnSubjects = new JButton("Subjects");
+				btnSubjects.setHorizontalAlignment(SwingConstants.LEFT);
+				btnSubjects.setIcon(new ImageIcon(sub_logo));
+				btnSubjects.addActionListener(new ActionListener() {
 					
-				}
-			});
-		
-		btnLecturers.setForeground(Color.WHITE);
-		btnLecturers.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnLecturers.setBackground(new Color(0, 139, 139));
-		btnLecturers.setBounds(0, 59, 264, 38);
-		panel_1.add(btnLecturers);
-		
-		
-		//student button
-		JButton btnStudents = new JButton("Students");
-		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
-		btnStudents.setIcon(new ImageIcon(stu_logo));
-		btnStudents.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						Add_Subjects add_sub= new Add_Subjects();
+						add_sub.main(null);
+						//frmAddStudentGroup.dispose();
+						//new Add_Subjects();
+						
+					}
+				});
+				btnSubjects.setForeground(Color.WHITE);
+				btnSubjects.setFont(new Font("Tahoma", Font.BOLD, 17));
+				btnSubjects.setBackground(new Color(0, 139, 139));
+				btnSubjects.setBounds(0, 157, 264, 38);
+				panel_1.add(btnSubjects);
+				
+				//session button
+				JButton btnSessions = new JButton("Sessions");
+				btnSessions.setHorizontalAlignment(SwingConstants.LEFT);
+				btnSessions.setIcon(new ImageIcon(session_logo));
+				btnSessions.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						
+						Add_Session add_session= new Add_Session();
+						add_session.main(null);
+						//frmAddStudentGroup.dispose();
+						//new Add_Session();
+						
+					}
+				});
+				btnSessions.setForeground(Color.WHITE);
+				btnSessions.setFont(new Font("Tahoma", Font.BOLD, 17));
+				btnSessions.setBackground(new Color(0, 139, 139));
+				btnSessions.setBounds(0, 206, 264, 38);
+				panel_1.add(btnSessions);
+				
+				
+				//Tags button
+				JButton btnTags = new JButton("Tags");
+				btnTags.setHorizontalAlignment(SwingConstants.LEFT);
+				btnTags.setIcon(new ImageIcon(tag_logo));
+				btnTags.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						
+						//Add_Tags add_tag= new Add_Tags();
+						//add_tag.main(null);
+						frmAddStudentGroup.dispose();
+						new Add_Tags();
+						
+					}
+				});
+				btnTags.setForeground(Color.WHITE);
+				btnTags.setFont(new Font("Tahoma", Font.BOLD, 17));
+				btnTags.setBackground(new Color(0, 139, 139));
+				btnTags.setBounds(0, 255, 264, 38);
+				panel_1.add(btnTags);
+				
+				
+				//room button
+				JButton btnRooms = new JButton("Rooms");
+				btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
+				btnRooms.setIcon(new ImageIcon(room_logo));
+				btnRooms.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						
+						//ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
+						//m_rooms.main(null);
+						frmAddStudentGroup.dispose();
+						new  ManageSessionsRooms();
+						
+					}
+				});
+				btnRooms.setForeground(Color.WHITE);
+				btnRooms.setFont(new Font("Tahoma", Font.BOLD, 17));
+				btnRooms.setBackground(new Color(0, 139, 139));
+				btnRooms.setBounds(0, 304, 264, 38);
+				panel_1.add(btnRooms);
+				
+				
+				//working days and hours button
+				JButton btnWorkingDays = new JButton("Working days & Hours");
+				btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
+				btnWorkingDays.setIcon(new ImageIcon(days_logo));
+				btnWorkingDays.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						
+						AddWorkingdays w_days= new 	AddWorkingdays();
+						w_days.main(null);
+						//frmAddStudentGroup.dispose();
+						//new AddWorkingdays();
+						
+					}
+				});
+				btnWorkingDays.setForeground(Color.WHITE);
+				btnWorkingDays.setFont(new Font("Tahoma", Font.BOLD, 17));
+				btnWorkingDays.setBackground(new Color(0, 139, 139));
+				btnWorkingDays.setBounds(0, 353, 264, 38);
+				panel_1.add(btnWorkingDays);
+				
+				//location button
+				JButton btnLocations = new JButton("Locations");
+				btnLocations.setHorizontalAlignment(SwingConstants.LEFT);
+				btnLocations.setIcon(new ImageIcon(location_logo));
+				btnLocations.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						
+						//ManageLocations m_locations= new ManageLocations();
+						//m_locations.main(null);
+						frmAddStudentGroup.dispose();
+						new ManageLocations();
+						
+					}
+				});
+				btnLocations.setForeground(Color.WHITE);
+				btnLocations.setFont(new Font("Tahoma", Font.BOLD, 17));
+				btnLocations.setBackground(new Color(0, 139, 139));
+				btnLocations.setBounds(0, 402, 264, 38);
+				panel_1.add(btnLocations);
+				
+				//statics button
+				JButton btnStatistics = new JButton("Statistics");
+				btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
+				btnStatistics.setIcon(new ImageIcon(st_logo));
+				btnStatistics.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						
+						//Statistics stat= new Statistics ();
+						//stat.main(null);
+						frmAddStudentGroup.dispose();
+						new   Statistics();
+						
+					}
+				});
+				btnStatistics.setForeground(Color.WHITE);
+				btnStatistics.setFont(new Font("Tahoma", Font.BOLD, 17));
+				btnStatistics.setBackground(new Color(0, 139, 139));
+				btnStatistics.setBounds(0, 451, 264, 38);
+				panel_1.add(btnStatistics);
+				
+				//advanced button
+				JButton btnAdvanced = new JButton("Advanced");
+				btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
+				btnAdvanced.setIcon(new ImageIcon(adv_logo));
+				btnAdvanced.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						
+						//Consecutive_sessions a_session= new Consecutive_sessions ();
+						//a_session.main(null);
+						frmAddStudentGroup.dispose();
+						new Consecutive_sessions();
+						
+					}
+				});
+				btnAdvanced.setForeground(Color.WHITE);
+				btnAdvanced.setFont(new Font("Tahoma", Font.BOLD, 17));
+				btnAdvanced.setBackground(new Color(0, 139, 139));
+				btnAdvanced.setBounds(0, 500, 264, 38);
+				panel_1.add(btnAdvanced);
+				
+				//generate button
+				JButton btnTimetableGenerate = new JButton("Timetable Generate");
+				btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
+				btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
+				btnTimetableGenerate.setForeground(Color.WHITE);
+				btnTimetableGenerate.setFont(new Font("Tahoma", Font.BOLD, 17));
+				btnTimetableGenerate.setBackground(new Color(0, 139, 139));
+				btnTimetableGenerate.setBounds(0, 549, 264, 38);
+				panel_1.add(btnTimetableGenerate);
+				
+				
 			
-			public void actionPerformed(ActionEvent e) {
 				
-				Add_StudentGroup add_st= new Add_StudentGroup();
-				add_st.main(null);
-				frmAddStudentGroup.dispose();
 				
-			}
-		});
-	
-		btnLecturers.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				Home add_st = new Home();
-				add_st.main(null);
-				frmAddStudentGroup.dispose();
-				
-			}
-		});
-		btnStudents.setForeground(Color.WHITE);
-		btnStudents.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnStudents.setBackground(new Color(0, 139, 139));
-		btnStudents.setBounds(0, 108, 264, 38);
-		panel_1.add(btnStudents);
-		
-		
-		//subject button
-		JButton btnSubjects = new JButton("Subjects");
-		btnSubjects.setHorizontalAlignment(SwingConstants.LEFT);
-		btnSubjects.setIcon(new ImageIcon(sub_logo));
-		btnSubjects.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				Add_Subjects add_sub= new Add_Subjects();
-				add_sub.main(null);
-				frmAddStudentGroup.dispose();
-				
-			}
-		});
-		btnSubjects.setForeground(Color.WHITE);
-		btnSubjects.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnSubjects.setBackground(new Color(0, 139, 139));
-		btnSubjects.setBounds(0, 157, 264, 38);
-		panel_1.add(btnSubjects);
-		
-		
-		//session button
-		JButton btnSessions = new JButton("Sessions");
-		btnSessions.setHorizontalAlignment(SwingConstants.LEFT);
-		btnSessions.setIcon(new ImageIcon(session_logo));
-		btnSessions.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				Add_Session add_session= new Add_Session();
-				add_session.main(null);
-				frmAddStudentGroup.dispose();
-				
-			}
-		});
-		btnSessions.setForeground(Color.WHITE);
-		btnSessions.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnSessions.setBackground(new Color(0, 139, 139));
-		btnSessions.setBounds(0, 206, 264, 38);
-		panel_1.add(btnSessions);
-		
-		
-		//tags button
-		JButton btnTags = new JButton("Tags");
-		btnTags.setHorizontalAlignment(SwingConstants.LEFT);
-		btnTags.setIcon(new ImageIcon(tag_logo));
-		btnTags.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				Add_Tags add_tag= new Add_Tags();
-				add_tag.main(null);
-				frmAddStudentGroup.dispose();
-				
-			}
-		});
-		btnTags.setForeground(Color.WHITE);
-		btnTags.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnTags.setBackground(new Color(0, 139, 139));
-		btnTags.setBounds(0, 255, 264, 38);
-		panel_1.add(btnTags);
-		
-		
-		//rooms button
-		JButton btnRooms = new JButton("Rooms");
-		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
-		btnRooms.setIcon(new ImageIcon(room_logo));
-		btnRooms.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
-				m_rooms.main(null);
-				frmAddStudentGroup.dispose();
-				
-			}
-		});
-		btnRooms.setForeground(Color.WHITE);
-		btnRooms.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnRooms.setBackground(new Color(0, 139, 139));
-		btnRooms.setBounds(0, 304, 264, 38);
-		panel_1.add(btnRooms);
-		
-		//workin days hours button
-		JButton btnWorkingDays = new JButton("Working days & Hours");
-		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
-		btnWorkingDays.setIcon(new ImageIcon(days_logo));
-		btnWorkingDays.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				AddWorkingdays w_days= new 	AddWorkingdays();
-				w_days.main(null);
-				frmAddStudentGroup.dispose();
-				
-			}
-		});
-		btnWorkingDays.setForeground(Color.WHITE);
-		btnWorkingDays.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnWorkingDays.setBackground(new Color(0, 139, 139));
-		btnWorkingDays.setBounds(0, 353, 264, 38);
-		panel_1.add(btnWorkingDays);
-		
-		
-		//location button
-		JButton btnLocations = new JButton("Locations");
-		btnLocations.setHorizontalAlignment(SwingConstants.LEFT);
-		btnLocations.setIcon(new ImageIcon(location_logo));
-		btnLocations.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				ManageLocations m_locations= new ManageLocations();
-				m_locations.main(null);
-				frmAddStudentGroup.dispose();
-				
-			}
-		});
-		btnLocations.setForeground(Color.WHITE);
-		btnLocations.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnLocations.setBackground(new Color(0, 139, 139));
-		btnLocations.setBounds(0, 402, 264, 38);
-		panel_1.add(btnLocations);
-		
-		
-		//statics button
-		JButton btnStatistics = new JButton("Statistics");
-		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
-		btnStatistics.setIcon(new ImageIcon(st_logo));
-        btnRooms.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				Statistics stat= new Statistics ();
-				stat.main(null);
-				frmAddStudentGroup.dispose();
-				
-			}
-		});
-		btnStatistics.setForeground(Color.WHITE);
-		btnStatistics.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnStatistics.setBackground(new Color(0, 139, 139));
-		btnStatistics.setBounds(0, 451, 264, 38);
-		panel_1.add(btnStatistics);
-		
-		
-		//advanced button
-		JButton btnAdvanced = new JButton("Advanced");
-		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
-		btnAdvanced.setIcon(new ImageIcon(adv_logo));
-        btnRooms.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				Consecutive_sessions a_session= new Consecutive_sessions ();
-				a_session.main(null);
-				frmAddStudentGroup.dispose();
-				
-			}
-		});
-		btnAdvanced.setForeground(Color.WHITE);
-		btnAdvanced.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnAdvanced.setBackground(new Color(0, 139, 139));
-		btnAdvanced.setBounds(0, 500, 264, 38);
-		panel_1.add(btnAdvanced);
-		
-		
-		//generate button
-		JButton btnTimetableGenerate = new JButton("Timetable Generate");
-		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
-		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
-		btnTimetableGenerate.setForeground(Color.WHITE);
-		btnTimetableGenerate.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnTimetableGenerate.setBackground(new Color(0, 139, 139));
-		btnTimetableGenerate.setBounds(0, 549, 264, 38);
-		panel_1.add(btnTimetableGenerate);
-		
-		
-		
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
 		panel_3.setBackground(new Color(230, 230, 250));
@@ -448,7 +447,7 @@ public class Add_Tags {
 		
 		
 		comboBox_tag = new JComboBox();
-		comboBox_tag.setModel(new DefaultComboBoxModel(new String[] {"Lecture", "Tutorial", "Lab"}));
+		comboBox_tag.setModel(new DefaultComboBoxModel(new String[] {"", "Lecture", "Tutorial", "Lab"}));
 		comboBox_tag.setBounds(428, 190, 204, 23);
 		panel_4.add(comboBox_tag);
 		

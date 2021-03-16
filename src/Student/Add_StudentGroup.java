@@ -161,9 +161,10 @@ public class Add_StudentGroup {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Home home = new Home();
-				home.main(null);
+				//Home home = new Home();
+				//home.main(null);
 				frmAddStudentGroup.dispose();
+				new Home();
 				
 			}
 		});
@@ -182,9 +183,10 @@ public class Add_StudentGroup {
 				
 				public void actionPerformed(ActionEvent e) {
 					
-					Add_Lecturer add_lecture = new Add_Lecturer();
-					add_lecture.main(null);
+					//Add_Lecturer add_lecture = new Add_Lecturer();
+					//add_lecture.main(null);
 					frmAddStudentGroup.dispose();
+					new  Add_Lecturer();
 					
 				}
 			});
@@ -200,27 +202,19 @@ public class Add_StudentGroup {
 		JButton btnStudents = new JButton("Students");
 		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStudents.setIcon(new ImageIcon(stu_logo));
-		btnStudents.addActionListener(new ActionListener() {
+        btnStudents.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_StudentGroup add_st= new Add_StudentGroup();
-				add_st.main(null);
+				//Add_StudentGroup add_st= new Add_StudentGroup();
+				//add_st.main(null);
 				frmAddStudentGroup.dispose();
+				new Add_StudentGroup();
 				
 			}
 		});
 	
-		btnLecturers.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				Home add_st = new Home();
-				add_st.main(null);
-				frmAddStudentGroup.dispose();
-				
-			}
-		});
+		
 		btnStudents.setForeground(Color.WHITE);
 		btnStudents.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnStudents.setBackground(new Color(0, 139, 139));
@@ -238,7 +232,8 @@ public class Add_StudentGroup {
 				
 				Add_Subjects add_sub= new Add_Subjects();
 				add_sub.main(null);
-				frmAddStudentGroup.dispose();
+				//frmAddStudentGroup.dispose();
+				//new Add_Subjects();
 				
 			}
 		});
@@ -258,7 +253,8 @@ public class Add_StudentGroup {
 				
 				Add_Session add_session= new Add_Session();
 				add_session.main(null);
-				frmAddStudentGroup.dispose();
+				//frmAddStudentGroup.dispose();
+				//new Add_Session();
 				
 			}
 		});
@@ -277,9 +273,10 @@ public class Add_StudentGroup {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_Tags add_tag= new Add_Tags();
-				add_tag.main(null);
+				//Add_Tags add_tag= new Add_Tags();
+				//add_tag.main(null);
 				frmAddStudentGroup.dispose();
+				new Add_Tags();
 				
 			}
 		});
@@ -298,9 +295,10 @@ public class Add_StudentGroup {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
-				m_rooms.main(null);
+				//ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
+				//m_rooms.main(null);
 				frmAddStudentGroup.dispose();
+				new  ManageSessionsRooms();
 				
 			}
 		});
@@ -321,7 +319,8 @@ public class Add_StudentGroup {
 				
 				AddWorkingdays w_days= new 	AddWorkingdays();
 				w_days.main(null);
-				frmAddStudentGroup.dispose();
+				//frmAddStudentGroup.dispose();
+				//new AddWorkingdays();
 				
 			}
 		});
@@ -339,9 +338,10 @@ public class Add_StudentGroup {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				ManageLocations m_locations= new ManageLocations();
-				m_locations.main(null);
+				//ManageLocations m_locations= new ManageLocations();
+				//m_locations.main(null);
 				frmAddStudentGroup.dispose();
+				new ManageLocations();
 				
 			}
 		});
@@ -359,9 +359,10 @@ public class Add_StudentGroup {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Statistics stat= new Statistics ();
-				stat.main(null);
+				//Statistics stat= new Statistics ();
+				//stat.main(null);
 				frmAddStudentGroup.dispose();
+				new   Statistics();
 				
 			}
 		});
@@ -379,9 +380,10 @@ public class Add_StudentGroup {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Consecutive_sessions a_session= new Consecutive_sessions ();
-				a_session.main(null);
+				//Consecutive_sessions a_session= new Consecutive_sessions ();
+				//a_session.main(null);
 				frmAddStudentGroup.dispose();
+				new Consecutive_sessions();
 				
 			}
 		});
@@ -487,7 +489,7 @@ public class Add_StudentGroup {
 		panel_4.add(Ys);
 		
 		JComboBox Ysem = new JComboBox();
-		Ysem.setModel(new DefaultComboBoxModel(new String[] {"Y1.S1", "Y1.S2", "Y2.S1", "Y2.S2", "Y3.S1", "Y3.S2", "Y4.S1", "Y4.S2"}));
+		Ysem.setModel(new DefaultComboBoxModel(new String[] {"", "Y1.S1", "Y1.S2", "Y2.S1", "Y2.S2", "Y3.S1", "Y3.S2", "Y4.S1", "Y4.S2"}));
 		Ysem.setBounds(146, 54, 161, 23);
 		panel_4.add(Ysem);
 		
@@ -498,7 +500,7 @@ public class Add_StudentGroup {
 		
 
 		JComboBox programme = new JComboBox();
-		programme.setModel(new DefaultComboBoxModel(new String[] {"IT", "CSSE", "IM", "CSE"}));
+		programme.setModel(new DefaultComboBoxModel(new String[] {"", "IT", "CSSE", "IM", "CSE", "DS", "SE", "ISE"}));
 		programme.setBounds(146, 120, 161, 23);
 		panel_4.add(programme);
 		
@@ -557,18 +559,24 @@ public class Add_StudentGroup {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+		if(Ysem.getSelectedItem().hashCode() ==0 || programme.getSelectedItem().hashCode() == 0 || GrpNumber.getValue().hashCode() == 0 || subGrpNumber.getValue().hashCode() ==0    ) {
 			
 			
+			JLabel label = new JLabel("Please fill all fileds!");
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			JOptionPane.showMessageDialog(null, label);
 			
+		}	
+	
+		else{	
 			
-			
-		GrpID.setText(Ysem.getSelectedItem().toString()+"."+programme.getSelectedItem().toString()+"."+ GrpNumber.getValue().toString());
+				GrpID.setText(Ysem.getSelectedItem().toString()+"."+programme.getSelectedItem().toString()+"."+ GrpNumber.getValue().toString());
 		
-		subGrpID.setText(Ysem.getSelectedItem().toString()+"."+programme.getSelectedItem().toString()+"."+ GrpNumber.getValue().toString()+"."+subGrpNumber.getValue().toString());
+				subGrpID.setText(Ysem.getSelectedItem().toString()+"."+programme.getSelectedItem().toString()+"."+ GrpNumber.getValue().toString()+"."+subGrpNumber.getValue().toString());
 			
+		}		
 				
-				
-			}
+		}
 		});
 		
 		btnNewButton_1.setForeground(Color.WHITE);
@@ -597,7 +605,11 @@ public class Add_StudentGroup {
 				
 				if(GrpID.getText().equals("")||subGrpID.getText().equals("")) {
 					
-					JOptionPane.showMessageDialog(null, "Please Genarate IDs First!");
+					//JOptionPane.showMessageDialog(null, "Please Genarate IDs First!");
+					JLabel label = new JLabel("Please Genarate IDs First!");
+					label.setHorizontalAlignment(SwingConstants.CENTER);
+					JOptionPane.showMessageDialog(null, label);
+					
 				}else {
 				
 				try {
@@ -617,7 +629,9 @@ public class Add_StudentGroup {
 	    					
 	                       
 	                       // JOptionPane.showMessageDialog(btnNewButton, "This is alredy exist");
-	                    } else {
+	    					
+	                    }
+	                   else {
 	                        //JOptionPane.showMessageDialog(btnNewButton,"Welcome, Student Group details successfully inserted!");
 	                    	
 	                    	JLabel label = new JLabel("Inserted Group Details Sucessfully");

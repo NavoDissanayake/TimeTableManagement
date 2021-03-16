@@ -109,6 +109,12 @@ public class Consecutive_sessions {
 		frmAddStudentGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAddStudentGroup.getContentPane().setLayout(null);
 		
+		
+		frmAddStudentGroup.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
+		frmAddStudentGroup.setVisible(true);
+		
+		
+		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1344, 65);
 		panel.setBackground(new Color(0, 139, 139));

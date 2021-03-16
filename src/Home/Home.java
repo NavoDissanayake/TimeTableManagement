@@ -116,6 +116,11 @@ public class Home {
 		frmAddStudentGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAddStudentGroup.getContentPane().setLayout(null);
 		
+		
+		frmAddStudentGroup.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
+		frmAddStudentGroup.setVisible(true);
+		
+		
 		JPanel panel = new JPanel();
 		panel.setForeground(Color.WHITE);
 		panel.setBounds(0, 0, 1344, 65);
@@ -127,7 +132,7 @@ public class Home {
 		lblNewLabel_10.setForeground(Color.WHITE);
 		lblNewLabel_10.setFont(new Font("Times New Roman", Font.BOLD, 27));
 		lblNewLabel_10.setBackground(Color.WHITE);
-		lblNewLabel_10.setBounds(580, 13, 422, 29);
+		lblNewLabel_10.setBounds(488, 13, 422, 29);
 		panel.add(lblNewLabel_10);
 		/*
 		 * //JLabel lblNewLabel = new JLabel("Time Table Management System");
@@ -137,7 +142,7 @@ public class Home {
 		 */
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 62, 262, 609);
+		panel_1.setBounds(0, 62, 1344, 603);
 		panel_1.setBackground(new Color(230, 230, 250));
 		frmAddStudentGroup.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
@@ -163,7 +168,7 @@ public class Home {
 		btnLecturers.setForeground(Color.WHITE);
 		btnLecturers.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnLecturers.setBackground(new Color(0, 139, 139));
-		btnLecturers.setBounds(0, 59, 264, 38);
+		btnLecturers.setBounds(397, 130, 264, 103);
 		panel_1.add(btnLecturers);
 		
 		JButton btnStudents = new JButton("Students");
@@ -173,27 +178,19 @@ public class Home {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_StudentGroup add_st= new Add_StudentGroup();
-				add_st.main(null);
+				//Add_StudentGroup add_st= new Add_StudentGroup();
+				//add_st.main(null);
 				frmAddStudentGroup.dispose();
+				new Add_StudentGroup();
 				
 			}
 		});
 	
-		btnLecturers.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				Home add_st = new Home();
-				add_st.main(null);
-				frmAddStudentGroup.dispose();
-				
-			}
-		});
+		
 		btnStudents.setForeground(Color.WHITE);
 		btnStudents.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnStudents.setBackground(new Color(0, 139, 139));
-		btnStudents.setBounds(0, 108, 264, 38);
+		btnStudents.setBounds(673, 130, 264, 103);
 		panel_1.add(btnStudents);
 		
 		JButton btnSubjects = new JButton("Subjects");
@@ -212,7 +209,7 @@ public class Home {
 		btnSubjects.setForeground(Color.WHITE);
 		btnSubjects.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnSubjects.setBackground(new Color(0, 139, 139));
-		btnSubjects.setBounds(0, 157, 264, 38);
+		btnSubjects.setBounds(949, 130, 264, 103);
 		panel_1.add(btnSubjects);
 		
 		JButton btnSessions = new JButton("Sessions");
@@ -231,7 +228,7 @@ public class Home {
 		btnSessions.setForeground(Color.WHITE);
 		btnSessions.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnSessions.setBackground(new Color(0, 139, 139));
-		btnSessions.setBounds(0, 206, 264, 38);
+		btnSessions.setBounds(121, 248, 264, 103);
 		panel_1.add(btnSessions);
 		
 		JButton btnTags = new JButton("Tags");
@@ -241,16 +238,17 @@ public class Home {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_Tags add_tag= new Add_Tags();
-				add_tag.main(null);
+				//Add_Tags add_tag= new Add_Tags();
+				//add_tag.main(null);
 				frmAddStudentGroup.dispose();
+				new Add_Tags();
 				
 			}
 		});
 		btnTags.setForeground(Color.WHITE);
 		btnTags.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnTags.setBackground(new Color(0, 139, 139));
-		btnTags.setBounds(0, 255, 264, 38);
+		btnTags.setBounds(397, 246, 264, 107);
 		panel_1.add(btnTags);
 		
 		JButton btnRooms = new JButton("Rooms");
@@ -269,7 +267,7 @@ public class Home {
 		btnRooms.setForeground(Color.WHITE);
 		btnRooms.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnRooms.setBackground(new Color(0, 139, 139));
-		btnRooms.setBounds(0, 304, 264, 38);
+		btnRooms.setBounds(673, 246, 264, 107);
 		panel_1.add(btnRooms);
 		
 		JButton btnWorkingDays = new JButton("Working days & Hours");
@@ -288,7 +286,7 @@ public class Home {
 		btnWorkingDays.setForeground(Color.WHITE);
 		btnWorkingDays.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnWorkingDays.setBackground(new Color(0, 139, 139));
-		btnWorkingDays.setBounds(0, 353, 264, 38);
+		btnWorkingDays.setBounds(949, 246, 264, 107);
 		panel_1.add(btnWorkingDays);
 		
 		JButton btnLocations = new JButton("Locations");
@@ -307,7 +305,7 @@ public class Home {
 		btnLocations.setForeground(Color.WHITE);
 		btnLocations.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnLocations.setBackground(new Color(0, 139, 139));
-		btnLocations.setBounds(0, 402, 264, 38);
+		btnLocations.setBounds(121, 364, 264, 97);
 		panel_1.add(btnLocations);
 		
 		JButton btnStatistics = new JButton("Statistics");
@@ -326,10 +324,10 @@ public class Home {
 		btnStatistics.setForeground(Color.WHITE);
 		btnStatistics.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnStatistics.setBackground(new Color(0, 139, 139));
-		btnStatistics.setBounds(0, 451, 264, 38);
+		btnStatistics.setBounds(397, 364, 264, 97);
 		panel_1.add(btnStatistics);
 		
-		JButton btnAdvanced = new JButton("Advanced");
+		JButton btnAdvanced = new JButton("Advanced options");
 		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAdvanced.setIcon(new ImageIcon(adv_logo));
 		btnAdvanced.addActionListener(new ActionListener() {
@@ -345,7 +343,7 @@ public class Home {
 		btnAdvanced.setForeground(Color.WHITE);
 		btnAdvanced.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnAdvanced.setBackground(new Color(0, 139, 139));
-		btnAdvanced.setBounds(0, 500, 264, 38);
+		btnAdvanced.setBounds(673, 364, 264, 97);
 		panel_1.add(btnAdvanced);
 		
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
@@ -354,39 +352,29 @@ public class Home {
 		btnTimetableGenerate.setForeground(Color.WHITE);
 		btnTimetableGenerate.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnTimetableGenerate.setBackground(new Color(0, 139, 139));
-		btnTimetableGenerate.setBounds(0, 549, 264, 38);
+		btnTimetableGenerate.setBounds(949, 364, 264, 97);
 		panel_1.add(btnTimetableGenerate);
 		
 		
 		JButton btnHome = new JButton("Home");
 		btnHome.setHorizontalAlignment(SwingConstants.LEFT);
 		btnHome.setIcon(new ImageIcon(home_logo));
-		btnHome.addActionListener(new ActionListener() {
+        btnHome.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Home home = new Home();
-				home.main(null);
+				//Home home = new Home();
+				//home.main(null);
 				frmAddStudentGroup.dispose();
+				new Home();
 				
 			}
 		});
-		btnHome.setBounds(0, 13, 262, 33);
+		btnHome.setBounds(121, 132, 262, 103);
 		panel_1.add(btnHome);
 		btnHome.setForeground(new Color(255, 255, 255));
 		btnHome.setBackground(new Color(0, 139, 139));
 		btnHome.setFont(new Font("Tahoma", Font.BOLD, 17));
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(272, 76, 1062, 584);
-		
-		frmAddStudentGroup.getContentPane().add(panel_2);
-		panel_2.setLayout(null);
-		
-		JLabel label = new JLabel("");
-		label.setBounds(0, -11, 1062, 605);
 		Image wallicon = new ImageIcon(this.getClass().getResource("/new.png")).getImage();
-		label.setIcon(new ImageIcon(wallicon));
-		panel_2.add(label);
 	}
 }
