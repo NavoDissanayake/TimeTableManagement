@@ -134,7 +134,7 @@ public void refreshtable() {
 		ManageLecfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ManageLecfrm.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		ManageLecfrm.setBackground(Color.YELLOW);
-		ManageLecfrm.setTitle("Lecturer");
+		ManageLecfrm.setTitle("Lecturers");
 		ManageLecfrm.setSize(1350, 715);
 		ManageLecfrm.getContentPane().setLayout(null);
 		ManageLecfrm.setLocationRelativeTo(null);
@@ -173,10 +173,9 @@ public void refreshtable() {
 		btnManageGroups.setIcon(new ImageIcon(home_logo));
 		btnManageGroups.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				Home home = new Home();
-				home.main(null);
+			
 				ManageLecfrm.dispose();
+				new Home();
 			}
 		});
 		btnManageGroups.setForeground(new Color(255, 255, 255));
@@ -197,9 +196,8 @@ public void refreshtable() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_Lecturer add_Lecturer = new Add_Lecturer();
-				add_Lecturer.main(null);
 				ManageLecfrm.dispose();
+				new Add_Lecturer();
 				
 			}
 		});
@@ -212,10 +210,9 @@ public void refreshtable() {
 		JButton btnStudents = new JButton("Students");
 		btnStudents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				Add_StudentGroup add_StudentGroup = new Add_StudentGroup();
-				add_StudentGroup.main(null);
+			
 				ManageLecfrm.dispose();
+				new Add_StudentGroup();
 			}
 		});
 		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
@@ -232,9 +229,8 @@ public void refreshtable() {
 		btnSubjects.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Add_Subjects add_Subjects = new Add_Subjects();
-				add_Subjects.main(null);
 				ManageLecfrm.dispose();
+				new Add_Subjects();
 			}
 		});
 		btnSubjects.setForeground(Color.WHITE);
@@ -249,9 +245,8 @@ public void refreshtable() {
 		btnSessions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Add_Session add_Session = new Add_Session();
-				add_Session.main(null);
 				ManageLecfrm.dispose();
+				new Add_Session();
 			}
 		});
 		btnSessions.setForeground(Color.WHITE);
@@ -263,9 +258,9 @@ public void refreshtable() {
 		JButton btnTags = new JButton("Tags");
 		btnTags.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Add_Tags add_Tags = new Add_Tags();
-				add_Tags.main(null);
+				
 				ManageLecfrm.dispose();
+				new Add_Tags();
 			}
 		});
 		btnTags.setHorizontalAlignment(SwingConstants.LEFT);
@@ -279,9 +274,9 @@ public void refreshtable() {
 		JButton btnRooms = new JButton("Rooms");
 		btnRooms.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ManageSessionsRooms manageSessionsRooms = new ManageSessionsRooms();
-				manageSessionsRooms.main(null);
+				
 				ManageLecfrm.dispose();
+				new  ManageSessionsRooms();
 			}
 		});
 		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
@@ -295,9 +290,11 @@ public void refreshtable() {
 		JButton btnWorkingDays = new JButton("Working days & Hours");
 		btnWorkingDays.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddWorkingdays addWorkingdays = new AddWorkingdays();
-				addWorkingdays.main(null);
+				
 				ManageLecfrm.dispose();
+				
+				AddWorkingdays w_days= new 	AddWorkingdays();
+				w_days.main(null);
 			}
 		});
 		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
@@ -313,9 +310,8 @@ btnLocations.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				ManageLocations m_locations= new ManageLocations();
-				m_locations.main(null);
 				ManageLecfrm.dispose();
+				new ManageLocations();
 				
 			}
 		});
@@ -330,9 +326,9 @@ btnLocations.addActionListener(new ActionListener() {
 		JButton btnStatistics = new JButton("Statistics");
 		btnStatistics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Statistics statistics = new Statistics();
-				statistics.main(null);
+				
 				ManageLecfrm.dispose();
+				new   Statistics();
 			}
 		});
 		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
@@ -346,9 +342,9 @@ btnLocations.addActionListener(new ActionListener() {
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Consecutive_sessions consecutive_sessions = new Consecutive_sessions();
-				consecutive_sessions.main(null);
+				
 				ManageLecfrm.dispose();
+				new Consecutive_sessions();
 			}
 			
 		});
@@ -608,8 +604,7 @@ btnLocations.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				ManageLecfrm.dispose();
-				Add_Lecturer add_Lecturer = new Add_Lecturer();
-				add_Lecturer.main(null);
+				new Add_Lecturer();
 			
 			}
 		});
@@ -620,8 +615,7 @@ btnLocations.addActionListener(new ActionListener() {
 		btnManageLecturers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ManageLecfrm.dispose();
-				Manage_Lecturer manage_Lecturer = new Manage_Lecturer();
-						manage_Lecturer.main(null);
+				new Manage_Lecturer();
 				
 				
 			}

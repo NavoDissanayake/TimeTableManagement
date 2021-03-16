@@ -336,9 +336,10 @@ btnLocations.addActionListener(new ActionListener() {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				
+				SrchSesFrm.dispose();
 				Manage_Session manage_Session = new Manage_Session();
 				manage_Session.main(null);
-				SrchSesFrm.dispose();
 			}
 		});
 		button_1.setBounds(517, 66, 258, 37);
@@ -347,9 +348,10 @@ btnLocations.addActionListener(new ActionListener() {
 		JButton button_2 = new JButton("Search Sessions");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				SrchSesFrm.dispose();
 				Search_Sessions search_Sessions = new  Search_Sessions();
 				Search_Sessions.main(null);
-				SrchSesFrm.dispose();
 			}
 		});
 		button_2.setBounds(774, 66, 258, 37);

@@ -23,6 +23,7 @@ import javax.swing.SwingConstants;
 
 import Advanced.Consecutive_sessions;
 import DB.DbConnection;
+import Home.Home;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
 import Rooms.ManageSessionsRooms;
@@ -126,8 +127,8 @@ public void refreshtable() {
 	
 		MngSubFrm.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		MngSubFrm.setBackground(Color.YELLOW);
-		MngSubFrm.setTitle("Sessions");
-		MngSubFrm.setSize(900, 860);
+		MngSubFrm.setTitle("Subjects");
+		MngSubFrm.setSize(1350, 728);
 		MngSubFrm.setBounds(0, 0, 1350, 700);
 		MngSubFrm.setVisible(true);
 		//ManageSesFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -144,6 +145,8 @@ public void refreshtable() {
 		button.setIcon(new ImageIcon(home_logo));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MngSubFrm.dispose();
+				new Home();
 				
 			}
 		});
@@ -163,9 +166,9 @@ public void refreshtable() {
 		button_2.setIcon(new ImageIcon(lec_logo));
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Add_Lecturer add_Lecturer =  new Add_Lecturer();
-				add_Lecturer.main(null);
+				
 				MngSubFrm.dispose();
+				new Add_Lecturer();
 			}
 		});
 		button_2.setHorizontalAlignment(SwingConstants.LEFT);
@@ -180,9 +183,9 @@ public void refreshtable() {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Add_StudentGroup add_StudentGroup = new Add_StudentGroup();
-				add_StudentGroup.main(null);
+			
 				MngSubFrm.dispose();
+				new Add_StudentGroup();
 			}
 		});
 		button_3.setHorizontalAlignment(SwingConstants.LEFT);
@@ -197,9 +200,8 @@ public void refreshtable() {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Add_Subjects add_Subjects = new Add_Subjects();
-				add_Subjects.main(null);
 				MngSubFrm.dispose();
+				new Add_Subjects();
 			}
 		});
 		button_4.setHorizontalAlignment(SwingConstants.LEFT);
@@ -213,10 +215,9 @@ public void refreshtable() {
 		button_5.setIcon(new ImageIcon(session_logo));
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				Add_Session add_Session = new Add_Session();
-				add_Session.main(null);
+			
 				MngSubFrm.dispose();
+				new Add_Session();
 			}
 		});
 		button_5.setHorizontalAlignment(SwingConstants.LEFT);
@@ -230,10 +231,9 @@ public void refreshtable() {
 		button_6.setIcon(new ImageIcon(tag_logo));
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Add_Tags add_Tags = new Add_Tags();
-				add_Tags.main(null);
+				
 				MngSubFrm.dispose();
-			
+				new Add_Tags();
 			}
 		});
 		button_6.setHorizontalAlignment(SwingConstants.LEFT);
@@ -246,9 +246,9 @@ public void refreshtable() {
 		JButton button_7 = new JButton("Rooms");
 		button_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ManageSessionsRooms manageSessionsRooms = new ManageSessionsRooms();
-				manageSessionsRooms.main(null);
+			
 				MngSubFrm.dispose();
+				new  ManageSessionsRooms();
 			}
 		});
 		button_7.setIcon(new ImageIcon(room_logo));
@@ -262,9 +262,10 @@ public void refreshtable() {
 		JButton button_8 = new JButton("Working days & Hours");
 		button_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddWorkingdays addWorkingdays = new AddWorkingdays();
-				addWorkingdays.main(null);
+				
 				MngSubFrm.dispose();
+				AddWorkingdays w_days= new 	AddWorkingdays();
+				w_days.main(null);
 			}
 		});
 		button_8.setIcon(new ImageIcon(days_logo));
@@ -279,10 +280,10 @@ public void refreshtable() {
 		button_9.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				
-				ManageLocations m_locations= new ManageLocations();
-				m_locations.main(null);
+			
 				MngSubFrm.dispose();
+				new ManageLocations();
+				
 				
 			}
 		});
@@ -297,9 +298,9 @@ public void refreshtable() {
 		JButton button_10 = new JButton("Statistics");
 		button_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Statistics statistics = new Statistics();
-				statistics.main(null);
+				
 				MngSubFrm.dispose();
+				new   Statistics();
 			}
 		});
 		button_10.setIcon(new ImageIcon(st_logo));
@@ -313,9 +314,9 @@ public void refreshtable() {
 		JButton button_11 = new JButton("Advanced");
 		button_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Consecutive_sessions consecutive_sessions = new Consecutive_sessions();
-				consecutive_sessions.main(null);
+				
 				MngSubFrm.dispose();
+				new Consecutive_sessions();
 			}
 			
 		});
@@ -361,8 +362,7 @@ public void refreshtable() {
 			public void actionPerformed(ActionEvent e) {
 				
 				MngSubFrm.dispose();
-				  Manage_Subject manage_Subject = new Manage_Subject();
-				  manage_Subject.main(null);
+				  new Manage_Subject();
 				 
 			
 				

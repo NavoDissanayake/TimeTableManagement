@@ -454,9 +454,10 @@ btnLocations.addActionListener(new ActionListener() {
 		JButton button_3 = new JButton("Add New Session");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				AddsessFrm.dispose();
 				Add_Session add_Session = new Add_Session();
 				add_Session.main(null);
-				AddsessFrm.dispose();
 			}
 			
 		});
@@ -466,9 +467,10 @@ btnLocations.addActionListener(new ActionListener() {
 		JButton button_4 = new JButton("Manage Sessions");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				AddsessFrm.dispose();
 				Manage_Session manage_Session = new Manage_Session();
 				manage_Session.main(null);
-				AddsessFrm.dispose();
 			}
 			
 		});
@@ -479,9 +481,10 @@ btnLocations.addActionListener(new ActionListener() {
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Search_Sessions search_Sessions = new Search_Sessions();
-				 search_Sessions.main(null);
+				
 				 AddsessFrm.dispose();
+				 Search_Sessions search_Sessions = new Search_Sessions();
+				 search_Sessions.main(null);
 				 
 			}
 		});
