@@ -1,6 +1,8 @@
 package Statistics;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -8,6 +10,9 @@ import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,9 +22,20 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.MatteBorder;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 import Advanced.Consecutive_sessions;
+import DB.DbConnection;
 import Home.Home;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
@@ -34,6 +50,9 @@ import javax.swing.JTextPane;
 import javax.swing.JFormattedTextField;
 import javax.swing.JEditorPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.BoxLayout;
+
 
 public class Statistics {
 	
@@ -53,11 +72,23 @@ public class Statistics {
 	
 
 	private JFrame staticFrame;
+	private JTextField statictextField;
+	private JTextField statictextField_1;
+	private JTextField statictextField_2;
+	private JTextField statictextField_3;
+	
+	private int gSum1, gSum2, gSum3, gSum4;
+	private JTextField statictextField_4;
+	private JTextField statictextField_5;
+	private JTextField statictextField_6;
+	
+	
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -69,7 +100,84 @@ public class Statistics {
 			}
 		});
 	}
+	
+	public void setData() {
 
+		try {
+			Connection con = DbConnection.connect();
+	
+	//registerd	Lec	
+			String query1="select count (*) as reglec from lecturers ";
+			PreparedStatement pst1=con.prepareStatement(query1);
+			ResultSet rs1=pst1.executeQuery();
+			
+			String sum1 = rs1.getString("reglec");
+			gSum1 = Integer.parseInt(sum1);	
+			statictextField.setText(sum1);
+
+	//registerd	group	
+			String query2="select count (*) as regstu from StudentGroup ";
+			PreparedStatement pst2=con.prepareStatement(query2);
+			ResultSet rs2=pst2.executeQuery();
+			String sum2 = rs2.getString("regstu");
+			gSum2 = Integer.parseInt(sum2);			
+			statictextField_1.setText(sum2);
+			
+	//registerd	Subject
+			String query3="select count (*) as regsub from subjects ";
+			PreparedStatement pst3=con.prepareStatement(query3);
+			ResultSet rs3=pst3.executeQuery();
+			String sum3 = rs3.getString("regsub");
+			gSum3 = Integer.parseInt(sum3);			
+			statictextField_2.setText(sum3);
+	
+	//registerd	rooms
+			String query4="select count(*) as regroom from location ";
+			PreparedStatement pst4=con.prepareStatement(query4);
+			ResultSet rs4=pst4.executeQuery();
+			String sum4 = rs4.getString("regroom");
+			gSum4 = Integer.parseInt(sum4);			
+			statictextField_3.setText(sum4);
+	
+			System.out.println(gSum4);
+		}
+		catch(Exception load) {
+			load.printStackTrace();
+		}	
+	}
+	public void setLatestData() {
+		try {
+			Connection con = DbConnection.connect();
+	
+			//Lecturer
+			String lastLec ="SELECT lectureName FROM lecturers WHERE lid = (SELECT MAX(lid) FROM lecturers)";
+			PreparedStatement pst1 =con.prepareStatement(lastLec);
+			ResultSet rs1 =pst1.executeQuery();
+			String txtLastLec = rs1.getString("lectureName");
+			statictextField_4.setText(txtLastLec);
+			
+			//Subject
+			String lastLec2 ="SELECT subName FROM subjects WHERE subID = (SELECT MAX(subID) FROM subjects)";
+			PreparedStatement pst12 =con.prepareStatement(lastLec2);
+			ResultSet rs12 =pst12.executeQuery();
+			String txtLastLec2 = rs12.getString("subName");
+			statictextField_5.setText(txtLastLec2);
+			
+			//Group
+			String lastLec3 ="SELECT GroupID FROM StudentGroup WHERE StudenttGroupID = (SELECT MAX(StudenttGroupID) FROM StudentGroup)";
+			PreparedStatement pst13 =con.prepareStatement(lastLec3);
+			ResultSet rs13 =pst13.executeQuery();
+			String txtLastLec3 = rs13.getString("GroupID");
+			statictextField_6.setText(txtLastLec3);
+			
+						
+		}catch (Exception a) {
+			a.printStackTrace();
+		}
+	}
+
+
+	
 	/**
 	 * Create the application.
 	 */
@@ -383,55 +491,166 @@ public class Statistics {
 		staticFrame.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(80, 26, 913, 520);
-		panel_2.add(panel_3);
-		panel_3.setLayout(null);
+		JPanel staticpanel_3 = new JPanel();
+		staticpanel_3.setForeground(Color.WHITE);
+		staticpanel_3.setBounds(80, 26, 913, 509);
+		panel_2.add(staticpanel_3);
+		staticpanel_3.setLayout(null);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setFont(new Font("Tahoma", Font.BOLD, 14));
-		textArea.setBackground(new Color(224, 255, 255));
-		textArea.setBounds(70, 72, 93, 76);
-		panel_3.add(textArea);
+		JLabel staticlblNewLabel = new JLabel("Registered Lecturers");
+		staticlblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		staticlblNewLabel.setBounds(79, 37, 141, 44);
+		staticpanel_3.add(staticlblNewLabel);
 		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBackground(new Color(224, 255, 255));
-		textArea_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		textArea_1.setBounds(289, 73, 93, 76);
-		panel_3.add(textArea_1);
-		
-		JTextArea textArea_2 = new JTextArea();
-		textArea_2.setBackground(new Color(224, 255, 255));
-		textArea_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-		textArea_2.setBounds(491, 72, 93, 76);
-		panel_3.add(textArea_2);
-		
-		JTextArea textArea_3 = new JTextArea();
-		textArea_3.setBackground(new Color(224, 255, 255));
-		textArea_3.setFont(new Font("Tahoma", Font.BOLD, 14));
-		textArea_3.setBounds(705, 72, 93, 76);
-		panel_3.add(textArea_3);
-		
-		JLabel lblNewLabel = new JLabel("Registered Lecturers");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel.setBounds(70, 158, 134, 44);
-		panel_3.add(lblNewLabel);
-		
-		JLabel lblNewLabel_2 = new JLabel("Registered "
+		JLabel staticlblNewLabel_2 = new JLabel("Registered "
 				+ "Students");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_2.setBounds(279, 162, 141, 37);
-		panel_3.add(lblNewLabel_2);
+		staticlblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		staticlblNewLabel_2.setBounds(79, 91, 141, 37);
+		staticpanel_3.add(staticlblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Registered Subjects");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_3.setBounds(479, 174, 134, 13);
-		panel_3.add(lblNewLabel_3);
+		JLabel staticlblNewLabel_3 = new JLabel("Registered Subjects");
+		staticlblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		staticlblNewLabel_3.setBounds(548, 53, 134, 13);
+		staticpanel_3.add(staticlblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Registered Rooms");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_4.setBounds(698, 174, 114, 13);
-		panel_3.add(lblNewLabel_4);
+		JLabel staticlblNewLabel_4 = new JLabel("Registered Rooms");
+		staticlblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 13));
+		staticlblNewLabel_4.setBounds(548, 103, 134, 13);
+		staticpanel_3.add(staticlblNewLabel_4);
 		
+		statictextField = new JTextField();
+		statictextField.setFont(new Font("Tahoma", Font.BOLD, 18));
+		statictextField.setForeground(new Color(255, 255, 255));
+		statictextField.setBackground(new Color(0, 206, 209));
+		statictextField.setBounds(333, 46, 61, 29);
+		statictextField.setEditable(false);
+		staticpanel_3.add(statictextField);
+		statictextField.setColumns(10);
+		
+		statictextField_1 = new JTextField();
+		statictextField_1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		statictextField_1.setBackground(new Color(0, 206, 209));
+		statictextField_1.setForeground(new Color(255, 255, 255));
+		statictextField_1.setColumns(10);
+		statictextField_1.setBounds(333, 96, 61, 29);
+		statictextField_1.setEditable(false);
+		staticpanel_3.add(statictextField_1);
+		
+		statictextField_2 = new JTextField();
+		statictextField_2.setForeground(new Color(255, 255, 255));
+		statictextField_2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		statictextField_2.setBackground(new Color(0, 206, 209));
+		statictextField_2.setColumns(10);
+		statictextField_2.setBounds(746, 44, 61, 29);
+		statictextField_2.setEditable(false);
+		staticpanel_3.add(statictextField_2);
+		
+		statictextField_3 = new JTextField();
+		statictextField_3.setBackground(new Color(0, 206, 209));
+		statictextField_3.setForeground(new Color(255, 255, 255));
+		statictextField_3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		statictextField_3.setColumns(10);
+		statictextField_3.setBounds(746, 94, 61, 29);
+		statictextField_3.setEditable(false);
+		staticpanel_3.add(statictextField_3);
+		
+		JPanel staticpanel_4 = new JPanel();
+		staticpanel_4.setBackground(new Color(128, 128, 128));
+		staticpanel_4.setBounds(79, 224, 380, 259);
+		staticpanel_3.add(staticpanel_4);
+		staticpanel_4.setLayout(new BoxLayout(staticpanel_4, BoxLayout.X_AXIS));
+		
+		JButton btnGraphButton = new JButton("Graph");
+		btnGraphButton.setForeground(new Color(255, 255, 255));
+		btnGraphButton.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnGraphButton.setBackground(new Color(0, 139, 139));
+		btnGraphButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+				 dataset.setValue(gSum1 , "Lecturer", "Lecturer");
+				 dataset.setValue(gSum2 , "No.Of Students", "Student");
+				 dataset.setValue(gSum3 , "Subjects", "Subjects");
+				 dataset.setValue(gSum4 , "Rooms", "Rooms");
+				
+				 
+				 JFreeChart chart = ChartFactory.createBarChart3D("Statistics of the System", " ", "Total", dataset,
+						 PlotOrientation.VERTICAL,false,true,false);
+				 
+				 chart.setBackgroundPaint(Color.GRAY);
+				 chart.getTitle().setPaint(Color.WHITE);
+				 
+				 
+				 CategoryPlot p = chart.getCategoryPlot();
+				 p.setRangeGridlinePaint(Color.white);
+				 
+				 ChartPanel chartPanel = new ChartPanel(chart);
+				 staticpanel_4.removeAll();
+				 staticpanel_4.add(chartPanel, BorderLayout.CENTER);
+				 staticpanel_4.validate();
+				 
+				/* ChartFrame frame1 = new ChartFrame("Statistics", chart);
+	
+				frame1.setVisible(true);
+				frame1.setSize(500, 700);*/
+			
+			}
+		});
+		btnGraphButton.setBounds(79, 161, 105, 31);
+		staticpanel_3.add(btnGraphButton);
+		
+		JPanel staticpanel_5 = new JPanel();
+		staticpanel_5.setBackground(new Color(128, 128, 128));
+		staticpanel_5.setBounds(539, 224, 268, 259);
+		staticpanel_3.add(staticpanel_5);
+		staticpanel_5.setLayout(null);
+		
+		JLabel staticlblNewLabel_5 = new JLabel("What is New?");
+		staticlblNewLabel_5.setForeground(new Color(255, 255, 255));
+		staticlblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 14));
+		staticlblNewLabel_5.setBounds(10, 21, 99, 13);
+		staticpanel_5.add(staticlblNewLabel_5);
+		
+		JLabel staticlblNewLabel_6 = new JLabel("Lecturer");
+		staticlblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 12));
+		staticlblNewLabel_6.setBounds(35, 73, 65, 13);
+		staticpanel_5.add(staticlblNewLabel_6);
+		
+		JLabel staticlblNewLabel_7 = new JLabel("Subject");
+		staticlblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 12));
+		staticlblNewLabel_7.setBounds(35, 124, 65, 13);
+		staticpanel_5.add(staticlblNewLabel_7);
+		
+		JLabel staticlblNewLabel_8 = new JLabel("Group");
+		staticlblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 12));
+		staticlblNewLabel_8.setBounds(35, 179, 45, 13);
+		staticpanel_5.add(staticlblNewLabel_8);
+		
+		statictextField_4 = new JTextField();
+		statictextField_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		statictextField_4.setBounds(110, 70, 132, 19);
+		statictextField_4.setEditable(false);
+		staticpanel_5.add(statictextField_4);
+		statictextField_4.setColumns(10);
+		
+		statictextField_5 = new JTextField();
+		statictextField_5.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		statictextField_5.setBounds(110, 121, 132, 19);
+		statictextField_5.setEditable(false);
+		staticpanel_5.add(statictextField_5);
+		statictextField_5.setColumns(10);
+		
+		statictextField_6 = new JTextField();
+		statictextField_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		statictextField_6.setBounds(110, 176, 132, 19);
+		statictextField_6.setEditable(false);
+		staticpanel_5.add(statictextField_6);
+		statictextField_6.setColumns(10);
+		
+		
+		
+		setData();
+		setLatestData();
 	}
 }
