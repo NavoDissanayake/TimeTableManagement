@@ -572,6 +572,15 @@ public class Add_Lecturer {
 
 		JCheckBox checkBox_4 = new JCheckBox("Monday");
 		checkBox_4.setBounds(787, 39, 101, 23);
+		
+		
+		JCheckBox chckbxSaturday = new JCheckBox("Saturday");
+		chckbxSaturday.setBounds(898, 38, 101, 23);
+		panel_4.add(chckbxSaturday);
+		
+		JCheckBox chckbxSunday = new JCheckBox("Sunday");
+		chckbxSunday.setBounds(898, 63, 101, 23);
+		panel_4.add(chckbxSunday);
 
 		//Add lecturer
 		JButton button_1 = new JButton("ADD");
@@ -586,6 +595,8 @@ public class Add_Lecturer {
 				String wednesday="- ";
 				String thursday="- ";
 				String friday=" -";
+				String saturday=" -";
+				String sunday=" -";
 				String rank = RankTxt.getText();
 				String name= EmpNameTxt.getText();
 				String faculty= Fac.getSelectedItem().toString();
@@ -601,6 +612,8 @@ public class Add_Lecturer {
 				if(checkBox.isSelected()) { wednesday="Wednesday"; }
 				if(checkBox_1.isSelected()) { thursday="Thursday"; }
 				if(checkBox_2.isSelected()) { friday="Friday"; }
+				if(chckbxSaturday.isSelected()) { saturday="Saturday"; }
+				if(chckbxSunday.isSelected()) { sunday="Sunday"; }
 
 
 
@@ -616,7 +629,7 @@ public class Add_Lecturer {
 
 						Connection con = DbConnection.connect();
 
-						String query = "INSERT INTO lecturers values(null, '" + name + "','" + Empid + "','" + faculty + "', '" + dept + "', '" + campus + "', '" + building + "','"+lvl+"','"+rank+"','"+hr+"','"+min+"','"+monday+"' , '"+tuesday+"','"+wednesday+"','"+thursday+"','"+friday+"')";
+						String query = "INSERT INTO lecturers values(null, '" + name + "','" + Empid + "','" + faculty + "', '" + dept + "', '" + campus + "', '" + building + "','"+lvl+"','"+rank+"','"+hr+"','"+min+"','"+monday+"' , '"+tuesday+"','"+wednesday+"','"+thursday+"','"+friday+"','"+saturday+"','"+sunday+"')";
 
 						Statement sta = con.createStatement();
 						int x = sta.executeUpdate(query);
@@ -667,6 +680,8 @@ public class Add_Lecturer {
 
 
 		panel_4.add(checkBox_4);
+		
+		
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setLayout(null);
@@ -731,6 +746,8 @@ public class Add_Lecturer {
 				checkBox_2.setSelected(false);
 				checkBox_3.setSelected(false);
 				checkBox_4.setSelected(false);
+				chckbxSaturday.setSelected(false);
+                chckbxSunday.setSelected(false);
 
 
 			}

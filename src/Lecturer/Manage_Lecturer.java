@@ -58,7 +58,7 @@ import java.awt.event.MouseEvent;
 
 public class Manage_Lecturer {
 
-	public String Mon ,Tu ,We,Th,Fr;
+	public String Mon ,Tu ,We,Th,Fr,Sat,Sun;
 
 	private JFrame ManageLecfrm;
 	private Image home_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/home.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
@@ -87,7 +87,7 @@ public class Manage_Lecturer {
 
 			Connection con = DbConnection.connect();
 
-			String query="select lid  , lectureName As LecturerName, empID As EmpID , level As Level ,rank As Rank ,faculty As Faculty , department As Department ,centre As Campus , building As Building , Active_hours As Hr,Active_mints As Min,Monday,Tuesday,Wednesday,Thursday,Friday from lecturers ";
+			String query="select lid  , lectureName As LecturerName, empID As EmpID , level As Level ,rank As Rank ,faculty As Faculty , department As Department ,centre As Campus , building As Building , Active_hours As Hr,Active_mints As Min,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday from lecturers ";
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -396,7 +396,7 @@ public class Manage_Lecturer {
 		try {
 			Connection con = DbConnection.connect();
 
-			String query="select lid  , lectureName As LecName, empID As EmpID , level As Level ,rank As Rank ,faculty As Faculty , department As Dept ,centre As Campus , building As Building , Active_hours As Hr,Active_mints As Min,Monday,Tuesday,Wednesday,Thursday,Friday from lecturers ";
+			String query="select lid  , lectureName As LecName, empID As EmpID , level As Level ,rank As Rank ,faculty As Faculty , department As Dept ,centre As Campus , building As Building , Active_hours As Hr,Active_mints As Min,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday from lecturers ";
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -588,6 +588,14 @@ public class Manage_Lecturer {
 		LecidTxt.setBounds(22, 11, -2, -6);
 		panel_3.add(LecidTxt);
 		LecidTxt.setColumns(10);
+		
+		JCheckBox checkBox_5 = new JCheckBox("Saturday");
+		checkBox_5.setBounds(948, 19, 101, 23);
+		panel_3.add(checkBox_5);
+		
+		JCheckBox checkBox_6 = new JCheckBox("Sunday");
+		checkBox_6.setBounds(948, 44, 101, 23);
+		panel_3.add(checkBox_6);
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.LIGHT_GRAY));
@@ -833,6 +841,24 @@ public class Manage_Lecturer {
 					Fr = " - ";
 
 				}
+				if(checkBox_5.isSelected())
+				{
+					Sat = checkBox_5.getText().toString();
+				}else  {
+
+					Sat = " - ";
+
+				}
+				if(checkBox_6.isSelected())
+				{
+					Sun = checkBox_6.getText().toString();
+				}else  {
+
+					Sun= " - ";
+
+				}
+
+				
 
 
 
@@ -842,7 +868,7 @@ public class Manage_Lecturer {
 
 					Connection con = DbConnection.connect(); 
 
-					String query="Update lecturers set lectureName='"+textField_2.getText()+"',empID='"+ textField.getText()+"',faculty='"+comboBox_1.getSelectedItem().toString()+ "',department='"+comboBox_2.getSelectedItem().toString()+"',centre='"+comboBox_3.getSelectedItem().toString()+"',building='"+comboBox_4.getSelectedItem().toString()+"', level ='"+comboBox.getSelectedItem().toString()+"', rank='"+textField_1.getText()+"',Active_hours = '"+spinner.getValue()+"', Active_mints = '"+spinner_1.getValue()+"', Monday = '"+Mon+"' , Tuesday = '"+Tu+"' , Wednesday = '"+We+"' , Thursday = '"+Th+"' , Friday = '"+ Fr+"' where lid='"+LecidTxt.getText()+"'";
+					String query="Update lecturers set lectureName='"+textField_2.getText()+"',empID='"+ textField.getText()+"',faculty='"+comboBox_1.getSelectedItem().toString()+ "',department='"+comboBox_2.getSelectedItem().toString()+"',centre='"+comboBox_3.getSelectedItem().toString()+"',building='"+comboBox_4.getSelectedItem().toString()+"', level ='"+comboBox.getSelectedItem().toString()+"', rank='"+textField_1.getText()+"',Active_hours = '"+spinner.getValue()+"', Active_mints = '"+spinner_1.getValue()+"', Monday = '"+Mon+"' , Tuesday = '"+Tu+"' , Wednesday = '"+We+"' , Thursday = '"+Th+"' , Friday = '"+ Fr+"',Saturday = '"+Sat+"',Sunday = '"+Sun+"' where lid='"+LecidTxt.getText()+"'";
 
 					PreparedStatement pst=con.prepareStatement(query);
 
@@ -911,6 +937,8 @@ public class Manage_Lecturer {
 				checkBox_2.setSelected(false);
 				checkBox_3.setSelected(false);
 				checkBox_4.setSelected(false);
+				checkBox_5.setSelected(false);
+				checkBox_6.setSelected(false);
 			}
 		});
 
