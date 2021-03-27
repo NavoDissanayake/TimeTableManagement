@@ -463,6 +463,18 @@ public class Consecutive_sessions {
 		JButton btnNewButton_2_1_3 = new JButton("Not Available Times");
 		btnNewButton_2_1_3.setBounds(813, 0, 268, 37);
 		panel_6.add(btnNewButton_2_1_3);
+		btnNewButton_2_1_3.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				NotAvailableTime m_stgroup = new NotAvailableTime ();
+				m_stgroup.main(null);
+				frmAddStudentGroup.dispose();
+				
+			}
+		});
+		
+		
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setForeground(new Color(32, 178, 170));

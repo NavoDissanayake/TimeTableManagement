@@ -273,7 +273,7 @@ public class NotAvailableLocation {
 		panel_6.add(lblNewLabel_1);
 		
 		JButton btnNewButton_2 = new JButton("Add Working Days");
-		btnNewButton_2.setBounds(0, 2, 258, 37);
+		btnNewButton_2.setBounds(0, 2, 362, 37);
 		panel_3.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			
@@ -288,7 +288,7 @@ public class NotAvailableLocation {
 		
 		
 		JButton btnNewButton_2_1 = new JButton("Manage Working Days");
-		btnNewButton_2_1.setBounds(255, 2, 258, 37);
+		btnNewButton_2_1.setBounds(361, 2, 362, 37);
 		panel_3.add(btnNewButton_2_1);
 	btnNewButton_2_1.addActionListener(new ActionListener() {
 			
@@ -410,25 +410,11 @@ public class NotAvailableLocation {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JButton button = new JButton("Not available time");
-		button.setBounds(511, 2, 258, 37);
-		panel_3.add(button);
-	button.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				NotAvailableTime m_stgroup = new NotAvailableTime ();
-				m_stgroup.main(null);
-				frame.dispose();
-				
-			}
-		});
-		
-		
+
 		
 		
 		JButton btnNotAvailableLocation = new JButton("Not Available Location");
-		btnNotAvailableLocation.setBounds(766, 2, 258, 37);
+		btnNotAvailableLocation.setBounds(721, 2, 350, 37);
 		panel_3.add(btnNotAvailableLocation);
 		
 	btnNotAvailableLocation.addActionListener(new ActionListener() {

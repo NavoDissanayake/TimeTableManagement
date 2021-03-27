@@ -283,15 +283,14 @@ public class AddWorkingdays {
 		panel_3.add(panel_6);
 		
 		
-		JLabel lblNewLabel_1 = new JLabel("Add Working Days And Hours");
-		lblNewLabel_1.setForeground(new Color(0, 128, 128));
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblNewLabel_1.setBounds(406, 13, 436, 31);
-		panel_6.add(lblNewLabel_1);
+		JLabel lblNewLabel_11 = new JLabel("Not Available Location Manage");
+		lblNewLabel_11.setForeground(new Color(0, 128, 128));
+		lblNewLabel_11.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblNewLabel_11.setBounds(406, 13, 436, 31);
+		panel_6.add(lblNewLabel_11);
 		
-		//add working days button
 		JButton btnNewButton_2 = new JButton("Add Working Days");
-		btnNewButton_2.setBounds(0, 2, 258, 37);
+		btnNewButton_2.setBounds(0, 2, 362, 37);
 		panel_3.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			
@@ -304,9 +303,9 @@ public class AddWorkingdays {
 			}
 		});
 		
-		//manage working days button
+		
 		JButton btnNewButton_2_1 = new JButton("Manage Working Days");
-		btnNewButton_2_1.setBounds(255, 2, 258, 37);
+		btnNewButton_2_1.setBounds(361, 2, 362, 37);
 		panel_3.add(btnNewButton_2_1);
 	btnNewButton_2_1.addActionListener(new ActionListener() {
 			
@@ -581,27 +580,11 @@ public class AddWorkingdays {
 		panel_3.add(separator);
 		
 
-		
-		
-		//not available time button
-		JButton button = new JButton("Not available time");
-		button.setBounds(511, 2, 258, 37);
-		panel_3.add(button);
-		
-	button.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				NotAvailableTime m_stgroup = new NotAvailableTime ();
-				m_stgroup.main(null);
-				frame.dispose();
-				
-			}
-		});
+
 		
 	//not available Location button
 		JButton button_1 = new JButton("Not Available Location");
-		button_1.setBounds(766, 2, 258, 37);
+		button_1.setBounds(723, 2, 348, 37);
 		panel_3.add(button_1);
 		
 		JButton btnRefresh = new JButton("REFRESH");
