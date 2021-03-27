@@ -538,7 +538,7 @@ public void refreshtable() {
 		
 		
 		JButton button_1 = new JButton("Not Avaiilable Location");
-		button_1.setBounds(724, 2, 347, 37);
+		button_1.setBounds(722, 2, 349, 37);
 		panel_3.add(button_1);
 		button_1.addActionListener(new ActionListener() {
 			
