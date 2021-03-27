@@ -427,7 +427,8 @@ public void refreshtable() {
 				
 				try {
 					Connection con = DbConnection.connect();					
-					String query="Update WorkingDays set NoOfDays='"+spinner_2.getValue()+"',monday='"+chckbxNewCheckBox.isSelected()+"',tuesday='"+chckbxTeusday.isSelected()+"',wednesday='"+chckbxWednesday.isSelected()+"',thursday='"+chckbxThursday.isSelected()+"',friday='"+chckbxFriday.isSelected()+"'"
+					String query="Update WorkingDays set NoOfDays='"+spinner_2.getValue()+"',monday='"+chckbxNewCheckBox.getText()+"',tuesday='"+chckbxTeusday.getText()+"',wednesday='"+chckbxWednesday.getText()+"',thursday='"+chckbxThursday.getText()+"',friday='"+chckbxFriday.getText()+
+							"',hours='"+ spinner.getValue()+"',minutes='"+spinner_1.getValue()+"' "
 							+ " where WID='"+id.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.executeUpdate();
