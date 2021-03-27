@@ -65,6 +65,7 @@ public class Non_overlappingSessions {
 	
 	
 	private JFrame frmAddStudentGroup;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -368,38 +369,49 @@ public class Non_overlappingSessions {
 		
 		JPanel panel_7 = new JPanel();
 		panel_7.setLayout(null);
-		panel_7.setBounds(88, 110, 350, 371);
+		panel_7.setBounds(88, 110, 928, 456);
 		panel_6.add(panel_7);
 		
 		JLabel lblNewLabel_4 = new JLabel("Session 1");
-		lblNewLabel_4.setBounds(24, 77, 80, 21);
+		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel_4.setBounds(52, 29, 80, 21);
 		panel_7.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("Session 2");
-		lblNewLabel_5.setBounds(24, 144, 96, 16);
-		panel_7.add(lblNewLabel_5);
-		
 		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(150, 76, 164, 22);
+		comboBox_4.setBounds(156, 29, 723, 33);
 		panel_7.add(comboBox_4);
 		
-		JComboBox comboBox_5 = new JComboBox();
-		comboBox_5.setBounds(150, 141, 164, 21);
-		panel_7.add(comboBox_5);
-		
 		JButton btnNewButton_2 = new JButton("ADD");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton_2.setBackground(new Color(0, 139, 139));
-		btnNewButton_2.setBounds(147, 202, 167, 40);
+		btnNewButton_2.setBounds(520, 122, 167, 40);
 		panel_7.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("CLEAR");
 		btnNewButton_3.setForeground(Color.WHITE);
 		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton_3.setBackground(new Color(0, 139, 139));
-		btnNewButton_3.setBounds(150, 262, 164, 40);
+		btnNewButton_3.setBounds(715, 122, 164, 40);
 		panel_7.add(btnNewButton_3);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(52, 244, 827, 151);
+		panel_7.add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"SessionID", "SessionSignature"
+			}
+		));
+		scrollPane.setViewportView(table);
 		
 		JPanel panel_6_1_1 = new JPanel();
 		panel_6_1_1.setLayout(null);
@@ -424,7 +436,7 @@ public class Non_overlappingSessions {
 		btnNewButton_2_1_2.setBounds(540, 0, 275, 37);
 		panel_6.add(btnNewButton_2_1_2);
 		
-		JButton btnNewButton_2_1_3 = new JButton("");
+		JButton btnNewButton_2_1_3 = new JButton("Not Available Times");
 		btnNewButton_2_1_3.setBounds(813, 0, 268, 37);
 		panel_6.add(btnNewButton_2_1_3);
 		

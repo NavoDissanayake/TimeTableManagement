@@ -492,6 +492,8 @@ public class Manage_studentGroup {
 		
 
 		id = new JTextField();
+		id.setBackground(SystemColor.menu);
+		id.setForeground(SystemColor.menu);
 		id.setEnabled(false);
 		id.setBounds(146, 13, 161, 22);
 		panel_4.add(id);

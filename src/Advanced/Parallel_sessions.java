@@ -65,6 +65,7 @@ public class Parallel_sessions {
 	
 	
 	private JFrame frmAddStudentGroup;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -366,41 +367,6 @@ public class Parallel_sessions {
 		panel_6.setBounds(263, 62, 1081, 599);
 		frmAddStudentGroup.getContentPane().add(panel_6);
 		
-		JPanel panel_7 = new JPanel();
-		panel_7.setLayout(null);
-		panel_7.setBounds(88, 110, 350, 371);
-		panel_6.add(panel_7);
-		
-		JLabel lblNewLabel_4 = new JLabel("Session 1");
-		lblNewLabel_4.setBounds(24, 77, 80, 21);
-		panel_7.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("Session 2");
-		lblNewLabel_5.setBounds(24, 144, 96, 16);
-		panel_7.add(lblNewLabel_5);
-		
-		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(150, 76, 164, 22);
-		panel_7.add(comboBox_4);
-		
-		JComboBox comboBox_5 = new JComboBox();
-		comboBox_5.setBounds(150, 141, 164, 21);
-		panel_7.add(comboBox_5);
-		
-		JButton btnNewButton_2 = new JButton("ADD");
-		btnNewButton_2.setForeground(Color.WHITE);
-		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnNewButton_2.setBackground(new Color(0, 139, 139));
-		btnNewButton_2.setBounds(147, 202, 167, 40);
-		panel_7.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("CLEAR");
-		btnNewButton_3.setForeground(Color.WHITE);
-		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnNewButton_3.setBackground(new Color(0, 139, 139));
-		btnNewButton_3.setBounds(150, 262, 164, 40);
-		panel_7.add(btnNewButton_3);
-		
 		JPanel panel_6_1_1 = new JPanel();
 		panel_6_1_1.setLayout(null);
 		panel_6_1_1.setBounds(0, 40, 1081, 38);
@@ -430,8 +396,70 @@ public class Parallel_sessions {
 		btnNewButton_2_1_2.setBounds(540, 0, 275, 37);
 		panel_6.add(btnNewButton_2_1_2);
 		
-		JButton btnNewButton_2_1_3 = new JButton("");
+		JButton btnNewButton_2_1_3 = new JButton("Not Available Times");
 		btnNewButton_2_1_3.setBounds(813, 0, 268, 37);
 		panel_6.add(btnNewButton_2_1_3);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setLayout(null);
+		panel_7.setBounds(61, 107, 960, 460);
+		panel_6.add(panel_7);
+		
+		JLabel lblNewLabel_4 = new JLabel("Session 2");
+		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel_4.setBounds(44, 76, 80, 21);
+		panel_7.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("Session 3");
+		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel_5.setBounds(44, 142, 96, 16);
+		panel_7.add(lblNewLabel_5);
+		
+		JComboBox comboBox_4 = new JComboBox();
+		comboBox_4.setBounds(150, 76, 764, 32);
+		panel_7.add(comboBox_4);
+		
+		JComboBox comboBox_5 = new JComboBox();
+		comboBox_5.setBounds(150, 142, 764, 32);
+		panel_7.add(comboBox_5);
+		
+		JButton btnNewButton_2 = new JButton("ADD ");
+		btnNewButton_2.setForeground(Color.WHITE);
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnNewButton_2.setBackground(new Color(0, 139, 139));
+		btnNewButton_2.setBounds(571, 203, 164, 40);
+		panel_7.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("CLEAR");
+		btnNewButton_3.setForeground(Color.WHITE);
+		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnNewButton_3.setBackground(new Color(0, 139, 139));
+		btnNewButton_3.setBounds(759, 203, 155, 40);
+		panel_7.add(btnNewButton_3);
+		
+		JComboBox comboBox_4_1 = new JComboBox();
+		comboBox_4_1.setBounds(150, 13, 764, 32);
+		panel_7.add(comboBox_4_1);
+		
+		JLabel lblNewLabel_4_1 = new JLabel("Session 1");
+		lblNewLabel_4_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel_4_1.setBounds(44, 13, 80, 21);
+		panel_7.add(lblNewLabel_4_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(44, 270, 869, 177);
+		panel_7.add(scrollPane);
+		
+		table = new JTable();
+		table.setBorder(new LineBorder(Color.GRAY, 2));
+		table.setBackground(Color.WHITE);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"SessionID", "SessionSignature"
+			}
+		));
+		scrollPane.setViewportView(table);
 	}
 }
