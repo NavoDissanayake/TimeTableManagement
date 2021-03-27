@@ -1,4 +1,4 @@
-package WorkingDays;
+package Advanced;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -25,6 +25,10 @@ import javax.swing.border.TitledBorder;
 
 import Lecturer.Add_Lecturer;
 import Student.Manage_studentGroup;
+import WorkingDays.AddWorkingdays;
+import WorkingDays.ManageWorkingDays;
+import WorkingDays.NotAvailableLocation;
+
 import javax.swing.JRadioButton;
 
 public class NotAvailableTime {
@@ -81,7 +85,7 @@ public class NotAvailableTime {
 		frame.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		frame.setBackground(Color.YELLOW);
 		frame.setResizable(false);
-		frame.setTitle("Working Days & Hours");
+		frame.setTitle("Advanced");
 		frame.setSize(1350, 728);
 		frame.setBounds(0, 0, 1350, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,7 +98,7 @@ public class NotAvailableTime {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_10 = new JLabel("Working Days And Hours");
+		JLabel lblNewLabel_10 = new JLabel("Advanced");
 		lblNewLabel_10.setForeground(Color.WHITE);
 		lblNewLabel_10.setFont(new Font("Times New Roman", Font.BOLD, 27));
 		lblNewLabel_10.setBackground(Color.WHITE);
@@ -260,43 +264,41 @@ public class NotAvailableTime {
 		
 		JPanel panel_6 = new JPanel();
 		panel_6.setLayout(null);
-		panel_6.setBounds(10, 50, 1082, 49);
+		panel_6.setBounds(-11, 0, 1082, 49);
 		panel_3.add(panel_6);
 		
-		JLabel lblNewLabel_1 = new JLabel("Not Available Time Manage");
-		lblNewLabel_1.setForeground(new Color(0, 128, 128));
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblNewLabel_1.setBounds(406, 13, 436, 31);
-		panel_6.add(lblNewLabel_1);
+		JButton btnNewButton_2_1 = new JButton("Conseccutive Sessions");
+		btnNewButton_2_1.setBounds(0, 11, 268, 37);
+		panel_6.add(btnNewButton_2_1);
 		
-		JButton btnNewButton_2 = new JButton("Add Working Days");
-		btnNewButton_2.setBounds(0, 2, 258, 37);
-		panel_3.add(btnNewButton_2);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btnNewButton_2_1_1 = new JButton("Parallel Sessions");
+		btnNewButton_2_1_1.setBounds(267, 11, 275, 37);
+		panel_6.add(btnNewButton_2_1_1);
+		
+		
+		
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Not Available Time");
+		JButton button = new JButton("Not available time");
+		button.setBounds(819, 11, 263, 37);
+		panel_6.add(button);	
+		button.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				AddWorkingdays m_stgroup = new AddWorkingdays ();
+				NotAvailableTime m_stgroup = new NotAvailableTime ();
 				m_stgroup.main(null);
 				frame.dispose();
 				
 			}
 		});
-		
-		
-		JButton btnNewButton_2_1 = new JButton("Manage Working Days");
-		btnNewButton_2_1.setBounds(255, 2, 258, 37);
-		panel_3.add(btnNewButton_2_1);
-	btnNewButton_2_1.addActionListener(new ActionListener() {
 			
-			public void actionPerformed(ActionEvent e) {
-				
-				ManageWorkingDays m_stgroup = new ManageWorkingDays ();
-				m_stgroup.main(null);
-				frame.dispose();
-				
-			}
-		});
+		
+		JButton btnNewButton_2_1_2 = new JButton("Non Overlapping Sessions");
+		btnNewButton_2_1_2.setBounds(543, 11, 275, 37);
+		panel_6.add(btnNewButton_2_1_2);
+
+
 		
 		
 		JPanel panel_4 = new JPanel();
@@ -425,37 +427,7 @@ public class NotAvailableTime {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JButton button = new JButton("Not available time");
-		button.setBounds(511, 2, 258, 37);
-		panel_3.add(button);	
-		button.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				NotAvailableTime m_stgroup = new NotAvailableTime ();
-				m_stgroup.main(null);
-				frame.dispose();
-				
-			}
-		});
-		
-		
-		
-		
-		JButton button_1 = new JButton("Not Available Location");
-		button_1.setBounds(766, 2, 258, 37);
-		panel_3.add(button_1);
-		
-	button_1.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				NotAvailableLocation m_stgroup = new NotAvailableLocation ();
-				m_stgroup.main(null);
-				frame.dispose();
-				
-			}
-		});
+
 		
 		JButton btnEdit = new JButton("EDIT");
 		btnEdit.setForeground(Color.WHITE);
@@ -472,5 +444,11 @@ public class NotAvailableTime {
 		btnUpdate.setBackground(new Color(0, 153, 153));
 		btnUpdate.setBounds(290, 567, 141, 31);
 		panel_3.add(btnUpdate);
+		
+		JLabel label = new JLabel("Not Available Time");
+		label.setForeground(new Color(0, 128, 128));
+		label.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		label.setBounds(452, 60, 270, 31);
+		panel_3.add(label);
 	}
 }
