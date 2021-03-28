@@ -417,6 +417,7 @@ public class Manage_Lecturer {
 		panel_2.add(panel_3);
 
 		textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.LEFT);
 		textField.setColumns(10);
 		textField.setBounds(127, 19, 152, 23);
 		panel_3.add(textField);
@@ -437,6 +438,7 @@ public class Manage_Lecturer {
 		panel_3.add(label_1);
 
 		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_1.setForeground(SystemColor.controlDkShadow);
 		textField_1.setColumns(10);
@@ -680,7 +682,7 @@ public class Manage_Lecturer {
 				String regex = "[0-9]+";
 				if( textField.getText().length() != 6 || !(textField.getText().matches(regex)) || (textField.getText().contains(" ")) )
 				{
-					JOptionPane.showMessageDialog(null, "Invalid Employee ID","Alert",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "       Invalid Employee ID","Alert",JOptionPane.WARNING_MESSAGE);
 
 				}
 
@@ -771,6 +773,24 @@ public class Manage_Lecturer {
 									checkBox_4.setSelected(true); }
 								else { checkBox_4.setSelected(false); }
 
+								
+                                //newly added
+								
+								String checkDay6 = table.getValueAt(i, 16).toString();
+								if(checkDay6.equals("Saturday")) {
+
+									checkBox_5.setSelected(true); }
+								else { checkBox_5.setSelected(false); }
+								
+								
+								
+								
+
+								String checkDay7 = table.getValueAt(i, 17).toString();
+								if(checkDay7.equals("Sunday")) {
+
+									checkBox_6.setSelected(true); }
+								else { checkBox_6.setSelected(false); }
 
 
 								spinner.setValue((Integer)table.getValueAt(i,9));
@@ -905,7 +925,7 @@ public class Manage_Lecturer {
 					PreparedStatement pst=con.prepareStatement(query); 
 					pst.execute();
 
-					JOptionPane.showMessageDialog(null, "Data Deleted","Alert",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "       Data Deleted Successfully","Alert",JOptionPane.WARNING_MESSAGE);
 					pst.close();
 					refreshtable();
 					//table.revalidate();

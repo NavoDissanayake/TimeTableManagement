@@ -671,7 +671,11 @@ public class Manage_Subject {
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.execute();
 					refreshtable();
-					JOptionPane.showMessageDialog(null, "Data Deleted","Alert",JOptionPane.WARNING_MESSAGE);
+					
+					//JOptionPane.showMessageDialog(null, "","Alert",JOptionPane.WARNING_MESSAGE);
+					JLabel label9 = new JLabel("Data Deleted Successfully");
+					label9.setHorizontalAlignment(SwingConstants.CENTER);
+					JOptionPane.showMessageDialog(null, label9);
 					pst.close();
 					//table.revalidate();
 

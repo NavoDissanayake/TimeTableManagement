@@ -60,6 +60,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.SpinnerListModel;
 
 public class Add_Lecturer {
 
@@ -384,7 +385,7 @@ public class Add_Lecturer {
 
 		RankTxt = new JTextField();
 		RankTxt.setHorizontalAlignment(SwingConstants.CENTER);
-		RankTxt.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		RankTxt.setFont(new Font("Tahoma", Font.BOLD, 12));
 		RankTxt.setForeground(SystemColor.controlDkShadow);
 		RankTxt.setColumns(10);
 		RankTxt.setBounds(824, 19, 191, 23);
@@ -445,7 +446,7 @@ public class Add_Lecturer {
 					String regex = "[0-9]+";
 					if( EmpidTxt.getText().length() != 6 || !(EmpidTxt.getText().matches(regex)) || (EmpidTxt.getText().contains(" ")) )
 					{
-						JOptionPane.showMessageDialog(null, "Invalid Employee ID","Alert",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "       Invalid Employee ID","Alert",JOptionPane.WARNING_MESSAGE);
 
 					}
 
@@ -536,20 +537,26 @@ public class Add_Lecturer {
 		panel_4.add(label_9);
 
 		JSpinner hourAdd = new JSpinner();
+		hourAdd.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(0)));
+		hourAdd.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		hourAdd.setBounds(787, 210, 73, 22);
 		panel_4.add(hourAdd);
 
 		JLabel label_10 = new JLabel("hrs");
+		label_10.setHorizontalAlignment(SwingConstants.CENTER);
 		label_10.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_10.setBounds(866, 208, 33, 23);
+		label_10.setBounds(858, 208, 41, 23);
 		panel_4.add(label_10);
 
 		JLabel label_11 = new JLabel("mins");
+		label_11.setHorizontalAlignment(SwingConstants.CENTER);
 		label_11.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_11.setBounds(971, 208, 33, 23);
 		panel_4.add(label_11);
 
 		JSpinner minsAdd = new JSpinner();
+		minsAdd.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(0)));
+		minsAdd.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		minsAdd.setBounds(898, 209, 73, 22);
 		panel_4.add(minsAdd);
 
@@ -618,15 +625,28 @@ public class Add_Lecturer {
 
 
 				if(RankTxt.getText().equals("")) {
-					JLabel label3 = new JLabel("Please Generate Rank First!");
-					label3.setHorizontalAlignment(SwingConstants.CENTER);
-					JOptionPane.showMessageDialog(null, label3);
+					/*
+					 * JLabel label3 = new JLabel("Please Generate Rank First!");
+					 * label3.setHorizontalAlignment(SwingConstants.CENTER);
+					 * JOptionPane.showMessageDialog(null, label3);
+					 */
+					
+					
+					JOptionPane.showMessageDialog(null, "Please Generate Rank First!","Alert",JOptionPane.WARNING_MESSAGE);
+
+					
+					
+					
 
 
 				}else {
 
 					try {
 
+						if(EmpNameTxt.getText().equals("") || Fac.getSelectedItem().equals("") || Dept.getSelectedItem().equals("") || Campus.getSelectedItem().equals("") || build.getSelectedItem().equals("") || hourAdd.getValue().equals("0")) {
+							JOptionPane.showMessageDialog(null, "       Please Enter Values","Alert",JOptionPane.WARNING_MESSAGE);
+
+						}else {
 						Connection con = DbConnection.connect();
 
 						String query = "INSERT INTO lecturers values(null, '" + name + "','" + Empid + "','" + faculty + "', '" + dept + "', '" + campus + "', '" + building + "','"+lvl+"','"+rank+"','"+hr+"','"+min+"','"+monday+"' , '"+tuesday+"','"+wednesday+"','"+thursday+"','"+friday+"','"+saturday+"','"+sunday+"')";
@@ -653,8 +673,8 @@ public class Add_Lecturer {
 
 						}
 						con.close();
-					} catch (Exception exception) {
-						System.out.println("Error!!");
+					}} catch (Exception exception) {
+						System.out.println("Failed!!");
 
 					}
 

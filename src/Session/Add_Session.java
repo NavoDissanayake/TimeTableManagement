@@ -99,6 +99,8 @@ public class Add_Session {
 		AddsessFrm.setBounds(0, 0, 1350, 700);
 		AddsessFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		AddsessFrm.getContentPane().setLayout(null);
+		AddsessFrm.setLocationRelativeTo(null);
+		AddsessFrm.setVisible(true);
 
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1344, 65);
@@ -155,9 +157,9 @@ public class Add_Session {
 		button_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Add_Lecturer add_Lecturer  = new Add_Lecturer();
-				add_Lecturer.main(null);
+				
 				AddsessFrm.dispose();
+				new Add_Lecturer();
 			}
 		});
 		button_7.setForeground(Color.WHITE);
@@ -189,9 +191,9 @@ public class Add_Session {
 		btnSubjects.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Add_Subjects add_Subjects = new Add_Subjects();
-				add_Subjects.main(null);
+			
 				AddsessFrm.dispose();
+				new Add_Subjects();
 			}
 		});
 		btnSubjects.setForeground(Color.WHITE);
@@ -201,6 +203,13 @@ public class Add_Session {
 		panel_1.add(btnSubjects);
 
 		JButton btnSessions = new JButton("Sessions");
+		btnSessions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				AddsessFrm.dispose();
+				new Add_Session();
+			}
+		});
 		btnSessions.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSessions.setIcon(new ImageIcon(session_logo));
 		btnSessions.setForeground(Color.WHITE);
