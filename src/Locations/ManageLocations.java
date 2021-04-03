@@ -75,8 +75,27 @@ public class ManageLocations {
 	private JComboBox type;
 	private JTable table;
 	private JTable table_1;
-	private JTable table_2;
 	private JTextField locationId;
+	private JTable table_2;
+	
+	
+	public void refreshTable() {
+		
+		try {
+			Connection con = DbConnection.connect();
+			
+			String query="select * from location ";
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			table_2.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -108,7 +127,7 @@ public class ManageLocations {
 		frmMangeLocationsGroup.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		frmMangeLocationsGroup.setBackground(Color.YELLOW);
 		frmMangeLocationsGroup.setResizable(false);
-		frmMangeLocationsGroup.setTitle("Add Student Group");
+		frmMangeLocationsGroup.setTitle("Locations");
 		frmMangeLocationsGroup.setSize(1350, 728);
 		frmMangeLocationsGroup.setBounds(0,0, 1350, 700);
 		frmMangeLocationsGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -363,13 +382,13 @@ public class ManageLocations {
 		
 		JPanel lpanel_2 = new JPanel();
 		lpanel_2.setBackground(new Color(230, 230, 250));
-		lpanel_2.setBounds(262, 115, 1082, 556);
+		lpanel_2.setBounds(262, 108, 1082, 556);
 		frmMangeLocationsGroup.getContentPane().add(lpanel_2);
 		lpanel_2.setLayout(null);
 		
 		
 		JPanel lpanel_3 = new JPanel();
-		lpanel_3.setBounds(115, 59, 882, 464);
+		lpanel_3.setBounds(105, 82, 882, 448);
 		lpanel_2.add(lpanel_3);
 		lpanel_3.setLayout(null);
 		
@@ -417,6 +436,7 @@ public class ManageLocations {
 	    					JOptionPane.showMessageDialog(null, label);
 	    					
     					}
+						refreshTable();
     					con.close();
 					
 				}catch(Exception exception) {
@@ -449,6 +469,7 @@ public class ManageLocations {
 					label.setHorizontalAlignment(SwingConstants.CENTER);
 					JOptionPane.showMessageDialog(null, label);
 					//JOptionPane.showMessageDialog(null, "Data Updated");
+					refreshTable();
 					pst.close();
 					
 				}
@@ -481,6 +502,7 @@ public class ManageLocations {
 					JOptionPane.showMessageDialog(null, label);
 					
 					//JOptionPane.showMessageDialog(null, "Data Deleted");
+					refreshTable();
 					pst.close();
 					
 					}
@@ -542,16 +564,59 @@ public class ManageLocations {
 		type.setBounds(139, 195, 161, 23);
 		lpanel_3.add(type);
 		lpanel_3.add(type);
+		//retrive table
+		try {
+			Connection con = DbConnection.connect();
+			
+			String query="select * from location ";
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		//search
+		JComboBox searchcomboBox = new JComboBox();
+		searchcomboBox.setForeground(new Color(255, 255, 255));
+		searchcomboBox.setFont(new Font("Tahoma", Font.BOLD, 12));
+		searchcomboBox.setBackground(new Color(119, 136, 153));
+		searchcomboBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 try {
+					 Connection con = DbConnection.connect();
+					// String selection=(String)searchcomboBox.getSelectedItem();
+					 String query="select * from location where buildingName=?";
+					 PreparedStatement pst= con.prepareStatement(query);
+					 pst.setString(1,(String)searchcomboBox.getSelectedItem());
+					 ResultSet rs=pst.executeQuery();
+
+					 table_2.setModel(DbUtils.resultSetToTableModel(rs));
+					
+					 pst.close();
+					 
+				 }catch(Exception ep) {
+					 ep.printStackTrace();
+				 }
+			}
+			
+		});
+		searchcomboBox.setModel(new DefaultComboBoxModel(new String[] {"Faculty of Computing", "Faculty of Engineering", "Faculty of Business", "New Building"}));
+		searchcomboBox.setBounds(680, 42, 161, 31);
+		lpanel_3.add(searchcomboBox);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(391, 138, 464, 236);
+		scrollPane.setBounds(347, 102, 494, 251);
 		lpanel_3.add(scrollPane);
 		
-		//seleced row on location table
 		table_2 = new JTable();
 		table_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
 				int selectedRow=table_2.getSelectedRow();
 				
 				bName.setText(table_2.getValueAt(selectedRow, 1).toString());
@@ -569,62 +634,52 @@ public class ManageLocations {
 		});
 		scrollPane.setViewportView(table_2);
 		//retrive table
-		try {
-			Connection con = DbConnection.connect();
-			
-			String query="select * from location ";
-			PreparedStatement pst=con.prepareStatement(query);
-			ResultSet rs=pst.executeQuery();
-			table_2.setModel(DbUtils.resultSetToTableModel(rs));
-			
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			
-		}
+				try {
+					Connection con = DbConnection.connect();
+					
+					String query="select * from location ";
+					PreparedStatement pst=con.prepareStatement(query);
+					ResultSet rs=pst.executeQuery();
+					table_2.setModel(DbUtils.resultSetToTableModel(rs));
+					
+					
+				}catch(Exception e) {
+					e.printStackTrace();
+					
+				}
+	
 		
-		//search
-		JComboBox searchcomboBox = new JComboBox();
-		searchcomboBox.addActionListener(new ActionListener() {
-			@Override
+		JLabel lblNewLabel = new JLabel("Location ID");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel.setBounds(41, 42, 74, 13);
+		lpanel_3.add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("REFRESH");
+		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 try {
-					 Connection con = DbConnection.connect();
-					// String selection=(String)searchcomboBox.getSelectedItem();
-					 String query="select * from location where buildingName=?";
-					 PreparedStatement pst= con.prepareStatement(query);
-					 pst.setString(1,(String)searchcomboBox.getSelectedItem());
-					 ResultSet rs=pst.executeQuery();
-
-					 table_2.setModel(DbUtils.resultSetToTableModel(rs));
-					 pst.close();
-					 
-				 }catch(Exception ep) {
-					 ep.printStackTrace();
-				 }
+				refreshTable();
 			}
-			
 		});
-		searchcomboBox.setModel(new DefaultComboBoxModel(new String[] {"Faculty of Computing", "Faculty of Engineering", "Faculty of Business", "New Building"}));
-		searchcomboBox.setBounds(676, 59, 176, 21);
-		lpanel_3.add(searchcomboBox);
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNewButton.setBackground(new Color(0, 139, 139));
+		btnNewButton.setBounds(730, 382, 105, 31);
 		
+		lpanel_3.add(btnNewButton);
 		
-		
-		
-		JPanel lpanel_6 = new JPanel();
-		lpanel_6.setBounds(0, 0, 1082, 49);
-		lpanel_2.add(lpanel_6);
-		lpanel_6.setLayout(null);
-		
-		
+		JPanel lopanel_2 = new JPanel();
+		lopanel_2.setBounds(10, 10, 1062, 34);
+		lpanel_2.add(lopanel_2);
+	
+
 		JLabel lollblNewLabel_1 = new JLabel("Manage Locations");
 		lollblNewLabel_1.setForeground(new Color(0, 128, 128));
 		lollblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lollblNewLabel_1.setBounds(406, 13, 278, 31);
-		lpanel_6.add(lollblNewLabel_1);
+		lopanel_2.add(lollblNewLabel_1);
 		
 		
+				
 	
 
 		
