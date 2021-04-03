@@ -283,7 +283,7 @@ public class AddWorkingdays {
 		panel_3.add(panel_6);
 		
 		
-		JLabel lblNewLabel_11 = new JLabel("Not Available Location Manage");
+		JLabel lblNewLabel_11 = new JLabel("Add Working Days");
 		lblNewLabel_11.setForeground(new Color(0, 128, 128));
 		lblNewLabel_11.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_11.setBounds(406, 13, 436, 31);
