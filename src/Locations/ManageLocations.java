@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import javax.tools.DocumentationTool.Location;
 
 import Advanced.Consecutive_sessions;
@@ -48,6 +49,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class ManageLocations {
 	
@@ -443,6 +446,10 @@ public class ManageLocations {
 					System.out.println("xxxxxxxxxxxxxxxxx");
 					
 				}
+				if(bName.getText().isEmpty() || rName.getText().isEmpty() || capacity.getText().isEmpty()){
+					JOptionPane.showMessageDialog(null, "Please Enter all fields");
+					
+				}
 				
 			
 			
@@ -475,6 +482,10 @@ public class ManageLocations {
 				}
 				catch(Exception ea) {
 					ea.printStackTrace();
+				}
+				if(bName.getText().isEmpty() || rName.getText().isEmpty() || capacity.getText().isEmpty()){
+					JOptionPane.showMessageDialog(null, "Please Enter all fields");
+					
 				}
 			}
 		});
@@ -554,7 +565,24 @@ public class ManageLocations {
 		lpanel_3.add(bName);
 		bName.setColumns(10);
 		
+		JLabel show_validation = new JLabel("");
+		show_validation.setForeground(Color.RED);
+		show_validation.setBounds(139, 288, 161, 13);
+		lpanel_3.add(show_validation);
+		
 		capacity = new JTextField();
+		capacity.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				try {
+					int i = Integer.parseInt(capacity.getText());
+					show_validation.setText("");
+				}catch(NumberFormatException e1) {
+					show_validation.setText("Invalid number");
+				}
+			}
+			
+		});
 		capacity.setBounds(139, 255, 161, 23);
 		lpanel_3.add(capacity);
 		capacity.setColumns(10);
@@ -613,6 +641,7 @@ public class ManageLocations {
 		lpanel_3.add(scrollPane);
 		
 		table_2 = new JTable();
+		
 		table_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -666,6 +695,8 @@ public class ManageLocations {
 		btnNewButton.setBounds(730, 382, 105, 31);
 		
 		lpanel_3.add(btnNewButton);
+		
+		
 		
 		JPanel lopanel_2 = new JPanel();
 		lopanel_2.setBounds(10, 10, 1062, 34);
