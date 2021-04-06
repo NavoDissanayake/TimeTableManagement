@@ -441,11 +441,20 @@ public class AddWorkingdays {
 				{
 					saturday="Saturday";
 				}
-				if(chckbxSunday .isSelected())
+				if(chckbxSunday.isSelected())
 				{
 					sunday="Sunday";
 				}
-				
+				 if(spinner_2.getValue().equals(0)&& spinner.getValue().equals(0)&& spinner_1.getValue().equals(0)) {
+						JOptionPane.showMessageDialog(null, "Please Select Number of working Hours and Days!!!");
+					}
+					 else if(spinner_2.getValue().equals(0)) {
+							JOptionPane.showMessageDialog(null, "Please Select Number of working days!!!");
+						}
+					 
+					 else if(spinner.getValue().equals(0)&& spinner_1.getValue().equals(0)) {
+							JOptionPane.showMessageDialog(null, "Please Select Number of working hours and minutes!!!");
+						}
 				
 				else {
 					try {
