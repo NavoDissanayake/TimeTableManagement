@@ -396,29 +396,29 @@ public class Manage_Subject {
 
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "1", "2", "3", "4"}));
-		comboBox.setBounds(251, 134, 161, 23);
+		comboBox.setBounds(211, 136, 232, 23);
 
 		JComboBox comboBox_5 = new JComboBox();
 		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"", "1", "2"}));
-		comboBox_5.setBounds(255, 198, 157, 23);
+		comboBox_5.setBounds(215, 200, 228, 23);
 
 
 		JComboBox comboBox_4 = new JComboBox();
 		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5"}));
-		comboBox_4.setBounds(792, 12, 161, 23);
+		comboBox_4.setBounds(752, 14, 228, 23);
 
 
 		JComboBox comboBox_3 = new JComboBox();
 		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5"}));
-		comboBox_3.setBounds(792, 71, 161, 23);
+		comboBox_3.setBounds(752, 73, 228, 23);
 
 		JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5"}));
-		comboBox_2.setBounds(792, 134, 161, 23);
+		comboBox_2.setBounds(752, 136, 228, 23);
 
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5"}));
-		comboBox_1.setBounds(792, 197, 161, 23);
+		comboBox_1.setBounds(752, 199, 228, 23);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane.setViewportView(scrollPane_1);
@@ -542,22 +542,22 @@ public class Manage_Subject {
 
 		JLabel label_1 = new JLabel("Subject Code");
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_1.setBounds(123, 11, 96, 23);
+		label_1.setBounds(83, 13, 96, 23);
 		panel_3.add(label_1);
 
 		JLabel label_2 = new JLabel("Subject Name");
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_2.setBounds(123, 70, 96, 23);
+		label_2.setBounds(83, 72, 96, 23);
 		panel_3.add(label_2);
 
 		JLabel label_3 = new JLabel("Offered Year");
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_3.setBounds(123, 133, 87, 23);
+		label_3.setBounds(83, 135, 87, 23);
 		panel_3.add(label_3);
 
 		JLabel label_4 = new JLabel("Offered Semester");
 		label_4.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_4.setBounds(123, 196, 122, 23);
+		label_4.setBounds(83, 198, 122, 23);
 		panel_3.add(label_4);
 
 
@@ -565,12 +565,12 @@ public class Manage_Subject {
 
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(251, 71, 161, 23);
+		textField.setBounds(211, 73, 232, 23);
 		panel_3.add(textField);
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(251, 12, 161, 23);
+		textField_1.setBounds(211, 14, 232, 23);
 		panel_3.add(textField_1);
 
 
@@ -578,12 +578,12 @@ public class Manage_Subject {
 
 		JLabel label_5 = new JLabel("No Of Evaluation Hours");
 		label_5.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_5.setBounds(632, 196, 150, 23);
+		label_5.setBounds(592, 198, 150, 23);
 		panel_3.add(label_5);
 
 		JLabel label_6 = new JLabel("No Of Lab Hours");
 		label_6.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_6.setBounds(632, 133, 150, 23);
+		label_6.setBounds(592, 135, 150, 23);
 		panel_3.add(label_6);
 
 
@@ -594,12 +594,12 @@ public class Manage_Subject {
 
 		JLabel label_7 = new JLabel("No Of Tutorial Hours");
 		label_7.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_7.setBounds(632, 70, 150, 23);
+		label_7.setBounds(592, 72, 150, 23);
 		panel_3.add(label_7);
 
 		JLabel label_8 = new JLabel("No Of Lecture  Hours");
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_8.setBounds(632, 11, 150, 23);
+		label_8.setBounds(592, 13, 150, 23);
 		panel_3.add(label_8);
 
 

@@ -8,6 +8,11 @@ import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,6 +20,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -28,7 +34,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-
+import DB.DbConnection;
 import Home.Home;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
@@ -38,12 +44,14 @@ import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
 import WorkingDays.AddWorkingdays;
+import net.proteanit.sql.DbUtils;
 
 import javax.swing.JTextPane;
 import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
 import java.awt.ScrollPane;
 import javax.swing.UIManager;
+import javax.swing.DefaultComboBoxModel;
 
 public class Add_Session {
 
@@ -62,6 +70,157 @@ public class Add_Session {
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 
+	private JComboBox lec1;
+	private JComboBox lec2;
+	private JComboBox subname;
+	private JComboBox tag;
+	private JComboBox groupId;
+	private JTextField txtSubcod;
+	
+	//load data to dropdown lec1
+	  public  void  loadLecturer1(){ 
+		  try {
+
+				Connection con = DbConnection.connect();
+
+				String query="select * from lecturers ";
+				PreparedStatement pst=con.prepareStatement(query);
+				ResultSet rs=pst.executeQuery();
+				
+				while(rs.next())
+				{
+					String name =rs.getString("lectureName");
+					lec1.addItem(name);
+					 
+				}
+
+				con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+	
+}
+		//load data to dropdown lec2
+	  public  void  loadLecturer2(){ 
+		  try {
+
+				Connection con = DbConnection.connect();
+
+				String query="select * from lecturers ";
+				PreparedStatement pst=con.prepareStatement(query);
+				ResultSet rs=pst.executeQuery();
+				
+				while(rs.next())
+				{
+					String name =rs.getString("lectureName");
+					lec2.addItem(name);
+					 
+				}
+
+				con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+
+}
+		//load data to dropdown subject name
+	  public  void  loadSubjectName(){ 
+		  try {
+
+				Connection con = DbConnection.connect();
+
+				String query="select * from subjects ";
+				PreparedStatement pst=con.prepareStatement(query);
+				ResultSet rs=pst.executeQuery();
+				
+				while(rs.next())
+				{
+					String name =rs.getString("subName");
+					subname.addItem(name);
+					 
+				}
+
+				con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+
+}
+	//load data to dropdown tag
+	  public  void  loadTag(){ 
+		  try {
+
+				Connection con = DbConnection.connect();
+
+				String query="select * from Tags ";
+				PreparedStatement pst=con.prepareStatement(query);
+				ResultSet rs=pst.executeQuery();
+				
+				while(rs.next())
+				{
+					String name =rs.getString("RelatedTag");
+					tag.addItem(name);
+					 
+				}
+
+				con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+
+}
+	//load data to dropdown group id
+	  public  void  loadGroup(){ 
+		  try {
+
+				Connection con = DbConnection.connect();
+
+				String query="select * from StudentGroup ";
+				PreparedStatement pst=con.prepareStatement(query);
+				ResultSet rs=pst.executeQuery();
+				
+				while(rs.next())
+				{
+					String name =rs.getString("GroupID");
+					groupId.addItem(name);
+					 
+				}
+
+				con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+
+}
+	//load data to dropdown Subgroup id
+	  public  void  loadSubGroup(){ 
+		  try {
+
+				Connection con = DbConnection.connect();
+
+				String query="select * from StudentGroup ";
+				PreparedStatement pst=con.prepareStatement(query);
+				ResultSet rs=pst.executeQuery();
+				
+				while(rs.next())
+				{
+					String name =rs.getString("SubGroupID");
+					groupId.addItem(name);
+					 
+				}
+
+				con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+
+}
 
 	/**
 	 * Launch the application.
@@ -337,97 +496,223 @@ public class Add_Session {
 		panel_3.setBackground(SystemColor.menu);
 		panel_3.setBounds(10, 54, 1055, 491);
 		panel_2.add(panel_3);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(771, 217, 239, 57);
+		panel_3.add(scrollPane);
+		
+		JTextArea sign = new JTextArea();
+		sign.setFont(new Font("Monospaced", Font.PLAIN, 11));
+		scrollPane.setViewportView(sign);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		scrollPane.setRowHeaderView(scrollBar);
 
 		JLabel lblLecturer = new JLabel("Lecturer 1");
 		lblLecturer.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblLecturer.setBounds(110, 38, 96, 23);
+		lblLecturer.setBounds(70, 37, 96, 23);
 		panel_3.add(lblLecturer);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(294, 39, 161, 23);
-		panel_3.add(comboBox);
+		 lec1 = new JComboBox();
+		 lec1.setModel(new DefaultComboBoxModel(new String[] {"----------Select Lecturer 1 ----------"}));
+		lec1.setBounds(254, 38, 239, 28);
+		panel_3.add(lec1);
 
 		JLabel label_1 = new JLabel("Tag");
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_1.setBounds(610, 38, 132, 23);
+		label_1.setBounds(72, 278, 132, 23);
 		panel_3.add(label_1);
 
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(294, 202, 161, 23);
-		panel_3.add(comboBox_1);
+		 subname = new JComboBox();
+	
+		 subname.setModel(new DefaultComboBoxModel(new String[] {"---------- Select Subject  ----------"}));
+		subname.setBounds(254, 159, 239, 28);
+		panel_3.add(subname);
 
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(770, 39, 161, 23);
-		panel_3.add(comboBox_2);
+		 tag = new JComboBox();
+		 tag.setModel(new DefaultComboBoxModel(new String[] {"------------Select Tag ------------"}));
+		tag.setBounds(254, 279, 239, 28);
+		panel_3.add(tag);
 
 		JLabel label_2 = new JLabel("Group/Sub Group ID");
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_2.setBounds(610, 117, 150, 23);
+		label_2.setBounds(611, 37, 150, 23);
 		panel_3.add(label_2);
 
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(770, 118, 161, 23);
-		panel_3.add(comboBox_3);
+		 groupId = new JComboBox();
+		groupId.setModel(new DefaultComboBoxModel(new String[] {"--------Select Group/Sub Group ID--------"}));
+		groupId.setBounds(771, 38, 239, 28);
+		panel_3.add(groupId);
 
 		JLabel lblLecturer_1 = new JLabel("Lecturer 2");
 		lblLecturer_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblLecturer_1.setBounds(110, 117, 149, 23);
+		lblLecturer_1.setBounds(70, 98, 149, 23);
 		panel_3.add(lblLecturer_1);
 
 		JLabel label_4 = new JLabel("Subject Name");
 		label_4.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_4.setBounds(110, 201, 149, 23);
+		label_4.setBounds(70, 158, 149, 23);
 		panel_3.add(label_4);
 
 		JLabel label_5 = new JLabel("Selected Subject Code");
 		label_5.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_5.setBounds(110, 290, 149, 23);
+		label_5.setBounds(70, 217, 149, 23);
 		panel_3.add(label_5);
-
-		JTextArea textArea = new JTextArea();
-		textArea.setLineWrap(true);
-		textArea.setBackground(new Color(220, 220, 220));
-		textArea.setBounds(294, 292, 161, 23);
-		panel_3.add(textArea);
 
 		JLabel label_6 = new JLabel("No Of Students");
 		label_6.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_6.setBounds(610, 202, 108, 23);
+		label_6.setBounds(611, 98, 108, 23);
 		panel_3.add(label_6);
 
-		JSpinner spinner = new JSpinner();
-		spinner.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		spinner.setBounds(770, 202, 161, 22);
-		panel_3.add(spinner);
+		JSpinner students = new JSpinner();
+		students.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		students.setBounds(771, 98, 239, 28);
+		panel_3.add(students);
 
 		JLabel label_7 = new JLabel("Duration(hrs)");
 		label_7.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_7.setBounds(610, 290, 108, 23);
+		label_7.setBounds(611, 158, 108, 23);
 		panel_3.add(label_7);
 
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		spinner_1.setBounds(770, 290, 161, 22);
-		panel_3.add(spinner_1);
+		JSpinner duration = new JSpinner();
+		duration.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		duration.setBounds(771, 158, 239, 28);
+		panel_3.add(duration);
 
-		JButton button_1 = new JButton("ADD");
-		button_1.setForeground(Color.WHITE);
-		button_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_1.setBackground(new Color(0, 128, 128));
-		button_1.setBounds(330, 445, 141, 31);
-		panel_3.add(button_1);
-
-		JButton button_2 = new JButton("CLEAR");
-		button_2.setForeground(Color.WHITE);
-		button_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_2.setEnabled(true);
-		button_2.setBackground(new Color(0, 128, 128));
-		button_2.setBounds(611, 445, 141, 31);
-		panel_3.add(button_2);
 		
-		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(294, 119, 161, 23);
-		panel_3.add(comboBox_4);
+		
+		
+
+		JButton btnClear = new JButton("CLEAR");
+		btnClear.setForeground(Color.WHITE);
+		btnClear.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnClear.setEnabled(true);
+		btnClear.setBackground(new Color(0, 128, 128));
+		btnClear.setBounds(611, 445, 141, 31);
+		panel_3.add(btnClear);
+		
+		 lec2 = new JComboBox();
+		 lec2.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		lec2.setBounds(254, 100, 239, 28);
+		panel_3.add(lec2);
+		
+		JLabel lblSessionSignature = new JLabel("Session Signature");
+		lblSessionSignature.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblSessionSignature.setBounds(611, 217, 126, 23);
+		panel_3.add(lblSessionSignature);
+		
+		
+		
+		//generate session signature
+		JButton btnGensign = new JButton("GENERATE SESSION SIGNATURE");
+		btnGensign.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String lecregx = "-";
+				
+				if(lec2.getSelectedItem().toString().matches(lecregx ));
+				{
+					sign.setText(lec1.getSelectedItem().toString()+ " - "+ txtSubcod.getText()+" - "+ subname.getSelectedItem().toString()
+							+" - "+tag.getSelectedItem().toString()+" - "+groupId.getSelectedItem().toString()+" - "+students.getValue().toString()+" - "+
+							duration.getValue().toString());
+					
+				}
+				
+				if(!(lec2.getSelectedItem().toString().matches(lecregx)))
+				{
+				sign.setText(lec1.getSelectedItem().toString()+ " - " + lec2.getSelectedItem().toString()+ " - "+ txtSubcod.getText()+" - "+ subname.getSelectedItem().toString()
+						+" - "+tag.getSelectedItem().toString()+" - "+groupId.getSelectedItem().toString()+" - "+students.getValue().toString()+" - "+
+						duration.getValue().toString());
+				
+				}
+				
+			}
+		});
+		
+		
+		// Add new session
+		JButton btnAdd = new JButton("ADD");
+		btnAdd.setForeground(Color.WHITE);
+		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnAdd.setBackground(new Color(0, 128, 128));
+		btnAdd.setBounds(330, 445, 141, 31);
+		panel_3.add(btnAdd);
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String lect1 = lec1.getSelectedItem().toString();
+				String lect2 = lec2.getSelectedItem().toString();
+				String subjname = subname.getSelectedItem().toString();
+				String subjcode = txtSubcod.getText();
+				String  tags = tag.getSelectedItem().toString();
+				String grpId = groupId.getSelectedItem().toString();
+				String count = students.getValue().toString();
+				String hour = duration.getValue().toString();
+				String signature =sign.getText();
+				
+				if(sign.getText().equals("")) {
+			
+					JOptionPane.showMessageDialog(null, "Please Generate Session Signature.","Alert",JOptionPane.WARNING_MESSAGE);
+
+				}
+				else {
+
+					try {
+
+						if(lec1.getSelectedItem().toString().equals("") || subname.getSelectedItem().equals("") || txtSubcod.getText().equals("") || duration.getValue().equals("0")) {
+							JOptionPane.showMessageDialog(null, "       Please Fill All the Fields","Failed",JOptionPane.WARNING_MESSAGE);
+
+						}else {
+							
+							
+						Connection con = DbConnection.connect();
+						
+				
+						String query = "INSERT INTO session values(null, '" + lect1 + "','" + lect2 + "','" + subjcode + "', '" + subjname + "', '" + tags + "', '" + grpId + "','"+count+"','"+hour+"','"+signature+"')";
+
+						Statement sta = con.createStatement();
+						int x = sta.executeUpdate(query);
+						if (x == 0) {
+
+
+							JLabel label = new JLabel("This is alredy exist");
+							label.setHorizontalAlignment(SwingConstants.CENTER);
+							JOptionPane.showMessageDialog(null, label);
+
+
+							// JOptionPane.showMessageDialog(btnNewButton, "This is alredy exist");
+						} else {
+							//JOptionPane.showMessageDialog(btnNewButton,"Welcome, Student Group details successfully inserted!");
+
+							JLabel label = new JLabel("Session Created Successfully");
+							label.setHorizontalAlignment(SwingConstants.CENTER);
+							JOptionPane.showMessageDialog(null, label);
+
+
+
+						}
+						con.close();
+					}} catch (Exception exception) {
+						System.out.println("Failed!!");
+
+					}
+
+				}
+				
+				
+			}
+		});
+		
+		btnGensign.setForeground(Color.WHITE);
+		btnGensign.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnGensign.setBackground(new Color(105, 105, 105));
+		btnGensign.setBounds(611, 304, 399, 31);
+		panel_3.add(btnGensign);
+		
+		txtSubcod = new JTextField();
+		txtSubcod.setBounds(254, 219, 239, 28);
+		panel_3.add(txtSubcod);
+		txtSubcod.setColumns(10);
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setLayout(null);
@@ -491,11 +776,49 @@ public class Add_Session {
 
 			}
 		});
+		
+		 subname.addActionListener(new ActionListener() {
+			 	public void actionPerformed(ActionEvent arg0) {
+			 		
+			 		try {
+						String subject = subname.getSelectedItem().toString();
+						Connection con = DbConnection.connect();
+						String query = "select subCode from subjects where subName = '" + subject + "'";
+						PreparedStatement pst = con.prepareStatement(query);
+						ResultSet rs = pst.executeQuery();
+						
+						while (rs.next()) {
+
+							String name = rs.getString("subCode");
+							txtSubcod.setText(name);
+							
+						}
+						con.close();
+					} catch (Exception e) {
+						
+					}
+			 	}
+			 });
 		button_5.setBounds(774, 67, 258, 37);
 		AddsessFrm.getContentPane().add(button_5);
 
 
-
-
+		//load data to dropdown lec1
+		loadLecturer1();
+		//load data to dropdown lec2
+		loadLecturer2();
+		//load data to dropdown subject name
+		loadSubjectName();
+		//load data to dropdown tag
+		loadTag();
+		//load data to dropdown group id
+		loadGroup();
+		//load data to dropdown Subgroup id
+		loadSubGroup();
+	
+	
 	}
+	
+
+	
 }

@@ -36,6 +36,8 @@ import javax.swing.JSpinner;
 import javax.swing.JSeparator;
 import javax.swing.border.MatteBorder;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JScrollBar;
 
 public class Manage_Session {
 
@@ -378,7 +380,7 @@ public class Manage_Session {
 		button.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button.setEnabled(true);
 		button.setBackground(new Color(0, 128, 128));
-		button.setBounds(632, 296, 141, 31);
+		button.setBounds(632, 304, 141, 31);
 		panel_3.add(button);
 
 		JButton button_1 = new JButton("DELETE");
@@ -386,7 +388,7 @@ public class Manage_Session {
 		button_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button_1.setEnabled(true);
 		button_1.setBackground(new Color(0, 128, 128));
-		button_1.setBounds(453, 296, 141, 31);
+		button_1.setBounds(453, 304, 141, 31);
 		panel_3.add(button_1);
 
 		JButton button_2 = new JButton("EDIT");
@@ -394,84 +396,106 @@ public class Manage_Session {
 		button_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button_2.setEnabled(true);
 		button_2.setBackground(new Color(0, 128, 128));
-		button_2.setBounds(271, 296, 141, 31);
+		button_2.setBounds(271, 304, 141, 31);
 		panel_3.add(button_2);
 
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(310, 12, 179, 23);
+		comboBox.setBounds(244, 12, 245, 23);
 		panel_3.add(comboBox);
 
 		JLabel lblLecturer = new JLabel("Lecturer 1");
 		lblLecturer.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblLecturer.setBounds(126, 11, 96, 23);
+		lblLecturer.setBounds(73, 11, 96, 23);
 		panel_3.add(lblLecturer);
 
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(310, 141, 179, 23);
+		comboBox_1.setBounds(244, 114, 245, 23);
 		panel_3.add(comboBox_1);
 
 		JLabel label_3 = new JLabel("Subject Name");
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_3.setBounds(126, 140, 149, 23);
+		label_3.setBounds(73, 113, 149, 23);
 		panel_3.add(label_3);
 
 		JLabel label_4 = new JLabel("Selected Subject Code");
 		label_4.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_4.setBounds(126, 212, 149, 23);
+		label_4.setBounds(73, 170, 149, 23);
 		panel_3.add(label_4);
 
 		JTextArea textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		textArea.setBackground(new Color(220, 220, 220));
-		textArea.setBounds(310, 214, 179, 23);
+		textArea.setBounds(244, 170, 245, 23);
 		panel_3.add(textArea);
 
 		JLabel label_5 = new JLabel("Tag");
 		label_5.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_5.setBounds(626, 11, 132, 23);
+		label_5.setBounds(73, 220, 132, 23);
 		panel_3.add(label_5);
 
 		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(786, 12, 161, 23);
+		comboBox_2.setBounds(244, 221, 245, 23);
 		panel_3.add(comboBox_2);
 
 		JLabel label_6 = new JLabel("Group/Sub Group ID");
 		label_6.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_6.setBounds(626, 76, 150, 23);
+		label_6.setBounds(632, 12, 150, 23);
 		panel_3.add(label_6);
 
 		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(786, 77, 161, 23);
+		comboBox_3.setBounds(792, 13, 245, 23);
 		panel_3.add(comboBox_3);
 
 		JLabel label_7 = new JLabel("No Of Students");
 		label_7.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_7.setBounds(626, 141, 108, 23);
+		label_7.setBounds(632, 61, 108, 23);
 		panel_3.add(label_7);
 
 		JSpinner spinner = new JSpinner();
 		spinner.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		spinner.setBounds(786, 141, 161, 22);
+		spinner.setBounds(792, 61, 245, 22);
 		panel_3.add(spinner);
 
 		JLabel label_8 = new JLabel("Duration(hrs)");
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_8.setBounds(626, 212, 108, 23);
+		label_8.setBounds(632, 113, 108, 23);
 		panel_3.add(label_8);
 
 		JSpinner spinner_1 = new JSpinner();
 		spinner_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		spinner_1.setBounds(786, 212, 161, 22);
+		spinner_1.setBounds(792, 113, 245, 22);
 		panel_3.add(spinner_1);
 		
 		JLabel lblLecturer_1 = new JLabel("Lecturer 2");
 		lblLecturer_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblLecturer_1.setBounds(126, 77, 96, 23);
+		lblLecturer_1.setBounds(73, 61, 96, 23);
 		panel_3.add(lblLecturer_1);
 		
 		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(310, 79, 179, 23);
+		comboBox_4.setBounds(244, 61, 245, 23);
 		panel_3.add(comboBox_4);
+		
+		JLabel label_1 = new JLabel("Session Signature");
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		label_1.setBounds(632, 159, 126, 23);
+		panel_3.add(label_1);
+		
+		JButton btnGenerateSessionSign = new JButton("GENERATE SESSION SIGNATURE");
+		btnGenerateSessionSign.setForeground(Color.WHITE);
+		btnGenerateSessionSign.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnGenerateSessionSign.setBackground(SystemColor.controlDkShadow);
+		btnGenerateSessionSign.setBounds(632, 227, 405, 30);
+		panel_3.add(btnGenerateSessionSign);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(792, 161, 245, 55);
+		panel_3.add(scrollPane_1);
+		
+		JTextArea textArea_1 = new JTextArea();
+		scrollPane_1.setViewportView(textArea_1);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		scrollPane_1.setRowHeaderView(scrollBar);
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setLayout(null);

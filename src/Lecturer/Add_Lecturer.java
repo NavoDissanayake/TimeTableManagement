@@ -446,7 +446,7 @@ public class Add_Lecturer {
 					String regex = "[0-9]+";
 					if( EmpidTxt.getText().length() != 6 || !(EmpidTxt.getText().matches(regex)) || (EmpidTxt.getText().contains(" ")) )
 					{
-						JOptionPane.showMessageDialog(null, "       Invalid Employee ID","Alert",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "       Invalid Employee ID","Failed",JOptionPane.WARNING_MESSAGE);
 
 					}
 
@@ -537,10 +537,13 @@ public class Add_Lecturer {
 		panel_4.add(label_9);
 
 		JSpinner hourAdd = new JSpinner();
-		hourAdd.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(0)));
+		//hourAdd.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(0)));
 		hourAdd.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		hourAdd.setBounds(787, 210, 73, 22);
 		panel_4.add(hourAdd);
+		
+		
+
 
 		JLabel label_10 = new JLabel("hrs");
 		label_10.setHorizontalAlignment(SwingConstants.CENTER);
@@ -555,7 +558,7 @@ public class Add_Lecturer {
 		panel_4.add(label_11);
 
 		JSpinner minsAdd = new JSpinner();
-		minsAdd.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(0)));
+		//minsAdd.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(0)));
 		minsAdd.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		minsAdd.setBounds(898, 209, 73, 22);
 		panel_4.add(minsAdd);
@@ -632,7 +635,7 @@ public class Add_Lecturer {
 					 */
 					
 					
-					JOptionPane.showMessageDialog(null, "Please Generate Rank First!","Alert",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please Generate Rank First","Alert",JOptionPane.WARNING_MESSAGE);
 
 					
 					
@@ -644,7 +647,7 @@ public class Add_Lecturer {
 					try {
 
 						if(EmpNameTxt.getText().equals("") || Fac.getSelectedItem().equals("") || Dept.getSelectedItem().equals("") || Campus.getSelectedItem().equals("") || build.getSelectedItem().equals("") || hourAdd.getValue().equals("0")) {
-							JOptionPane.showMessageDialog(null, "       Please Enter Values","Alert",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "       Please Fill All the Fields","Failed",JOptionPane.WARNING_MESSAGE);
 
 						}else {
 						Connection con = DbConnection.connect();

@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -25,15 +28,22 @@ import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
 import WorkingDays.AddWorkingdays;
+import net.proteanit.sql.DbUtils;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
+
+import DB.DbConnection;
+
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.UIManager;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.border.LineBorder;
 
 public class Search_Sessions {
 
@@ -52,7 +62,109 @@ public class Search_Sessions {
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private JTable table;
 
+	private JComboBox lecbox;
+	private JComboBox subjBox;
+	private JComboBox groupBox;
+	
+	
+	//load data to dropdown lec
+	 public  void  loadLecturer1(){ 
+		  try {
 
+				Connection con = DbConnection.connect();
+
+				String query="select * from lecturers ";
+				PreparedStatement pst=con.prepareStatement(query);
+				ResultSet rs=pst.executeQuery();
+				
+				while(rs.next())
+				{
+					String name =rs.getString("lectureName");
+					lecbox.addItem(name);
+					 
+				}
+
+				con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+	
+}
+
+	
+	//load data to dropdown subject name
+	  public  void  loadSubjectName(){ 
+		  try {
+
+				Connection con = DbConnection.connect();
+
+				String query="select * from subjects ";
+				PreparedStatement pst=con.prepareStatement(query);
+				ResultSet rs=pst.executeQuery();
+				
+				while(rs.next())
+				{
+					String name =rs.getString("subName");
+					subjBox.addItem(name);
+					 
+				}
+
+				con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+
+}	  
+	//load data to dropdown group id
+	  public  void  loadGroup(){ 
+		  try {
+
+				Connection con = DbConnection.connect();
+
+				String query="select * from StudentGroup ";
+				PreparedStatement pst=con.prepareStatement(query);
+				ResultSet rs=pst.executeQuery();
+				
+				while(rs.next())
+				{
+					String name =rs.getString("GroupID");
+					groupBox.addItem(name);
+					 
+				}
+
+				con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+
+}
+	//load data to dropdown Subgroup id
+	  public  void  loadSubGroup(){ 
+		  try {
+
+				Connection con = DbConnection.connect();
+
+				String query="select * from StudentGroup ";
+				PreparedStatement pst=con.prepareStatement(query);
+				ResultSet rs=pst.executeQuery();
+				
+				while(rs.next())
+				{
+					String name =rs.getString("SubGroupID");
+					groupBox.addItem(name);
+					 
+				}
+
+				con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+
+}
 	/**
 	 * Launch the application.
 	 */
@@ -377,19 +489,127 @@ public class Search_Sessions {
 		SrchSesFrm.getContentPane().add(panel_3);
 
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportBorder(new LineBorder(new Color(0, 0, 0)));
 		scrollPane.setBounds(52, 201, 966, 277);
 		panel_3.add(scrollPane);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane.setViewportView(scrollPane_1);
+		
 
 		table = new JTable();
-		table.setCellSelectionEnabled(true);
-		table.setColumnSelectionAllowed(true);
+		table.setForeground(SystemColor.textText);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 11));
+
 		table.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-		table.setBackground(Color.WHITE);
+
+
+		
+		table.setModel(new DefaultTableModel( new Object[][] { }, new String[] { }
+				));
+		
+		//display details in a tabl486				
 		scrollPane_1.setViewportView(table);
 
+				try {
+					Connection con = DbConnection.connect();
+
+					//String query="select * from session ";
+					String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As Code,subName As Name,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session ";
+					
+			
+					PreparedStatement pst=con.prepareStatement(query);
+					ResultSet rs=pst.executeQuery();
+					table.setModel(DbUtils.resultSetToTableModel(rs));
+
+
+
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
+				
+				//Search bar for lecturer
+			
+				 lecbox = new JComboBox();
+				lecbox.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						try {
+							 Connection con = DbConnection.connect();
+							// String selection=(String)searchcomboBox.getSelectedItem();
+							 String query="select * from session where lec1=?";
+							 PreparedStatement pst= con.prepareStatement(query);
+							 pst.setString(1,(String)lecbox.getSelectedItem());
+							 ResultSet rs=pst.executeQuery();
+
+							 table.setModel(DbUtils.resultSetToTableModel(rs));
+							 pst.close();
+							 
+						 }catch(Exception ep) {
+							 ep.printStackTrace();
+						 }
+						
+						
+						
+					}
+				});
+				lecbox.setModel(new DefaultComboBoxModel(new String[] {"                              -"}));
+				lecbox.setBounds(50, 109, 206, 27);
+				panel_3.add(lecbox);
+				
+				
+			
+				//Search bar for subName
+				subjBox = new JComboBox();
+				subjBox.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						try {
+							 Connection con = DbConnection.connect();
+							// String selection=(String)searchcomboBox.getSelectedItem();
+							 String query="select * from session where subName=?";
+							 PreparedStatement pst= con.prepareStatement(query);
+							 pst.setString(1,(String)subjBox.getSelectedItem());
+							 ResultSet rs=pst.executeQuery();
+
+							 table.setModel(DbUtils.resultSetToTableModel(rs));
+							 pst.close();
+							 
+						 }catch(Exception ep) {
+							 ep.printStackTrace();
+						 }
+						
+						
+						
+					}
+				});
+				
+				
+				//Search bar for Groupid
+				 groupBox = new JComboBox();
+				 groupBox.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							try {
+								 Connection con = DbConnection.connect();
+								// String selection=(String)searchcomboBox.getSelectedItem();
+								 String query="select * from session where studentGroup=?";
+								 PreparedStatement pst= con.prepareStatement(query);
+								 pst.setString(1,(String)groupBox.getSelectedItem());
+								 ResultSet rs=pst.executeQuery();
+
+								 table.setModel(DbUtils.resultSetToTableModel(rs));
+								 pst.close();
+								 
+							 }catch(Exception ep) {
+								 ep.printStackTrace();
+							 }
+							
+							
+							
+						}
+					});
+				 
+				 
+		
 		JLabel label_1 = new JLabel("Search by Lecturer :");
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_1.setBounds(78, 61, 180, 37);
@@ -405,22 +625,36 @@ public class Search_Sessions {
 		label_3.setBounds(850, 61, 215, 37);
 		panel_3.add(label_3);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(50, 109, 206, 27);
-		panel_3.add(comboBox);
+		
 
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(438, 109, 206, 26);
-		panel_3.add(comboBox_1);
+		
+		groupBox.setModel(new DefaultComboBoxModel(new String[] {"                            -"}));
+		groupBox.setBounds(438, 109, 206, 26);
+		panel_3.add(groupBox);
 
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(812, 109, 206, 27);
-		panel_3.add(comboBox_2);
+		 
+		subjBox.setModel(new DefaultComboBoxModel(new String[] {"                                  -"}));
+		subjBox.setBounds(812, 109, 206, 27);
+		panel_3.add(subjBox);
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(10, 11, 1045, 505);
+		panel_4.setBounds(10, 11, 1045, 474);
 		panel_3.add(panel_4);
-
+		
+		JButton btnNewButton = new JButton("CLEAR");
+		btnNewButton.setBounds(477, 489, 140, 27);
+		panel_3.add(btnNewButton);
+		
+		
+		        //load data to dropdown lec1
+				loadLecturer1();
+		
+				//load data to dropdown subject name
+				loadSubjectName();
+				//load data to dropdown group id
+				loadGroup();//load data to dropdown Subgroup id
+				loadSubGroup();
+				
 	}
 
 }

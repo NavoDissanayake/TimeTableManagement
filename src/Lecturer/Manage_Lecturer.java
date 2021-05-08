@@ -688,7 +688,7 @@ public class Manage_Lecturer {
 
 				else {
 					textField_1.setText(levelNum + "." + textField.getText()); 
-					JLabel label8 = new JLabel("Rank Generated Successfully");
+					JLabel label8 = new JLabel("Rank Updated Successfully");
 					label8.setHorizontalAlignment(SwingConstants.CENTER);
 					JOptionPane.showMessageDialog(null, label8);
 				}
@@ -925,7 +925,7 @@ public class Manage_Lecturer {
 					PreparedStatement pst=con.prepareStatement(query); 
 					pst.execute();
 
-					JOptionPane.showMessageDialog(null, "       Data Deleted Successfully","Alert",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "       Data Deleted Successfully","Message",JOptionPane.INFORMATION_MESSAGE);
 					pst.close();
 					refreshtable();
 					//table.revalidate();
