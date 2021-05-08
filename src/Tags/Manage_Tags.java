@@ -3,6 +3,7 @@ package Tags;
 import java.awt.EventQueue;
 
 
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
@@ -104,6 +105,8 @@ public class Manage_Tags {
 	}
 	
 	
+	
+	  
 	
 	/**
 	 * Launch the application.
@@ -438,41 +441,47 @@ public class Manage_Tags {
 		panel_2.add(panel_5);
 		
 		JLabel lblNewLabel = new JLabel("Tag Name");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel.setBounds(74, 23, 149, 24);
 		panel_5.add(lblNewLabel);
 		
 		
 		txt_tagName = new JTextField();
+		txt_tagName.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txt_tagName.setColumns(10);
-		txt_tagName.setBounds(343, 23, 172, 24);
+		txt_tagName.setBounds(378, 24, 172, 24);
 		panel_5.add(txt_tagName);
 		
 		JLabel lblNewLabel_5 = new JLabel("Tag Code");
-		lblNewLabel_5.setBounds(74, 72, 56, 16);
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_5.setBounds(74, 72, 77, 20);
 		panel_5.add(lblNewLabel_5);
 		
 		
 		txt_tagCode = new JTextField();
+		txt_tagCode.setFont(new Font("Tahoma", Font.BOLD, 13));
 		txt_tagCode.setColumns(10);
-		txt_tagCode.setBounds(343, 68, 172, 24);
+		txt_tagCode.setBounds(378, 71, 172, 24);
 		panel_5.add(txt_tagCode);
 		
 		JLabel lblNewLabel_6 = new JLabel("Related  Name");
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_6.setBounds(74, 123, 111, 16);
 		panel_5.add(lblNewLabel_6);
 		
 		
 		r_tag = new JComboBox();
+		r_tag.setFont(new Font("Tahoma", Font.BOLD, 13));
 		r_tag.setModel(new DefaultComboBoxModel(new String[] {"", "Lecture", "Tutorial", "Lab"}));
-		r_tag.setBounds(343, 122, 172, 19);
+		r_tag.setBounds(378, 123, 172, 20);
 		panel_5.add(r_tag);
 		
 		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setForeground(Color.WHITE);
-		textField.setEnabled(false);
-		textField.setBounds(190, 24, 116, 22);
+		textField.setBounds(0, 186, 636, 6);
 		panel_5.add(textField);
+		textField.setEnabled(false);
+		textField.setEditable(false);
+		textField.setForeground(SystemColor.menu);
 		textField.setColumns(10);
 		
 		
@@ -496,6 +505,7 @@ public class Manage_Tags {
 		
 		//add tags button
 		JButton btnNewButton_2 = new JButton("Add Tags");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -520,6 +530,7 @@ public class Manage_Tags {
 		
 		//add manage button
 		JButton btnNewButton_2_2 = new JButton("Manage Tags");
+		btnNewButton_2_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			
@@ -552,6 +563,8 @@ public class Manage_Tags {
 		panel_2.add(scrollPane);
 		
 		table = new JTable();
+		table.setFont(new Font("Tahoma", Font.BOLD, 13));
+		table.setForeground(new Color(100, 100, 100));
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

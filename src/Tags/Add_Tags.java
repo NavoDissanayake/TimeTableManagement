@@ -3,6 +3,7 @@ package Tags;
 import java.awt.EventQueue;
 
 
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
@@ -23,6 +24,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
@@ -73,7 +75,44 @@ public class Add_Tags {
 	private JTextField txt_tagcode;
 	private JTextField txt_tagname;
 	private JComboBox comboBox_tag;
+	
+	
+	
+	//check duplicates
+	  public boolean findDuplicateLocations (String tagName , String tagCode , String relatedTag) {
+		  
+		
+	    
+	    boolean foundDuplicate = false; //default no duplicates
+	    Connection con = DbConnection.connect();
+	    try {
+	      
+	      String sql = "SELECT TagID FROM Tags WHERE TagName='"+tagName+"' TagCode='"+tagCode+"' RelatedTag='"+relatedTag+"'";
+	      
+	      Statement st = con.createStatement();
+	      ResultSet rs = st.executeQuery(sql);
+	      
+	      
+	      if (!rs.next()) { //ResultSet is empty
+	        foundDuplicate = false; //no duplicates
+	        
+	      }else {  //ResultSet is not empty
+	        
+	        foundDuplicate = true; //duplicates have
+	      }
+	      
+	      st.close();
+	      
+	    }catch(Exception e) {
+	      System.out.println(e.getMessage());
+	    }
+	    
+	    return foundDuplicate;
+	  }
 
+	  
+	  
+	  
 	/**
 	 * Launch the application.
 	 */
@@ -410,6 +449,7 @@ public class Add_Tags {
 		
 		//add tags button
 		JButton btnNewButton_2 = new JButton("Add Tags");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -428,6 +468,7 @@ public class Add_Tags {
 		
 		//manage tags button
 		JButton btnNewButton_2_1 = new JButton("Manage Tags");
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			
@@ -447,6 +488,8 @@ public class Add_Tags {
 		
 		
 		comboBox_tag = new JComboBox();
+		comboBox_tag.setForeground(new Color(0, 0, 0));
+		comboBox_tag.setFont(new Font("Tahoma", Font.BOLD, 13));
 		comboBox_tag.setModel(new DefaultComboBoxModel(new String[] {"", "Lecture", "Tutorial", "Lab"}));
 		comboBox_tag.setBounds(428, 190, 204, 23);
 		panel_4.add(comboBox_tag);
@@ -454,31 +497,33 @@ public class Add_Tags {
 		
 		
 		JLabel lblNewLabel_2 = new JLabel("Tag Name");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_2.setBounds(156, 57, 108, 23);
 		panel_4.add(lblNewLabel_2);
 		
 		
 		txt_tagname = new JTextField();
-		txt_tagname.setForeground(SystemColor.controlDkShadow);
+		txt_tagname.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txt_tagname.setForeground(SystemColor.activeCaptionText);
 		txt_tagname.setColumns(10);
 		txt_tagname.setBounds(428, 57, 204, 23);
 		panel_4.add(txt_tagname);
 		
 		JLabel lblNewLabel_3 = new JLabel("Tag Code");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_3.setBounds(156, 120, 108, 23);
 		panel_4.add(lblNewLabel_3);
 		
 		
 		txt_tagcode = new JTextField();
-		txt_tagcode.setForeground(SystemColor.controlDkShadow);
+		txt_tagcode.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txt_tagcode.setForeground(SystemColor.activeCaptionText);
 		txt_tagcode.setColumns(10);
 		txt_tagcode.setBounds(428, 120, 204, 23);
 		panel_4.add(txt_tagcode);
 		
 		JLabel lblNewLabel_4 = new JLabel("Related Tag");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_4.setBounds(156, 190, 108, 23);
 		panel_4.add(lblNewLabel_4);
 		
@@ -495,28 +540,45 @@ public class Add_Tags {
 				String tagCode = txt_tagcode.getText();
 				String relatedTag= comboBox_tag.getSelectedItem().toString();
 				
+				if(txt_tagname.getText().hashCode() ==0 || txt_tagcode.getText().hashCode() == 0 || comboBox_tag.getSelectedItem().toString().hashCode() == 0) {
+        			
+                	
+        			JOptionPane.showMessageDialog(null, "       Please fill all fiels!","Alert",JOptionPane.WARNING_MESSAGE);
+				}
 				
-				
-				
+				else {
+					
 				
 				try {
 					
-					 Connection con = DbConnection.connect();
-
-	                    String query = "INSERT INTO Tags values(null, '" + tagName + "','" + tagCode + "','" + relatedTag + "')";
+					
+		
+					
+					    
+					  
+					
+					    Connection con = DbConnection.connect();
+					    
+					    
+					    String query = "INSERT INTO Tags values(null, '" + tagName + "','" + tagCode + "','" + relatedTag + "')";
 
 	                    Statement sta = con.createStatement();
+	                    
+	                    
 	                    int x = sta.executeUpdate(query);
 	                    if (x == 0) {
-	                    	
-	                    	
-	                    	JLabel label = new JLabel("This is alredy exist");
-	    					label.setHorizontalAlignment(SwingConstants.CENTER);
-	    					JOptionPane.showMessageDialog(null, label);
+	                    
+	                         
+			           
+	                    	JOptionPane.showMessageDialog(null, "       This is alredy exist","Alert",JOptionPane.WARNING_MESSAGE);
 	    					
 	                       
 	                       // JOptionPane.showMessageDialog(btnNewButton, "This is alredy exist");
-	                    } else {
+	                    
+	            		}else {
+	            			
+	            			
+	            			
 	                        //JOptionPane.showMessageDialog(btnNewButton,"Welcome, Student Group details successfully inserted!");
 	                    	
 	                    	JLabel label = new JLabel("Inserted Tag Details Sucessfully");
@@ -535,11 +597,15 @@ public class Add_Tags {
 	                	
 	                }
 				
+				}
 				
 				
 
+
 				
 			}
+
+			
 		});
 		
 		

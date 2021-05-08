@@ -334,9 +334,11 @@ public class Home {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Consecutive_sessions a_session= new Consecutive_sessions ();
-				a_session.main(null);
+				//Consecutive_sessions a_session= new Consecutive_sessions ();
+				//a_session.main(null);
 				frmAddStudentGroup.dispose();
+				new Consecutive_sessions();
+				
 				
 			}
 		});

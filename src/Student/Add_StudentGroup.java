@@ -54,6 +54,7 @@ import java.awt.Label;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.swing.DefaultComboBoxModel;
@@ -429,6 +430,7 @@ public class Add_StudentGroup {
 		
 		//add student group button
 		JButton btnNewButton_2 = new JButton("Add Student Group");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_2.setBounds(0, 2, 258, 37);
 		panel_3.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -449,6 +451,7 @@ public class Add_StudentGroup {
 		
 		//manage student group button
 		JButton btnNewButton_2_1 = new JButton("Manage Student Group");
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_2_1.setBounds(255, 2, 258, 37);
 		panel_3.add(btnNewButton_2_1);
 		btnNewButton_2_1.addActionListener(new ActionListener() {
@@ -484,69 +487,75 @@ public class Add_StudentGroup {
 	
 		
 		JLabel Ys= new JLabel("Year Semester");
-		Ys.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		Ys.setFont(new Font("Tahoma", Font.BOLD, 14));
 		Ys.setBounds(35, 57, 108, 23);
 		panel_4.add(Ys);
 		
 		JComboBox Ysem = new JComboBox();
+		Ysem.setFont(new Font("Tahoma", Font.BOLD, 13));
 		Ysem.setModel(new DefaultComboBoxModel(new String[] {"", "Y1.S1", "Y1.S2", "Y2.S1", "Y2.S2", "Y3.S1", "Y3.S2", "Y4.S1", "Y4.S2"}));
-		Ysem.setBounds(146, 54, 161, 23);
+		Ysem.setBounds(176, 58, 161, 23);
 		panel_4.add(Ysem);
 		
 		JLabel lblNewLabel_3 = new JLabel("Progrmme");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_3.setBounds(35, 120, 108, 23);
 		panel_4.add(lblNewLabel_3);
 		
 
 		JComboBox programme = new JComboBox();
+		programme.setFont(new Font("Tahoma", Font.BOLD, 13));
 		programme.setModel(new DefaultComboBoxModel(new String[] {"", "IT", "CSSE", "IM", "CSE", "DS", "SE", "ISE"}));
-		programme.setBounds(146, 120, 161, 23);
+		programme.setBounds(176, 121, 161, 23);
 		panel_4.add(programme);
 		
 		
 		JLabel lblNewLabel_4 = new JLabel("Group Number");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_4.setBounds(35, 190, 108, 23);
 		panel_4.add(lblNewLabel_4);
 		
 		JSpinner GrpNumber = new JSpinner();
-		GrpNumber .setBounds(146, 251, 161, 23);
+		GrpNumber.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GrpNumber .setBounds(176, 191, 161, 23);
 		panel_4.add( GrpNumber );
 		
 		
 		JLabel lblNewLabel = new JLabel("Sub-Group Number");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(35, 251, 108, 23);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel.setBounds(35, 251, 143, 23);
 		panel_4.add(lblNewLabel);
 		
 		
 		JSpinner subGrpNumber = new JSpinner();
-		subGrpNumber.setBounds(146, 196, 161, 23);
+		subGrpNumber.setFont(new Font("Tahoma", Font.BOLD, 13));
+		subGrpNumber.setBounds(176, 252, 161, 23);
 		panel_4.add(subGrpNumber);
 		
 		
 		JLabel lblSubgroupId = new JLabel("Sub-Group ID");
-		lblSubgroupId.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSubgroupId.setBounds(539, 120, 108, 23);
+		lblSubgroupId.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblSubgroupId.setBounds(521, 120, 108, 23);
 		panel_4.add(lblSubgroupId);
 		
 		
 		subGrpID = new JTextField();
-		subGrpID.setForeground(SystemColor.controlDkShadow);
+		subGrpID.setFont(new Font("Tahoma", Font.BOLD, 13));
+		subGrpID.setForeground(Color.RED);
 		subGrpID.setColumns(10);
 		subGrpID.setBounds(625, 120, 174, 23);
 		panel_4.add(subGrpID);
 		
 		JLabel lblRank = new JLabel("Group ID");
-		lblRank.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblRank.setBounds(539, 57, 108, 23);
+		lblRank.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblRank.setBounds(521, 57, 108, 23);
 		panel_4.add(lblRank);
 		
 		
 	
 		GrpID = new JTextField();
-		GrpID.setForeground(SystemColor.controlDkShadow);
+		GrpID.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GrpID.setForeground(Color.RED);
 		GrpID.setColumns(10);
 		GrpID.setBounds(625, 57, 174, 23);
 		panel_4.add(GrpID);
@@ -556,15 +565,17 @@ public class Add_StudentGroup {
 
 		//GENERATE ID  button
 		JButton btnNewButton_1 = new JButton("GENERATE ID");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 		if(Ysem.getSelectedItem().hashCode() ==0 || programme.getSelectedItem().hashCode() == 0 || GrpNumber.getValue().hashCode() == 0 || subGrpNumber.getValue().hashCode() ==0    ) {
 			
 			
-			JLabel label = new JLabel("Please fill all fileds!");
-			label.setHorizontalAlignment(SwingConstants.CENTER);
-			JOptionPane.showMessageDialog(null, label);
+			//JLabel label = new JLabel("Please fill all fileds!");
+			//label.setHorizontalAlignment(SwingConstants.CENTER);
+			//JOptionPane.showMessageDialog(null, label);
+			JOptionPane.showMessageDialog(null, "       Please fill all fiels!","Alert",JOptionPane.WARNING_MESSAGE);
 			
 		}	
 	
@@ -606,34 +617,44 @@ public class Add_StudentGroup {
 				if(GrpID.getText().equals("")||subGrpID.getText().equals("")) {
 					
 					//JOptionPane.showMessageDialog(null, "Please Genarate IDs First!");
-					JLabel label = new JLabel("Please Genarate IDs First!");
-					label.setHorizontalAlignment(SwingConstants.CENTER);
-					JOptionPane.showMessageDialog(null, label);
+					//JLabel label = new JLabel("Please Genarate IDs First!");
+					//label.setHorizontalAlignment(SwingConstants.CENTER);
+					//JOptionPane.showMessageDialog(null, label);
+					JOptionPane.showMessageDialog(null, "       Please Genarate IDs First!","Alert",JOptionPane.WARNING_MESSAGE);
+					
 					
 				}else {
 				
 				try {
 					
 					 Connection con = DbConnection.connect();
+					 
+			          
+					 
+					 
+					  //String selectQuery = "select * from StudentGroup where AcademicYearSemester='"+ ays +"' Programme='"+ program+"' GroupNo='" +groupnumber+"'SubGroupNo='"+ subgroupnumber+"' GroupID='" +groupid+"' SubGroupID='"+subgroupid+"'";
+			          
 
-	                    String query = "INSERT INTO StudentGroup values(null, '" + ays + "','" + program + "','" + groupnumber + "', '" + subgroupnumber + "', '" + groupid + "', '" + subgroupid + "')";
+	                String query = "INSERT INTO StudentGroup values(null, '" + ays + "','" + program + "','" + groupnumber + "', '" + subgroupnumber + "', '" + groupid + "', '" + subgroupid + "')";
 
-	                    Statement sta = con.createStatement();
-	                    int x = sta.executeUpdate(query);
-	                    if (x == 0) {
+	                  Statement sta = con.createStatement();
+	                  int x = sta.executeUpdate(query);
+			          if(x==0) {
 	                    	
 	                    	
-	                    	JLabel label = new JLabel("This is alredy exist");
-	    					label.setHorizontalAlignment(SwingConstants.CENTER);
-	    					JOptionPane.showMessageDialog(null, label);
+	                    	//JLabel label = new JLabel("This is alredy exist");
+	    					//label.setHorizontalAlignment(SwingConstants.CENTER);
+	    					//JOptionPane.showMessageDialog(null, label);
 	    					
-	                       
-	                       // JOptionPane.showMessageDialog(btnNewButton, "This is alredy exist");
+	                    	JOptionPane.showMessageDialog(null, "       This is alredy exist","Alert",JOptionPane.WARNING_MESSAGE);
+	                      
 	    					
 	                    }
 	                   else {
 	                        //JOptionPane.showMessageDialog(btnNewButton,"Welcome, Student Group details successfully inserted!");
 	                    	
+	                	
+		                    
 	                    	JLabel label = new JLabel("Inserted Group Details Sucessfully");
 	    					label.setHorizontalAlignment(SwingConstants.CENTER);
 	    					JOptionPane.showMessageDialog(null, label);

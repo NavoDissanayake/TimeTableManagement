@@ -446,6 +446,7 @@ public class Manage_studentGroup {
 		
 		//add student group 
 		JButton btnNewButton_2 = new JButton("Add Student Group");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_2.setBounds(0, 2, 258, 37);
 		panel_2.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -463,6 +464,7 @@ public class Manage_studentGroup {
 		
 		//manage student group
 		JButton btnNewButton_2_1 = new JButton("Manage Student Group");
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_2_1.setBounds(255, 2, 258, 37);
 		panel_2.add(btnNewButton_2_1);
 		
@@ -485,7 +487,7 @@ public class Manage_studentGroup {
 		panel_4.setLayout(null);
 		panel_4.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_4.setBackground(SystemColor.menu);
-		panel_4.setBounds(122, 278, 853, 251);
+		panel_4.setBounds(122, 268, 853, 249);
 		panel_2.add(panel_4);
 		
 	
@@ -495,82 +497,89 @@ public class Manage_studentGroup {
 		id.setBackground(SystemColor.menu);
 		id.setForeground(SystemColor.menu);
 		id.setEnabled(false);
-		id.setBounds(146, 13, 161, 22);
+		id.setBounds(0, 247, 853, 2);
 		panel_4.add(id);
 		
 	
 		
 		JLabel lblNewLabel_2 = new JLabel("Year Semester");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_2.setBounds(35, 57, 108, 23);
 		panel_4.add(lblNewLabel_2);
 		
 		
 		comboBox_1 = new JComboBox();
+		comboBox_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "Y1.S1", "Y1.S2", "Y2.S1", "Y2.S2", "Y3.S1", "Y3.S2", "Y4.S1", "Y4.S2"}));
-		comboBox_1.setBounds(146, 57, 161, 23);
+		comboBox_1.setBounds(179, 58, 161, 23);
 		panel_4.add(comboBox_1);
 		
 		
 		
 		JLabel lblNewLabel_3 = new JLabel("Progrmme");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_3.setBounds(35, 106, 108, 23);
 		panel_4.add(lblNewLabel_3);
 		
 		comboBox = new JComboBox();
+		comboBox.setFont(new Font("Tahoma", Font.BOLD, 13));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "IT", "CSSE", "IM", "CSE", "DS", "SE", "ISE"}));
-		comboBox.setBounds(146, 106, 161, 23);
+		comboBox.setBounds(179, 107, 161, 23);
 		panel_4.add(comboBox);
 		
 		JLabel lblNewLabel_4 = new JLabel("Group Number");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_4.setBounds(35,157,108,23); 
 		panel_4.add(lblNewLabel_4);
 		
 		
 		grpNo = new JSpinner();
-		grpNo.setBounds(146, 157, 161, 23);
+		grpNo.setFont(new Font("Tahoma", Font.BOLD, 13));
+		grpNo.setBounds(179, 158, 161, 23);
 		panel_4.add(grpNo);
 		
 				
 		JLabel lblNewLabel = new JLabel("Sub-Group Number");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(35, 204, 108, 23);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel.setBounds(35, 204, 136, 23);
 		panel_4.add(lblNewLabel);
 		
 		subGrpNo_1 = new JSpinner();
-		subGrpNo_1.setBounds(146, 204, 161, 22);
+		subGrpNo_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		subGrpNo_1.setBounds(179, 205, 161, 22);
 		panel_4.add(subGrpNo_1);
 		
 		JLabel lblRank = new JLabel("Group ID");
-		lblRank.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblRank.setBounds(539, 57, 108, 23);
+		lblRank.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblRank.setBounds(521, 57, 108, 23);
 		panel_4.add(lblRank);
 		
 		
 		groupID = new JTextField();
-		groupID .setForeground(SystemColor.controlDkShadow);
+		groupID.setFont(new Font("Tahoma", Font.BOLD, 13));
+		groupID .setForeground(Color.RED);
 		groupID .setColumns(10);
-		groupID .setBounds(625, 57, 174, 23);
+		groupID .setBounds(643, 58, 174, 23);
 		panel_4.add(groupID );
 		
 		JLabel lblSubgroupId = new JLabel("Sub-Group ID");
-		lblSubgroupId.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSubgroupId.setBounds(539, 106, 108, 23);
+		lblSubgroupId.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblSubgroupId.setBounds(521, 106, 108, 23);
 		panel_4.add(lblSubgroupId);
 		
 	
 
 		subGroupID = new JTextField();
-		subGroupID.setForeground(SystemColor.controlDkShadow);
+		subGroupID.setFont(new Font("Tahoma", Font.BOLD, 13));
+		subGroupID.setForeground(Color.RED);
 		subGroupID.setColumns(10);
-		subGroupID.setBounds(625, 106, 174, 23);
+		subGroupID.setBounds(643, 107, 174, 23);
 		panel_4.add(subGroupID);
 		
 		
 
 		JButton btnNewButton_1 = new JButton("GENERATE ID");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -588,7 +597,7 @@ public class Manage_studentGroup {
 		
 		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setBackground(new Color(119, 136, 153));
-		btnNewButton_1.setBounds(625, 157, 174, 38);
+		btnNewButton_1.setBounds(643, 157, 174, 38);
 		panel_4.add(btnNewButton_1);
 	
 		
@@ -615,6 +624,8 @@ public class Manage_studentGroup {
 		
 	
 		table = new JTable();
+		table.setForeground(SystemColor.windowBorder);
+		table.setFont(new Font("Tahoma", Font.BOLD, 13));
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -709,7 +720,7 @@ public class Manage_studentGroup {
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(0, 139, 139));
-		btnNewButton.setBounds(142, 542, 123, 33);
+		btnNewButton.setBounds(122, 542, 123, 33);
 		panel_2.add(btnNewButton);
 		
 		
@@ -779,7 +790,7 @@ public class Manage_studentGroup {
 	    btnNewButton_3.setForeground(Color.WHITE);
 		btnNewButton_3.setFont(new Font("2, 542", Font.BOLD, 14));
 		btnNewButton_3.setBackground(new Color(0, 139, 139));
-		btnNewButton_3.setBounds(855, 542, 123, 33);
+		btnNewButton_3.setBounds(852, 542, 123, 33);
 		panel_2.add(btnNewButton_3);
 		
 	}
