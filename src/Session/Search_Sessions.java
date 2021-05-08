@@ -67,6 +67,28 @@ public class Search_Sessions {
 	private JComboBox groupBox;
 	
 	
+	public void refreshtable() {
+
+		try {
+
+			Connection con = DbConnection.connect();
+
+			String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As Code,subName As Name,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session ";
+			
+			
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+
+
+
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+
+
+	}
 	//load data to dropdown lec
 	 public  void  loadLecturer1(){ 
 		  try {
@@ -308,9 +330,10 @@ public class Search_Sessions {
 		btnSessions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
+				
+				SrchSesFrm.dispose();
 				Add_Session add_Session = new Add_Session();
 				add_Session.main(null);
-				SrchSesFrm.dispose();
 			}
 		});
 		btnSessions.setForeground(Color.WHITE);
@@ -436,9 +459,9 @@ public class Search_Sessions {
 		JButton button = new JButton("Add New Session");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Add_Session add_Session = new Add_Session();
-				add_Session.main(null);
+				
 				SrchSesFrm.dispose();
+			new Add_Session();
 			}
 		});
 		button.setBounds(262, 66, 258, 37);
@@ -450,8 +473,8 @@ public class Search_Sessions {
 
 
 				SrchSesFrm.dispose();
-				Manage_Session manage_Session = new Manage_Session();
-				manage_Session.main(null);
+				new Manage_Session();
+				
 			}
 		});
 		button_1.setBounds(517, 66, 258, 37);
@@ -462,8 +485,7 @@ public class Search_Sessions {
 			public void actionPerformed(ActionEvent e) {
 
 				SrchSesFrm.dispose();
-				Search_Sessions search_Sessions = new  Search_Sessions();
-				Search_Sessions.main(null);
+				new Search_Sessions();
 			}
 		});
 		button_2.setBounds(774, 66, 258, 37);
@@ -499,7 +521,7 @@ public class Search_Sessions {
 
 		table = new JTable();
 		table.setForeground(SystemColor.textText);
-		table.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		table.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 11));
 
 		table.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
 
@@ -508,7 +530,7 @@ public class Search_Sessions {
 		table.setModel(new DefaultTableModel( new Object[][] { }, new String[] { }
 				));
 		
-		//display details in a tabl486				
+		//display details in a table				
 		scrollPane_1.setViewportView(table);
 
 				try {
@@ -641,7 +663,22 @@ public class Search_Sessions {
 		panel_4.setBounds(10, 11, 1045, 474);
 		panel_3.add(panel_4);
 		
+		//clear button
 		JButton btnNewButton = new JButton("CLEAR");
+		btnNewButton.setBackground(new Color(0, 139, 139));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 13));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				lecbox.setSelectedIndex(0);;
+				groupBox.setSelectedIndex(0);
+				subjBox.setSelectedIndex(0);
+				refreshtable();
+				
+				
+			}
+		});
 		btnNewButton.setBounds(477, 489, 140, 27);
 		panel_3.add(btnNewButton);
 		

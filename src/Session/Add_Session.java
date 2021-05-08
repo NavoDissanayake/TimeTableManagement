@@ -502,7 +502,7 @@ public class Add_Session {
 		panel_3.add(scrollPane);
 		
 		JTextArea sign = new JTextArea();
-		sign.setFont(new Font("Monospaced", Font.PLAIN, 11));
+		sign.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
 		scrollPane.setViewportView(sign);
 		
 		JScrollBar scrollBar = new JScrollBar();
@@ -525,7 +525,7 @@ public class Add_Session {
 
 		 subname = new JComboBox();
 	
-		 subname.setModel(new DefaultComboBoxModel(new String[] {"---------- Select Subject  ----------"}));
+		 subname.setModel(new DefaultComboBoxModel(new String[] {"----------Select Subject----------"}));
 		subname.setBounds(254, 159, 239, 28);
 		panel_3.add(subname);
 
@@ -584,6 +584,7 @@ public class Add_Session {
 		
 
 		JButton btnClear = new JButton("CLEAR");
+		
 		btnClear.setForeground(Color.WHITE);
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnClear.setEnabled(true);
@@ -609,7 +610,18 @@ public class Add_Session {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				String lecregx = "-";
+				String lecrs = "----------Select Lecturer 1 ----------";
+				String namer = "----------Select Subject----------";
+				String tagr = "------------Select Tag ------------";
+				String grpidr = "--------Select Group/Sub Group ID--------";
 				
+				
+				if(lec1.getSelectedItem().toString().equals(lecrs)||subname.getSelectedItem().toString().equals(namer)|| tag.getSelectedItem().toString().equals(tagr)|| groupId.getSelectedItem().toString().equals(grpidr)|| students.getValue().equals(0)|| duration.getValue().equals(0))
+				{
+					JOptionPane.showMessageDialog(null, "       Please Enter Values","Alert",JOptionPane.WARNING_MESSAGE);
+	
+					
+				}else {
 				if(lec2.getSelectedItem().toString().matches(lecregx ));
 				{
 					sign.setText(lec1.getSelectedItem().toString()+ " - "+ txtSubcod.getText()+" - "+ subname.getSelectedItem().toString()
@@ -624,6 +636,11 @@ public class Add_Session {
 						+" - "+tag.getSelectedItem().toString()+" - "+groupId.getSelectedItem().toString()+" - "+students.getValue().toString()+" - "+
 						duration.getValue().toString());
 				
+				}
+				
+				JLabel label8 = new JLabel("Session Signature Generated Successfully");
+				label8.setHorizontalAlignment(SwingConstants.CENTER);
+				JOptionPane.showMessageDialog(null, label8);
 				}
 				
 			}
@@ -650,6 +667,14 @@ public class Add_Session {
 				String hour = duration.getValue().toString();
 				String signature =sign.getText();
 				
+				
+		
+				String lecrs = "----------Select Lecturer 1 ----------";
+				String namer = "----------Select Subject----------";
+				String tagr = "------------Select Tag ------------";
+				String grpidr = "--------Select Group/Sub Group ID--------";
+				
+				
 				if(sign.getText().equals("")) {
 			
 					JOptionPane.showMessageDialog(null, "Please Generate Session Signature.","Alert",JOptionPane.WARNING_MESSAGE);
@@ -659,7 +684,7 @@ public class Add_Session {
 
 					try {
 
-						if(lec1.getSelectedItem().toString().equals("") || subname.getSelectedItem().equals("") || txtSubcod.getText().equals("") || duration.getValue().equals("0")) {
+						if(lec1.getSelectedItem().toString().equals(lecrs) || subname.getSelectedItem().equals(namer) || txtSubcod.getText().equals("") ||tag.getSelectedItem().toString().equals(tagr)||groupId.getSelectedItem().toString().equals(grpidr)|| duration.getValue().equals(0)||students.getValue().equals(0)) {
 							JOptionPane.showMessageDialog(null, "       Please Fill All the Fields","Failed",JOptionPane.WARNING_MESSAGE);
 
 						}else {
@@ -710,6 +735,7 @@ public class Add_Session {
 		panel_3.add(btnGensign);
 		
 		txtSubcod = new JTextField();
+		txtSubcod.setFont(new Font("Microsoft JhengHei UI", Font.BOLD, 12));
 		txtSubcod.setBounds(254, 219, 239, 28);
 		panel_3.add(txtSubcod);
 		txtSubcod.setColumns(10);
@@ -744,8 +770,7 @@ public class Add_Session {
 			public void actionPerformed(ActionEvent e) {
 
 				AddsessFrm.dispose();
-				Add_Session add_Session = new Add_Session();
-				add_Session.main(null);
+				new Add_Session();
 			}
 
 		});
@@ -759,6 +784,8 @@ public class Add_Session {
 				AddsessFrm.dispose();
 				Manage_Session manage_Session = new Manage_Session();
 				manage_Session.main(null);
+				
+				
 			}
 
 		});
@@ -771,12 +798,13 @@ public class Add_Session {
 
 
 				AddsessFrm.dispose();
-				Search_Sessions search_Sessions = new Search_Sessions();
-				search_Sessions.main(null);
+				new Search_Sessions();
 
 			}
 		});
 		
+		
+		//Display subCode when entering subName
 		 subname.addActionListener(new ActionListener() {
 			 	public void actionPerformed(ActionEvent arg0) {
 			 		
@@ -802,6 +830,22 @@ public class Add_Session {
 		button_5.setBounds(774, 67, 258, 37);
 		AddsessFrm.getContentPane().add(button_5);
 
+		//clear button
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				txtSubcod.setText("");
+				lec1.setSelectedIndex(0);
+				lec2.setSelectedIndex(0);
+				subname.setSelectedIndex(0);
+				tag.setSelectedIndex(0);
+				groupId.setSelectedIndex(0);
+				sign.setText("");
+				students.setValue(0);
+				duration.setValue(0);
+				
+			}
+		});
 
 		//load data to dropdown lec1
 		loadLecturer1();

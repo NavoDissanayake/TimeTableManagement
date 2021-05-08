@@ -158,9 +158,9 @@ public class Home {
 				
 				public void actionPerformed(ActionEvent e) {
 					
-					Add_Lecturer add_lecture = new Add_Lecturer();
-					add_lecture.main(null);
+					
 					frmAddStudentGroup.dispose();
+					new Add_Lecturer();
 					
 				}
 			});
@@ -200,9 +200,9 @@ public class Home {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_Subjects add_sub= new Add_Subjects();
-				add_sub.main(null);
+				
 				frmAddStudentGroup.dispose();
+				new Add_Subjects();
 				
 			}
 		});
@@ -219,9 +219,9 @@ public class Home {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_Session add_session= new Add_Session();
-				add_session.main(null);
+				
 				frmAddStudentGroup.dispose();
+				new Add_Session();
 				
 			}
 		});

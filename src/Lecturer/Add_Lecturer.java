@@ -646,7 +646,7 @@ public class Add_Lecturer {
 
 					try {
 
-						if(EmpNameTxt.getText().equals("") || Fac.getSelectedItem().equals("") || Dept.getSelectedItem().equals("") || Campus.getSelectedItem().equals("") || build.getSelectedItem().equals("") || hourAdd.getValue().equals("0")) {
+						if(EmpNameTxt.getText().equals("") || Fac.getSelectedItem().equals("") || Dept.getSelectedItem().equals("") || Campus.getSelectedItem().equals("") || build.getSelectedItem().equals("") || hourAdd.getValue().equals(0)) {
 							JOptionPane.showMessageDialog(null, "       Please Fill All the Fields","Failed",JOptionPane.WARNING_MESSAGE);
 
 						}else {

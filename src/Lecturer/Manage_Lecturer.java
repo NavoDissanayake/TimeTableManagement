@@ -727,8 +727,9 @@ public class Manage_Lecturer {
 						;j<comboBox_2.getItemCount();j++) {
 
 					if(comboBox_2.getItemAt(j).toString().equalsIgnoreCase(combolevel3)) {
-						comboBox_2.setSelectedIndex(j); } } String combolevel4 = table.getValueAt(i,
-								7).toString(); for(int j=0 ;j<comboBox_3.getItemCount();j++) {
+						comboBox_2.setSelectedIndex(j); } } 
+				
+				String combolevel4 = table.getValueAt(i,7).toString(); for(int j=0 ;j<comboBox_3.getItemCount();j++) {
 
 									if(comboBox_3.getItemAt(j).toString().equalsIgnoreCase(combolevel4)) {
 										comboBox_3.setSelectedIndex(j); } }
@@ -928,6 +929,24 @@ public class Manage_Lecturer {
 					JOptionPane.showMessageDialog(null, "       Data Deleted Successfully","Message",JOptionPane.INFORMATION_MESSAGE);
 					pst.close();
 					refreshtable();
+
+					textField.setText("");
+					textField_1.setText(" ");
+					textField_2.setText(" ");
+					comboBox.setSelectedIndex(0);
+					comboBox_1.setSelectedIndex(0);
+					comboBox_2.setSelectedIndex(0);
+					comboBox_3.setSelectedIndex(0);
+					comboBox_4.setSelectedIndex(0);
+					spinner.setValue(0);
+					spinner_1.setValue(0);
+					checkBox.setSelected(false);
+					checkBox_1.setSelected(false);
+					checkBox_2.setSelected(false);
+					checkBox_3.setSelected(false);
+					checkBox_4.setSelected(false);
+					checkBox_5.setSelected(false);
+					checkBox_6.setSelected(false);
 					//table.revalidate();
 
 				} catch(Exception en) { en.printStackTrace();

@@ -670,10 +670,20 @@ public class Manage_Subject {
 					String query="Delete from subjects where subID='"+textFieldID.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.execute();
-					refreshtable();
+					
 					
 					//JOptionPane.showMessageDialog(null, "","Alert",JOptionPane.WARNING_MESSAGE);
 					JLabel label9 = new JLabel("Data Deleted Successfully");
+					refreshtable();
+
+					textField.setText("");
+					textField_1.setText("");
+					comboBox_1.setSelectedIndex(0);
+					comboBox.setSelectedIndex(0);
+					comboBox_2.setSelectedIndex(0);
+					comboBox_3.setSelectedIndex(0);
+					comboBox_4.setSelectedIndex(0);
+					comboBox_5.setSelectedIndex(0);
 					label9.setHorizontalAlignment(SwingConstants.CENTER);
 					JOptionPane.showMessageDialog(null, label9);
 					pst.close();
