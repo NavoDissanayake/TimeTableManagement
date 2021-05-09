@@ -31,6 +31,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import DB.DbConnection;
+import Home.Home;
 import Lecturer.Add_Lecturer;
 import Student.Manage_studentGroup;
 import net.proteanit.sql.DbUtils;
@@ -258,13 +259,12 @@ public class AddWorkingdays {
 		btnManageGroups.setIcon(new ImageIcon(home_logo));
 		btnManageGroups.setBounds(0, 13, 262, 33);
 		panel_1.add(btnManageGroups);
-		btnManageGroups.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
 		btnManageGroups.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				
+				frame.dispose();
+				new Home();
 			}
 		});
 		btnManageGroups.setForeground(new Color(255, 255, 255));
@@ -560,7 +560,30 @@ public class AddWorkingdays {
 		}
 		
 
-		
+		//refresh button
+		JButton btnRefresh = new JButton("REFRESH");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Connection con = DbConnection.connect();
+					
+					String query="select * from WorkingDays ";
+					PreparedStatement pst=con.prepareStatement(query);
+					ResultSet rs=pst.executeQuery();
+					table.setModel(DbUtils.resultSetToTableModel(rs));
+					
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		btnRefresh.setForeground(Color.WHITE);
+		btnRefresh.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnRefresh.setEnabled(true);
+		btnRefresh.setBackground(new Color(0, 153, 153));
+		btnRefresh.setBounds(611, 564, 141, 31);
+		panel_3.add(btnRefresh);	
 
 		
 		//Manage button redirect to the manage working days 
@@ -571,7 +594,7 @@ public class AddWorkingdays {
 		btnNewButton.setBackground(new Color(0, 153, 153));
 		btnNewButton.setBounds(766, 564, 141, 31);
 		panel_3.add(btnNewButton);
-	btnNewButton.addActionListener(new ActionListener() {
+		btnNewButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
@@ -596,29 +619,8 @@ public class AddWorkingdays {
 		button_1.setBounds(723, 2, 348, 37);
 		panel_3.add(button_1);
 		
-		JButton btnRefresh = new JButton("REFRESH");
-		btnRefresh.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					Connection con = DbConnection.connect();
-					
-					String query="select * from WorkingDays ";
-					PreparedStatement pst=con.prepareStatement(query);
-					ResultSet rs=pst.executeQuery();
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-				}
-				catch(Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		btnRefresh.setForeground(Color.WHITE);
-		btnRefresh.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnRefresh.setEnabled(true);
-		btnRefresh.setBackground(new Color(0, 153, 153));
-		btnRefresh.setBounds(611, 564, 141, 31);
-		panel_3.add(btnRefresh);
+		
+
 		
 		
 		
