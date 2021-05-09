@@ -602,7 +602,7 @@ public class Statistics {
 		
 		JPanel staticpanel_5 = new JPanel();
 		staticpanel_5.setBackground(new Color(128, 128, 128));
-		staticpanel_5.setBounds(539, 224, 268, 259);
+		staticpanel_5.setBounds(539, 224, 340, 259);
 		staticpanel_3.add(staticpanel_5);
 		staticpanel_5.setLayout(null);
 		
@@ -629,21 +629,21 @@ public class Statistics {
 		
 		statictextField_4 = new JTextField();
 		statictextField_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		statictextField_4.setBounds(110, 70, 132, 19);
+		statictextField_4.setBounds(110, 70, 220, 19);
 		statictextField_4.setEditable(false);
 		staticpanel_5.add(statictextField_4);
 		statictextField_4.setColumns(10);
 		
 		statictextField_5 = new JTextField();
 		statictextField_5.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		statictextField_5.setBounds(110, 121, 132, 19);
+		statictextField_5.setBounds(110, 121, 220, 19);
 		statictextField_5.setEditable(false);
 		staticpanel_5.add(statictextField_5);
 		statictextField_5.setColumns(10);
 		
 		statictextField_6 = new JTextField();
 		statictextField_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		statictextField_6.setBounds(110, 176, 132, 19);
+		statictextField_6.setBounds(110, 176, 220, 19);
 		statictextField_6.setEditable(false);
 		staticpanel_5.add(statictextField_6);
 		statictextField_6.setColumns(10);
