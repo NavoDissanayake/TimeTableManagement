@@ -68,8 +68,7 @@ public class NotAvailableTime {
 	private JComboBox selectsession;
 	private JComboBox selectgroup;
 	private JComboBox selectsubgroup;
-	private  ButtonGroup bg = new ButtonGroup();
-	private  ButtonGroup bg1 = new ButtonGroup();
+
 	private JCheckBox startAM;
 	private JCheckBox startPM;
 	private JCheckBox endAM;
@@ -810,7 +809,7 @@ public void refreshtable() {
 			
 			
 			
-			//refreshTable();
+			refreshtable();
 			
 		}
 		catch(Exception e) {
