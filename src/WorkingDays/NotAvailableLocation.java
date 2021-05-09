@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import Home.Home;
 import Lecturer.Add_Lecturer;
 import Student.Manage_studentGroup;
 import javax.swing.SpinnerNumberModel;
@@ -103,12 +104,7 @@ public class NotAvailableLocation {
 		lblNewLabel_10.setBackground(Color.WHITE);
 		lblNewLabel_10.setBounds(723, 13, 419, 29);
 		panel.add(lblNewLabel_10);
-		/*
-		 * //JLabel lblNewLabel = new JLabel("Time Table Management System");
-		 * lblNewLabel.setBounds(261, 5, 822, 61); panel.add(lblNewLabel);
-		 * lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 50));
-		 * lblNewLabel.setForeground(Color.WHITE);
-		 */
+		
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 62, 262, 609);
@@ -249,6 +245,9 @@ public class NotAvailableLocation {
 		});
 		btnManageGroups.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				frame.dispose();
+				new Home();
 			}
 		});
 		btnManageGroups.setForeground(new Color(255, 255, 255));

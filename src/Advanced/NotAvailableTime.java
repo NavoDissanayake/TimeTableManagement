@@ -117,7 +117,7 @@ public class NotAvailableTime {
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-	
+	//lecture button
 		JButton btnLecturers = new JButton("Lecturers");
 		btnLecturers.setHorizontalAlignment(SwingConstants.LEFT);
 		btnLecturers.setIcon(new ImageIcon(lec_logo));
@@ -137,6 +137,7 @@ public class NotAvailableTime {
 		btnLecturers.setBounds(0, 59, 264, 38);
 		panel_1.add(btnLecturers);
 		
+		//lecture student
 		JButton btnStudents = new JButton("Students");
 		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStudents.setIcon(new ImageIcon(stu_logo));
@@ -156,6 +157,7 @@ public class NotAvailableTime {
 		btnStudents.setBounds(0, 108, 264, 38);
 		panel_1.add(btnStudents);
 		
+		//student button
 		JButton btnSubjects = new JButton("Subjects");
 		btnSubjects.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSubjects.setIcon(new ImageIcon(sub_logo));
@@ -165,6 +167,8 @@ public class NotAvailableTime {
 		btnSubjects.setBounds(0, 157, 264, 38);
 		panel_1.add(btnSubjects);
 		
+		
+		//session button
 		JButton btnSessions = new JButton("Sessions");
 		btnSessions.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSessions.setIcon(new ImageIcon(session_logo));
@@ -183,6 +187,7 @@ public class NotAvailableTime {
 		btnTags.setBounds(0, 255, 264, 38);
 		panel_1.add(btnTags);
 		
+		//room button
 		JButton btnRooms = new JButton("Rooms");
 		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
 		btnRooms.setIcon(new ImageIcon(room_logo));
@@ -192,6 +197,8 @@ public class NotAvailableTime {
 		btnRooms.setBounds(0, 304, 264, 38);
 		panel_1.add(btnRooms);
 		
+		
+		//working days and hours button
 		JButton btnWorkingDays = new JButton("Working days & Hours");
 		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
 		btnWorkingDays.setIcon(new ImageIcon(days_logo));
@@ -210,6 +217,8 @@ public class NotAvailableTime {
 		btnLocations.setBounds(0, 402, 264, 38);
 		panel_1.add(btnLocations);
 		
+		
+		//statistics button
 		JButton btnStatistics = new JButton("Statistics");
 		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStatistics.setIcon(new ImageIcon(st_logo));
@@ -219,6 +228,8 @@ public class NotAvailableTime {
 		btnStatistics.setBounds(0, 451, 264, 38);
 		panel_1.add(btnStatistics);
 		
+		
+		//advanced button
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAdvanced.setIcon(new ImageIcon(adv_logo));
@@ -228,6 +239,8 @@ public class NotAvailableTime {
 		btnAdvanced.setBounds(0, 500, 264, 38);
 		panel_1.add(btnAdvanced);
 		
+		
+		//time table generate button
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
@@ -237,7 +250,7 @@ public class NotAvailableTime {
 		btnTimetableGenerate.setBounds(0, 549, 264, 38);
 		panel_1.add(btnTimetableGenerate);
 		
-		
+		//home button
 		JButton btnManageGroups = new JButton("Home");
 		btnManageGroups.setHorizontalAlignment(SwingConstants.LEFT);
 		btnManageGroups.setIcon(new ImageIcon(home_logo));
@@ -267,17 +280,20 @@ public class NotAvailableTime {
 		panel_6.setBounds(-11, 0, 1082, 49);
 		panel_3.add(panel_6);
 		
+		//conseccutive sessions button
 		JButton btnNewButton_2_1 = new JButton("Conseccutive Sessions");
 		btnNewButton_2_1.setBounds(0, 11, 268, 37);
 		panel_6.add(btnNewButton_2_1);
 		
+		
+		//parallel sessions button
 		JButton btnNewButton_2_1_1 = new JButton("Parallel Sessions");
 		btnNewButton_2_1_1.setBounds(267, 11, 275, 37);
 		panel_6.add(btnNewButton_2_1_1);
 		
 		
 		
-		
+		//not available time button
 		JLabel lblNewLabel_1_1 = new JLabel("Not Available Time");
 		JButton button = new JButton("Not available time");
 		button.setBounds(819, 11, 263, 37);
@@ -293,7 +309,7 @@ public class NotAvailableTime {
 			}
 		});
 			
-		
+		//non overlapping session button
 		JButton btnNewButton_2_1_2 = new JButton("Non Overlapping Sessions");
 		btnNewButton_2_1_2.setBounds(543, 11, 275, 37);
 		panel_6.add(btnNewButton_2_1_2);

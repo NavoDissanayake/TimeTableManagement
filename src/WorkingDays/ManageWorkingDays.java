@@ -132,12 +132,7 @@ public void refreshtable() {
 		lblNewLabel_10.setBackground(Color.WHITE);
 		lblNewLabel_10.setBounds(723, 13, 419, 29);
 		panel.add(lblNewLabel_10);
-		/*
-		 * //JLabel lblNewLabel = new JLabel("Time Table Management System");
-		 * lblNewLabel.setBounds(261, 5, 822, 61); panel.add(lblNewLabel);
-		 * lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 50));
-		 * lblNewLabel.setForeground(Color.WHITE);
-		 */
+		
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 62, 262, 609);
@@ -446,6 +441,8 @@ public void refreshtable() {
 					JLabel label = new JLabel("Data Updated");
 					label.setHorizontalAlignment(SwingConstants.CENTER);
 					JOptionPane.showMessageDialog(null, label);
+					
+					
 					//JOptionPane.showMessageDialog(null, "Data Updated");
 					refreshtable();
 					pst.close();
