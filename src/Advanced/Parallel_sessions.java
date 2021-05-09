@@ -37,6 +37,7 @@ import java.awt.Button;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import DB.DbConnection;
 import Home.Home;
@@ -54,6 +55,7 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.border.LineBorder;
 import java.awt.Panel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ScrollPaneConstants;
 
 public class Parallel_sessions {
 
@@ -77,6 +79,7 @@ public class Parallel_sessions {
 	private JComboBox comboBox_s1;
 	private JComboBox comboBox_s2;
 	private JComboBox comboBox_s3;
+	private JTextField genPara;
 	
 	
 	  public void fillsesions1() {
@@ -85,14 +88,14 @@ public class Parallel_sessions {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from StudentGroup";
+				 String query="select * from session";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("SubGroupID");
+					 String name =rs.getString("sessionSignature");
 					 comboBox_s1.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -115,14 +118,14 @@ public class Parallel_sessions {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from StudentGroup";
+				 String query="select * from session";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("SubGroupID");
+					 String name =rs.getString("sessionSignature");
 					 comboBox_s2.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -145,14 +148,14 @@ public class Parallel_sessions {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from StudentGroup";
+				 String query="select * from session";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("SubGroupID");
+					 String name =rs.getString("sessionSignature");
 					 comboBox_s3.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -177,7 +180,7 @@ public class Parallel_sessions {
 			try {
 				Connection con = DbConnection.connect();
 				
-				String query="select * from parallel ";
+				String query="select parID AS ParallelID, ParallelSessions  from parallel ";
 				PreparedStatement pst=con.prepareStatement(query);
 				ResultSet rs=pst.executeQuery();
 				table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -338,10 +341,10 @@ public class Parallel_sessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_Subjects add_sub= new Add_Subjects();
-				add_sub.main(null);
-				//frmAddStudentGroup.dispose();
-				//new Add_Subjects();
+				//Add_Subjects add_sub= new Add_Subjects();
+				//add_sub.main(null);
+				frmAddStudentGroup.dispose();
+				new Add_Subjects();
 				
 			}
 		});
@@ -359,10 +362,10 @@ public class Parallel_sessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_Session add_session= new Add_Session();
-				add_session.main(null);
-				//frmAddStudentGroup.dispose();
-				//new Add_Session();
+				//Add_Session add_session= new Add_Session();
+				//add_session.main(null);
+				frmAddStudentGroup.dispose();
+				new Add_Session();
 				
 			}
 		});
@@ -425,10 +428,10 @@ public class Parallel_sessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				AddWorkingdays w_days= new 	AddWorkingdays();
-				w_days.main(null);
-				//frmAddStudentGroup.dispose();
-				//new AddWorkingdays();
+				//AddWorkingdays w_days= new 	AddWorkingdays();
+				//w_days.main(null);
+				frmAddStudentGroup.dispose();
+				new AddWorkingdays();
 				
 			}
 		});
@@ -536,20 +539,66 @@ public class Parallel_sessions {
 		panel_6_1_1.add(separator_1);
 		
 		JButton btnNewButton_2_1 = new JButton("Conseccutive Sessions");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				//Statistics stat= new 8tatistics ();
+				//stat.main(null);
+				frmAddStudentGroup.dispose();
+				new  Consecutive_sessions();
+				
+			}
+		});
 		btnNewButton_2_1.setBounds(0, 0, 268, 37);
 		panel_6.add(btnNewButton_2_1);
 		
 		JButton btnNewButton_2_1_1 = new JButton("Parallel Sessions");
+		btnNewButton_2_1_1.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				//Statistics stat= new Statistics ();
+				//stat.main(null);
+				frmAddStudentGroup.dispose();
+				new  Parallel_sessions();
+				
+			}
+		});
 		btnNewButton_2_1_1.setBounds(269, 0, 275, 37);
 		panel_6.add(btnNewButton_2_1_1);
 		
 		JButton btnNewButton_2_1_2 = new JButton("Non Overlapping Sessions");
+		btnNewButton_2_1_2.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				//Statistics stat= new Statistics ();
+				//stat.main(null);
+				frmAddStudentGroup.dispose();
+				new  Non_overlappingSessions();
+				
+			}
+		});
 		btnNewButton_2_1_2.setBounds(540, 0, 275, 37);
 		panel_6.add(btnNewButton_2_1_2);
 		
 		JButton btnNewButton_2_1_3 = new JButton("Not Available Times");
+		btnNewButton_2_1_3.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				//Statistics stat= new Statistics ();
+				//stat.main(null);
+				frmAddStudentGroup.dispose();
+				new  NotAvailableTime();
+				
+			}
+		});
 		btnNewButton_2_1_3.setBounds(813, 0, 268, 37);
 		panel_6.add(btnNewButton_2_1_3);
+		
+		
 		
 		JPanel panel_7 = new JPanel();
 		panel_7.setLayout(null);
@@ -560,12 +609,13 @@ public class Parallel_sessions {
 		
 		//session 1
 		JLabel lblNewLabel_4_1 = new JLabel("Session 1");
-		lblNewLabel_4_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel_4_1.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		lblNewLabel_4_1.setBounds(44, 13, 80, 21);
 		panel_7.add(lblNewLabel_4_1);
 		
 	    comboBox_s1 = new JComboBox();
-	    comboBox_s1.setModel(new DefaultComboBoxModel(new String[] {"", "Y3S1.3.1"}));
+	    comboBox_s1.setFont(new Font("Times New Roman", Font.BOLD, 14));
+	    comboBox_s1.setModel(new DefaultComboBoxModel(new String[] {"-"}));
 		comboBox_s1.setBounds(150, 13, 764, 32);
 		panel_7.add(comboBox_s1);
 		
@@ -574,13 +624,14 @@ public class Parallel_sessions {
 		
 		//session 2
 		JLabel lblNewLabel_4 = new JLabel("Session 2");
-		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		lblNewLabel_4.setBounds(44, 76, 80, 21);
 		panel_7.add(lblNewLabel_4);
 		
 		
 		comboBox_s2 = new JComboBox();
-		comboBox_s2.setModel(new DefaultComboBoxModel(new String[] {"", "Y3S1.3.1"}));
+		comboBox_s2.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		comboBox_s2.setModel(new DefaultComboBoxModel(new String[] {"-"}));
 		comboBox_s2.setBounds(150, 76, 764, 32);
 		panel_7.add( comboBox_s2);
 		
@@ -590,17 +641,26 @@ public class Parallel_sessions {
 		
 		//session 3
 		JLabel lblNewLabel_5 = new JLabel("Session 3");
-		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		lblNewLabel_5.setBounds(44, 142, 96, 16);
 		panel_7.add(lblNewLabel_5);
 		
 		comboBox_s3= new JComboBox();
-		comboBox_s3.setModel(new DefaultComboBoxModel(new String[] {"", "Y3S1.3.1"}));
+		comboBox_s3.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		comboBox_s3.setModel(new DefaultComboBoxModel(new String[] {"-"}));
 		comboBox_s3.setBounds(150, 142, 764, 32);
 		panel_7.add(comboBox_s3);
 		
 		
 		fillsesions3(); 
+		
+		
+		genPara = new JTextField();
+		genPara.setBackground(UIManager.getColor("Button.background"));
+		genPara.setEnabled(false);
+		genPara.setBounds(45, 265, 869, 2);
+		panel_7.add(genPara);
+		genPara.setColumns(10);
 		
 		
 	
@@ -609,9 +669,13 @@ public class Parallel_sessions {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				genPara.setText(comboBox_s1.getSelectedItem().toString()+"+"+comboBox_s2.getSelectedItem().toString()+"+"+comboBox_s3.getSelectedItem().toString());
+				
 				String session1=comboBox_s1.getSelectedItem().toString();
 				String session2=comboBox_s2.getSelectedItem().toString();
 				String session3=comboBox_s3.getSelectedItem().toString();
+				String session = genPara.getText();
+				
 				
 				
 				
@@ -621,7 +685,7 @@ public class Parallel_sessions {
 					 Connection con = DbConnection.connect();
 
 	                    //String query = "INSERT INTO parallel values(null, '" + session + "')";
-	                    String query = "INSERT INTO parallel values(null, '" + session1 + "', '" + session2+ "', '" + session3 + "')";
+					  String query = "INSERT INTO parallel values(null, '" + session1 + "', '" + session2+ "', '" + session3 + "', '" + session +"')";
 
 
 	                    Statement sta = con.createStatement();
@@ -629,8 +693,8 @@ public class Parallel_sessions {
 	                    if (x == 0) {
 	                    	JOptionPane.showMessageDialog(null, "       This is alredy exist","Alert",JOptionPane.WARNING_MESSAGE);
 		                      
-	                    } else {
-	                    	JLabel label = new JLabel("Consective Sessions added Sucessfully");
+	         } else {
+	                    	JLabel label = new JLabel("Parallel Sessions added Sucessfully");
 	    					label.setHorizontalAlignment(SwingConstants.CENTER);
 	    					JOptionPane.showMessageDialog(null, label);
 	    					
@@ -677,11 +741,21 @@ public class Parallel_sessions {
 		
 		//table view
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBounds(44, 270, 869, 177);
 		panel_7.add(scrollPane);
 		
 		table = new JTable();
-		table.setBorder(new LineBorder(Color.GRAY, 2));
+		
+		//table header
+		JTableHeader h = table.getTableHeader();
+		h.setBackground(new Color(32, 178, 170));
+		h.setForeground(Color.WHITE);
+		h.setFont(new Font("Times New Roman", Font.BOLD, 17));
+	
+		table.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		//table.setBorder(new LineBorder(Color.GRAY, 2));
 		table.setBackground(Color.WHITE);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -696,11 +770,12 @@ public class Parallel_sessions {
 			
 			Connection con = DbConnection.connect();
 			
-			String query="select * from parallel ";
+			String query="select parID AS ParallelID, ParallelSessions  from parallel ";
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 			
+		
 			//refreshTable();
 			
 		}

@@ -37,6 +37,7 @@ import java.awt.Button;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import DB.DbConnection;
 import Home.Home;
@@ -54,6 +55,7 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.border.LineBorder;
 import java.awt.Panel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ScrollPaneConstants;
 
 public class Non_overlappingSessions {
 
@@ -84,14 +86,14 @@ public class Non_overlappingSessions {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from StudentGroup";
+				 String query="select * from session";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("SubGroupID");
+					 String name =rs.getString("sessionSignature");
 					 comboBox_ps.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -275,10 +277,10 @@ public class Non_overlappingSessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_Subjects add_sub= new Add_Subjects();
-				add_sub.main(null);
-				//frmAddStudentGroup.dispose();
-				//new Add_Subjects();
+				//Add_Subjects add_sub= new Add_Subjects();
+				//add_sub.main(null);
+				frmAddStudentGroup.dispose();
+				new Add_Subjects();
 				
 			}
 		});
@@ -296,10 +298,10 @@ public class Non_overlappingSessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_Session add_session= new Add_Session();
-				add_session.main(null);
-				//frmAddStudentGroup.dispose();
-				//new Add_Session();
+				//Add_Session add_session= new Add_Session();
+				//add_session.main(null);
+				frmAddStudentGroup.dispose();
+				new Add_Session();
 				
 			}
 		});
@@ -362,10 +364,10 @@ public class Non_overlappingSessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				AddWorkingdays w_days= new 	AddWorkingdays();
-				w_days.main(null);
-				//frmAddStudentGroup.dispose();
-				//new AddWorkingdays();
+				//AddWorkingdays w_days= new 	AddWorkingdays();
+				//w_days.main(null);
+				frmAddStudentGroup.dispose();
+				new AddWorkingdays();
 				
 			}
 		});
@@ -470,18 +472,60 @@ public class Non_overlappingSessions {
 		panel_6_1_1.add(lblNewLabel_1_1);
 		
 		JButton btnNewButton_2_1 = new JButton("Conseccutive Sessions");
+        btnNewButton_2_1 .addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				frmAddStudentGroup.dispose();
+				new  Consecutive_sessions();
+				
+			}
+		});
+		
 		btnNewButton_2_1.setBounds(0, 0, 268, 37);
 		panel_6.add(btnNewButton_2_1);
 		
 		JButton btnNewButton_2_1_1 = new JButton("Parallel Sessions");
+		btnNewButton_2_1_1 .addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				frmAddStudentGroup.dispose();
+				new  Parallel_sessions();
+				
+			}
+		});
+		
 		btnNewButton_2_1_1.setBounds(269, 0, 275, 37);
 		panel_6.add(btnNewButton_2_1_1);
 		
 		JButton btnNewButton_2_1_2 = new JButton("Non Overlapping Sessions");
+		btnNewButton_2_1_2 .addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				frmAddStudentGroup.dispose();
+				new  Non_overlappingSessions();
+				
+			}
+		});
 		btnNewButton_2_1_2.setBounds(540, 0, 275, 37);
 		panel_6.add(btnNewButton_2_1_2);
 		
 		JButton btnNewButton_2_1_3 = new JButton("Not Available Times");
+	    btnNewButton_2_1_3.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				frmAddStudentGroup.dispose();
+				new  NotAvailableTime();
+				
+			}
+		});
 		btnNewButton_2_1_3.setBounds(813, 0, 268, 37);
 		panel_6.add(btnNewButton_2_1_3);
 		
@@ -504,12 +548,13 @@ public class Non_overlappingSessions {
 		
 		
 		JLabel lblNewLabel_4 = new JLabel("Session 1");
-		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		lblNewLabel_4.setBounds(52, 29, 80, 21);
 		panel_7.add(lblNewLabel_4);
 		
 		comboBox_ps = new JComboBox();
-		comboBox_ps.setModel(new DefaultComboBoxModel(new String[] {"", "Y3S1.3.1"}));
+		comboBox_ps.setFont(new Font("Tahoma", Font.BOLD, 14));
+		comboBox_ps.setModel(new DefaultComboBoxModel(new String[] {"-"}));
 		comboBox_ps.setBounds(156, 29, 723, 33);
 		panel_7.add(comboBox_ps);
 		
@@ -566,7 +611,7 @@ public class Non_overlappingSessions {
 		
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnNewButton_2.setBackground(new Color(0, 139, 139));
+		btnNewButton_2.setBackground(new Color(0,139,139));
 		btnNewButton_2.setBounds(520, 122, 167, 40);
 		panel_7.add(btnNewButton_2);
 		
@@ -599,10 +644,23 @@ public class Non_overlappingSessions {
 		
 		//table view
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBounds(52, 244, 827, 151);
 		panel_7.add(scrollPane);
 		
 		table = new JTable();
+		
+		//table header
+		JTableHeader h = table.getTableHeader();
+		h.setBackground(new Color(32, 178, 170));
+		h.setForeground(Color.WHITE);
+		h.setFont(new Font("Times New Roman", Font.BOLD, 17));
+		
+		
+		
+		
+		table.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
