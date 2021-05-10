@@ -419,7 +419,7 @@ public class Manage_Lecturer {
 		textField = new JTextField();
 		textField.setHorizontalAlignment(SwingConstants.LEFT);
 		textField.setColumns(10);
-		textField.setBounds(127, 19, 152, 23);
+		textField.setBounds(127, 19, 167, 23);
 		panel_3.add(textField);
 
 		JLabel label = new JLabel("Employee ID");
@@ -428,8 +428,9 @@ public class Manage_Lecturer {
 		panel_3.add(label);
 
 		JComboBox comboBox = new JComboBox();
+		comboBox.setBackground(Color.WHITE);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Professor", "Assistant Professor", "Senior Lecturer(HG)", "Senior Lecturer", "Lecturer", "Assistant Lecturer"}));
-		comboBox.setBounds(127, 53, 152, 23);
+		comboBox.setBounds(127, 53, 167, 23);
 		panel_3.add(comboBox);
 
 		JLabel label_1 = new JLabel("Level");
@@ -438,11 +439,13 @@ public class Manage_Lecturer {
 		panel_3.add(label_1);
 
 		textField_1 = new JTextField();
+		textField_1.setBackground(Color.WHITE);
+		textField_1.setEditable(false);
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_1.setForeground(SystemColor.controlDkShadow);
 		textField_1.setColumns(10);
-		textField_1.setBounds(127, 87, 152, 23);
+		textField_1.setBounds(127, 87, 167, 23);
 		panel_3.add(textField_1);
 
 		JLabel label_2 = new JLabel("Rank");
@@ -451,6 +454,7 @@ public class Manage_Lecturer {
 		panel_3.add(label_2);
 
 		JButton btnGenRankM = new JButton("GENERATE RANK");
+		btnGenRankM.setToolTipText("Click button to generate rank");
 
 		btnGenRankM.setForeground(Color.WHITE);
 		btnGenRankM.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -459,6 +463,7 @@ public class Manage_Lecturer {
 		panel_3.add(btnGenRankM);
 
 		JButton button_1 = new JButton("CLEAR");
+		button_1.setToolTipText("Click button to clear");
 
 		button_1.setForeground(Color.WHITE);
 		button_1.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -468,6 +473,7 @@ public class Manage_Lecturer {
 		panel_3.add(button_1);
 
 		JButton button_2 = new JButton("DELETE");
+		button_2.setToolTipText("Click button to delete lecturer");
 		button_2.setForeground(Color.WHITE);
 		button_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button_2.setEnabled(true);
@@ -476,6 +482,7 @@ public class Manage_Lecturer {
 		panel_3.add(button_2);
 
 		JButton button_3 = new JButton("EDIT");
+		button_3.setToolTipText("Click button to update lecturer");
 		button_3.setForeground(Color.WHITE);
 		button_3.setFont(new Font("Tahoma", Font.BOLD, 14));
 		button_3.setEnabled(true);
@@ -485,56 +492,57 @@ public class Manage_Lecturer {
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(487, 20, 161, 23);
+		textField_2.setBounds(460, 20, 179, 23);
 		panel_3.add(textField_2);
 
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "Computing", "Engineering", "Buisness Management", "Humanities and Science"}));
-		comboBox_1.setBounds(487, 53, 161, 23);
+		comboBox_1.setBounds(460, 53, 179, 23);
 		panel_3.add(comboBox_1);
 
 		JLabel label_3 = new JLabel("Employee Name");
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_3.setBounds(372, 19, 107, 23);
+		label_3.setBounds(345, 19, 107, 23);
 		panel_3.add(label_3);
 
 		JLabel label_4 = new JLabel("Faculty");
 		label_4.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_4.setBounds(372, 52, 107, 23);
+		label_4.setBounds(345, 52, 107, 23);
 		panel_3.add(label_4);
 
 		JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"", "IT", "SE", "DS", "CS", "IM", "CSNE", "----", "HCM", "AF", "BA", "MM", "----", "EEE", "ME", "QS", "----", "MU", "ELT"}));
-		comboBox_2.setBounds(487, 88, 161, 23);
+		comboBox_2.setBounds(460, 88, 179, 23);
 		panel_3.add(comboBox_2);
 
 		JComboBox comboBox_3 = new JComboBox();
 		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"", "Malabe", "Metro", "Kandy", "Jaffna", "Matara", "Kurunegala"}));
-		comboBox_3.setBounds(487, 123, 161, 23);
+		comboBox_3.setBounds(460, 123, 179, 23);
 		panel_3.add(comboBox_3);
 
 		JLabel label_5 = new JLabel("Department");
 		label_5.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_5.setBounds(372, 87, 107, 23);
+		label_5.setBounds(345, 87, 107, 23);
 		panel_3.add(label_5);
 
 		JLabel label_6 = new JLabel("Campus/Center");
 		label_6.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_6.setBounds(372, 122, 107, 23);
+		label_6.setBounds(345, 122, 107, 23);
 		panel_3.add(label_6);
 
 		JComboBox comboBox_4 = new JComboBox();
 		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"", "Main Building", "New Building", "Engineering Building", "Buisness Building", "D-block"}));
-		comboBox_4.setBounds(487, 158, 161, 23);
+		comboBox_4.setBounds(460, 158, 179, 23);
 		panel_3.add(comboBox_4);
 
 		JLabel label_7 = new JLabel("Building");
 		label_7.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_7.setBounds(372, 157, 107, 23);
+		label_7.setBounds(345, 157, 107, 23);
 		panel_3.add(label_7);
 
 		JSpinner spinner = new JSpinner();
-		spinner.setBounds(838, 158, 73, 22);
+		spinner.setFont(new Font("Tahoma", Font.BOLD, 13));
+		spinner.setBounds(838, 158, 73, 25);
 		panel_3.add(spinner);
 
 		JLabel label_8 = new JLabel("Active time per day");
@@ -543,7 +551,8 @@ public class Manage_Lecturer {
 		panel_3.add(label_8);
 
 		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setBounds(949, 159, 73, 22);
+		spinner_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		spinner_1.setBounds(949, 159, 73, 25);
 		panel_3.add(spinner_1);
 
 		JLabel label_9 = new JLabel("mins");
@@ -557,22 +566,27 @@ public class Manage_Lecturer {
 		panel_3.add(label_10);
 
 		JCheckBox checkBox = new JCheckBox("Monday");
+		checkBox.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		checkBox.setBounds(838, 20, 101, 23);
 		panel_3.add(checkBox);
 
 		JCheckBox checkBox_1 = new JCheckBox("Tuesday");
+		checkBox_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		checkBox_1.setBounds(838, 45, 101, 23);
 		panel_3.add(checkBox_1);
 
 		JCheckBox checkBox_2 = new JCheckBox("Wednesday");
+		checkBox_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		checkBox_2.setBounds(838, 72, 101, 23);
 		panel_3.add(checkBox_2);
 
 		JCheckBox checkBox_3 = new JCheckBox("Thursday");
+		checkBox_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		checkBox_3.setBounds(838, 97, 101, 23);
 		panel_3.add(checkBox_3);
 
 		JCheckBox checkBox_4 = new JCheckBox("Friday");
+		checkBox_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		checkBox_4.setBounds(838, 123, 101, 23);
 		panel_3.add(checkBox_4);
 
@@ -592,10 +606,12 @@ public class Manage_Lecturer {
 		LecidTxt.setColumns(10);
 		
 		JCheckBox checkBox_5 = new JCheckBox("Saturday");
+		checkBox_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		checkBox_5.setBounds(948, 19, 101, 23);
 		panel_3.add(checkBox_5);
 		
 		JCheckBox checkBox_6 = new JCheckBox("Sunday");
+		checkBox_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		checkBox_6.setBounds(948, 44, 101, 23);
 		panel_3.add(checkBox_6);
 

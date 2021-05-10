@@ -34,6 +34,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Advanced.Consecutive_sessions;
 import DB.DbConnection;
 import Home.Home;
 import Lecturer.Add_Lecturer;
@@ -294,9 +295,9 @@ public class Add_Session {
 		btnManageGroups.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Home home = new Home();
-				home.main(null);
+				
 				AddsessFrm.dispose();
+				new Home();
 			}
 		});
 		btnManageGroups.setForeground(new Color(255, 255, 255));
@@ -333,9 +334,9 @@ public class Add_Session {
 		btnStudents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Add_StudentGroup add_StudentGroup = new Add_StudentGroup();
-				add_StudentGroup.main(null);
+				
 				AddsessFrm.dispose();
+				new Add_StudentGroup();
 			}
 		});
 		btnStudents.setForeground(Color.WHITE);
@@ -382,9 +383,9 @@ public class Add_Session {
 		btnTags.setIcon(new ImageIcon(tag_logo));
 		btnTags.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Add_Tags add_Tags = new Add_Tags();
-				add_Tags.main(null);
+				
 				AddsessFrm.dispose();
+				new Add_Tags();
 			}
 		});
 		btnTags.setForeground(Color.WHITE);
@@ -465,7 +466,8 @@ public class Add_Session {
 		btnAdvanced.setIcon(new ImageIcon(adv_logo));
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				AddsessFrm.dispose();
+				new Consecutive_sessions();
 			}
 
 		});
@@ -502,6 +504,7 @@ public class Add_Session {
 		panel_3.add(scrollPane);
 		
 		JTextArea sign = new JTextArea();
+		sign.setEditable(false);
 		sign.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
 		scrollPane.setViewportView(sign);
 		
@@ -565,7 +568,7 @@ public class Add_Session {
 		panel_3.add(label_6);
 
 		JSpinner students = new JSpinner();
-		students.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		students.setFont(new Font("Tahoma", Font.BOLD, 12));
 		students.setBounds(771, 98, 239, 28);
 		panel_3.add(students);
 
@@ -575,7 +578,7 @@ public class Add_Session {
 		panel_3.add(label_7);
 
 		JSpinner duration = new JSpinner();
-		duration.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		duration.setFont(new Font("Tahoma", Font.BOLD, 12));
 		duration.setBounds(771, 158, 239, 28);
 		panel_3.add(duration);
 
@@ -584,6 +587,7 @@ public class Add_Session {
 		
 
 		JButton btnClear = new JButton("CLEAR");
+		btnClear.setToolTipText("Click button to clear");
 		
 		btnClear.setForeground(Color.WHITE);
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -606,6 +610,7 @@ public class Add_Session {
 		
 		//generate session signature
 		JButton btnGensign = new JButton("GENERATE SESSION SIGNATURE");
+		btnGensign.setToolTipText("Click button to generate session signature");
 		btnGensign.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -649,6 +654,7 @@ public class Add_Session {
 		
 		// Add new session
 		JButton btnAdd = new JButton("ADD");
+		btnAdd.setToolTipText("Click button to save details");
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(0, 128, 128));
@@ -731,10 +737,12 @@ public class Add_Session {
 		btnGensign.setForeground(Color.WHITE);
 		btnGensign.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnGensign.setBackground(new Color(105, 105, 105));
-		btnGensign.setBounds(611, 304, 399, 31);
+		btnGensign.setBounds(611, 304, 399, 33);
 		panel_3.add(btnGensign);
 		
 		txtSubcod = new JTextField();
+		txtSubcod.setBackground(Color.WHITE);
+		txtSubcod.setEditable(false);
 		txtSubcod.setFont(new Font("Microsoft JhengHei UI", Font.BOLD, 12));
 		txtSubcod.setBounds(254, 219, 239, 28);
 		panel_3.add(txtSubcod);
@@ -782,8 +790,7 @@ public class Add_Session {
 			public void actionPerformed(ActionEvent e) {
 
 				AddsessFrm.dispose();
-				Manage_Session manage_Session = new Manage_Session();
-				manage_Session.main(null);
+				new Manage_Session();
 				
 				
 			}

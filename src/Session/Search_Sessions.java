@@ -36,6 +36,7 @@ import javax.swing.JSeparator;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Advanced.Consecutive_sessions;
 import DB.DbConnection;
 
 import javax.swing.JScrollPane;
@@ -215,8 +216,8 @@ public class Search_Sessions {
 	 */
 	private void initialize() {
 		SrchSesFrm = new JFrame();
-		SrchSesFrm.setResizable(false);
-		SrchSesFrm.setAlwaysOnTop(true);
+	
+		
 		SrchSesFrm.setSize(1400, 860);
 		SrchSesFrm.setBounds(0, 0, 1350, 700);
 		SrchSesFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -224,7 +225,8 @@ public class Search_Sessions {
 		SrchSesFrm.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		SrchSesFrm.setBackground(Color.YELLOW);
 		SrchSesFrm.setTitle("Sessions");
-
+SrchSesFrm.setLocationRelativeTo(null);
+SrchSesFrm.setVisible(true);
 		//ManageSesFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		SrchSesFrm.getContentPane().setLayout(null);
@@ -255,9 +257,10 @@ public class Search_Sessions {
 		btnManageGroups.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Home home = new Home();
-				home.main(null);
+				
 				SrchSesFrm.dispose();
+				new Home();
+				
 			}
 		});
 		btnManageGroups.setForeground(new Color(255, 255, 255));
@@ -278,9 +281,9 @@ public class Search_Sessions {
 
 			public void actionPerformed(ActionEvent e) {
 
-				Add_Lecturer add_Lecturer = new Add_Lecturer();
-				add_Lecturer.main(null);
+				
 				SrchSesFrm.dispose();
+				new Add_Lecturer();
 
 			}
 		});
@@ -313,9 +316,9 @@ public class Search_Sessions {
 		btnSubjects.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Add_Subjects add_Subjects = new Add_Subjects();
-				add_Subjects.main(null);
+				
 				SrchSesFrm.dispose();
+				new Add_Subjects();
 			}
 		});
 		btnSubjects.setForeground(Color.WHITE);
@@ -332,8 +335,7 @@ public class Search_Sessions {
 
 				
 				SrchSesFrm.dispose();
-				Add_Session add_Session = new Add_Session();
-				add_Session.main(null);
+				new Add_Session();
 			}
 		});
 		btnSessions.setForeground(Color.WHITE);
@@ -429,7 +431,8 @@ public class Search_Sessions {
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-
+				SrchSesFrm.dispose();
+				new Consecutive_sessions();
 			}
 
 		});
@@ -554,6 +557,9 @@ public class Search_Sessions {
 				//Search bar for lecturer
 			
 				 lecbox = new JComboBox();
+				 lecbox.setBackground(Color.WHITE);
+				 lecbox.setForeground(Color.DARK_GRAY);
+				 lecbox.setFont(UIManager.getFont("Spinner.font"));
 				lecbox.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						try {
@@ -575,14 +581,17 @@ public class Search_Sessions {
 						
 					}
 				});
-				lecbox.setModel(new DefaultComboBoxModel(new String[] {"                              -"}));
-				lecbox.setBounds(50, 109, 206, 27);
+				lecbox.setModel(new DefaultComboBoxModel(new String[] {"                      Select Lecturer"}));
+				lecbox.setBounds(50, 109, 223, 27);
 				panel_3.add(lecbox);
 				
 				
 			
 				//Search bar for subName
 				subjBox = new JComboBox();
+				subjBox.setBackground(Color.WHITE);
+				subjBox.setForeground(Color.DARK_GRAY);
+				subjBox.setFont(UIManager.getFont("Spinner.font"));
 				subjBox.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						try {
@@ -608,6 +617,9 @@ public class Search_Sessions {
 				
 				//Search bar for Groupid
 				 groupBox = new JComboBox();
+				 groupBox.setBackground(Color.WHITE);
+				 groupBox.setForeground(Color.DARK_GRAY);
+				 groupBox.setFont(UIManager.getFont("Spinner.font"));
 				 groupBox.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
 							try {
@@ -633,11 +645,13 @@ public class Search_Sessions {
 				 
 		
 		JLabel label_1 = new JLabel("Search by Lecturer :");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_1.setBounds(78, 61, 180, 37);
 		panel_3.add(label_1);
 
 		JLabel label_2 = new JLabel("Search by Group/Sub Group :");
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_2.setBounds(444, 61, 215, 37);
 		panel_3.add(label_2);
@@ -650,13 +664,13 @@ public class Search_Sessions {
 		
 
 		
-		groupBox.setModel(new DefaultComboBoxModel(new String[] {"                            -"}));
-		groupBox.setBounds(438, 109, 206, 26);
+		groupBox.setModel(new DefaultComboBoxModel(new String[] {"                       Select Group"}));
+		groupBox.setBounds(438, 109, 223, 27);
 		panel_3.add(groupBox);
 
 		 
-		subjBox.setModel(new DefaultComboBoxModel(new String[] {"                                  -"}));
-		subjBox.setBounds(812, 109, 206, 27);
+		subjBox.setModel(new DefaultComboBoxModel(new String[] {"                      Select Subject"}));
+		subjBox.setBounds(812, 109, 223, 27);
 		panel_3.add(subjBox);
 
 		JPanel panel_4 = new JPanel();
@@ -665,6 +679,7 @@ public class Search_Sessions {
 		
 		//clear button
 		JButton btnNewButton = new JButton("CLEAR");
+		btnNewButton.setToolTipText("Click button to clear search bar");
 		btnNewButton.setBackground(new Color(0, 139, 139));
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 13));

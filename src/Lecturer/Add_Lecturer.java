@@ -278,8 +278,7 @@ public class Add_Lecturer {
 			public void actionPerformed(ActionEvent e) {
 
 				addLecframe.dispose();
-				AddWorkingdays w_days= new 	AddWorkingdays();
-				w_days.main(null);
+				new AddWorkingdays();
 			}
 		});
 		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
@@ -365,7 +364,7 @@ public class Add_Lecturer {
 
 		EmpidTxt = new JTextField();
 		EmpidTxt.setColumns(10);
-		EmpidTxt.setBounds(127, 19, 161, 23);
+		EmpidTxt.setBounds(127, 19, 173, 23);
 		panel_3.add(EmpidTxt);
 
 		JLabel label = new JLabel("Employee ID");
@@ -374,6 +373,7 @@ public class Add_Lecturer {
 		panel_3.add(label);
 
 		JComboBox levelCmb = new JComboBox();
+		levelCmb.setBackground(Color.WHITE);
 		levelCmb.setModel(new DefaultComboBoxModel(new String[] {"", "Professor", "Assistant Professor", "Senior Lecturer(HG)", "Senior Lecturer", "Lecturer", "Assistant Lecturer"}));
 		levelCmb.setBounds(456, 19, 191, 23);
 		panel_3.add(levelCmb);
@@ -384,6 +384,8 @@ public class Add_Lecturer {
 		panel_3.add(label_1);
 
 		RankTxt = new JTextField();
+		RankTxt.setBackground(Color.WHITE);
+		RankTxt.setEditable(false);
 		RankTxt.setHorizontalAlignment(SwingConstants.CENTER);
 		RankTxt.setFont(new Font("Tahoma", Font.BOLD, 12));
 		RankTxt.setForeground(SystemColor.controlDkShadow);
@@ -399,6 +401,7 @@ public class Add_Lecturer {
 
 		//Generate Rank
 		JButton btnGenRankAdd = new JButton("GENERATE RANK");
+		btnGenRankAdd.setToolTipText("Click button to generate rank");
 		btnGenRankAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -478,52 +481,52 @@ public class Add_Lecturer {
 
 		JLabel label_3 = new JLabel("Employee Name");
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_3.setBounds(110, 38, 96, 23);
+		label_3.setBounds(110, 32, 96, 30);
 		panel_4.add(label_3);
 
 		EmpNameTxt = new JTextField();
 		EmpNameTxt.setColumns(10);
-		EmpNameTxt.setBounds(225, 39, 161, 23);
+		EmpNameTxt.setBounds(225, 39, 242, 30);
 		panel_4.add(EmpNameTxt);
 
 		JComboBox Fac = new JComboBox();
 		Fac.setModel(new DefaultComboBoxModel(new String[] {"", "Computing", "Engineering", "Buisness Management", "Humanities and Science"}));
-		Fac.setBounds(225, 92, 161, 23);
+		Fac.setBounds(225, 92, 242, 30);
 		panel_4.add(Fac);
 
 		JLabel label_4 = new JLabel("Faculty");
 		label_4.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_4.setBounds(110, 91, 87, 23);
+		label_4.setBounds(110, 84, 87, 30);
 		panel_4.add(label_4);
 
 		JLabel label_5 = new JLabel("Department");
 		label_5.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_5.setBounds(110, 148, 87, 23);
+		label_5.setBounds(110, 141, 87, 30);
 		panel_4.add(label_5);
 
 		JComboBox Dept = new JComboBox();
 		Dept.setModel(new DefaultComboBoxModel(new String[] {"", "IT", "SE", "DS", "CS", "IM", "CSNE", "----", "HCM", "AF", "BA", "MM", "----", "EEE", "ME", "QS", "----", "MU", "ELT"}));
-		Dept.setBounds(225, 149, 161, 23);
+		Dept.setBounds(225, 149, 242, 30);
 		panel_4.add(Dept);
 
 		JComboBox Campus = new JComboBox();
 		Campus.setModel(new DefaultComboBoxModel(new String[] {"", "Malabe", "Metro", "Kandy", "Jaffna", "Matara", "Kurunegala"}));
-		Campus.setBounds(225, 209, 161, 23);
+		Campus.setBounds(225, 209, 242, 30);
 		panel_4.add(Campus);
 
 		JLabel label_6 = new JLabel("Campus/Center");
 		label_6.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_6.setBounds(110, 208, 96, 23);
+		label_6.setBounds(110, 201, 96, 30);
 		panel_4.add(label_6);
 
 		JComboBox build = new JComboBox();
 		build.setModel(new DefaultComboBoxModel(new String[] {"", "Main Building", "New Building", "Engineering Building", "Buisness Building", "D-block"}));
-		build.setBounds(225, 268, 161, 23);
+		build.setBounds(225, 268, 242, 30);
 		panel_4.add(build);
 
 		JLabel label_7 = new JLabel("Building");
 		label_7.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label_7.setBounds(110, 267, 87, 23);
+		label_7.setBounds(110, 259, 87, 31);
 		panel_4.add(label_7);
 
 		JLabel label_8 = new JLabel("Active days");
@@ -538,8 +541,8 @@ public class Add_Lecturer {
 
 		JSpinner hourAdd = new JSpinner();
 		//hourAdd.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(0)));
-		hourAdd.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		hourAdd.setBounds(787, 210, 73, 22);
+		hourAdd.setFont(new Font("Tahoma", Font.BOLD, 12));
+		hourAdd.setBounds(787, 210, 73, 28);
 		panel_4.add(hourAdd);
 		
 		
@@ -559,41 +562,49 @@ public class Add_Lecturer {
 
 		JSpinner minsAdd = new JSpinner();
 		//minsAdd.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(0)));
-		minsAdd.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		minsAdd.setBounds(898, 209, 73, 22);
+		minsAdd.setFont(new Font("Tahoma", Font.BOLD, 12));
+		minsAdd.setBounds(898, 209, 73, 28);
 		panel_4.add(minsAdd);
 
 
 		JCheckBox checkBox = new JCheckBox("Wednesday");
+		checkBox.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		checkBox.setBounds(787, 91, 101, 23);
 		panel_4.add(checkBox);
 
 		JCheckBox checkBox_1 = new JCheckBox("Thursday");
+		checkBox_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		checkBox_1.setBounds(787, 116, 101, 23);
 		panel_4.add(checkBox_1);
 
 		JCheckBox checkBox_2 = new JCheckBox("Friday");
+		checkBox_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		checkBox_2.setBounds(787, 142, 101, 23);
 		panel_4.add(checkBox_2);
 
 		JCheckBox checkBox_3 = new JCheckBox("Tuesday");
+		checkBox_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		checkBox_3.setBounds(787, 64, 101, 23);
 		panel_4.add(checkBox_3);
 
 		JCheckBox checkBox_4 = new JCheckBox("Monday");
+		checkBox_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		checkBox_4.setBounds(787, 39, 101, 23);
 		
 		
 		JCheckBox chckbxSaturday = new JCheckBox("Saturday");
+		chckbxSaturday.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		chckbxSaturday.setBounds(898, 38, 101, 23);
 		panel_4.add(chckbxSaturday);
 		
 		JCheckBox chckbxSunday = new JCheckBox("Sunday");
+		chckbxSunday.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		chckbxSunday.setBounds(898, 63, 101, 23);
 		panel_4.add(chckbxSunday);
 
 		//Add lecturer
 		JButton button_1 = new JButton("ADD");
+		button_1.setToolTipText("Click button to save details");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -693,6 +704,7 @@ public class Add_Lecturer {
 		panel_4.add(button_1);
 
 		JButton button_2 = new JButton("CLEAR");
+		button_2.setToolTipText("Click button to clear");
 
 		button_2.setForeground(Color.WHITE);
 		button_2.setFont(new Font("Tahoma", Font.BOLD, 14));

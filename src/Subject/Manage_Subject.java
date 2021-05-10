@@ -396,29 +396,33 @@ public class Manage_Subject {
 
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "1", "2", "3", "4"}));
-		comboBox.setBounds(211, 136, 232, 23);
+		comboBox.setBounds(211, 136, 232, 30);
 
 		JComboBox comboBox_5 = new JComboBox();
 		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"", "1", "2"}));
-		comboBox_5.setBounds(215, 200, 228, 23);
+		comboBox_5.setBounds(215, 200, 228, 30);
 
 
 		JComboBox comboBox_4 = new JComboBox();
+		comboBox_4.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
 		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5"}));
-		comboBox_4.setBounds(752, 14, 228, 23);
+		comboBox_4.setBounds(752, 14, 228, 30);
 
 
 		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
 		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5"}));
-		comboBox_3.setBounds(752, 73, 228, 23);
+		comboBox_3.setBounds(752, 73, 228, 30);
 
 		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5"}));
-		comboBox_2.setBounds(752, 136, 228, 23);
+		comboBox_2.setBounds(752, 136, 228, 30);
 
 		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5"}));
-		comboBox_1.setBounds(752, 199, 228, 23);
+		comboBox_1.setBounds(752, 199, 228, 30);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane.setViewportView(scrollPane_1);
@@ -514,6 +518,7 @@ public class Manage_Subject {
 		panel_3.add(comboBox_5);
 
 		JButton button_13 = new JButton("CLEAR");
+		button_13.setToolTipText("Click button to clear");
 
 		button_13.setForeground(Color.WHITE);
 		button_13.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -523,6 +528,7 @@ public class Manage_Subject {
 		panel_3.add(button_13);
 
 		JButton button_14 = new JButton("DELETE");
+		button_14.setToolTipText("Click button to delete subject");
 
 		button_14.setForeground(Color.WHITE);
 		button_14.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -532,6 +538,7 @@ public class Manage_Subject {
 		panel_3.add(button_14);
 
 		JButton button_15 = new JButton("EDIT");
+		button_15.setToolTipText("Click button to edit subject");
 
 		button_15.setForeground(Color.WHITE);
 		button_15.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -565,12 +572,12 @@ public class Manage_Subject {
 
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(211, 73, 232, 23);
+		textField.setBounds(211, 73, 232, 30);
 		panel_3.add(textField);
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(211, 14, 232, 23);
+		textField_1.setBounds(211, 14, 232, 30);
 		panel_3.add(textField_1);
 
 
@@ -645,8 +652,9 @@ public class Manage_Subject {
 					String query="Update subjects set subCode='"+textField_1.getText()+"',subName='"+ textField.getText()+"',year='"+comboBox.getSelectedItem()+"',semester='"+ comboBox_5.getSelectedItem()+"',lectureHours='"+comboBox_4.getSelectedItem()+"',labHours='"+comboBox_3.getSelectedItem()+"',tuteHours='"+comboBox_2. getSelectedItem()+"',evaluationHours='"+comboBox_1.getSelectedItem() +"' where subID= '"+textFieldID.getText()+"'"; 
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.executeUpdate();
-					refreshtable();
+					
 					JLabel label = new JLabel("Data Updated Successfully");
+					refreshtable();
 					label.setHorizontalAlignment(SwingConstants.CENTER);
 					JOptionPane.showMessageDialog(null, label);
 					pst.close();

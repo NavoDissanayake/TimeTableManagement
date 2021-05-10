@@ -48,6 +48,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import Advanced.Consecutive_sessions;
 import DB.DbConnection;
 
 import javax.swing.JTable;
@@ -380,9 +381,9 @@ public class Manage_Session {
 		btnSubjects.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Add_Subjects add_Subjects = new Add_Subjects();
-				add_Subjects.main(null);
+				
 				ManageSesFrm.dispose();
+				new Add_Subjects();
 			}
 		});
 		btnSubjects.setForeground(Color.WHITE);
@@ -397,9 +398,9 @@ public class Manage_Session {
 		btnSessions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Add_Session add_Session = new Add_Session();
-				add_Session.main(null);
+				
 				ManageSesFrm.dispose();
+				new Add_Session();
 			}
 		});
 		btnSessions.setForeground(Color.WHITE);
@@ -494,7 +495,8 @@ public class Manage_Session {
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				ManageSesFrm.dispose();
+				new Consecutive_sessions();
 			}
 
 		});
@@ -543,8 +545,7 @@ public class Manage_Session {
 			public void actionPerformed(ActionEvent e) {
 
 				ManageSesFrm.dispose();
-				Search_Sessions search_Sessions = new Search_Sessions();
-				search_Sessions.main(null);
+				new Search_Sessions();
 			}
 		});
 		btnSearchSessions.setBounds(776, 66, 258, 37);
@@ -593,6 +594,7 @@ public class Manage_Session {
 		JSpinner noStud = new JSpinner();
 		JSpinner duration = new JSpinner();
 		JTextArea sign = new JTextArea();
+		sign.setEditable(false);
 		sign.setFont(new Font("Microsoft JhengHei UI", Font.BOLD, 12));
 		
 		//display selected row
@@ -653,6 +655,7 @@ public class Manage_Session {
 		panel_2.add(panel_3);
 
 		JButton btnClear = new JButton("CLEAR");
+		btnClear.setToolTipText("Click button to clear");
 		btnClear.setForeground(Color.WHITE);
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnClear.setEnabled(true);
@@ -661,6 +664,7 @@ public class Manage_Session {
 		panel_3.add(btnClear);
 
 		JButton btnDel = new JButton("DELETE");
+		btnDel.setToolTipText("Click button to delete session");
 		btnDel.setForeground(Color.WHITE);
 		btnDel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnDel.setEnabled(true);
@@ -669,6 +673,7 @@ public class Manage_Session {
 		panel_3.add(btnDel);
 
 		JButton btnEdit = new JButton("EDIT");
+		btnEdit.setToolTipText("Click button to edit session");
 		
 		btnEdit.setForeground(Color.WHITE);
 		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -679,7 +684,7 @@ public class Manage_Session {
 
 		 lecr1 = new JComboBox();
 		 lecr1.setModel(new DefaultComboBoxModel(new String[] {"----------Select Lecturer 1 ----------"}));
-		lecr1.setBounds(244, 12, 245, 23);
+		lecr1.setBounds(244, 12, 245, 27);
 		panel_3.add(lecr1);
 
 		JLabel lblLecturer = new JLabel("Lecturer 1");
@@ -711,7 +716,7 @@ public class Manage_Session {
 		 		
 		 	}
 		 });
-		sbj.setBounds(244, 114, 245, 23);
+		sbj.setBounds(244, 114, 245, 27);
 		panel_3.add(sbj);
 
 		JLabel label_3 = new JLabel("Subject Name");
@@ -731,7 +736,7 @@ public class Manage_Session {
 
 		 tg = new JComboBox();
 		 tg.setModel(new DefaultComboBoxModel(new String[] {"------------Select Tag ------------"}));
-		tg.setBounds(244, 221, 245, 23);
+		tg.setBounds(244, 221, 245, 27);
 		panel_3.add(tg);
 
 		JLabel label_6 = new JLabel("Group/Sub Group ID");
@@ -741,7 +746,7 @@ public class Manage_Session {
 
 		 grpId = new JComboBox();
 		 grpId.setModel(new DefaultComboBoxModel(new String[] {"--------Select Group/Sub Group ID--------"}));
-		grpId.setBounds(792, 13, 245, 23);
+		grpId.setBounds(792, 13, 245, 27);
 		panel_3.add(grpId);
 
 		JLabel label_7 = new JLabel("No Of Students");
@@ -750,8 +755,8 @@ public class Manage_Session {
 		panel_3.add(label_7);
 
 		
-		noStud.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		noStud.setBounds(792, 61, 245, 22);
+		noStud.setFont(new Font("Tahoma", Font.BOLD, 12));
+		noStud.setBounds(792, 61, 245, 27);
 		panel_3.add(noStud);
 
 		JLabel label_8 = new JLabel("Duration(hrs)");
@@ -760,8 +765,8 @@ public class Manage_Session {
 		panel_3.add(label_8);
 
 		
-		duration.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		duration.setBounds(792, 113, 245, 22);
+		duration.setFont(new Font("Tahoma", Font.BOLD, 12));
+		duration.setBounds(792, 113, 245, 27);
 		panel_3.add(duration);
 		
 		JLabel lblLecturer_1 = new JLabel("Lecturer 2");
@@ -771,7 +776,7 @@ public class Manage_Session {
 		
 		 lecr2 = new JComboBox();
 		 lecr2.setModel(new DefaultComboBoxModel(new String[] {"-"}));
-		lecr2.setBounds(244, 61, 245, 23);
+		lecr2.setBounds(244, 61, 245, 27);
 		panel_3.add(lecr2);
 		
 		JLabel label_1 = new JLabel("Session Signature");
@@ -780,11 +785,12 @@ public class Manage_Session {
 		panel_3.add(label_1);
 		
 		JButton btnGenerateSessionSign = new JButton("GENERATE SESSION SIGNATURE");
+		btnGenerateSessionSign.setToolTipText("Click button to generate session signature");
 		
 		btnGenerateSessionSign.setForeground(Color.WHITE);
 		btnGenerateSessionSign.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnGenerateSessionSign.setBackground(SystemColor.controlDkShadow);
-		btnGenerateSessionSign.setBounds(632, 227, 405, 30);
+		btnGenerateSessionSign.setBounds(632, 227, 405, 33);
 		panel_3.add(btnGenerateSessionSign);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -798,8 +804,10 @@ public class Manage_Session {
 		scrollPane_1.setRowHeaderView(scrollBar);
 		
 		cod = new JTextField();
+		cod.setBackground(Color.WHITE);
+		cod.setEditable(false);
 		cod.setFont(new Font("Tahoma", Font.BOLD, 11));
-		cod.setBounds(244, 172, 245, 22);
+		cod.setBounds(244, 172, 245, 27);
 		panel_3.add(cod);
 		cod.setColumns(10);
 		
@@ -861,7 +869,7 @@ public class Manage_Session {
 				
 				}
 				
-				JLabel label8 = new JLabel("Session Signature Generated Successfully");
+				JLabel label8 = new JLabel("Session Signature Updated Successfully");
 				label8.setHorizontalAlignment(SwingConstants.CENTER);
 				JOptionPane.showMessageDialog(null, label8);
 			}
