@@ -42,6 +42,7 @@ import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
 import WorkingDays.AddWorkingdays;
+import WorkingDays.ManageWorkingDays;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.DefaultComboBoxModel;
@@ -713,12 +714,14 @@ public class ManageLocations {
 		JButton notAvaliblebtn = new JButton("Not Available Location");
 		notAvaliblebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ManageSessionsRooms manage_ro = new ManageSessionsRooms();
-				//manage_ro.main(null);
+				
+				NotAvailableLocation m_stgroup = new NotAvailableLocation ();
+				m_stgroup.main(null);
 				frmMangeLocationsGroup.dispose();
-				new ManageSessionsRooms();
+				
 			}
 		});
+		
 		notAvaliblebtn.setBounds(262, 69, 179, 39);
 		frmMangeLocationsGroup.getContentPane().add(notAvaliblebtn);		
 	

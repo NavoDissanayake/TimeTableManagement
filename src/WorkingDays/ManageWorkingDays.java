@@ -545,21 +545,7 @@ public void refreshtable() {
 
 		
 		
-		JButton button_1 = new JButton("Not Avaiilable Location");
-		button_1.setBounds(722, 2, 349, 37);
-		panel_3.add(button_1);
-		button_1.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				NotAvailableLocation m_stgroup = new NotAvailableLocation ();
-				m_stgroup.main(null);
-				frmWorkingDays.dispose();
-				
-			}
-		});
-		
-		
+
 		//Delete
 		JButton btnDelete = new JButton("DELETE");
 		

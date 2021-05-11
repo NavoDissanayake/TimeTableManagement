@@ -36,15 +36,17 @@ import Lecturer.Add_Lecturer;
 import Student.Manage_studentGroup;
 import WorkingDays.AddWorkingdays;
 import WorkingDays.ManageWorkingDays;
-import WorkingDays.NotAvailableLocation;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
+import javax.swing.SpinnerListModel;
+
 import java.util.Date;
 import java.util.Calendar;
+import javax.swing.SpinnerNumberModel;
 
 
 public class NotAvailableTime {
@@ -71,9 +73,12 @@ public class NotAvailableTime {
 	private JComboBox selectgroup;
 	private JComboBox selectsubgroup;
 	private JTextField textField;
-	private JSpinner endtime;
 	private JSpinner starttime;
-	
+	private JSpinner endtime;
+	private JTextField start;
+	private JTextField end;
+	private JSpinner day;
+	private JComboBox sessionsign;
 	
 	//refresh all the data
 	
@@ -175,6 +180,35 @@ public void refreshtable() {
 					 String name =rs.getString("studentGroup");
 					 
 					 selectsubgroup .addItem(name);
+					 
+				}
+				con.close();
+			}
+			
+			catch(Exception e) {
+				
+					e.printStackTrace();
+				}
+			
+	     	}
+	  
+	  //fill session signature field
+	  public void fillsign() {
+			
+			try {
+				
+				 Connection con = DbConnection.connect();
+				 
+				 String query="select * from session";
+				 
+				 PreparedStatement pst = con.prepareStatement(query);
+				 ResultSet rs = pst.executeQuery();
+				 
+				 while(rs.next()) {
+					 
+					 String name =rs.getString("sessionSignature");
+					 
+					 sessionsign.addItem(name);
 					 
 				}
 				con.close();
@@ -500,12 +534,12 @@ public void refreshtable() {
 		
 		JLabel StartTime = new JLabel("Start Time");
 		StartTime.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		StartTime.setBounds(106, 231, 91, 23);
+		StartTime.setBounds(512, 135, 91, 23);
 		panel_4.add(StartTime);
 		
 		JLabel EndTime = new JLabel("End Time");
 		EndTime.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		EndTime.setBounds(106, 281, 57, 23);
+		EndTime.setBounds(512, 181, 57, 23);
 		panel_4.add(EndTime);
 		
 		
@@ -519,8 +553,12 @@ public void refreshtable() {
 				String selectLec = selectlec.getSelectedItem().toString();
 				String selectGroup = selectgroup.getSelectedItem().toString();
 				String selectSubGroup = selectsubgroup.getSelectedItem().toString();
-				String startTime = starttime.getValue().toString();
-				String endTime = endtime.getValue().toString();
+				String sessionSign = sessionsign.getSelectedItem().toString();
+				String Date = day.getValue().toString();
+				String startTime = start.getText();
+				String endTime = end.getText();
+				String startAMPM = starttime.getValue().toString();
+				String endAMPM = endtime.getValue().toString();
                 
 				if(starttime.getValue().equals(0)) {
 					JOptionPane.showMessageDialog(null, "Please Select start Time!!!");
@@ -538,7 +576,7 @@ public void refreshtable() {
 						
 				
 						String query = "INSERT INTO notavailableTime values(null,'"+ sessionId +"','"+ selectLec +"','"+ selectGroup + "','"+ selectSubGroup + 
-								"','"+ startTime +"','"+ endTime +"')";
+								"','"+ sessionSign +"','"+ Date +"','"+ startTime +"','"+ startAMPM +"','"+ endTime +"','"+ endAMPM +"')";
 
 	                    Statement sta = con.createStatement();
 	                    int x = sta.executeUpdate(query);
@@ -571,7 +609,7 @@ public void refreshtable() {
 				
 			}
 		});
-		add.setBounds(671, 57, 141, 31);
+		add.setBounds(494, 273, 141, 31);
 		panel_4.add(add);
 		add.setForeground(Color.WHITE);
 		add.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -581,7 +619,7 @@ public void refreshtable() {
 		
 		//clear data from fields
 		JButton btnClear = new JButton("CLEAR");
-		btnClear.setBounds(671, 130, 141, 31);
+		btnClear.setBounds(671, 273, 141, 31);
 		panel_4.add(btnClear);
 		btnClear.setForeground(Color.WHITE);
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -592,15 +630,58 @@ public void refreshtable() {
 		id.setBounds(279, 0, 86, 20);
 		panel_4.add(id);
 		
+		//start time AM
 		starttime = new JSpinner();
-		starttime.setModel(new SpinnerDateModel(new Date(1620671400000L), null, null, Calendar.AM_PM));
-		starttime.setBounds(279, 231, 149, 23);
+		String[] ampmString1 = {"am", "pm"};
+		starttime = new JSpinner(
+		 new SpinnerListModel(ampmString1));
+		starttime.setBounds(728, 136, 43, 23);
 		panel_4.add(starttime);
 		
+		//End time AM
 		endtime = new JSpinner();
-		endtime.setModel(new SpinnerDateModel(new Date(1620671400000L), null, null, Calendar.AM_PM));
-		endtime.setBounds(279, 282, 149, 23);
+		String[] ampmString = {"am", "pm"};
+		endtime = new JSpinner(
+		 new SpinnerListModel(ampmString1));
+		endtime.setBounds(728, 182, 43, 23);
 		panel_4.add(endtime);
+		
+		start = new JTextField();
+		start.setBounds(611, 136, 107, 22);
+		panel_4.add(start);
+		start.setColumns(10);
+		
+		end = new JTextField();
+		end.setBounds(611, 183, 107, 20);
+		panel_4.add(end);
+		
+		
+		//Add date
+		JLabel date = new JLabel("Date");
+		date.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		date.setBounds(512, 87, 57, 14);
+		panel_4.add(date);
+		
+		 day = new JSpinner();
+		String[] dayString = {"Mondya", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+		day = new JSpinner(
+		 new SpinnerListModel(dayString));
+		day.setBounds(611, 84, 107, 20);
+		panel_4.add(day);
+		
+		
+		//Add session sign
+		JLabel session = new JLabel("Session Signature");
+		session.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		session.setBounds(106, 235, 113, 14);
+		panel_4.add(session);
+		
+		sessionsign = new JComboBox();
+		sessionsign.setModel(new DefaultComboBoxModel(new String[] {""}));
+		sessionsign.setBounds(279, 233, 149, 20);
+		panel_4.add(sessionsign);
+		fillsign() ;
+		
 
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -610,10 +691,14 @@ public void refreshtable() {
 				selectlec.setSelectedIndex(0);
 				selectgroup.setSelectedIndex(0);
 				selectsubgroup.setSelectedIndex(0);
+				sessionsign.setSelectedIndex(0);
+				day.setValue(null);
+				start.setText("");
+				end.setText("");
 				starttime.setValue(null);
 				endtime.setValue(null);
 				
-			
+				
 			}
 		});
 		
@@ -713,10 +798,18 @@ public void refreshtable() {
 
 					if(selectsubgroup.getItemAt(j).toString().equalsIgnoreCase(combo4)) {
 						selectsubgroup.setSelectedIndex(j); } }
-
 				
-					starttime.setValue(table.getValueAt(selectedRow, 6).toString());
-					endtime.setValue(table.getValueAt(selectedRow, 7).toString());
+				String combo5 = table.getValueAt(selectedRow, 5).toString(); 
+				for(int j=0
+						;j<sessionsign.getItemCount();j++) {
+
+					if(sessionsign.getItemAt(j).toString().equalsIgnoreCase(combo5)) {
+						sessionsign.setSelectedIndex(j); } }
+				day.setValue(table.getValueAt(selectedRow, 6).toString());
+				start.setText(table.getValueAt(selectedRow, 7).toString());
+				end.setText(table.getValueAt(selectedRow, 8).toString());
+					starttime.setValue(table.getValueAt(selectedRow, 9).toString());
+					endtime.setValue(table.getValueAt(selectedRow, 10).toString());
 				  
 				  
 			
@@ -759,7 +852,7 @@ public void refreshtable() {
 				try {
 					Connection con = DbConnection.connect();					
 					String query="Update notavailableTime set SessionID='"+selectsession.getSelectedItem()+ "',selectLec='"+selectlec.getSelectedItem()+"',selectGroup='"+selectgroup.getSelectedItem()+ "',selectSubGroup='"
-					+selectsubgroup.getSelectedItem()+"',startTime='"+starttime.getValue()+"',endTime='"+endtime.getValue()+"'"
+					+selectsubgroup.getSelectedItem()+"',sessionSign='"+sessionsign.getSelectedItem()+"',Date='"+day.getValue()+"',startTime='"+start.getText()+"',startAM/PM='"+starttime.getValue()+"',endTime='"+end.getText()+"',endAM/PM='"+endtime.getValue()+"'"
 							+ " where timeID='"+id.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.executeUpdate();

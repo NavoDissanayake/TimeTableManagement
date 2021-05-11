@@ -290,7 +290,7 @@ public class AddWorkingdays {
 		panel_6.add(lblNewLabel_11);
 		
 		JButton btnNewButton_2 = new JButton("Add Working Days");
-		btnNewButton_2.setBounds(0, 2, 362, 37);
+		btnNewButton_2.setBounds(0, 2, 554, 37);
 		panel_3.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			
@@ -305,7 +305,7 @@ public class AddWorkingdays {
 		
 		
 		JButton btnNewButton_2_1 = new JButton("Manage Working Days");
-		btnNewButton_2_1.setBounds(361, 2, 362, 37);
+		btnNewButton_2_1.setBounds(554, 2, 528, 37);
 		panel_3.add(btnNewButton_2_1);
 	btnNewButton_2_1.addActionListener(new ActionListener() {
 			
@@ -613,29 +613,13 @@ public class AddWorkingdays {
 		
 
 
-		
-	//not available Location button
-		JButton button_1 = new JButton("Not Available Location");
-		button_1.setBounds(723, 2, 348, 37);
-		panel_3.add(button_1);
-		
-		
 
 		
 		
 		
 		
 
-		button_1.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				NotAvailableLocation m_stgroup = new NotAvailableLocation ();
-				m_stgroup.main(null);
-				frame.dispose();
-				
-			}
-		});
+
 		
 	}
 }
