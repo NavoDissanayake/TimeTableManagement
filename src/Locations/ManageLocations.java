@@ -710,7 +710,17 @@ public class ManageLocations {
 		lopanel_2.add(lollblNewLabel_1);
 		
 		
-				
+		JButton notAvaliblebtn = new JButton("Not Available Location");
+		notAvaliblebtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//ManageSessionsRooms manage_ro = new ManageSessionsRooms();
+				//manage_ro.main(null);
+				frmMangeLocationsGroup.dispose();
+				new ManageSessionsRooms();
+			}
+		});
+		notAvaliblebtn.setBounds(262, 69, 179, 39);
+		frmMangeLocationsGroup.getContentPane().add(notAvaliblebtn);		
 	
 
 		
