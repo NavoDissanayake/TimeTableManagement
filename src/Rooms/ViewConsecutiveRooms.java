@@ -8,6 +8,9 @@ import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,8 +24,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import Advanced.Consecutive_sessions;
+import DB.DbConnection;
 import Home.Home;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
@@ -32,6 +37,8 @@ import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
 import WorkingDays.AddWorkingdays;
+import net.proteanit.sql.DbUtils;
+import javax.swing.ScrollPaneConstants;
 
 public class ViewConsecutiveRooms {
 
@@ -50,12 +57,38 @@ public class ViewConsecutiveRooms {
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 
 	private JFrame vcrframe;
-	private JTable vcrtable;
 	private JTable vcrtable_1;
 	private JTable vcrtable_2;
 	private JTextField vcrtextField;
 	private JTextField vcrtextField_1;
 	private JTable vcrtable_3;
+	private JTable tableconRoom;
+	
+	
+	public void refreshConSessionTable() {
+		
+		try {
+			Connection con = DbConnection.connect();
+			String query="select consessionRoomID  AS ConsessionRoomID,consessionRoomCode AS ConsessionRoomCode from roomconsecutivesession";
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			tableconRoom.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void taheader() {
+		JTableHeader tahead = tableconRoom.getTableHeader();
+		tahead.setForeground(Color.WHITE);
+		tahead.setFont(new Font("Tahoma", Font.BOLD,14));
+		tahead.setBackground(new Color(32, 178, 170));
+		
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -347,44 +380,61 @@ public class ViewConsecutiveRooms {
 		srpanel_6.add(lollblNewLabel_1);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(49, 93, 962, 441);
+		panel_2.setBounds(75, 93, 917, 441);
 		vsrpanel_2.add(panel_2);
 		panel_2.setLayout(null);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(67, 66, 846, 224);
-		panel_2.add(panel_3);
-		panel_3.setLayout(null);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 10, 826, 204);
-		panel_3.add(scrollPane_1);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane_1.setViewportView(scrollPane);
-		
-		vcrtable = new JTable();
-		scrollPane.setViewportView(vcrtable);
 		
 		JButton btnNewButton_4 = new JButton("ADD ROOM");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ConsecutiveSessionRooms consecutiveSessionRooms = new ConsecutiveSessionRooms();
+				consecutiveSessionRooms.main(null);
+				vcrframe.dispose();
 			}
 		});
 		btnNewButton_4.setForeground(new Color(255, 255, 255));
 		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_4.setBackground(new Color(0, 139, 139));
-		btnNewButton_4.setBounds(257, 346, 105, 32);
+		btnNewButton_4.setBounds(250, 316, 105, 32);
 		panel_2.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("REFRESH");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//refreshConSessionTable();
+			}
+		});
 		btnNewButton_5.setForeground(new Color(255, 255, 255));
 		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_5.setBackground(new Color(0, 139, 139));
-		btnNewButton_5.setBounds(601, 346, 105, 32);
-		panel_2.add(btnNewButton_5);
-	
-		//addsessionroom button
+		btnNewButton_5.setBounds(560, 316, 105, 32);
+		panel_2.add(btnNewButton_5);	
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(162, 82, 588, 186);
+		panel_2.add(scrollPane);
+		
+		tableconRoom = new JTable();
+		scrollPane.setViewportView(tableconRoom);
+		try {
+			
+			
+			Connection con = DbConnection.connect();
+			 
+			 
+			String query="select consessionRoomID AS ConsessionRoomID,consessionRoomCode AS ConsessionRoomCode from roomconsecutivesession ";
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			tableconRoom.setModel(DbUtils.resultSetToTableModel(rs));
+			taheader();
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		JButton btnNewButton = new JButton("Add SessionRooms");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -396,6 +446,7 @@ public class ViewConsecutiveRooms {
 		});
 		btnNewButton.setBounds(262, 75, 179, 33);
 		vcrframe.getContentPane().add(btnNewButton);
+		
 		
 		//viewsession button
 		JButton btnNewButton_1 = new JButton("View Session Rooms");
@@ -445,5 +496,4 @@ public class ViewConsecutiveRooms {
 		
 		
 	}
-
 }

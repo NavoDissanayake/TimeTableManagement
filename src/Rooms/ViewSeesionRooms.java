@@ -2,12 +2,16 @@ package Rooms;
 
 import java.awt.Color;
 
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,11 +22,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 
 import Advanced.Consecutive_sessions;
+import DB.DbConnection;
 import Home.Home;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
@@ -32,6 +40,7 @@ import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
 import WorkingDays.AddWorkingdays;
+import net.proteanit.sql.DbUtils;
 
 public class ViewSeesionRooms {
 	
@@ -54,7 +63,32 @@ public class ViewSeesionRooms {
 	private JTable vsrtable_2;
 	private JTextField vsrtextField;
 	private JTextField vsrtextField_1;
-	private JTable table;
+	private JTable sessionRoomtable;
+	
+	public void refreshSessionTable() {
+		
+		try {
+			Connection con = DbConnection.connect();
+			String query="select sessionRoomID AS SessionRoomID,sessionRoomCode AS SessionRoomCode from roomSession";
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			sessionRoomtable.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void theader() {
+		JTableHeader thead = sessionRoomtable.getTableHeader();
+		thead.setForeground(Color.WHITE);
+		thead.setFont(new Font("Tahoma", Font.BOLD,14));
+		thead.setBackground(new Color(32, 178, 170));
+		
+	}
 
 	/**
 	 * Launch the application.
@@ -351,38 +385,66 @@ public class ViewSeesionRooms {
 		vsrpanel_2.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(67, 66, 846, 224);
-		panel_2.add(panel_3);
-		panel_3.setLayout(null);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 10, 826, 204);
-		panel_3.add(scrollPane_1);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane_1.setViewportView(scrollPane);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		
 		JButton btnNewButton_4 = new JButton("ADD ROOM");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ManageSessionsRooms manageSessionsRooms = new ManageSessionsRooms();
+				manageSessionsRooms.main(null);
+				vsrframe.dispose();
+				
 			}
 		});
 		btnNewButton_4.setForeground(new Color(255, 255, 255));
 		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_4.setBackground(new Color(0, 139, 139));
-		btnNewButton_4.setBounds(257, 346, 105, 32);
+		btnNewButton_4.setBounds(263, 308, 105, 32);
 		panel_2.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("REFRESH");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				refreshSessionTable();
+			}
+		});
 		btnNewButton_5.setForeground(new Color(255, 255, 255));
 		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_5.setBackground(new Color(0, 139, 139));
-		btnNewButton_5.setBounds(601, 346, 105, 32);
+		btnNewButton_5.setBounds(587, 308, 105, 32);
 		panel_2.add(btnNewButton_5);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(205, 87, 548, 175);
+		panel_2.add(scrollPane);
+		
+		sessionRoomtable = new JTable();
+		scrollPane.setViewportView(sessionRoomtable);
+		
+		try {
+			
+			
+			Connection con = DbConnection.connect();
+			 
+			 
+			String query="select sessionRoomID AS SessionRoomID,sessionRoomCode AS SessionRoomCode from roomSession ";
+			PreparedStatement pst=con.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			sessionRoomtable.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
+			theader();
+			
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		panel_2.add(btnNewButton_5);
+		
+		
+		
+		
+		
 	
 		//addsessionroom button
 		JButton btnNewButton = new JButton("Add SessionRooms");

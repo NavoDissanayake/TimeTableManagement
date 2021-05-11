@@ -8,12 +8,17 @@ import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
@@ -22,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Advanced.Consecutive_sessions;
+import DB.DbConnection;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
 import Session.Add_Session;
@@ -30,6 +36,7 @@ import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
 import WorkingDays.AddWorkingdays;
+import javax.swing.DefaultComboBoxModel;
 
 public class ConsecutiveSessionRooms {
 	
@@ -52,9 +59,56 @@ public class ConsecutiveSessionRooms {
 	private JTable crtable;
 	private JTable crtable_1;
 	private JTable crtable_2;
-	private JTextField crtextField;
-	private JTextField crtextField_1;
+	private JComboBox consession;
+	private JComboBox consessionroom;
+	
+	
+	public  void  loadConSession(){ 
+		  try {
 
+				Connection con = DbConnection.connect();
+
+				String query="select * from consecutiveSession ";
+				PreparedStatement pst=con.prepareStatement(query);
+				ResultSet rs=pst.executeQuery();
+				
+				while(rs.next())
+				{
+					String name =rs.getString("conSession");
+					consession.addItem(name);
+					 
+				}
+
+				con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+
+}
+	 public void loadConsessionRoom() {
+		 try {
+			 
+			 Connection con = DbConnection.connect();
+			 
+			 String query ="select * from location";
+			 PreparedStatement pst=con.prepareStatement(query);
+			 ResultSet rs =pst.executeQuery();
+			 
+			 while(rs.next()) {
+				 String room = rs.getString("roomName");
+				 consessionroom.addItem(room);
+			 }
+			 
+				con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+	 }
+	
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -354,34 +408,53 @@ public class ConsecutiveSessionRooms {
 		lblNewLabel_1.setBounds(462, 79, 78, 13);
 		crpanel_3.add(lblNewLabel_1);
 		
-		crtextField = new JTextField();
-		crtextField.setBounds(550, 75, 161, 23);
-		crpanel_3.add(crtextField);
-		crtextField.setColumns(10);
-		
-		crtextField_1 = new JTextField();
-		crtextField_1.setBounds(276, 75, 161, 23);
-		crpanel_3.add(crtextField_1);
-		crtextField_1.setColumns(10);
-		
 		JLabel crlblNewLabel_2 = new JLabel("Selected ConsecutiveSession Room");
 		crlblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		crlblNewLabel_2.setBounds(73, 164, 200, 32);
 		crpanel_3.add(crlblNewLabel_2);
 		
-		JTextArea crtextArea = new JTextArea();
-		crtextArea.setBounds(276, 169, 246, 82);
-		crpanel_3.add(crtextArea);
+		JTextArea generateConSesRoom = new JTextArea();
+		generateConSesRoom.setBounds(276, 169, 339, 82);
+		crpanel_3.add(generateConSesRoom);
 		
 		JButton crbtnNewButton_4 = new JButton("SUBMIT");
 		crbtnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 12));
 		crbtnNewButton_4.setForeground(new Color(255, 255, 255));
 		crbtnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				generateConSesRoom.setText(consession.getSelectedItem().toString()+"\n"+"-"+consessionroom.getSelectedItem().toString());
+				
+				String consessionCode=consession.getSelectedItem().toString();
+				String cRoom=consessionroom.getSelectedItem().toString();
+				String consessionRoomCode = generateConSesRoom.getText();
+				
+				try {
+					Connection con = DbConnection.connect();
+					
+					String query = "INSERT INTO roomconsecutivesession values (null,'"+consessionCode+"','"+cRoom+"','"+consessionRoomCode+"')";
+					Statement sta = con.createStatement();
+					int x = sta.executeUpdate(query);
+					if(x==0) {
+						JLabel label = new JLabel("This is alredy exist");
+    					label.setHorizontalAlignment(SwingConstants.CENTER);
+    					JOptionPane.showMessageDialog(null, label);
+					}else {
+    						JLabel label = new JLabel("Inserted Sucessfully");
+	    					label.setHorizontalAlignment(SwingConstants.CENTER);
+	    					JOptionPane.showMessageDialog(null, label);
+	    					
+    					}
+						
+    					con.close();
+					
+				}catch(Exception exception) {
+					exception.printStackTrace();
+					
+				}
 			}
 		});
 		crbtnNewButton_4.setBackground(new Color(0, 139, 139));
-		crbtnNewButton_4.setBounds(276, 291, 105, 32);
+		crbtnNewButton_4.setBounds(317, 291, 105, 32);
 		crpanel_3.add(crbtnNewButton_4);
 		
 		JButton crbtnNewButton_5 = new JButton("CLEAR");
@@ -389,13 +462,29 @@ public class ConsecutiveSessionRooms {
 		crbtnNewButton_5.setForeground(new Color(255, 255, 255));
 		crbtnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				generateConSesRoom.setText("");
+				consessionroom.setSelectedIndex(0);
+				consession.setSelectedIndex(0);
+				
 			}
 		});
 		crbtnNewButton_5.setBackground(new Color(0, 139, 139));
-		crbtnNewButton_5.setBounds(417, 290, 105, 32);
+		crbtnNewButton_5.setBounds(490, 291, 105, 32);
 		crpanel_3.add(crbtnNewButton_5);
 		
-	
+		consession = new JComboBox();
+		consession.setModel(new DefaultComboBoxModel(new String[] {"Select Consecutive Session-------"}));
+		consession.setBounds(262, 76, 176, 21);
+		crpanel_3.add(consession);
+		
+		loadConSession();
+		
+		consessionroom = new JComboBox();
+		consessionroom.setModel(new DefaultComboBoxModel(new String[] {"Select Room-----------"}));
+		consessionroom.setBounds(550, 76, 161, 21);
+		crpanel_3.add(consessionroom);
+		
+		loadConsessionRoom();
 		
 		JPanel srpanel_6 = new JPanel();
 		srpanel_6.setBounds(0, 0, 1082, 49);
@@ -464,7 +553,4 @@ public class ConsecutiveSessionRooms {
 		crframe.getContentPane().add(btnNewButton_3);
 		
 	}
-	
-	
-
 }

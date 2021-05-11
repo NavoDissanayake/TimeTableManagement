@@ -2,28 +2,38 @@ package Rooms;
 
 import java.awt.Color;
 
+
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Advanced.Consecutive_sessions;
+import DB.DbConnection;
 import Home.Home;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
@@ -37,6 +47,8 @@ import WorkingDays.AddWorkingdays;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
+import net.proteanit.sql.DbUtils;
 
 public class ManageSessionsRooms {
 	private Image home_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/home.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
@@ -56,9 +68,56 @@ public class ManageSessionsRooms {
 	private JTable rtable;
 	private JTable rtable_1;
 	private JTable rtable_2;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JComboBox session;
+	private JComboBox sessionroom;
+	private JTextArea generateroom;
 	
+	 public  void  loadSession(){ 
+		  try {
+
+				Connection con = DbConnection.connect();
+
+				String query="select * from session ";
+				PreparedStatement pst=con.prepareStatement(query);
+				ResultSet rs=pst.executeQuery();
+				
+				while(rs.next())
+				{
+					String name =rs.getString("sessionSignature");
+					session.addItem(name);
+					 
+				}
+
+				con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+
+}
+	 public void loadsessionRoom() {
+		 try {
+			 
+			 Connection con = DbConnection.connect();
+			 
+			 String query ="select * from location";
+			 PreparedStatement pst=con.prepareStatement(query);
+			 ResultSet rs =pst.executeQuery();
+			 
+			 while(rs.next()) {
+				 String room = rs.getString("roomName");
+				 sessionroom.addItem(room);
+			 }
+			 
+				con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+	 }
+	 
+	 
+
 	/**
 	 * Launch the application.
 	 */
@@ -80,6 +139,7 @@ public class ManageSessionsRooms {
 	 */
 	public ManageSessionsRooms() {
 		initialize();
+		
 	}
 
 	/**
@@ -362,34 +422,58 @@ public class ManageSessionsRooms {
 		lblNewLabel_1.setBounds(462, 79, 78, 13);
 		srpanel_3.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(550, 75, 161, 23);
-		srpanel_3.add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(252, 75, 161, 23);
-		srpanel_3.add(textField_1);
-		textField_1.setColumns(10);
-		
 		JLabel lblNewLabel_2 = new JLabel("Selected Session Room");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_2.setBounds(108, 164, 134, 32);
 		srpanel_3.add(lblNewLabel_2);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(252, 169, 246, 82);
-		srpanel_3.add(textArea);
+		generateroom = new JTextArea();
+		generateroom.setBounds(252, 169, 455, 60);
+		srpanel_3.add(generateroom);
+		generateroom.setColumns(10);
 		
 		JButton btnNewButton_4 = new JButton("SUBMIT");
 		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_4.setForeground(new Color(255, 255, 255));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
-		});
+				
+				generateroom.setText(session.getSelectedItem().toString()+"\n"+"-"+sessionroom.getSelectedItem().toString());
+				
+				String sessionCode=session.getSelectedItem().toString();
+				String room=sessionroom.getSelectedItem().toString();
+				String sessionRoomCode = generateroom.getText();
+				
+				try {
+					Connection con = DbConnection.connect();
+					
+					String query = "INSERT INTO roomSession values (null,'"+sessionCode+"','"+room+"','"+sessionRoomCode+"')";
+					Statement sta = con.createStatement();
+					int x = sta.executeUpdate(query);
+					if(x==0) {
+						JLabel label = new JLabel("This is alredy exist");
+    					label.setHorizontalAlignment(SwingConstants.CENTER);
+    					JOptionPane.showMessageDialog(null, label);
+					}else {
+    						JLabel label = new JLabel("Inserted Sucessfully");
+	    					label.setHorizontalAlignment(SwingConstants.CENTER);
+	    					JOptionPane.showMessageDialog(null, label);
+	    					
+    					}
+						
+    					con.close();
+					
+				}catch(Exception exception) {
+					exception.printStackTrace();
+					
+				}
+				
+		}
+		
+	});
+		
 		btnNewButton_4.setBackground(new Color(0, 139, 139));
-		btnNewButton_4.setBounds(252, 291, 105, 32);
+		btnNewButton_4.setBounds(303, 254, 105, 32);
 		srpanel_3.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("CLEAR");
@@ -397,13 +481,30 @@ public class ManageSessionsRooms {
 		btnNewButton_5.setForeground(new Color(255, 255, 255));
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				generateroom.setText("");
+				session.setSelectedIndex(0);
+				sessionroom.setSelectedIndex(0);
+				
 			}
 		});
 		btnNewButton_5.setBackground(new Color(0, 139, 139));
-		btnNewButton_5.setBounds(395, 291, 105, 32);
+		btnNewButton_5.setBounds(511, 254, 105, 32);
 		srpanel_3.add(btnNewButton_5);
 		
-	
+		session = new JComboBox();
+		session.setModel(new DefaultComboBoxModel(new String[] {"Select Session---------------"}));
+		session.setBounds(252, 76, 180, 21);
+		srpanel_3.add(session);
+		
+		loadSession();
+		
+		sessionroom = new JComboBox();
+		sessionroom.setModel(new DefaultComboBoxModel(new String[] {"Select Room-------------"}));
+		sessionroom.setBounds(561, 76, 134, 21);
+		srpanel_3.add(sessionroom);
+		
+		loadsessionRoom();
 		
 		JPanel srpanel_6 = new JPanel();
 		srpanel_6.setBounds(0, 0, 1082, 49);
@@ -471,10 +572,6 @@ public class ManageSessionsRooms {
 		});
 		btnNewButton_3.setBounds(927, 70, 246, 38);
 		rframe.getContentPane().add(btnNewButton_3);
-		
-		
-		
-
 		
 		
 		
