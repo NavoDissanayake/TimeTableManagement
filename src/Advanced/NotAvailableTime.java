@@ -41,6 +41,10 @@ import net.proteanit.sql.DbUtils;
 
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import java.util.Date;
+import java.util.Calendar;
 
 
 public class NotAvailableTime {
@@ -62,19 +66,16 @@ public class NotAvailableTime {
 	public JFrame frame;
 	private JTable table;
 	private JTextField id;
-	private JTextField start;
-	private JTextField end;
 	private JComboBox selectlec;
 	private JComboBox selectsession;
 	private JComboBox selectgroup;
 	private JComboBox selectsubgroup;
-
-	private JCheckBox startAM;
-	private JCheckBox startPM;
-	private JCheckBox endAM;
-	private JCheckBox endPM;
 	private JTextField textField;
+	private JSpinner endtime;
+	private JSpinner starttime;
 	
+	
+	//refresh all the data
 	
 public void refreshtable() {
 		
@@ -237,13 +238,7 @@ public void refreshtable() {
 		lblNewLabel_10.setBackground(Color.WHITE);
 		lblNewLabel_10.setBounds(723, 13, 419, 29);
 		panel.add(lblNewLabel_10);
-		/*
-		 * //JLabel lblNewLabel = new JLabel("Time Table Management System");
-		 * lblNewLabel.setBounds(261, 5, 822, 61); panel.add(lblNewLabel);
-		 * lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 50));
-		 * lblNewLabel.setForeground(Color.WHITE);
-		 */
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 62, 262, 609);
 		panel_1.setBackground(new Color(230, 230, 250));
@@ -502,47 +497,16 @@ public void refreshtable() {
 		selectsubgroup.setModel(new DefaultComboBoxModel(new String[] {""}));
 		panel_4.add(selectsubgroup);
 		fillsubgroup();
-
-		//start
-		start = new JTextField();
-		start.setBounds(207, 245, 86, 20);
-		panel_4.add(start);
-		start.setColumns(10);
 		
 		JLabel StartTime = new JLabel("Start Time");
 		StartTime.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		StartTime.setBounds(106, 243, 91, 23);
+		StartTime.setBounds(106, 231, 91, 23);
 		panel_4.add(StartTime);
-		
-		
-		startAM = new JCheckBox("AM");
-		startAM.setBounds(299, 244, 97, 23);
-		panel_4.add(startAM);
-		
-		startPM = new JCheckBox("PM");
-		startPM.setBounds(299, 270, 57, 23);
-		panel_4.add(startPM);
-		
-		//end
-		end = new JTextField();
-		end.setColumns(10);
-		end.setBounds(478, 245, 86, 20);
-		panel_4.add(end);
 		
 		JLabel EndTime = new JLabel("End Time");
 		EndTime.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		EndTime.setBounds(398, 243, 57, 23);
+		EndTime.setBounds(106, 281, 57, 23);
 		panel_4.add(EndTime);
-		
-		endAM = new JCheckBox("AM");
-		endAM.setBounds(570, 244, 57, 23);
-		panel_4.add(endAM);
-		
-		
-		
-		endPM = new JCheckBox("PM");
-		endPM.setBounds(570, 270, 57, 23);
-		panel_4.add(endPM);
 		
 		
 		//add data
@@ -555,36 +519,18 @@ public void refreshtable() {
 				String selectLec = selectlec.getSelectedItem().toString();
 				String selectGroup = selectgroup.getSelectedItem().toString();
 				String selectSubGroup = selectsubgroup.getSelectedItem().toString();
-				String startTime = start.getText();
-				String endTime = end.getText();
-				String startam = "-";
-				String startpm= "-";
-				String endam = "-";
-				String endpm= "-";
-				
-				if (startAM.isSelected())
-				{  
-                    startam = "AM";
-                }
-  
-                if (startPM.isSelected())
-                {
-                	startpm= "PM";
-                }
-                if (endAM.isSelected())
-                {
-  
-                	endam ="AM";
-                }
-                if (endPM.isSelected())
-                {
-  
-                	endpm="PM";
-                }
-				
-			
+				String startTime = starttime.getValue().toString();
+				String endTime = endtime.getValue().toString();
                 
-            
+				if(starttime.getValue().equals(0)) {
+					JOptionPane.showMessageDialog(null, "Please Select start Time!!!");
+				}
+				else if(endtime.getValue().equals(0)) {
+					JOptionPane.showMessageDialog(null, "Please Select start Time!!!");
+				}
+				
+				
+				else {
 
 					try {
 							
@@ -592,7 +538,7 @@ public void refreshtable() {
 						
 				
 						String query = "INSERT INTO notavailableTime values(null,'"+ sessionId +"','"+ selectLec +"','"+ selectGroup + "','"+ selectSubGroup + 
-								"','"+ startTime +"','"+ startam +"','"+ startpm +"','"+ endTime +"','"+ endam +"','"+ endpm +"')";
+								"','"+ startTime +"','"+ endTime +"')";
 
 	                    Statement sta = con.createStatement();
 	                    int x = sta.executeUpdate(query);
@@ -612,6 +558,7 @@ public void refreshtable() {
 						
 
 						}
+	                    refreshtable();
 						con.close();
 						
 					} catch (Exception exception) {
@@ -620,7 +567,7 @@ public void refreshtable() {
 					}
 
 				
-				
+				}
 				
 			}
 		});
@@ -644,6 +591,16 @@ public void refreshtable() {
 		id = new JTextField();
 		id.setBounds(279, 0, 86, 20);
 		panel_4.add(id);
+		
+		starttime = new JSpinner();
+		starttime.setModel(new SpinnerDateModel(new Date(1620671400000L), null, null, Calendar.AM_PM));
+		starttime.setBounds(279, 231, 149, 23);
+		panel_4.add(starttime);
+		
+		endtime = new JSpinner();
+		endtime.setModel(new SpinnerDateModel(new Date(1620671400000L), null, null, Calendar.AM_PM));
+		endtime.setBounds(279, 282, 149, 23);
+		panel_4.add(endtime);
 
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -653,12 +610,8 @@ public void refreshtable() {
 				selectlec.setSelectedIndex(0);
 				selectgroup.setSelectedIndex(0);
 				selectsubgroup.setSelectedIndex(0);
-				start.setText("");
-				end.setText("");
-				startAM.setSelected(false);
-				startPM.setSelected(false);
-				endAM.setSelected(false);
-				endPM.setSelected(false);
+				starttime.setValue(null);
+				endtime.setValue(null);
 				
 			
 			}
@@ -716,6 +669,8 @@ public void refreshtable() {
 		scrollPane.setBounds(92, 450, 852, 111);
 		panel_3.add(scrollPane);
 		
+		
+		//display data in the table
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
 
@@ -724,7 +679,7 @@ public void refreshtable() {
 		public void mouseClicked(MouseEvent arg0) {
 
 			int selectedRow=table.getSelectedRow();
-			TableModel model = table.getModel();
+		
 
 			
 			 	id.setText(table.getValueAt(selectedRow, 0).toString());
@@ -759,36 +714,9 @@ public void refreshtable() {
 					if(selectsubgroup.getItemAt(j).toString().equalsIgnoreCase(combo4)) {
 						selectsubgroup.setSelectedIndex(j); } }
 
-				start.setText(model.getValueAt(selectedRow, 5).toString());
-
-				  String checkam = table.getValueAt(selectedRow, 6).toString();
-				  if(checkam.equals("AM")) {
-				  
-					  startAM.setSelected(true); } 
-				  else {
-				  
-					 startAM.setSelected(false); }
-				  
-				  String checkpm = table.getValueAt(selectedRow,7).toString();
-				  if(checkpm.equals("PM")) {
-				  
-					  startPM.setSelected(true); } 
-				  else {  startPM.setSelected(false); }
-				  
-					end.setText(model.getValueAt(selectedRow, 8).toString());
-				  
-				  String checkam1 = table.getValueAt(selectedRow, 9).toString();
-				  if(checkam1.equals("AM")) {
-				  
-					 endAM.setSelected(true); } else {
-				  
-						  endAM.setSelected(false); }
-				  
-				  String checkpm1 = table.getValueAt(selectedRow, 10).toString();
-				  if(checkpm1.equals("PM")) {
-				  
-					  endPM.setSelected(true); }
-				  else { endPM.setSelected(false); }
+				
+					starttime.setValue(table.getValueAt(selectedRow, 6).toString());
+					endtime.setValue(table.getValueAt(selectedRow, 7).toString());
 				  
 				  
 			
@@ -830,18 +758,16 @@ public void refreshtable() {
 				
 				try {
 					Connection con = DbConnection.connect();					
-					String query="Update notavailableTime set SessionID='"+selectsession.getSelectedItem()+ "',selectLec='"+selectlec.getSelectedItem()+"',selectGroup='"+selectgroup.getSelectedItem()+ "',selectSubGroup='"+selectsubgroup.getSelectedItem()+"',startTime='"+start.getText()+"',startAM='"+startAM.getText()+
-							"',startPM='"+ startPM.getText()+"',endTime='"+end.getText()+"',endAM='"+endAM.getText()+"' ,endPM='"+endPM.getText()+"'"
+					String query="Update notavailableTime set SessionID='"+selectsession.getSelectedItem()+ "',selectLec='"+selectlec.getSelectedItem()+"',selectGroup='"+selectgroup.getSelectedItem()+ "',selectSubGroup='"
+					+selectsubgroup.getSelectedItem()+"',startTime='"+starttime.getValue()+"',endTime='"+endtime.getValue()+"'"
 							+ " where timeID='"+id.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.executeUpdate();
 					
-					JLabel label = new JLabel("Data Updated");
+					JLabel label = new JLabel("Your Data Has been Updated");
 					label.setHorizontalAlignment(SwingConstants.CENTER);
 					JOptionPane.showMessageDialog(null, label);
-					
-					
-					//JOptionPane.showMessageDialog(null, "Data Updated");
+
 					refreshtable();
 					pst.close();
 					
@@ -872,6 +798,24 @@ public void refreshtable() {
 		
 		//refresh table
 		JButton btnrefresh = new JButton("REFRESH");
+		btnrefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Connection con = DbConnection.connect();
+					
+					String query="select * from notavailableTime ";
+					PreparedStatement pst=con.prepareStatement(query);
+					ResultSet rs=pst.executeQuery();
+					table.setModel(DbUtils.resultSetToTableModel(rs));
+					
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		
 		btnrefresh.setForeground(Color.WHITE);
 		btnrefresh.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnrefresh.setEnabled(true);
