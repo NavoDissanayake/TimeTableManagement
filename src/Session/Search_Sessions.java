@@ -515,7 +515,7 @@ SrchSesFrm.setVisible(true);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportBorder(new LineBorder(new Color(0, 0, 0)));
-		scrollPane.setBounds(52, 201, 966, 277);
+		scrollPane.setBounds(10, 201, 1045, 277);
 		panel_3.add(scrollPane);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -523,8 +523,9 @@ SrchSesFrm.setVisible(true);
 		
 
 		table = new JTable();
+		table.setBackground(Color.WHITE);
 		table.setForeground(SystemColor.textText);
-		table.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 11));
+		table.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
 
 		table.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
 
@@ -563,9 +564,11 @@ SrchSesFrm.setVisible(true);
 				lecbox.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						try {
+							
+							String l2 = lecbox.getSelectedItem().toString();
 							 Connection con = DbConnection.connect();
 							// String selection=(String)searchcomboBox.getSelectedItem();
-							 String query="select * from session where lec1=?";
+							 String query="select * from session where lec1=? or lec2= '"+l2+"'";
 							 PreparedStatement pst= con.prepareStatement(query);
 							 pst.setString(1,(String)lecbox.getSelectedItem());
 							 ResultSet rs=pst.executeQuery();

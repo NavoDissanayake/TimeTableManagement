@@ -788,8 +788,8 @@ public class Manage_Session {
 		btnGenerateSessionSign.setToolTipText("Click button to generate session signature");
 		
 		btnGenerateSessionSign.setForeground(Color.WHITE);
-		btnGenerateSessionSign.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnGenerateSessionSign.setBackground(SystemColor.controlDkShadow);
+		btnGenerateSessionSign.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnGenerateSessionSign.setBackground(new Color(119, 136, 153));
 		btnGenerateSessionSign.setBounds(632, 227, 405, 33);
 		panel_3.add(btnGenerateSessionSign);
 		

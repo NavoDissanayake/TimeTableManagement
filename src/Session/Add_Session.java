@@ -735,9 +735,9 @@ public class Add_Session {
 		});
 		
 		btnGensign.setForeground(Color.WHITE);
-		btnGensign.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnGensign.setBackground(new Color(105, 105, 105));
-		btnGensign.setBounds(611, 304, 399, 33);
+		btnGensign.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnGensign.setBackground(new Color(119, 136, 153));
+		btnGensign.setBounds(611, 304, 399, 36);
 		panel_3.add(btnGensign);
 		
 		txtSubcod = new JTextField();
