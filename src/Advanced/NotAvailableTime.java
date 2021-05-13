@@ -69,16 +69,17 @@ public class NotAvailableTime {
 	private JTable table;
 	private JTextField id;
 	private JComboBox selectlec;
-	private JComboBox selectsession;
 	private JComboBox selectgroup;
+	private JComboBox selectsession;
 	private JComboBox selectsubgroup;
+	private JComboBox sessionsign;
 	private JTextField textField;
 	private JSpinner starttime;
 	private JSpinner endtime;
 	private JTextField start;
 	private JTextField end;
 	private JSpinner day;
-	private JComboBox sessionsign;
+	
 	
 	//refresh all the data
 	

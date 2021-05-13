@@ -525,17 +525,16 @@ public void refreshtable() {
 				
 				try {
 					Connection con = DbConnection.connect();					
-					String query="Update notavailableloc set selectRoom='"+selectroom.getSelectedItem()+"',selectDate='"+date.getText()+"',Description='"+description.getText()+
-							"',startTime='"+start.getText()+"',startAM/PM='"+starttime.getValue()+"',endTime='"+end.getText()+"',endAM/PM='"+endtime.getValue()+"'"
+					String query="Update notavailableloc set selectRoom='"+selectroom.getSelectedItem()+ "',selectDate='"+date.getText()+"',description='"+description.getText()+ 
+					"',startTime='"+start.getText()+"',startAM/PM='"+starttime.getValue()+"',endTime='"+end.getText()+"',endAM/PM='"+endtime.getValue()+"'"
 							+ " where locID='"+id.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.executeUpdate();
 					
-					JLabel label = new JLabel("Data Updated");
+					JLabel label = new JLabel("Your Data Has been Updated");
 					label.setHorizontalAlignment(SwingConstants.CENTER);
 					JOptionPane.showMessageDialog(null, label);
-					
-					
+
 					refreshtable();
 					pst.close();
 					
