@@ -31,6 +31,7 @@ import Session.Add_Session;
 import Statistics.Statistics;
 import Student.Add_StudentGroup;
 import Tags.Add_Tags;
+import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 import net.proteanit.sql.DbUtils;
 
@@ -50,6 +51,7 @@ import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.UIManager;
 
 public class Manage_Subject {
 
@@ -329,6 +331,12 @@ public class Manage_Subject {
 		panel.add(button_11);
 
 		JButton button_12 = new JButton("Timetable Generate");
+		button_12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MngSubFrm.dispose();
+				new Lecturer();
+			}
+		});
 		button_12.setIcon(new ImageIcon(time_logo));
 		button_12.setHorizontalAlignment(SwingConstants.LEFT);
 		button_12.setForeground(Color.WHITE);
@@ -429,6 +437,8 @@ public class Manage_Subject {
 
 		//Display selected row
 		table = new JTable();
+		table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+		table.setBackground(SystemColor.window);
 
 		table.addMouseListener(new MouseAdapter() {
 			@Override

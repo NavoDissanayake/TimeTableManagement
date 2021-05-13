@@ -46,6 +46,7 @@ import Statistics.Statistics;
 import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
+import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 
 import javax.swing.JScrollBar;
@@ -341,6 +342,12 @@ public class Add_Lecturer {
 		panel_1.add(btnAdvanced);
 
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
+		btnTimetableGenerate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				addLecframe.dispose();
+				new Lecturer();
+			}
+		});
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setForeground(Color.WHITE);

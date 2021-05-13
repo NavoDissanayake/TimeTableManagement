@@ -33,6 +33,7 @@ import Statistics.Statistics;
 import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
+import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 import net.proteanit.sql.DbUtils;
 
@@ -55,6 +56,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JScrollBar;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.UIManager;
 
 public class Manage_Session {
 
@@ -509,6 +511,12 @@ public class Manage_Session {
 		panel_1.add(btnAdvanced);
 
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
+		btnTimetableGenerate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ManageSesFrm.dispose();
+				new Lecturer();
+			}
+		});
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setForeground(Color.WHITE);
@@ -565,6 +573,8 @@ public class Manage_Session {
 		scrollPane_2.setViewportView(scrollPane);
 
 		table = new JTable();
+		table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+		table.setBackground(SystemColor.window);
 		
 		table.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 11));
 		table.setModel(new DefaultTableModel( new Object[][] { }, new String[] { }

@@ -27,6 +27,7 @@ import Statistics.Statistics;
 import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
+import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 import net.proteanit.sql.DbUtils;
 
@@ -445,6 +446,14 @@ SrchSesFrm.setVisible(true);
 		panel_1.add(btnAdvanced);
 
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
+		btnTimetableGenerate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				SrchSesFrm.dispose();
+				new Lecturer();
+			}
+		});
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setForeground(Color.WHITE);
@@ -523,11 +532,11 @@ SrchSesFrm.setVisible(true);
 		
 
 		table = new JTable();
-		table.setBackground(Color.WHITE);
+		table.setBackground(SystemColor.window);
 		table.setForeground(SystemColor.textText);
 		table.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
 
-		table.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		table.setBorder(UIManager.getBorder("Table.focusCellHighlightBorder"));
 
 
 		
@@ -568,7 +577,7 @@ SrchSesFrm.setVisible(true);
 							String l2 = lecbox.getSelectedItem().toString();
 							 Connection con = DbConnection.connect();
 							// String selection=(String)searchcomboBox.getSelectedItem();
-							 String query="select * from session where lec1=? or lec2= '"+l2+"'";
+							 String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As Code,subName As Name,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session  where lec1=? or lec2= '"+l2+"'";
 							 PreparedStatement pst= con.prepareStatement(query);
 							 pst.setString(1,(String)lecbox.getSelectedItem());
 							 ResultSet rs=pst.executeQuery();
@@ -600,7 +609,7 @@ SrchSesFrm.setVisible(true);
 						try {
 							 Connection con = DbConnection.connect();
 							// String selection=(String)searchcomboBox.getSelectedItem();
-							 String query="select * from session where subName=?";
+							 String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As Code,subName As Name,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session  where subName=?";
 							 PreparedStatement pst= con.prepareStatement(query);
 							 pst.setString(1,(String)subjBox.getSelectedItem());
 							 ResultSet rs=pst.executeQuery();
@@ -628,7 +637,7 @@ SrchSesFrm.setVisible(true);
 							try {
 								 Connection con = DbConnection.connect();
 								// String selection=(String)searchcomboBox.getSelectedItem();
-								 String query="select * from session where studentGroup=?";
+								 String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As Code,subName As Name,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session  where studentGroup=?";
 								 PreparedStatement pst= con.prepareStatement(query);
 								 pst.setString(1,(String)groupBox.getSelectedItem());
 								 ResultSet rs=pst.executeQuery();

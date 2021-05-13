@@ -29,6 +29,7 @@ import Statistics.Statistics;
 import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
+import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 import net.proteanit.sql.DbUtils;
 
@@ -357,6 +358,13 @@ public class Manage_Lecturer {
 		panel_1.add(btnAdvanced);
 
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
+		btnTimetableGenerate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				ManageLecfrm.dispose();
+				new Lecturer();
+			}
+		});
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setForeground(Color.WHITE);
@@ -380,6 +388,8 @@ public class Manage_Lecturer {
 		scrollPane.setViewportView(scrollPane_1);
 
 		table = new JTable();
+		table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+		table.setBackground(SystemColor.window);
 		table.setForeground(SystemColor.textText);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
