@@ -658,13 +658,13 @@ public void refreshtable() {
 		
 		
 		//Add date
-		JLabel date = new JLabel("Date");
+		JLabel date = new JLabel("Day");
 		date.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		date.setBounds(512, 87, 57, 14);
 		panel_4.add(date);
 		
 		 day = new JSpinner();
-		String[] dayString = {"Mondya", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+		String[] dayString = {"Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};//edited
 		day = new JSpinner(
 		 new SpinnerListModel(dayString));
 		day.setBounds(611, 84, 107, 20);
@@ -808,8 +808,8 @@ public void refreshtable() {
 						sessionsign.setSelectedIndex(j); } }
 				day.setValue(table.getValueAt(selectedRow, 6).toString());
 				start.setText(table.getValueAt(selectedRow, 7).toString());
-				end.setText(table.getValueAt(selectedRow, 8).toString());
-					starttime.setValue(table.getValueAt(selectedRow, 9).toString());
+				end.setText(table.getValueAt(selectedRow, 9).toString());//edited
+					starttime.setValue(table.getValueAt(selectedRow, 8).toString());//edited
 					endtime.setValue(table.getValueAt(selectedRow, 10).toString());
 				  
 				  
