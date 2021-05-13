@@ -31,6 +31,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.MessageFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.border.MatteBorder;
@@ -92,14 +93,14 @@ public class Lecturer {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from lecturers";
+				 String query="select * from notavailableTime";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("lectureName");
+					 String name =rs.getString("selectLec");
 					 comboBox.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -581,7 +582,8 @@ public class Lecturer {
 					
 					Connection con = DbConnection.connect();
 					
-					String query="select day,startTime,endTime,sessionSign from timeAlloLecture where lecName='"+comboBox.getSelectedItem()+"' order by day,startTime,endTime";
+					String query="select Date,startTime || ' ' || start AS StartTime,endTime || ' ' || end AS EndTime,sessionSign from notavailableTime where selectLec='"+comboBox.getSelectedItem()+"'";
+					
 					PreparedStatement pst=con.prepareStatement(query);
 					ResultSet rs=pst.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -606,6 +608,21 @@ public class Lecturer {
 		btnNewButton_3.setBounds(874, 13, 155, 40);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				MessageFormat header = new MessageFormat("Lecturer TimeTable");
+				MessageFormat footer = new MessageFormat("page");
+				
+				try {
+					
+					table.print(JTable.PrintMode.FIT_WIDTH,header,footer);
+					
+					
+				}catch(Exception e1) {
+					
+					JOptionPane.showMessageDialog(null, "       Unable to print","Alert",JOptionPane.WARNING_MESSAGE);
+					
+				}
 			
 			}
 		});
@@ -617,7 +634,7 @@ public class Lecturer {
 		panel_7.add(btnNewButton_3);
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Lecturer name......"}));
 		comboBox.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		comboBox.setBounds(314, 18, 360, 30);
 		panel_7.add(comboBox);
@@ -631,10 +648,19 @@ public class Lecturer {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 66, 1035, 420);
+		//frmAddStudentGroup.getContentPane().add(scrollPane);
 		panel_7.add(scrollPane);
 		
 		table = new JTable();
+		table.setRowHeight(100);
+		table.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		scrollPane.setViewportView(table);
+		
+		//table header
+		JTableHeader h = table.getTableHeader();
+		h.setBackground(new Color(32, 178, 170));
+		h.setForeground(Color.WHITE);
+		h.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		
 		
 

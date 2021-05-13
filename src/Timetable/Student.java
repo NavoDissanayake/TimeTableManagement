@@ -29,6 +29,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.MessageFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.border.MatteBorder;
@@ -82,6 +83,7 @@ public class Student {
 	
 	private JFrame frmAddStudentGroup;	private JTextField txtLecturer;
 	private JComboBox comboBox;
+	private JTable table;
 	
 	
 	  public void fillGroupID() {
@@ -90,14 +92,14 @@ public class Student {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from StudentGroup";
+				 String query="select * from notavailableTime";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("GroupID");
+					 String name =rs.getString("selectGroup");
 					 comboBox.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -558,15 +560,28 @@ public class Student {
 	
 		//generate button
 		JButton btnNewButton_2 = new JButton("Generate");
-		btnNewButton_2.setBounds(698, 13, 164, 40);
+		btnNewButton_2.setBounds(716, 13, 164, 40);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-			
-		
+			try {
+					
+					Connection con = DbConnection.connect();
+					
+					String query="select Date,startTime || ' ' || start AS StartTime,endTime || ' ' || end AS EndTime,sessionSign from notavailableTime where selectGroup='"+comboBox.getSelectedItem()+"'";
+					PreparedStatement pst=con.prepareStatement(query);
+					ResultSet rs=pst.executeQuery();
+					table.setModel(DbUtils.resultSetToTableModel(rs));
+					
+				}
+				catch(Exception ex) {
+					ex.printStackTrace();
+				}
 			}
 		});
+		
+		
 		panel_7.setLayout(null);
 		
 		btnNewButton_2.setForeground(Color.WHITE);
@@ -578,13 +593,30 @@ public class Student {
 		
 		//print button
 		JButton btnNewButton_3 = new JButton("Print");
-		btnNewButton_3.setBounds(874, 13, 155, 40);
+		btnNewButton_3.setBounds(892, 13, 155, 40);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				MessageFormat header = new MessageFormat("Student TimeTable");
+				MessageFormat footer = new MessageFormat("page");
+				
+				try {
+					
+					table.print(JTable.PrintMode.FIT_WIDTH,header,footer);
+					
+					
+				}catch(Exception e1) {
+					
+					JOptionPane.showMessageDialog(null, "       Unable to print","Alert",JOptionPane.WARNING_MESSAGE);
+					
+				}
 			
 			}
-		});
+		}
 		
+				
+		);
 	
 		btnNewButton_3.setForeground(Color.WHITE);
 		btnNewButton_3.setFont(new Font("Times New Roman", Font.BOLD, 15));
@@ -592,7 +624,7 @@ public class Student {
 		panel_7.add(btnNewButton_3);
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Student Group......."}));
 		comboBox.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		comboBox.setBounds(314, 18, 360, 30);
 		panel_7.add(comboBox);
@@ -604,6 +636,22 @@ public class Student {
 		lblNewLabel.setBounds(185, 18, 103, 30);
 		panel_7.add(lblNewLabel);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 79, 1035, 407);
+		panel_7.add(scrollPane);
+		
+		table = new JTable();
+		table.setRowHeight(100);
+		table.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
+		scrollPane.setViewportView(table);
+		
+		
+		//table header
+		JTableHeader h = table.getTableHeader();
+		h.setBackground(new Color(32, 178, 170));
+		h.setForeground(Color.WHITE);
+		h.setFont(new Font("Times New Roman", Font.BOLD, 17));
+				
 		
 
 			
