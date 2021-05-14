@@ -1,3 +1,9 @@
+/**
+ * IT19209944
+ * W.B.W.M.R.U.P.U.Aluvihare
+ * 
+ */
+
 package Student;
 
 import java.awt.EventQueue;
@@ -48,6 +54,7 @@ import Session.Add_Session;
 import Statistics.Statistics;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
+import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 import net.proteanit.sql.DbUtils;
 
@@ -177,6 +184,7 @@ public class Manage_studentGroup {
 		frame2.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
+		
 		//home button
 				JButton btnHome = new JButton("Home");
 				btnHome.setHorizontalAlignment(SwingConstants.LEFT);
@@ -185,8 +193,7 @@ public class Manage_studentGroup {
 					
 					public void actionPerformed(ActionEvent e) {
 						
-						//Home home = new Home();
-						//home.main(null);
+					
 						frame2.dispose();
 						new Home();
 						
@@ -207,8 +214,7 @@ public class Manage_studentGroup {
 						
 						public void actionPerformed(ActionEvent e) {
 							
-							//Add_Lecturer add_lecture = new Add_Lecturer();
-							//add_lecture.main(null);
+							
 							frame2.dispose();
 							new  Add_Lecturer();
 							
@@ -230,8 +236,7 @@ public class Manage_studentGroup {
 					
 					public void actionPerformed(ActionEvent e) {
 						
-						//Add_StudentGroup add_st= new Add_StudentGroup();
-						//add_st.main(null);
+						
 						frame2.dispose();
 						new Add_StudentGroup();
 						
@@ -256,8 +261,8 @@ public class Manage_studentGroup {
 						
 						Add_Subjects add_sub= new Add_Subjects();
 						add_sub.main(null);
-						//frmAddStudentGroup.dispose();
-						//new Add_Subjects();
+						frame2.dispose();
+						new Add_Subjects();
 						
 					}
 				});
@@ -275,10 +280,10 @@ public class Manage_studentGroup {
 					
 					public void actionPerformed(ActionEvent e) {
 						
-						Add_Session add_session= new Add_Session();
-						add_session.main(null);
-						//frmAddStudentGroup.dispose();
-						//new Add_Session();
+						//Add_Session add_session= new Add_Session();
+						//add_session.main(null);
+						frame2.dispose();
+						new Add_Session();
 						
 					}
 				});
@@ -343,8 +348,8 @@ public class Manage_studentGroup {
 						
 						AddWorkingdays w_days= new 	AddWorkingdays();
 						w_days.main(null);
-						//frmAddStudentGroup.dispose();
-						//new AddWorkingdays();
+						frame2.dispose();
+						new AddWorkingdays();
 						
 					}
 				});
@@ -421,6 +426,17 @@ public class Manage_studentGroup {
 				JButton btnTimetableGenerate = new JButton("Timetable Generate");
 				btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 				btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
+				btnTimetableGenerate.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						
+						//Consecutive_sessions a_session= new Consecutive_sessions ();
+						//a_session.main(null);
+						frame2.dispose();
+						new Lecturer();
+						
+					}
+				});
 				btnTimetableGenerate.setForeground(Color.WHITE);
 				btnTimetableGenerate.setFont(new Font("Tahoma", Font.BOLD, 17));
 				btnTimetableGenerate.setBackground(new Color(0, 139, 139));
