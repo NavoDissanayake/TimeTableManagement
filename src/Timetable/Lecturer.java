@@ -93,14 +93,14 @@ public class Lecturer {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from notavailableTime";
+				 String query="select * from lecturers";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("selectLec");
+					 String name =rs.getString("lectureName");
 					 comboBox.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -582,7 +582,7 @@ public class Lecturer {
 					
 					Connection con = DbConnection.connect();
 					
-					String query="select Date,startTime || ' ' || start AS StartTime,endTime || ' ' || end AS EndTime,sessionSign from notavailableTime where selectLec='"+comboBox.getSelectedItem()+"'";
+					String query="select Date,startTime || ' ' || start AS StartTime,endTime || ' ' || end AS EndTime,sessionSign from notavailableTime where selectLec='"+comboBox.getSelectedItem()+"' order by Date,StartTime,EndTime";
 					
 					PreparedStatement pst=con.prepareStatement(query);
 					ResultSet rs=pst.executeQuery();
