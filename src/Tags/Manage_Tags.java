@@ -41,6 +41,7 @@ import java.awt.Button;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import Advanced.Consecutive_sessions;
 import DB.DbConnection;
@@ -563,6 +564,17 @@ public class Manage_Tags {
 		panel_2.add(scrollPane);
 		
 		table = new JTable();
+		
+		table.setRowHeight(20);
+		
+
+		//table header
+		JTableHeader h = table.getTableHeader();
+		h.setBackground(new Color(32, 178, 170));
+		h.setForeground(Color.WHITE);
+		h.setFont(new Font("Times New Roman", Font.BOLD, 17));
+		
+		
 		table.setFont(new Font("Tahoma", Font.BOLD, 13));
 		table.setForeground(new Color(100, 100, 100));
 		table.addMouseListener(new MouseAdapter() {
