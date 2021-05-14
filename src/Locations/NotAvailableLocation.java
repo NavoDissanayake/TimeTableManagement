@@ -67,6 +67,7 @@ public class NotAvailableLocation {
 	private JTextField date;
 	private JTextField id;
 	private JComboBox selectroom ;
+	private JComboBox sessionsign ;
 	private JTextField duration;
 	private JSpinner starttime;
 	private JSpinner endtime;
@@ -123,7 +124,35 @@ public void refreshtable() {
 		
      	}
   
-	
+  //fill session signature field
+  public void fillsign() {
+		
+		try {
+			
+			 Connection con = DbConnection.connect();
+			 
+			 String query="select * from session";
+			 
+			 PreparedStatement pst = con.prepareStatement(query);
+			 ResultSet rs = pst.executeQuery();
+			 
+			 while(rs.next()) {
+				 
+				 String name =rs.getString("sessionSignature");
+				 
+				 sessionsign.addItem(name);
+				 
+			}
+			con.close();
+		}
+		
+		catch(Exception e) {
+			
+				e.printStackTrace();
+			}
+		
+     	}
+
 	
 	/**
 	 * Launch the application.
@@ -363,11 +392,11 @@ public void refreshtable() {
 		//select room
 		JLabel lblSelectGroup = new JLabel("Select Room");
 		lblSelectGroup.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSelectGroup.setBounds(108, 62, 91, 23);
+		lblSelectGroup.setBounds(108, 43, 91, 23);
 		panel_4.add(lblSelectGroup);
 		
 		selectroom = new JComboBox();
-		selectroom.setBounds(279, 63, 149, 22);
+		selectroom.setBounds(279, 42, 149, 22);
 		selectroom.setModel(new DefaultComboBoxModel(new String[] {""}));
 		panel_4.add(selectroom);
 		fillRoom();
@@ -375,12 +404,12 @@ public void refreshtable() {
 		//add date
 		JLabel lblSelectSubGroup = new JLabel("Select Date");
 		lblSelectSubGroup.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSelectSubGroup.setBounds(108, 116, 113, 23);
+		lblSelectSubGroup.setBounds(108, 93, 113, 23);
 		panel_4.add(lblSelectSubGroup);
 		
 		date = new JTextField();
 		date.setColumns(10);
-		date.setBounds(279, 117, 149, 23);
+		date.setBounds(279, 94, 149, 23);
 		panel_4.add(date);
 		
 		
@@ -417,8 +446,9 @@ public void refreshtable() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				String selectRoom = selectroom.getSelectedItem().toString();
+				String sessionSign = sessionsign.getSelectedItem().toString();
 				String selectDate = date.getText();
-				String startTime = start.getText();
+				String startTime = start.getText();	
 				String endTime = end.getText();
 				String startAMPM = starttime.getValue().toString();
 				String endAMPM = endtime.getValue().toString();
@@ -430,7 +460,7 @@ public void refreshtable() {
 						Connection con = DbConnection.connect();
 						
 				
-						String query = "INSERT INTO notavailableloc values(null,'"+ selectRoom+"','"+ selectDate + 
+						String query = "INSERT INTO notavailableloc values(null,'"+ selectRoom+"','"+ sessionSign + "','"+ selectDate + 
 								"','"+ startTime +"','"+ startAMPM +"','"+ endTime +"','"+ endAMPM +"')";
 
 	                    Statement sta = con.createStatement();
@@ -475,6 +505,7 @@ public void refreshtable() {
 				
 				id.setText("");
 				selectroom.setSelectedIndex(0);
+				sessionsign.setSelectedIndex(0);
 				date.setText("");
 				start.setText("");
 				end.setText("");
@@ -494,14 +525,25 @@ public void refreshtable() {
 		starttime = new JSpinner();
 		String[] ampmString = {"am", "pm"};
 		starttime = new JSpinner( new SpinnerListModel(ampmString));
-		starttime.setBounds(401, 183, 44, 20);
+		starttime.setBounds(384, 183, 44, 20);
 		panel_4.add(starttime);
 		
 		endtime = new JSpinner();
 		String[] ampmString1 = {"am", "pm"};
 		endtime = new JSpinner( new SpinnerListModel(ampmString1));
-		endtime.setBounds(401, 239, 44, 20);
+		endtime.setBounds(384, 239, 44, 20);
 		panel_4.add(endtime);
+		
+		JLabel lblNewLabel = new JLabel("Session Signature");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel.setBounds(108, 140, 113, 14);
+		panel_4.add(lblNewLabel);
+		
+		sessionsign = new JComboBox();
+		sessionsign.setModel(new DefaultComboBoxModel(new String[] {""}));
+		sessionsign.setBounds(279, 137, 149, 20);
+		panel_4.add(sessionsign);
+		fillsign() ;
 		
 		//update
 		JButton Update = new JButton("UPDATE");
@@ -511,7 +553,7 @@ public void refreshtable() {
 				
 				try {
 					Connection con = DbConnection.connect();					
-					String query="Update notavailableloc set selectRoom='"+selectroom.getSelectedItem()+ "',selectDate='"+date.getText()+
+					String query="Update notavailableloc set selectRoom='"+selectroom.getSelectedItem()+ "',sessionSign='"+sessionsign.getSelectedItem()+"',selectDate='"+date.getText()+
 					"',startTime='"+start.getText()+"',start='"+starttime.getValue()+"',endTime='"+end.getText()+"',end='"+endtime.getValue()+"'"
 							+ " where locID='"+id.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
@@ -608,11 +650,18 @@ public void refreshtable() {
 				if(selectroom.getItemAt(j).toString().equalsIgnoreCase(combo)) {
 					selectroom.setSelectedIndex(j); } }
 			
-			date.setText(table.getValueAt(selectedRow, 2).toString());
-			start.setText(table.getValueAt(selectedRow, 3).toString());
-			starttime.setValue(table.getValueAt(selectedRow, 4).toString());
-			end.setText(table.getValueAt(selectedRow, 5).toString());
-			endtime.setValue(table.getValueAt(selectedRow, 6).toString());
+			String combo1 = table.getValueAt(selectedRow, 2).toString(); 
+			for(int j=0
+					;j<sessionsign.getItemCount();j++) {
+
+				if(sessionsign.getItemAt(j).toString().equalsIgnoreCase(combo1)) {
+					sessionsign.setSelectedIndex(j); } }
+			
+			date.setText(table.getValueAt(selectedRow, 3).toString());
+			start.setText(table.getValueAt(selectedRow, 4).toString());
+			starttime.setValue(table.getValueAt(selectedRow, 5).toString());
+			end.setText(table.getValueAt(selectedRow, 6).toString());
+			endtime.setValue(table.getValueAt(selectedRow, 7).toString());
 			  
 		
 	}

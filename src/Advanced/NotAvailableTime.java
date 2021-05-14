@@ -165,7 +165,7 @@ public void refreshtable() {
 	     	}
 	  
 	  
-	  //fill session ID field
+	  //fill Group ID field
 	  public void fillgroups() {
 			
 			try {
