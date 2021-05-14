@@ -73,6 +73,7 @@ public class NotAvailableTime {
 	private JComboBox selectsession;
 	private JComboBox selectsubgroup;
 	private JComboBox sessionsign;
+	private JComboBox selectroom ;
 	private JTextField textField;
 	private JSpinner starttime;
 	private JSpinner endtime;
@@ -234,16 +235,44 @@ public void refreshtable() {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from session";
+				 String query="select * from roomSession";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("sessionSignature");
+					 String name =rs.getString("sessionRoomCode");
 					 
 					 sessionsign.addItem(name);
+					 
+				}
+				con.close();
+			}
+			
+			catch(Exception e) {
+				
+					e.printStackTrace();
+				}
+			
+	     	}
+	  //fill select room
+	  public void fillroom() {
+			
+			try {
+				
+				 Connection con = DbConnection.connect();
+				 
+				 String query="select * from location";
+				 
+				 PreparedStatement pst = con.prepareStatement(query);
+				 ResultSet rs = pst.executeQuery();
+				 
+				 while(rs.next()) {
+					 
+					 String name =rs.getString("roomName");
+					 
+					 selectroom.addItem(name);
 					 
 				}
 				con.close();
@@ -590,6 +619,7 @@ public void refreshtable() {
 				String selectLec = selectlec.getSelectedItem().toString();
 				String selectGroup = selectgroup.getSelectedItem().toString();
 				String selectSubGroup = selectsubgroup.getSelectedItem().toString();
+				String selectRoom = selectroom.getSelectedItem().toString();
 				String sessionSign = sessionsign.getSelectedItem().toString();
 				String Date = day.getValue().toString();
 				String startTime = start.getText();
@@ -613,7 +643,7 @@ public void refreshtable() {
 						
 				
 						String query = "INSERT INTO notavailableTime values(null,'"+ sessionId +"','"+ selectLec +"','"+ selectGroup + "','"+ selectSubGroup + 
-								"','"+ sessionSign +"','"+ Date +"','"+ startTime +"','"+ startAMPM +"','"+ endTime +"','"+ endAMPM +"')";
+								"','"+ selectRoom +"','"+ sessionSign +"','"+ Date +"','"+ startTime +"','"+ startAMPM +"','"+ endTime +"','"+ endAMPM +"')";
 
 	                    Statement sta = con.createStatement();
 	                    int x = sta.executeUpdate(query);
@@ -684,7 +714,7 @@ public void refreshtable() {
 		panel_4.add(endtime);
 		
 		start = new JTextField();
-		start.setBounds(611, 136, 107, 22);
+		start.setBounds(613, 136, 107, 22);
 		panel_4.add(start);
 		start.setColumns(10);
 		
@@ -703,21 +733,34 @@ public void refreshtable() {
 		String[] dayString = {"Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};//edited
 		day = new JSpinner(
 		 new SpinnerListModel(dayString));
-		day.setBounds(611, 84, 107, 20);
+		day.setBounds(627, 84, 107, 20);
 		panel_4.add(day);
 		
 		
 		//Add session sign
 		JLabel session = new JLabel("Session Signature");
 		session.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		session.setBounds(106, 235, 113, 14);
+		session.setBounds(499, 30, 113, 14);
 		panel_4.add(session);
 		
 		sessionsign = new JComboBox();
 		sessionsign.setModel(new DefaultComboBoxModel(new String[] {""}));
-		sessionsign.setBounds(279, 233, 149, 20);
+		sessionsign.setBounds(622, 28, 149, 20);
 		panel_4.add(sessionsign);
-		fillsign() ;
+		fillsign();
+		
+		JLabel lblNewLabel = new JLabel("Select Room");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel.setBounds(106, 241, 113, 14);
+		panel_4.add(lblNewLabel);
+		
+		
+		//select room
+		selectroom = new JComboBox();
+		selectroom.setBounds(279, 238, 149, 20);
+		selectroom.setModel(new DefaultComboBoxModel(new String[] {""}));
+		panel_4.add(selectroom);
+		fillroom() ;
 		
 
 		btnClear.addActionListener(new ActionListener() {
@@ -728,6 +771,7 @@ public void refreshtable() {
 				selectlec.setSelectedIndex(0);
 				selectgroup.setSelectedIndex(0);
 				selectsubgroup.setSelectedIndex(0);
+				selectroom.setSelectedIndex(0);
 				sessionsign.setSelectedIndex(0);
 				day.setValue(null);
 				start.setText("");
@@ -838,15 +882,23 @@ public void refreshtable() {
 				
 				String combo5 = table.getValueAt(selectedRow, 5).toString(); 
 				for(int j=0
+						;j<selectroom.getItemCount();j++) {
+
+					if(selectroom.getItemAt(j).toString().equalsIgnoreCase(combo5)) {
+						selectroom.setSelectedIndex(j); } }
+				
+				String combo6 = table.getValueAt(selectedRow, 6).toString(); 
+				for(int j=0
 						;j<sessionsign.getItemCount();j++) {
 
-					if(sessionsign.getItemAt(j).toString().equalsIgnoreCase(combo5)) {
+					if(sessionsign.getItemAt(j).toString().equalsIgnoreCase(combo6)) {
 						sessionsign.setSelectedIndex(j); } }
-					day.setValue(table.getValueAt(selectedRow, 6).toString());
-					start.setText(table.getValueAt(selectedRow, 7).toString());
-					end.setText(table.getValueAt(selectedRow, 9).toString());//edited
-					starttime.setValue(table.getValueAt(selectedRow, 8).toString());//edited
-					endtime.setValue(table.getValueAt(selectedRow, 10).toString());
+				
+					day.setValue(table.getValueAt(selectedRow, 7).toString());
+					start.setText(table.getValueAt(selectedRow, 8).toString());
+					end.setText(table.getValueAt(selectedRow, 10).toString());//edited
+					starttime.setValue(table.getValueAt(selectedRow, 9).toString());//edited
+					endtime.setValue(table.getValueAt(selectedRow, 11).toString());
 				  
 				  
 			
@@ -889,7 +941,7 @@ public void refreshtable() {
 				try {
 					Connection con = DbConnection.connect();					
 					String query="Update notavailableTime set SessionID='"+selectsession.getSelectedItem()+ "',selectLec='"+selectlec.getSelectedItem()+"',selectGroup='"+selectgroup.getSelectedItem()+ "',selectSubGroup='"
-					+selectsubgroup.getSelectedItem()+"',sessionSign='"+sessionsign.getSelectedItem()+"',Date='"+day.getValue()+"',startTime='"+start.getText()+"',start='"+starttime.getValue()+"',endTime='"+end.getText()+"',end='"+endtime.getValue()+"'"
+					+selectsubgroup.getSelectedItem()+"',selectRoom='"+selectroom.getSelectedItem()+"',sessionSign='"+sessionsign.getSelectedItem()+"',Date='"+day.getValue()+"',startTime='"+start.getText()+"',start='"+starttime.getValue()+"',endTime='"+end.getText()+"',end='"+endtime.getValue()+"'"
 							+ " where timeID='"+id.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.executeUpdate();
