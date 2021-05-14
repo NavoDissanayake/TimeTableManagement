@@ -747,6 +747,7 @@ public class Parallel_sessions {
 		panel_7.add(scrollPane);
 		
 		table = new JTable();
+		table.setRowHeight(30);
 		
 		//table header
 		JTableHeader h = table.getTableHeader();

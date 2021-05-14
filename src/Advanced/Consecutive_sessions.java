@@ -776,7 +776,7 @@ public class Consecutive_sessions {
 		panel_7.add(scrollPane);
 		
 		table = new JTable();
-		
+		table.setRowHeight(30);
 		//table header
 		JTableHeader h = table.getTableHeader();
 		h.setBackground(new Color(32, 178, 170));
