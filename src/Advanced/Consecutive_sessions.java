@@ -547,6 +547,7 @@ public class Consecutive_sessions {
 		panel_6_1_1.add(lblNewLabel_1_1);
 		
 		JButton btnNewButton_2_1 = new JButton("Conseccutive Sessions");
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -562,6 +563,7 @@ public class Consecutive_sessions {
 		panel_6.add(btnNewButton_2_1);
 		
 		JButton btnNewButton_2_1_1 = new JButton("Parallel Sessions");
+		btnNewButton_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_2_1_1.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -576,6 +578,7 @@ public class Consecutive_sessions {
 		panel_6.add(btnNewButton_2_1_1);
 		
 		JButton btnNewButton_2_1_2 = new JButton("Non Overlapping Sessions");
+		btnNewButton_2_1_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_2_1_2.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -589,6 +592,7 @@ public class Consecutive_sessions {
 		panel_6.add(btnNewButton_2_1_2);
 		
 		JButton btnNewButton_2_1_3 = new JButton("Not Available Times");
+		btnNewButton_2_1_3.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_2_1_3.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
