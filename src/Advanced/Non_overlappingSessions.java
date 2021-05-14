@@ -1,3 +1,8 @@
+/**
+ * IT19209944
+ * W.B.W.M.R.U.P.U.Aluvihare
+ * 
+ */
 package Advanced;
 
 import java.awt.EventQueue;
@@ -49,6 +54,7 @@ import Statistics.Statistics;
 import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
+import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 import net.proteanit.sql.DbUtils;
 
@@ -79,8 +85,8 @@ public class Non_overlappingSessions {
 	private JComboBox comboBox_ps;
 	
 	
-	
-	  public void fillsesions() {
+	// fill session 1
+	public void fillsesions() {
 			
 			try {
 				
@@ -106,10 +112,10 @@ public class Non_overlappingSessions {
 					e.printStackTrace();
 				}
 			
-	     	}
+	  }
 	  
 	  
-
+		//refresh table
 		public void refreshTable() {
 			
 			try {
@@ -167,7 +173,7 @@ public class Non_overlappingSessions {
 		frmAddStudentGroup.setBounds(0, 0, 1350, 700);
 		frmAddStudentGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAddStudentGroup.getContentPane().setLayout(null);
-		
+		frmAddStudentGroup.setExtendedState(frmAddStudentGroup.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		
 		frmAddStudentGroup.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
 		frmAddStudentGroup.setVisible(true);
@@ -444,6 +450,17 @@ public class Non_overlappingSessions {
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
+		btnTimetableGenerate.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				//Consecutive_sessions a_session= new Consecutive_sessions ();
+				//a_session.main(null);
+				frmAddStudentGroup.dispose();
+				new Lecturer();
+				
+			}
+		});
 		btnTimetableGenerate.setForeground(Color.WHITE);
 		btnTimetableGenerate.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnTimetableGenerate.setBackground(new Color(0, 139, 139));
@@ -524,7 +541,8 @@ public class Non_overlappingSessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				NotAvailableTime not= new NotAvailableTime();
+				not.main(null);
 				frmAddStudentGroup.dispose();
 				new  NotAvailableTime();
 				
@@ -558,7 +576,7 @@ public class Non_overlappingSessions {
 		
 		comboBox_ps = new JComboBox();
 		comboBox_ps.setFont(new Font("Tahoma", Font.BOLD, 14));
-		comboBox_ps.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox_ps.setModel(new DefaultComboBoxModel(new String[] {"------------select session_---------------"}));
 		comboBox_ps.setBounds(156, 29, 723, 33);
 		panel_7.add(comboBox_ps);
 		

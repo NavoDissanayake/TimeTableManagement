@@ -1,3 +1,8 @@
+/**
+ * IT19209944
+ * W.B.W.M.R.U.P.U.Aluvihare
+ * 
+ */
 package Advanced;
 
 import java.awt.EventQueue;
@@ -49,6 +54,7 @@ import Statistics.Statistics;
 import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
+import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 import net.proteanit.sql.DbUtils;
 
@@ -82,6 +88,7 @@ public class Parallel_sessions {
 	private JTextField genPara;
 	
 	
+	//fill session_01
 	  public void fillsesions1() {
 			
 			try {
@@ -111,7 +118,7 @@ public class Parallel_sessions {
 			
 	     	}
 	     
-	
+	//fill session_02
 	  public void fillsesions2() {
 			
 			try {
@@ -141,7 +148,7 @@ public class Parallel_sessions {
 	     	}
 	  
 	  
-	 
+	 //fill session_03
 	  public void fillsesions3() {
 			
 			try {
@@ -231,6 +238,7 @@ public class Parallel_sessions {
 		frmAddStudentGroup.setBounds(0, 0, 1350, 700);
 		frmAddStudentGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAddStudentGroup.getContentPane().setLayout(null);
+		frmAddStudentGroup.setExtendedState(frmAddStudentGroup.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		
 		
 		
@@ -508,6 +516,17 @@ public class Parallel_sessions {
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
+		btnTimetableGenerate.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				//Consecutive_sessions a_session= new Consecutive_sessions ();
+				//a_session.main(null);
+				frmAddStudentGroup.dispose();
+				new Lecturer();
+				
+			}
+		});
 		btnTimetableGenerate.setForeground(Color.WHITE);
 		btnTimetableGenerate.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnTimetableGenerate.setBackground(new Color(0, 139, 139));
@@ -592,10 +611,11 @@ public class Parallel_sessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				//Statistics stat= new Statistics ();
-				//stat.main(null);
+				NotAvailableTime not= new NotAvailableTime();
+				not.main(null);
 				frmAddStudentGroup.dispose();
 				new  NotAvailableTime();
+				
 				
 			}
 		});
@@ -619,7 +639,7 @@ public class Parallel_sessions {
 		
 	    comboBox_s1 = new JComboBox();
 	    comboBox_s1.setFont(new Font("Times New Roman", Font.BOLD, 14));
-	    comboBox_s1.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+	    comboBox_s1.setModel(new DefaultComboBoxModel(new String[] {"------------select session_01-------------"}));
 		comboBox_s1.setBounds(150, 13, 764, 32);
 		panel_7.add(comboBox_s1);
 		
@@ -635,7 +655,7 @@ public class Parallel_sessions {
 		
 		comboBox_s2 = new JComboBox();
 		comboBox_s2.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		comboBox_s2.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox_s2.setModel(new DefaultComboBoxModel(new String[] {"------------select session_02-------------"}));
 		comboBox_s2.setBounds(150, 76, 764, 32);
 		panel_7.add( comboBox_s2);
 		
@@ -651,7 +671,7 @@ public class Parallel_sessions {
 		
 		comboBox_s3= new JComboBox();
 		comboBox_s3.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		comboBox_s3.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox_s3.setModel(new DefaultComboBoxModel(new String[] {"------------select session_03-------------"}));
 		comboBox_s3.setBounds(150, 142, 764, 32);
 		panel_7.add(comboBox_s3);
 		

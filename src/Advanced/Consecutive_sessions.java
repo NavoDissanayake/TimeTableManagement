@@ -1,3 +1,9 @@
+/**
+ * IT19209944
+ * W.B.W.M.R.U.P.U.Aluvihare
+ * 
+ */
+
 package Advanced;
 
 import java.awt.EventQueue;
@@ -5,6 +11,8 @@ import java.awt.EventQueue;
 
 
 import java.awt.Font;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.SystemColor;
 
@@ -53,6 +61,7 @@ import Statistics.Statistics;
 import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
+import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 import net.proteanit.sql.DbUtils;
 
@@ -86,6 +95,7 @@ public class Consecutive_sessions {
 	private JTextField gensession;
 	
 	
+	//fill  session 1
 	  public void fillsesions1() {
 			
 			try {
@@ -115,6 +125,7 @@ public class Consecutive_sessions {
 	     	}
 	     
 	
+	  //fill session 2 
 	  public void fillsesions2() {
 			
 			try {
@@ -144,7 +155,7 @@ public class Consecutive_sessions {
 	     	}
 	  
 	  
-	 
+	 //fill session 3
 	  public void fillsesions3() {
 			
 			try {
@@ -241,12 +252,13 @@ public class Consecutive_sessions {
 		frmAddStudentGroup.setBounds(0, 0, 1350, 700);
 		frmAddStudentGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAddStudentGroup.getContentPane().setLayout(null);
-		
+		frmAddStudentGroup.setExtendedState(frmAddStudentGroup.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		
 		frmAddStudentGroup.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
 		frmAddStudentGroup.setVisible(true);
 		
-		
+			      
+			      
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1344, 65);
@@ -282,8 +294,7 @@ public class Consecutive_sessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				//Home home = new Home();
-				//home.main(null);
+			
 				frmAddStudentGroup.dispose();
 				new Home();
 				
@@ -304,8 +315,7 @@ public class Consecutive_sessions {
 				
 				public void actionPerformed(ActionEvent e) {
 					
-					//Add_Lecturer add_lecture = new Add_Lecturer();
-					//add_lecture.main(null);
+					
 					frmAddStudentGroup.dispose();
 					new  Add_Lecturer();
 					
@@ -327,8 +337,7 @@ public class Consecutive_sessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				//Add_StudentGroup add_st= new Add_StudentGroup();
-				//add_st.main(null);
+				
 				frmAddStudentGroup.dispose();
 				new Add_StudentGroup();
 				
@@ -353,8 +362,8 @@ public class Consecutive_sessions {
 				
 				Add_Subjects add_sub= new Add_Subjects();
 				add_sub.main(null);
-				//frmAddStudentGroup.dispose();
-				//new Add_Subjects();
+				frmAddStudentGroup.dispose();
+				new Add_Subjects();
 				
 			}
 		});
@@ -438,8 +447,8 @@ public class Consecutive_sessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				//AddWorkingdays w_days= new 	AddWorkingdays();
-				//w_days.main(null);
+				AddWorkingdays w_days= new 	AddWorkingdays();
+				w_days.main(null);
 				frmAddStudentGroup.dispose();
 				new AddWorkingdays();
 				
@@ -518,6 +527,17 @@ public class Consecutive_sessions {
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
+		btnTimetableGenerate.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				//Consecutive_sessions a_session= new Consecutive_sessions ();
+				//a_session.main(null);
+				frmAddStudentGroup.dispose();
+				new Lecturer();
+				
+			}
+		});
 		btnTimetableGenerate.setForeground(Color.WHITE);
 		btnTimetableGenerate.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnTimetableGenerate.setBackground(new Color(0, 139, 139));
@@ -598,6 +618,8 @@ public class Consecutive_sessions {
 			public void actionPerformed(ActionEvent e) {
 				
 				
+				NotAvailableTime not= new NotAvailableTime();
+				not.main(null);
 				frmAddStudentGroup.dispose();
 				new  NotAvailableTime();
 				
@@ -635,7 +657,7 @@ public class Consecutive_sessions {
 		
 		comboBox_s1 = new JComboBox();
 		comboBox_s1.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		comboBox_s1.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox_s1.setModel(new DefaultComboBoxModel(new String[] {"------------select session_01-------------"}));
 		comboBox_s1.setBounds(150, 13, 764, 32);
 		panel_7.add(comboBox_s1);
 		
@@ -653,7 +675,7 @@ public class Consecutive_sessions {
 
 	    comboBox_s2 = new JComboBox();
 	    comboBox_s2.setFont(new Font("Times New Roman", Font.BOLD, 14));
-	    comboBox_s2.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+	    comboBox_s2.setModel(new DefaultComboBoxModel(new String[] {"------------select session_02--------------"}));
 		comboBox_s2.setBounds(150, 76, 764, 32);
 		panel_7.add(comboBox_s2);
 		
@@ -669,7 +691,7 @@ public class Consecutive_sessions {
 		
 		comboBox_s3 = new JComboBox();
 		comboBox_s3.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		comboBox_s3.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox_s3.setModel(new DefaultComboBoxModel(new String[] {"------------select session_03---------------"}));
 		comboBox_s3.setBounds(150, 142, 764, 32);
 		panel_7.add(comboBox_s3);
 		
@@ -774,13 +796,14 @@ public class Consecutive_sessions {
 		
 		//table view
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBounds(24, 303, 890, 142);
 		panel_7.add(scrollPane);
 		
+		
 		table = new JTable();
 		table.setRowHeight(30);
+		
+		
 		//table header
 		JTableHeader h = table.getTableHeader();
 		h.setBackground(new Color(32, 178, 170));
