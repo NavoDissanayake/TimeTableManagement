@@ -595,7 +595,12 @@ public class Student {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				
+				if(comboBox.getSelectedItem().toString().equals(" ") || comboBox.getSelectedItem().toString().equals("                     ----- Select Student Group-----"))
+				{
+					
+					JOptionPane.showMessageDialog(null, "    Please Select Student Group  ","Failed",JOptionPane.WARNING_MESSAGE);
+				}
+				else {
 			try {
 					
 					Connection con = DbConnection.connect();
@@ -608,7 +613,7 @@ public class Student {
 				}
 				catch(Exception ex) {
 					ex.printStackTrace();
-				}
+				}}
 			}
 		});
 		
@@ -677,7 +682,7 @@ public class Student {
 		panel_7.add(scrollPane);
 		
 		table = new JTable();
-		table.setRowHeight(100);
+		table.setRowHeight(90);
 		table.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		scrollPane.setViewportView(table);
 		
@@ -685,6 +690,7 @@ public class Student {
 		//table header
 		JTableHeader h = table.getTableHeader();
 		h.setBackground(new Color(32, 178, 170));
+		h.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		h.setForeground(Color.WHITE);
 		h.setFont(new Font("Times New Roman", Font.BOLD, 17));
 				

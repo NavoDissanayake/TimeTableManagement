@@ -1,3 +1,6 @@
+// IT19210452
+// W.M.S.T Wijekoon
+
 package Session;
 
 import java.awt.Color;
@@ -298,9 +301,9 @@ SrchSesFrm.setVisible(true);
 		btnStudents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Add_StudentGroup add_StudentGroup = new Add_StudentGroup();
-				add_StudentGroup.main(null);
+				
 				SrchSesFrm.dispose();
+				new Add_StudentGroup();
 			}
 		});
 		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
@@ -348,9 +351,9 @@ SrchSesFrm.setVisible(true);
 		JButton btnTags = new JButton("Tags");
 		btnTags.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Add_Tags add_Tags = new Add_Tags();
-				add_Tags.main(null);
+				
 				SrchSesFrm.dispose();
+				new Add_Tags();
 			}
 		});
 		btnTags.setHorizontalAlignment(SwingConstants.LEFT);
@@ -364,9 +367,9 @@ SrchSesFrm.setVisible(true);
 		JButton btnRooms = new JButton("Rooms");
 		btnRooms.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ManageSessionsRooms manageSessionsRooms = new ManageSessionsRooms();
-				manageSessionsRooms.main(null);
+				
 				SrchSesFrm.dispose();
+				new ManageSessionsRooms();
 			}
 		});
 		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
@@ -380,9 +383,9 @@ SrchSesFrm.setVisible(true);
 		JButton btnWorkingDays = new JButton("Working days & Hours");
 		btnWorkingDays.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddWorkingdays addWorkingdays = new AddWorkingdays();
-				addWorkingdays.main(null);
+				
 				SrchSesFrm.dispose();
+				new AddWorkingdays();
 			}
 		});
 		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
@@ -398,9 +401,8 @@ SrchSesFrm.setVisible(true);
 
 			public void actionPerformed(ActionEvent e) {
 
-				ManageLocations m_locations= new ManageLocations();
-				m_locations.main(null);
 				SrchSesFrm.dispose();
+				new ManageLocations();
 
 			}
 		});
@@ -415,9 +417,9 @@ SrchSesFrm.setVisible(true);
 		JButton btnStatistics = new JButton("Statistics");
 		btnStatistics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Statistics statistics = new Statistics();
-				statistics.main(null);
+				
 				SrchSesFrm.dispose();
+				new Statistics();
 			}
 		});
 		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);

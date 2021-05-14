@@ -580,6 +580,12 @@ public class Lecturer {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				if(comboBox.getSelectedItem().toString().equals(" ") || comboBox.getSelectedItem().toString().equals("                       ----- Select Lecturer Name-----"))
+				{
+					
+					JOptionPane.showMessageDialog(null, "   Please Select Lecturer Name","Failed",JOptionPane.WARNING_MESSAGE);
+				}
+				else {
 				try {
 					
 					Connection con = DbConnection.connect();
@@ -593,6 +599,7 @@ public class Lecturer {
 				catch(Exception ex) {
 					ex.printStackTrace();
 				}
+			}
 			}
 		});
 		panel_7.setLayout(null);
@@ -656,16 +663,17 @@ public class Lecturer {
 		panel_7.add(scrollPane);
 		
 		table = new JTable();
-		table.setRowHeight(100);
+		table.setRowHeight(90);
 		table.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		scrollPane.setViewportView(table);
+		
 		
 		//table header
 		JTableHeader h = table.getTableHeader();
 		h.setBackground(new Color(32, 178, 170));
 		h.setForeground(Color.WHITE);
 		h.setFont(new Font("Times New Roman", Font.BOLD, 17));
-		
+		h.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 
 			

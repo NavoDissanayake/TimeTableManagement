@@ -1,3 +1,6 @@
+// IT19210452
+// W.M.S.T Wijekoon
+
 package Session;
 
 import java.awt.Color;
@@ -364,9 +367,9 @@ public class Manage_Session {
 		btnStudents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Add_StudentGroup add_StudentGroup = new Add_StudentGroup();
-				add_StudentGroup.main(null);
+				
 				ManageSesFrm.dispose();
+				new Add_StudentGroup();
 			}
 		});
 		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
@@ -414,9 +417,9 @@ public class Manage_Session {
 		JButton btnTags = new JButton("Tags");
 		btnTags.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Add_Tags add_Tags = new Add_Tags();
-				add_Tags.main(null);
+				
 				ManageSesFrm.dispose();
+				new Add_Tags();
 			}
 		});
 		btnTags.setHorizontalAlignment(SwingConstants.LEFT);
@@ -430,9 +433,9 @@ public class Manage_Session {
 		JButton btnRooms = new JButton("Rooms");
 		btnRooms.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ManageSessionsRooms manageSessionsRooms = new ManageSessionsRooms();
-				manageSessionsRooms.main(null);
+				
 				ManageSesFrm.dispose();
+				new ManageSessionsRooms();
 			}
 		});
 		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
@@ -446,9 +449,9 @@ public class Manage_Session {
 		JButton btnWorkingDays = new JButton("Working days & Hours");
 		btnWorkingDays.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddWorkingdays addWorkingdays = new AddWorkingdays();
-				addWorkingdays.main(null);
+				
 				ManageSesFrm.dispose();
+				new AddWorkingdays();
 			}
 		});
 		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
@@ -464,9 +467,9 @@ public class Manage_Session {
 
 			public void actionPerformed(ActionEvent e) {
 
-				ManageLocations m_locations= new ManageLocations();
-				m_locations.main(null);
+				
 				ManageSesFrm.dispose();
+				new ManageLocations();
 
 			}
 		});
@@ -481,9 +484,9 @@ public class Manage_Session {
 		JButton btnStatistics = new JButton("Statistics");
 		btnStatistics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Statistics statistics = new Statistics();
-				statistics.main(null);
+				
 				ManageSesFrm.dispose();
+				new Statistics();
 			}
 		});
 		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);

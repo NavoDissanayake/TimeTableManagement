@@ -625,6 +625,7 @@ public class Location {
 		JTableHeader h = table.getTableHeader();
 		h.setBackground(new Color(32, 178, 170));
 		h.setForeground(Color.WHITE);
+		h.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		h.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		
 		//table.set
@@ -636,7 +637,12 @@ public class Location {
 		 btnNewButton_2.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent e) {
-					
+					if(comboBox.getSelectedItem().toString().equals(" ") || comboBox.getSelectedItem().toString().equals("                               ----- Select Location -----"))
+					{
+						
+						JOptionPane.showMessageDialog(null, "    Please Select Location ","Failed",JOptionPane.WARNING_MESSAGE);
+					}
+					else {
 					try {
 						
 						Connection con = DbConnection.connect();
@@ -651,7 +657,7 @@ public class Location {
 						ex.printStackTrace();
 					}
 				
-			
+					}
 				}
 			});
 
