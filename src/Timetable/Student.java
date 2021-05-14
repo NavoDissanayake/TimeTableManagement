@@ -92,14 +92,43 @@ public class Student {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from notavailableTime";
+				 String query="select * from StudentGroup";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("selectGroup");
+					 String name =rs.getString("GroupID");
+					 comboBox.addItem(name);
+					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
+					 
+				}
+				con.close();
+			}
+			
+			catch(Exception e) {
+				
+					e.printStackTrace();
+				}
+			
+	     	}
+	  
+	  
+	  public void fillSubGroupID() {
+			
+			try {
+				
+				 Connection con = DbConnection.connect();
+				 
+				 String query="select * from StudentGroup";
+				 
+				 PreparedStatement pst = con.prepareStatement(query);
+				 ResultSet rs = pst.executeQuery();
+				 
+				 while(rs.next()) {
+					 
+					 String name =rs.getString("SubGroupID");
 					 comboBox.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -569,7 +598,7 @@ public class Student {
 					
 					Connection con = DbConnection.connect();
 					
-					String query="select Date,startTime || ' ' || start AS StartTime,endTime || ' ' || end AS EndTime,sessionSign from notavailableTime where selectGroup='"+comboBox.getSelectedItem()+"'";
+					String query="select Date,startTime || ' ' || start AS StartTime,endTime || ' ' || end AS EndTime,sessionSign from notavailableTime where (selectGroup='"+comboBox.getSelectedItem().toString()+"' ) OR (selectSubGroup = '"+comboBox.getSelectedItem().toString()+"') ";
 					PreparedStatement pst=con.prepareStatement(query);
 					ResultSet rs=pst.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -624,12 +653,13 @@ public class Student {
 		panel_7.add(btnNewButton_3);
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Student Group......."}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"                     ----- Select Student Group-----"}));
 		comboBox.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		comboBox.setBounds(314, 18, 360, 30);
 		panel_7.add(comboBox);
 		
 		fillGroupID();
+		fillSubGroupID();
 		
 		JLabel lblNewLabel = new JLabel("Group");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 15));

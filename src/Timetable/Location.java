@@ -82,6 +82,7 @@ public class Location {
 	
 	private JFrame frmAddStudentGroup;	private JTextField txtLecturer;
 	private JComboBox comboBox;
+	private JTable table;
 	
 	
 	  public void fillLocations() {
@@ -586,12 +587,45 @@ public class Location {
 		
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"                               ----- Select Location -----"}));
 		comboBox.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		comboBox.setBounds(222, 22, 415, 28);
 		panel_7.add(comboBox);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 92, 1009, 378);
+		panel_7.add(scrollPane);
+		
+		table = new JTable();
+		table.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
+		table.setRowHeight(90);
+		//table.set
+		scrollPane.setViewportView(table);
+		
 		 fillLocations();
+		 
+		 //generate
+		 btnNewButton_2.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent e) {
+					
+					try {
+						
+						Connection con = DbConnection.connect();
+						
+						String query="select selectDate As Day,startTime As StartTime,endTime As EndTime ,selectRoom As Location from notavailableloc where selectRoom='"+comboBox.getSelectedItem().toString()+"' order by startTime,endTime";
+						PreparedStatement pst=con.prepareStatement(query);
+						ResultSet rs=pst.executeQuery();
+						table.setModel(DbUtils.resultSetToTableModel(rs));
+						
+					}
+					catch(Exception ex) {
+						ex.printStackTrace();
+					}
+				
+			
+				}
+			});
 
 			
 	}

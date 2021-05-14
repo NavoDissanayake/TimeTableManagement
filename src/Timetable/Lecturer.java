@@ -610,7 +610,7 @@ public class Lecturer {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				MessageFormat header = new MessageFormat("Lecturer TimeTable");
+				MessageFormat header = new MessageFormat("Lecturer TimeTable - "+ comboBox.getSelectedItem().toString());
 				MessageFormat footer = new MessageFormat("page");
 				
 				try {
