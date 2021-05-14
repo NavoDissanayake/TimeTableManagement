@@ -730,7 +730,7 @@ public void refreshtable() {
 		panel_4.add(date);
 		
 		 day = new JSpinner();
-		String[] dayString = {"Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};//edited
+		String[] dayString = {"1.Monday", "2.Tuesday","3.Wednesday","4.Thursday","5.Friday","6.Saturday","7.Sunday"};//edited
 		day = new JSpinner(
 		 new SpinnerListModel(dayString));
 		day.setBounds(627, 84, 107, 20);

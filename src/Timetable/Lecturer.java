@@ -583,7 +583,6 @@ public class Lecturer {
 					Connection con = DbConnection.connect();
 					
 					String query="select Date,startTime || ' ' || start AS StartTime,endTime || ' ' || end AS EndTime,sessionSign from notavailableTime where selectLec='"+comboBox.getSelectedItem()+"' order by Date,StartTime,EndTime";
-					
 					PreparedStatement pst=con.prepareStatement(query);
 					ResultSet rs=pst.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -634,7 +633,7 @@ public class Lecturer {
 		panel_7.add(btnNewButton_3);
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Lecturer name......"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"                       ----- Select Lecturer Name-----"}));
 		comboBox.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		comboBox.setBounds(314, 18, 360, 30);
 		panel_7.add(comboBox);
