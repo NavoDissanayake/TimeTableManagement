@@ -29,6 +29,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.border.MatteBorder;
@@ -569,6 +572,24 @@ public class Location {
 		JButton btnNewButton_3 = new JButton("Print");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				MessageFormat header = new MessageFormat("Location TimeTable - "+ comboBox.getSelectedItem().toString());
+				Date date = new Date();  
+			    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss.SSS");  
+			    String strDate= formatter.format(date);  
+				MessageFormat footer = new MessageFormat("Timetable generated on:" +strDate);
+				
+				try {
+					
+					table.print(JTable.PrintMode.FIT_WIDTH,header,footer);
+					
+					
+				}catch(Exception e1) {
+					
+					JOptionPane.showMessageDialog(null, "       Unable to print","Alert",JOptionPane.WARNING_MESSAGE);
+					
+				}
+				
 			
 			}
 		});
@@ -599,6 +620,13 @@ public class Location {
 		table = new JTable();
 		table.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		table.setRowHeight(90);
+
+		//table header
+		JTableHeader h = table.getTableHeader();
+		h.setBackground(new Color(32, 178, 170));
+		h.setForeground(Color.WHITE);
+		h.setFont(new Font("Times New Roman", Font.BOLD, 17));
+		
 		//table.set
 		scrollPane.setViewportView(table);
 		
@@ -613,7 +641,7 @@ public class Location {
 						
 						Connection con = DbConnection.connect();
 						
-						String query="select selectDate As Day,startTime As StartTime,endTime As EndTime ,selectRoom As Location from notavailableloc where selectRoom='"+comboBox.getSelectedItem().toString()+"' order by startTime,endTime";
+						String query="select Date As Day,startTime || ' ' || start as StartTime,endTime || ' ' || end As EndTime ,sessionSign As SessionSign from notavailableTime where selectRoom='"+comboBox.getSelectedItem().toString()+"' order by Date,startTime,endTime";
 						PreparedStatement pst=con.prepareStatement(query);
 						ResultSet rs=pst.executeQuery();
 						table.setModel(DbUtils.resultSetToTableModel(rs));
