@@ -164,6 +164,40 @@ public void refreshtable() {
 			
 	     	}
 	  
+	  
+	  //fill session ID field
+	  public void fillgroups() {
+			
+			try {
+				
+				 Connection con = DbConnection.connect();
+				 
+				 String query="select * from StudentGroup";
+				 
+				 PreparedStatement pst = con.prepareStatement(query);
+				 ResultSet rs = pst.executeQuery();
+				 
+				 while(rs.next()) {
+					 
+					 String name =rs.getString("GroupID");
+					 
+					 selectgroup.addItem(name);
+					 
+				}
+				con.close();
+			}
+			
+			catch(Exception e) {
+				
+					e.printStackTrace();
+				}
+			
+	     	}
+	  
+	  
+	  
+	  
+	  
 	  //select student Group
 	  public void fillsubgroup() {
 			
@@ -519,8 +553,10 @@ public void refreshtable() {
 			
 		selectgroup = new JComboBox();
 		selectgroup.setBounds(279, 136, 149, 22);
-		selectgroup.setModel(new DefaultComboBoxModel(new String[] {"", "Y1.S1", "Y1.S2", "Y2.S1", "Y2.S2", "Y3.S1", "Y3.S2", "Y4.S1", "Y4.S2"}));
+		selectgroup.setModel(new DefaultComboBoxModel(new String[] {""}));
 		panel_4.add(selectgroup);
+		
+		fillgroups();
 		
 		JLabel lblSelectSubGroup = new JLabel("Select Sub Group");
 		lblSelectSubGroup.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -806,9 +842,9 @@ public void refreshtable() {
 
 					if(sessionsign.getItemAt(j).toString().equalsIgnoreCase(combo5)) {
 						sessionsign.setSelectedIndex(j); } }
-				day.setValue(table.getValueAt(selectedRow, 6).toString());
-				start.setText(table.getValueAt(selectedRow, 7).toString());
-				end.setText(table.getValueAt(selectedRow, 9).toString());//edited
+					day.setValue(table.getValueAt(selectedRow, 6).toString());
+					start.setText(table.getValueAt(selectedRow, 7).toString());
+					end.setText(table.getValueAt(selectedRow, 9).toString());//edited
 					starttime.setValue(table.getValueAt(selectedRow, 8).toString());//edited
 					endtime.setValue(table.getValueAt(selectedRow, 10).toString());
 				  
@@ -853,7 +889,7 @@ public void refreshtable() {
 				try {
 					Connection con = DbConnection.connect();					
 					String query="Update notavailableTime set SessionID='"+selectsession.getSelectedItem()+ "',selectLec='"+selectlec.getSelectedItem()+"',selectGroup='"+selectgroup.getSelectedItem()+ "',selectSubGroup='"
-					+selectsubgroup.getSelectedItem()+"',sessionSign='"+sessionsign.getSelectedItem()+"',Date='"+day.getValue()+"',startTime='"+start.getText()+"',startAM/PM='"+starttime.getValue()+"',endTime='"+end.getText()+"',endAM/PM='"+endtime.getValue()+"'"
+					+selectsubgroup.getSelectedItem()+"',sessionSign='"+sessionsign.getSelectedItem()+"',Date='"+day.getValue()+"',startTime='"+start.getText()+"',start='"+starttime.getValue()+"',endTime='"+end.getText()+"',end='"+endtime.getValue()+"'"
 							+ " where timeID='"+id.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.executeUpdate();

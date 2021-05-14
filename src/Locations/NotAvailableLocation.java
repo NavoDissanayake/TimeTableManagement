@@ -486,7 +486,7 @@ public void refreshtable() {
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-			
+				id.setText("");
 				selectroom.setSelectedIndex(0);
 				date.setText("");
 				description.setText("");
@@ -526,7 +526,7 @@ public void refreshtable() {
 				try {
 					Connection con = DbConnection.connect();					
 					String query="Update notavailableloc set selectRoom='"+selectroom.getSelectedItem()+ "',selectDate='"+date.getText()+"',description='"+description.getText()+ 
-					"',startTime='"+start.getText()+"',startAM/PM='"+starttime.getValue()+"',endTime='"+end.getText()+"',endAM/PM='"+endtime.getValue()+"'"
+					"',startTime='"+start.getText()+"',start='"+starttime.getValue()+"',endTime='"+end.getText()+"',end='"+endtime.getValue()+"'"
 							+ " where locID='"+id.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.executeUpdate();
