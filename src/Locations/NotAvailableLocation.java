@@ -64,7 +64,6 @@ public class NotAvailableLocation {
 	private JTable table;
 	private JTextField start;
 	private JTextField end;
-	private JTextField description;
 	private JTextField date;
 	private JTextField id;
 	private JComboBox selectroom ;
@@ -364,11 +363,11 @@ public void refreshtable() {
 		//select room
 		JLabel lblSelectGroup = new JLabel("Select Room");
 		lblSelectGroup.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSelectGroup.setBounds(106, 37, 91, 23);
+		lblSelectGroup.setBounds(108, 62, 91, 23);
 		panel_4.add(lblSelectGroup);
 		
 		selectroom = new JComboBox();
-		selectroom.setBounds(279, 38, 149, 22);
+		selectroom.setBounds(279, 63, 149, 22);
 		selectroom.setModel(new DefaultComboBoxModel(new String[] {""}));
 		panel_4.add(selectroom);
 		fillRoom();
@@ -376,47 +375,36 @@ public void refreshtable() {
 		//add date
 		JLabel lblSelectSubGroup = new JLabel("Select Date");
 		lblSelectSubGroup.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSelectSubGroup.setBounds(106, 89, 113, 23);
+		lblSelectSubGroup.setBounds(108, 116, 113, 23);
 		panel_4.add(lblSelectSubGroup);
 		
 		date = new JTextField();
 		date.setColumns(10);
-		date.setBounds(279, 91, 149, 23);
+		date.setBounds(279, 117, 149, 23);
 		panel_4.add(date);
-		
-		//add description
-		JLabel lblDescription = new JLabel("Description");
-		lblDescription.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDescription.setBounds(106, 135, 113, 23);
-		panel_4.add(lblDescription);
-		
-		description = new JTextField();
-		description.setColumns(10);
-		description.setBounds(279, 130, 289, 67);
-		panel_4.add(description);
 		
 		
 		//start Time
 		start = new JTextField();
-		start.setBounds(279, 223, 86, 20);
+		start.setBounds(279, 183, 86, 20);
 		panel_4.add(start);
 		start.setColumns(10);
 		
 		JLabel lblStartTime = new JLabel("Start Time");
 		lblStartTime.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblStartTime.setBounds(106, 221, 91, 23);
+		lblStartTime.setBounds(108, 181, 91, 23);
 		panel_4.add(lblStartTime);
 		
 		
 		//End time
 		end = new JTextField();
 		end.setColumns(10);
-		end.setBounds(279, 263, 86, 20);
+		end.setBounds(279, 239, 86, 20);
 		panel_4.add(end);
 		
 		JLabel lblEndTime = new JLabel("End Time");
 		lblEndTime.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblEndTime.setBounds(106, 261, 57, 23);
+		lblEndTime.setBounds(108, 237, 57, 23);
 		panel_4.add(lblEndTime);
 		
 
@@ -430,7 +418,6 @@ public void refreshtable() {
 				
 				String selectRoom = selectroom.getSelectedItem().toString();
 				String selectDate = date.getText();
-				String Description = description.getText();
 				String startTime = start.getText();
 				String endTime = end.getText();
 				String startAMPM = starttime.getValue().toString();
@@ -443,7 +430,7 @@ public void refreshtable() {
 						Connection con = DbConnection.connect();
 						
 				
-						String query = "INSERT INTO notavailableloc values(null,'"+ selectRoom+"','"+ selectDate +"','"+ Description + 
+						String query = "INSERT INTO notavailableloc values(null,'"+ selectRoom+"','"+ selectDate + 
 								"','"+ startTime +"','"+ startAMPM +"','"+ endTime +"','"+ endAMPM +"')";
 
 	                    Statement sta = con.createStatement();
@@ -489,7 +476,6 @@ public void refreshtable() {
 				id.setText("");
 				selectroom.setSelectedIndex(0);
 				date.setText("");
-				description.setText("");
 				start.setText("");
 				end.setText("");
 				starttime.setValue(null);
@@ -508,13 +494,13 @@ public void refreshtable() {
 		starttime = new JSpinner();
 		String[] ampmString = {"am", "pm"};
 		starttime = new JSpinner( new SpinnerListModel(ampmString));
-		starttime.setBounds(401, 223, 44, 20);
+		starttime.setBounds(401, 183, 44, 20);
 		panel_4.add(starttime);
 		
 		endtime = new JSpinner();
 		String[] ampmString1 = {"am", "pm"};
 		endtime = new JSpinner( new SpinnerListModel(ampmString1));
-		endtime.setBounds(401, 263, 44, 20);
+		endtime.setBounds(401, 239, 44, 20);
 		panel_4.add(endtime);
 		
 		//update
@@ -525,7 +511,7 @@ public void refreshtable() {
 				
 				try {
 					Connection con = DbConnection.connect();					
-					String query="Update notavailableloc set selectRoom='"+selectroom.getSelectedItem()+ "',selectDate='"+date.getText()+"',description='"+description.getText()+ 
+					String query="Update notavailableloc set selectRoom='"+selectroom.getSelectedItem()+ "',selectDate='"+date.getText()+
 					"',startTime='"+start.getText()+"',start='"+starttime.getValue()+"',endTime='"+end.getText()+"',end='"+endtime.getValue()+"'"
 							+ " where locID='"+id.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
@@ -623,11 +609,10 @@ public void refreshtable() {
 					selectroom.setSelectedIndex(j); } }
 			
 			date.setText(table.getValueAt(selectedRow, 2).toString());
-			description.setText(table.getValueAt(selectedRow, 3).toString());
-			start.setText(table.getValueAt(selectedRow, 4).toString());
-			starttime.setValue(table.getValueAt(selectedRow, 5).toString());
-			end.setText(table.getValueAt(selectedRow, 6).toString());
-			endtime.setValue(table.getValueAt(selectedRow, 7).toString());
+			start.setText(table.getValueAt(selectedRow, 3).toString());
+			starttime.setValue(table.getValueAt(selectedRow, 4).toString());
+			end.setText(table.getValueAt(selectedRow, 5).toString());
+			endtime.setValue(table.getValueAt(selectedRow, 6).toString());
 			  
 		
 	}
