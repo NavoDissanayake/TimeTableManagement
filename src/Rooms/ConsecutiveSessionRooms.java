@@ -1,3 +1,8 @@
+/*
+ * IT19207582
+ * R.M.S.J Rathnayake
+ */
+
 package Rooms;
 
 import java.awt.Color;
@@ -28,6 +33,7 @@ import javax.swing.SwingConstants;
 
 import Advanced.Consecutive_sessions;
 import DB.DbConnection;
+import Home.Home;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
 import Session.Add_Session;
@@ -35,6 +41,7 @@ import Statistics.Statistics;
 import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
+import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 import javax.swing.DefaultComboBoxModel;
 
@@ -176,7 +183,7 @@ public class ConsecutiveSessionRooms {
 		crframe.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-	
+		//lectures
 		JButton btnLecturers = new JButton("Lecturers");
 		btnLecturers.setHorizontalAlignment(SwingConstants.LEFT);
 		btnLecturers.setIcon(new ImageIcon(lec_logo));
@@ -184,9 +191,10 @@ public class ConsecutiveSessionRooms {
 				
 				public void actionPerformed(ActionEvent e) {
 					
-					Add_Lecturer add_lecture = new Add_Lecturer();
-					add_lecture.main(null);
+					//Add_Lecturer add_lecture = new Add_Lecturer();
+					//add_lecture.main(null);
 					crframe.dispose();
+					new Add_Lecturer();
 					
 				}
 			});
@@ -196,6 +204,7 @@ public class ConsecutiveSessionRooms {
 		btnLecturers.setBounds(0, 59, 264, 38);
 		panel_1.add(btnLecturers);
 		
+		//Students
 		JButton btnStudents = new JButton("Students");
 		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStudents.setIcon(new ImageIcon(stu_logo));
@@ -203,9 +212,10 @@ public class ConsecutiveSessionRooms {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_StudentGroup add_st = new Add_StudentGroup();
-				add_st.main(null);
+				//Add_StudentGroup add_st = new Add_StudentGroup();
+				//add_st.main(null);
 				crframe.dispose();
+				new Add_StudentGroup();
 				
 			}
 		});
@@ -215,12 +225,14 @@ public class ConsecutiveSessionRooms {
 		btnStudents.setBounds(0, 108, 264, 38);
 		panel_1.add(btnStudents);
 		
+		//Subjects
 		JButton btnSubjects = new JButton("Subjects");
 		btnSubjects.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Add_Subjects add_sub= new Add_Subjects();
-				add_sub.main(null);
+				//Add_Subjects add_sub= new Add_Subjects();
+				//add_sub.main(null);
 				crframe.dispose();
+				new Add_Subjects();
 			}
 		});
 		btnSubjects.setHorizontalAlignment(SwingConstants.LEFT);
@@ -231,12 +243,14 @@ public class ConsecutiveSessionRooms {
 		btnSubjects.setBounds(0, 157, 264, 38);
 		panel_1.add(btnSubjects);
 		
+		//Seesions
 		JButton btnSessions = new JButton("Sessions");
 		btnSessions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Add_Session add_session= new Add_Session();
-				add_session.main(null);
+				//Add_Session add_session= new Add_Session();
+				//add_session.main(null);
 				crframe.dispose();
+				new Add_Session();
 			}
 		});
 		btnSessions.setHorizontalAlignment(SwingConstants.LEFT);
@@ -247,12 +261,14 @@ public class ConsecutiveSessionRooms {
 		btnSessions.setBounds(0, 206, 264, 38);
 		panel_1.add(btnSessions);
 		
+		//Tags
 		JButton btnTags = new JButton("Tags");
 		btnTags.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Add_Tags add_tag= new Add_Tags();
-				add_tag.main(null);
+				//Add_Tags add_tag= new Add_Tags();
+				//add_tag.main(null);
 				crframe.dispose();
+				new Add_Tags();
 			}
 		});
 		btnTags.setHorizontalAlignment(SwingConstants.LEFT);
@@ -263,12 +279,14 @@ public class ConsecutiveSessionRooms {
 		btnTags.setBounds(0, 255, 264, 38);
 		panel_1.add(btnTags);
 		
+		//Rooms
 		JButton btnRooms = new JButton("Rooms");
 		btnRooms.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
-				m_rooms.main(null);
+				//ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
+				//m_rooms.main(null);
 				crframe.dispose();
+				new  ManageSessionsRooms();
 			}
 		});
 		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
@@ -279,12 +297,14 @@ public class ConsecutiveSessionRooms {
 		btnRooms.setBounds(0, 304, 264, 38);
 		panel_1.add(btnRooms);
 		
+		//Working
 		JButton btnWorkingDays = new JButton("Working days & Hours");
 		btnWorkingDays.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddWorkingdays w_days= new 	AddWorkingdays();
-				w_days.main(null);
+				//AddWorkingdays w_days= new 	AddWorkingdays();
+				//w_days.main(null);
 				crframe.dispose();
+				new AddWorkingdays();
 			}
 		});
 		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
@@ -295,13 +315,15 @@ public class ConsecutiveSessionRooms {
 		btnWorkingDays.setBounds(0, 353, 264, 38);
 		panel_1.add(btnWorkingDays);
 		
+		//locations
 		JButton btnLocations = new JButton("Locations");
 		btnLocations.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				ManageLocations m_locations= new ManageLocations();
-				m_locations.main(null);
+				//ManageLocations m_locations= new ManageLocations();
+				//m_locations.main(null);
 				crframe.dispose();
+				new ManageLocations();
 				
 				
 			}
@@ -314,12 +336,14 @@ public class ConsecutiveSessionRooms {
 		btnLocations.setBounds(0, 402, 264, 38);
 		panel_1.add(btnLocations);
 		
+		//Statistics
 		JButton btnStatistics = new JButton("Statistics");
 		btnStatistics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Statistics stat= new Statistics ();
-				stat.main(null);
+				//Statistics stat= new Statistics ();
+				//stat.main(null);
 				crframe.dispose();
+				new   Statistics();
 			}
 		});
 		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
@@ -330,13 +354,15 @@ public class ConsecutiveSessionRooms {
 		btnStatistics.setBounds(0, 451, 264, 38);
 		panel_1.add(btnStatistics);
 		
+		//Advanced
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Consecutive_sessions a_session= new Consecutive_sessions ();
-				a_session.main(null);
+				//Consecutive_sessions a_session= new Consecutive_sessions ();
+				//a_session.main(null);
 				crframe.dispose();
+				new Consecutive_sessions();
 
 				
 			}
@@ -349,7 +375,14 @@ public class ConsecutiveSessionRooms {
 		btnAdvanced.setBounds(0, 500, 264, 38);
 		panel_1.add(btnAdvanced);
 		
+		//Timetable
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
+		btnTimetableGenerate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				crframe.dispose();
+				new Lecturer();
+			}
+		});
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
 		btnTimetableGenerate.setForeground(Color.WHITE);
@@ -358,10 +391,12 @@ public class ConsecutiveSessionRooms {
 		btnTimetableGenerate.setBounds(0, 549, 264, 38);
 		panel_1.add(btnTimetableGenerate);
 		
-		
+		//Home
 		JButton btnManageGroups = new JButton("Home");
 		btnManageGroups.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				crframe.dispose();
+				new Home();
 			}
 		});
 		btnManageGroups.setHorizontalAlignment(SwingConstants.LEFT);

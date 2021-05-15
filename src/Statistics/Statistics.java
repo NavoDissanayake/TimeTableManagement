@@ -44,6 +44,7 @@ import Session.Add_Session;
 import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
+import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 
 import javax.swing.JTextPane;
@@ -231,7 +232,7 @@ public class Statistics {
 		
 		
 		
-		
+		//lecture button
 		JButton btnLecturers = new JButton("Lecturers");
 		btnLecturers.setHorizontalAlignment(SwingConstants.LEFT);
 		btnLecturers.setIcon(new ImageIcon(lec_logo));
@@ -239,9 +240,10 @@ public class Statistics {
 				
 				public void actionPerformed(ActionEvent e) {
 					
-					Add_Lecturer add_lecture = new Add_Lecturer();
-					add_lecture.main(null);
+					//Add_Lecturer add_lecture = new Add_Lecturer();
+					//add_lecture.main(null);
 					staticFrame.dispose();
+					new Add_Lecturer();
 					
 				}
 			});
@@ -252,6 +254,7 @@ public class Statistics {
 		btnLecturers.setBounds(0, 59, 264, 38);
 		panel_1.add(btnLecturers);
 		
+		//students button
 		JButton btnStudents = new JButton("Students");
 		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStudents.setIcon(new ImageIcon(stu_logo));
@@ -259,9 +262,10 @@ public class Statistics {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_StudentGroup add_st= new Add_StudentGroup();
-				add_st.main(null);
+				//Add_StudentGroup add_st= new Add_StudentGroup();
+				//add_st.main(null);
 				staticFrame.dispose();
+				new Add_StudentGroup();
 				
 			}
 		});
@@ -270,9 +274,10 @@ public class Statistics {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Home add_st = new Home();
-				add_st.main(null);
-				staticFrame.dispose();
+				//Home add_st = new Home();
+				//add_st.main(null);
+				//staticFrame.dispose();
+				//new Add_StudentGroup();
 				
 			}
 		});
@@ -282,6 +287,7 @@ public class Statistics {
 		btnStudents.setBounds(0, 108, 264, 38);
 		panel_1.add(btnStudents);
 		
+		//subject button
 		JButton btnSubjects = new JButton("Subjects");
 		btnSubjects.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSubjects.setIcon(new ImageIcon(sub_logo));
@@ -289,9 +295,10 @@ public class Statistics {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_Subjects add_sub= new Add_Subjects();
-				add_sub.main(null);
+				//Add_Subjects add_sub= new Add_Subjects();
+				//add_sub.main(null);
 				staticFrame.dispose();
+				new Add_Subjects();
 				
 			}
 		});
@@ -301,6 +308,7 @@ public class Statistics {
 		btnSubjects.setBounds(0, 157, 264, 38);
 		panel_1.add(btnSubjects);
 		
+		//Sssion button
 		JButton btnSessions = new JButton("Sessions");
 		btnSessions.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSessions.setIcon(new ImageIcon(session_logo));
@@ -308,9 +316,10 @@ public class Statistics {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_Session add_session= new Add_Session();
-				add_session.main(null);
+				//Add_Session add_session= new Add_Session();
+				//add_session.main(null);
 				staticFrame.dispose();
+				new Add_Session();
 				
 			}
 		});
@@ -320,6 +329,7 @@ public class Statistics {
 		btnSessions.setBounds(0, 206, 264, 38);
 		panel_1.add(btnSessions);
 		
+		//Tag Button
 		JButton btnTags = new JButton("Tags");
 		btnTags.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTags.setIcon(new ImageIcon(tag_logo));
@@ -327,9 +337,10 @@ public class Statistics {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_Tags add_tag= new Add_Tags();
-				add_tag.main(null);
+				//Add_Tags add_tag= new Add_Tags();
+				//add_tag.main(null);
 				staticFrame.dispose();
+				new Add_Tags();
 				
 			}
 		});
@@ -339,6 +350,7 @@ public class Statistics {
 		btnTags.setBounds(0, 255, 264, 38);
 		panel_1.add(btnTags);
 		
+		//Room
 		JButton btnRooms = new JButton("Rooms");
 		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
 		btnRooms.setIcon(new ImageIcon(room_logo));
@@ -346,9 +358,10 @@ public class Statistics {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
-				m_rooms.main(null);
+				//ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
+				//m_rooms.main(null);
 				staticFrame.dispose();
+				new  ManageSessionsRooms();
 				
 			}
 		});
@@ -358,6 +371,7 @@ public class Statistics {
 		btnRooms.setBounds(0, 304, 264, 38);
 		panel_1.add(btnRooms);
 		
+		//Working Button
 		JButton btnWorkingDays = new JButton("Working days & Hours");
 		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
 		btnWorkingDays.setIcon(new ImageIcon(days_logo));
@@ -365,9 +379,10 @@ public class Statistics {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				AddWorkingdays w_days= new 	AddWorkingdays();
-				w_days.main(null);
+				//AddWorkingdays w_days= new 	AddWorkingdays();
+				//w_days.main(null);
 				staticFrame.dispose();
+				new AddWorkingdays();
 				
 			}
 		});
@@ -377,6 +392,7 @@ public class Statistics {
 		btnWorkingDays.setBounds(0, 353, 264, 38);
 		panel_1.add(btnWorkingDays);
 		
+		//Location
 		JButton btnLocations = new JButton("Locations");
 		btnLocations.setHorizontalAlignment(SwingConstants.LEFT);
 		btnLocations.setIcon(new ImageIcon(location_logo));
@@ -384,9 +400,10 @@ public class Statistics {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				ManageLocations m_locations= new ManageLocations();
-				m_locations.main(null);
+				//ManageLocations m_locations= new ManageLocations();
+				//m_locations.main(null);
 				staticFrame.dispose();
+				new ManageLocations();
 				
 			}
 		});
@@ -396,6 +413,7 @@ public class Statistics {
 		btnLocations.setBounds(0, 402, 264, 38);
 		panel_1.add(btnLocations);
 		
+		//Statistics
 		JButton btnStatistics = new JButton("Statistics");
 		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStatistics.setIcon(new ImageIcon(st_logo));
@@ -403,9 +421,10 @@ public class Statistics {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Statistics stat= new Statistics ();
-				stat.main(null);
+				//Statistics stat= new Statistics ();
+				//stat.main(null);
 				staticFrame.dispose();
+				new   Statistics();
 				
 			}
 		});
@@ -415,6 +434,7 @@ public class Statistics {
 		btnStatistics.setBounds(0, 451, 264, 38);
 		panel_1.add(btnStatistics);
 		
+		//Advanced Button
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAdvanced.setIcon(new ImageIcon(adv_logo));
@@ -422,8 +442,9 @@ public class Statistics {
 			
 			public void actionPerformed(ActionEvent e) {
 				Consecutive_sessions a_session= new Consecutive_sessions ();
-				a_session.main(null);
+				//a_session.main(null);
 				staticFrame.dispose();
+				new Consecutive_sessions();
 				
 				
 				
@@ -435,7 +456,14 @@ public class Statistics {
 		btnAdvanced.setBounds(0, 500, 264, 38);
 		panel_1.add(btnAdvanced);
 		
+		//Timtable
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
+		btnTimetableGenerate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				staticFrame.dispose();
+				new Lecturer();
+			}
+		});
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
 		btnTimetableGenerate.setForeground(Color.WHITE);
@@ -445,6 +473,7 @@ public class Statistics {
 		panel_1.add(btnTimetableGenerate);
 		
 		
+		//Home
 		JButton btnHome = new JButton("Home");
 		btnHome.setHorizontalAlignment(SwingConstants.LEFT);
 		btnHome.setIcon(new ImageIcon(home_logo));
@@ -452,9 +481,10 @@ public class Statistics {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Home home = new Home();
-				home.main(null);
+				//Home home = new Home();
+				//home.main(null);
 				staticFrame.dispose();
+				new Home();
 				
 			}
 		});

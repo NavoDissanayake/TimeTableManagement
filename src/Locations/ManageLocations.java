@@ -1,3 +1,9 @@
+/**
+ * IT19207582
+ * R.M.S.J Rathnayake
+ * 
+ */
+
 package Locations;
 
 import java.awt.Color;
@@ -41,6 +47,7 @@ import Statistics.Statistics;
 import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
+import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 import WorkingDays.ManageWorkingDays;
 import net.proteanit.sql.DbUtils;
@@ -166,7 +173,7 @@ public class ManageLocations {
 		frmMangeLocationsGroup.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-	
+	//lecture button
 		JButton btnLecturers = new JButton("Lecturers");
 		btnLecturers.setHorizontalAlignment(SwingConstants.LEFT);
 		btnLecturers.setIcon(new ImageIcon(lec_logo));
@@ -174,9 +181,9 @@ public class ManageLocations {
 				
 				public void actionPerformed(ActionEvent e) {
 					
-					Add_Lecturer add_lecture = new Add_Lecturer();
-					add_lecture.main(null);
+					
 					frmMangeLocationsGroup.dispose();
+					new Add_Lecturer();
 					
 					
 				}
@@ -187,6 +194,7 @@ public class ManageLocations {
 		btnLecturers.setBounds(0, 59, 264, 38);
 		panel_1.add(btnLecturers);
 		
+		//Students
 		JButton btnStudents = new JButton("Students");
 		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStudents.setIcon(new ImageIcon(stu_logo));
@@ -194,9 +202,9 @@ public class ManageLocations {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_StudentGroup add_st = new Add_StudentGroup();
-				add_st.main(null);
+				
 				frmMangeLocationsGroup.dispose();
+				new Add_StudentGroup();
 				
 				
 			}
@@ -207,12 +215,13 @@ public class ManageLocations {
 		btnStudents.setBounds(0, 108, 264, 38);
 		panel_1.add(btnStudents);
 		
+		//Subjects
 		JButton btnSubjects = new JButton("Subjects");
 		btnSubjects.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Add_Subjects add_sub= new Add_Subjects();
-				add_sub.main(null);
+				
 				frmMangeLocationsGroup.dispose();
+				new Add_Subjects();
 				
 			}
 		});
@@ -224,12 +233,14 @@ public class ManageLocations {
 		btnSubjects.setBounds(0, 157, 264, 38);
 		panel_1.add(btnSubjects);
 		
+		//session
 		JButton btnSessions = new JButton("Sessions");
 		btnSessions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Add_Session add_session= new Add_Session();
-				add_session.main(null);
+				//Add_Session add_session= new Add_Session();
+				//add_session.main(null);
 				frmMangeLocationsGroup.dispose();
+				new Add_Session();
 				
 			}
 		});
@@ -241,13 +252,15 @@ public class ManageLocations {
 		btnSessions.setBounds(0, 206, 264, 38);
 		panel_1.add(btnSessions);
 		
+		//Tag
 		JButton btnTags = new JButton("Tags");
 		btnTags.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Add_Tags add_tag= new Add_Tags();
-				add_tag.main(null);
+				//Add_Tags add_tag= new Add_Tags();
+				//add_tag.main(null);
 				frmMangeLocationsGroup.dispose();
+				new Add_Tags();
 				
 			}
 		});
@@ -259,13 +272,15 @@ public class ManageLocations {
 		btnTags.setBounds(0, 255, 264, 38);
 		panel_1.add(btnTags);
 		
+		//Room
 		JButton btnRooms = new JButton("Rooms");
 		btnRooms.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
-				m_rooms.main(null);
+				//ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
+				//m_rooms.main(null);
 				frmMangeLocationsGroup.dispose();
+				new  ManageSessionsRooms();
 				
 			}
 		});
@@ -277,12 +292,14 @@ public class ManageLocations {
 		btnRooms.setBounds(0, 304, 264, 38);
 		panel_1.add(btnRooms);
 		
+		//working days
 		JButton btnWorkingDays = new JButton("Working days & Hours");
 		btnWorkingDays.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddWorkingdays w_days= new 	AddWorkingdays();
-				w_days.main(null);
+				//AddWorkingdays w_days= new 	AddWorkingdays();
+				//w_days.main(null);
 				frmMangeLocationsGroup.dispose();
+				new AddWorkingdays();
 				
 			}
 		});
@@ -294,13 +311,14 @@ public class ManageLocations {
 		btnWorkingDays.setBounds(0, 353, 264, 38);
 		panel_1.add(btnWorkingDays);
 		
+		//Location
 		JButton btnLocations = new JButton("Locations");
 		btnLocations.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ManageLocations m_locations= new ManageLocations();
-				m_locations.main(null);
+				//ManageLocations m_locations= new ManageLocations();
+				//m_locations.main(null);
 				frmMangeLocationsGroup.dispose();
-				
+				new ManageLocations();
 				
 				
 			}
@@ -313,13 +331,15 @@ public class ManageLocations {
 		btnLocations.setBounds(0, 402, 264, 38);
 		panel_1.add(btnLocations);
 		
+		//Statistics
 		JButton btnStatistics = new JButton("Statistics");
 		btnStatistics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Statistics stat= new Statistics ();
-				stat.main(null);
+				//Statistics stat= new Statistics ();
+				//stat.main(null);
 				frmMangeLocationsGroup.dispose();
+				new   Statistics();
 				
 			}
 		});
@@ -331,12 +351,14 @@ public class ManageLocations {
 		btnStatistics.setBounds(0, 451, 264, 38);
 		panel_1.add(btnStatistics);
 		
+		//Advanced
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Consecutive_sessions a_session= new Consecutive_sessions ();
-				a_session.main(null);
+				//Consecutive_sessions a_session= new Consecutive_sessions ();
+				//a_session.main(null);
 				frmMangeLocationsGroup.dispose();
+				new Consecutive_sessions();
 				
 				
 			}
@@ -350,6 +372,12 @@ public class ManageLocations {
 		panel_1.add(btnAdvanced);
 		
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
+		btnTimetableGenerate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmMangeLocationsGroup.dispose();
+				new Lecturer();
+			}
+		});
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
 		btnTimetableGenerate.setForeground(Color.WHITE);
@@ -358,13 +386,14 @@ public class ManageLocations {
 		btnTimetableGenerate.setBounds(0, 549, 264, 38);
 		panel_1.add(btnTimetableGenerate);
 		
-		
+		//Home
 		JButton btnManageGroups = new JButton("Home");
 		btnManageGroups.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Home home = new Home();
-				home.main(null);
+				//Home home = new Home();
+				//home.main(null);
 				frmMangeLocationsGroup.dispose();
+				new Home();
 				
 				
 			}
