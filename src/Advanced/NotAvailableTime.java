@@ -651,10 +651,9 @@ btnTags.addActionListener(new ActionListener() {
 		button.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				
-				NotAvailableTime m_stgroup = new NotAvailableTime ();
-				m_stgroup.main(null);
+			
 				frame.dispose();
+				new NotAvailableTime();
 				
 			}
 		});
@@ -662,6 +661,14 @@ btnTags.addActionListener(new ActionListener() {
 		//non overlapping session button
 		JButton btnNewButton_2_1_2 = new JButton("Non Overlapping Sessions");
 		btnNewButton_2_1_2.setBounds(543, 11, 275, 37);
+		btnNewButton_2_1_2.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+		
+				frame.dispose();
+				new Non_overlappingSessions();
+			}
+		});
 		panel_6.add(btnNewButton_2_1_2);
 
 
