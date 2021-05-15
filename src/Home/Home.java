@@ -52,6 +52,7 @@ import Statistics.Statistics;
 import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
+import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 
 import javax.swing.border.LineBorder;
@@ -77,6 +78,7 @@ public class Home {
 	
 	
 	private JFrame frmAddStudentGroup;
+	private JTextField txtDevelopedByGroup;
 
 	
 	/**
@@ -258,9 +260,9 @@ public class Home {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
-				m_rooms.main(null);
+				
 				frmAddStudentGroup.dispose();
+				new ManageSessionsRooms();
 				
 			}
 		});
@@ -277,10 +279,10 @@ public class Home {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				AddWorkingdays w_days= new 	AddWorkingdays();
-				w_days.main(null);
+				
 				frmAddStudentGroup.dispose();
 				
+				new AddWorkingdays();
 			}
 		});
 		btnWorkingDays.setForeground(Color.WHITE);
@@ -296,9 +298,9 @@ public class Home {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				ManageLocations m_locations= new ManageLocations();
-				m_locations.main(null);
+				
 				frmAddStudentGroup.dispose();
+				new ManageLocations();
 				
 			}
 		});
@@ -315,9 +317,9 @@ public class Home {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Statistics stat= new Statistics ();
-				stat.main(null);
+				
 				frmAddStudentGroup.dispose();
+				new Statistics();
 				
 			}
 		});
@@ -349,6 +351,12 @@ public class Home {
 		panel_1.add(btnAdvanced);
 		
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
+		btnTimetableGenerate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmAddStudentGroup.dispose();
+				new Lecturer();
+			}
+		});
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
 		btnTimetableGenerate.setForeground(Color.WHITE);
@@ -377,6 +385,16 @@ public class Home {
 		btnHome.setForeground(new Color(255, 255, 255));
 		btnHome.setBackground(new Color(0, 139, 139));
 		btnHome.setFont(new Font("Tahoma", Font.BOLD, 17));
+		
+		txtDevelopedByGroup = new JTextField();
+		txtDevelopedByGroup.setEditable(false);
+		txtDevelopedByGroup.setHorizontalAlignment(SwingConstants.CENTER);
+		txtDevelopedByGroup.setFont(new Font("Rockwell", Font.PLAIN, 13));
+		txtDevelopedByGroup.setText("Developed by Group  : WD_R_20");
+		txtDevelopedByGroup.setBounds(571, 583, 207, 20);
+		txtDevelopedByGroup.setBackground(new Color(230, 230, 250));
+		panel_1.add(txtDevelopedByGroup);
+		txtDevelopedByGroup.setColumns(10);
 		Image wallicon = new ImageIcon(this.getClass().getResource("/new.png")).getImage();
 	}
 }

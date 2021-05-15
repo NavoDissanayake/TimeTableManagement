@@ -559,7 +559,7 @@ public class Location {
 		
 	
 		//generate button
-		JButton btnNewButton_2 = new JButton("Generate");
+		JButton btnNewButton_2 = new JButton("GENERATE");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -578,7 +578,7 @@ public class Location {
 		
 		
 		//print button
-		JButton btnNewButton_3 = new JButton("Print");
+		JButton btnNewButton_3 = new JButton("PRINT");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -610,8 +610,8 @@ public class Location {
 		btnNewButton_3.setBounds(874, 13, 155, 40);
 		panel_7.add(btnNewButton_3);
 		
-		JLabel lblNewLabel = new JLabel("Location");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		JLabel lblNewLabel = new JLabel("Location :");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 16));
 		lblNewLabel.setBounds(137, 25, 93, 28);
 		panel_7.add(lblNewLabel);
 		

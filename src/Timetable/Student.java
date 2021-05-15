@@ -598,7 +598,7 @@ public class Student {
 		
 	
 		//generate button
-		JButton btnNewButton_2 = new JButton("Generate");
+		JButton btnNewButton_2 = new JButton("GENERATE");
 		btnNewButton_2.setBounds(716, 13, 164, 40);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			
@@ -636,7 +636,7 @@ public class Student {
 		
 		
 		//print button
-		JButton btnNewButton_3 = new JButton("Print");
+		JButton btnNewButton_3 = new JButton("PRINT");
 		btnNewButton_3.setBounds(892, 13, 155, 40);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -680,8 +680,8 @@ public class Student {
 		fillGroupID();
 		fillSubGroupID();
 		
-		JLabel lblNewLabel = new JLabel("Group");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		JLabel lblNewLabel = new JLabel("Group :");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 16));
 		lblNewLabel.setBounds(185, 18, 103, 30);
 		panel_7.add(lblNewLabel);
 		
