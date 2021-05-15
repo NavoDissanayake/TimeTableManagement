@@ -131,6 +131,8 @@ public void refreshtable() {
 		frmWorkingDays.setBounds(0, 0, 1350, 700);
 		frmWorkingDays.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmWorkingDays.getContentPane().setLayout(null);
+		frmWorkingDays.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
+		frmWorkingDays.setVisible(true);
 		
 		JPanel panel = new JPanel();
 		panel.setForeground(Color.WHITE);
