@@ -1,3 +1,9 @@
+/** 
+ * IT19207346
+ * N.H.N.N.Dissanayake
+ */
+
+
 package WorkingDays;
 
 import java.awt.Color;
@@ -30,10 +36,17 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import Advanced.Consecutive_sessions;
 import DB.DbConnection;
 import Home.Home;
 import Lecturer.Add_Lecturer;
+import Locations.ManageLocations;
+import Rooms.ManageSessionsRooms;
+import Session.Add_Session;
+import Statistics.Statistics;
 import Student.Manage_studentGroup;
+import Subject.Add_Subjects;
+import Tags.Add_Tags;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.SpinnerNumberModel;
@@ -166,6 +179,16 @@ public class AddWorkingdays {
 		JButton btnSubjects = new JButton("Subjects");
 		btnSubjects.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSubjects.setIcon(new ImageIcon(sub_logo));
+	btnSubjects.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				frame.dispose();
+				new Add_Subjects();
+				
+			}
+		});
 		btnSubjects.setForeground(Color.WHITE);
 		btnSubjects.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnSubjects.setBackground(new Color(0, 139, 139));
@@ -176,6 +199,16 @@ public class AddWorkingdays {
 		JButton btnSessions = new JButton("Sessions");
 		btnSessions.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSessions.setIcon(new ImageIcon(session_logo));
+	btnSessions.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				frame.dispose();
+				new Add_Session();
+				
+			}
+		});
 		btnSessions.setForeground(Color.WHITE);
 		btnSessions.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnSessions.setBackground(new Color(0, 139, 139));
@@ -186,6 +219,16 @@ public class AddWorkingdays {
 		JButton btnTags = new JButton("Tags");
 		btnTags.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTags.setIcon(new ImageIcon(tag_logo));
+btnTags.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				frame.dispose();
+				new Add_Tags();
+				
+			}
+		});
 		btnTags.setForeground(Color.WHITE);
 		btnTags.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnTags.setBackground(new Color(0, 139, 139));
@@ -197,6 +240,16 @@ public class AddWorkingdays {
 		JButton btnRooms = new JButton("Rooms");
 		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
 		btnRooms.setIcon(new ImageIcon(room_logo));
+	btnRooms.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
+				m_rooms.main(null);
+				frame.dispose();
+				
+			}
+		});
 		btnRooms.setForeground(Color.WHITE);
 		btnRooms.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnRooms.setBackground(new Color(0, 139, 139));
@@ -207,6 +260,16 @@ public class AddWorkingdays {
 		JButton btnWorkingDays = new JButton("Working days & Hours");
 		btnWorkingDays.setHorizontalAlignment(SwingConstants.LEFT);
 		btnWorkingDays.setIcon(new ImageIcon(days_logo));
+		btnWorkingDays.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				AddWorkingdays w_days= new 	AddWorkingdays();
+				w_days.main(null);
+				frame.dispose();
+				
+			}
+		});
 		btnWorkingDays.setForeground(Color.WHITE);
 		btnWorkingDays.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnWorkingDays.setBackground(new Color(0, 139, 139));
@@ -217,6 +280,16 @@ public class AddWorkingdays {
 		JButton btnLocations = new JButton("Locations");
 		btnLocations.setHorizontalAlignment(SwingConstants.LEFT);
 		btnLocations.setIcon(new ImageIcon(location_logo));
+	btnLocations.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				ManageLocations m_locations= new ManageLocations();
+				m_locations.main(null);
+				frame.dispose();
+				
+			}
+		});
 		btnLocations.setForeground(Color.WHITE);
 		btnLocations.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnLocations.setBackground(new Color(0, 139, 139));
@@ -227,6 +300,16 @@ public class AddWorkingdays {
 		JButton btnStatistics = new JButton("Statistics");
 		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStatistics.setIcon(new ImageIcon(st_logo));
+		btnStatistics.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				Statistics stat= new Statistics ();
+				stat.main(null);
+				frame.dispose();
+				
+			}
+		});
 		btnStatistics.setForeground(Color.WHITE);
 		btnStatistics.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnStatistics.setBackground(new Color(0, 139, 139));
@@ -237,6 +320,18 @@ public class AddWorkingdays {
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAdvanced.setIcon(new ImageIcon(adv_logo));
+		btnAdvanced.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				//Consecutive_sessions a_session= new Consecutive_sessions ();
+				//a_session.main(null);
+				frame.dispose();
+				new Consecutive_sessions();
+				
+				
+			}
+		});
 		btnAdvanced.setForeground(Color.WHITE);
 		btnAdvanced.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnAdvanced.setBackground(new Color(0, 139, 139));

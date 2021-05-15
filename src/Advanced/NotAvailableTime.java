@@ -38,6 +38,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.TableModel;
 
 import DB.DbConnection;
+import Home.Home;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
 import Rooms.ManageSessionsRooms;
@@ -46,6 +47,7 @@ import Statistics.Statistics;
 import Student.Manage_studentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
+import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 import WorkingDays.ManageWorkingDays;
 import net.proteanit.sql.DbUtils;
@@ -399,7 +401,7 @@ public void refreshtable() {
 		JButton btnSubjects = new JButton("Subjects");
 		btnSubjects.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSubjects.setIcon(new ImageIcon(sub_logo));
-	btnSubjects.addActionListener(new ActionListener() {
+		btnSubjects.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
@@ -420,7 +422,7 @@ public void refreshtable() {
 		JButton btnSessions = new JButton("Sessions");
 		btnSessions.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSessions.setIcon(new ImageIcon(session_logo));
-btnSessions.addActionListener(new ActionListener() {
+		btnSessions.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
@@ -459,7 +461,7 @@ btnTags.addActionListener(new ActionListener() {
 		JButton btnRooms = new JButton("Rooms");
 		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
 		btnRooms.setIcon(new ImageIcon(room_logo));
-btnRooms.addActionListener(new ActionListener() {
+		btnRooms.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
@@ -499,7 +501,7 @@ btnRooms.addActionListener(new ActionListener() {
 		JButton btnLocations = new JButton("Locations");
 		btnLocations.setHorizontalAlignment(SwingConstants.LEFT);
 		btnLocations.setIcon(new ImageIcon(location_logo));
-	btnLocations.addActionListener(new ActionListener() {
+		btnLocations.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
@@ -520,7 +522,7 @@ btnRooms.addActionListener(new ActionListener() {
 		JButton btnStatistics = new JButton("Statistics");
 		btnStatistics.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStatistics.setIcon(new ImageIcon(st_logo));
-	btnStatistics.addActionListener(new ActionListener() {
+		btnStatistics.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
@@ -541,7 +543,7 @@ btnRooms.addActionListener(new ActionListener() {
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAdvanced.setIcon(new ImageIcon(adv_logo));
-	btnAdvanced.addActionListener(new ActionListener() {
+		btnAdvanced.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
@@ -564,6 +566,16 @@ btnRooms.addActionListener(new ActionListener() {
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
+		btnTimetableGenerate.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				frame.dispose();
+				new Lecturer();
+				
+			}
+		});
 		btnTimetableGenerate.setForeground(Color.WHITE);
 		btnTimetableGenerate.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnTimetableGenerate.setBackground(new Color(0, 139, 139));
@@ -576,13 +588,13 @@ btnRooms.addActionListener(new ActionListener() {
 		btnManageGroups.setIcon(new ImageIcon(home_logo));
 		btnManageGroups.setBounds(0, 13, 262, 33);
 		panel_1.add(btnManageGroups);
-		btnManageGroups.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
+	
 		btnManageGroups.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				frame.dispose();
+				new Home();
+				
 			}
 		});
 		btnManageGroups.setForeground(new Color(255, 255, 255));
@@ -603,11 +615,27 @@ btnRooms.addActionListener(new ActionListener() {
 		//conseccutive sessions button
 		JButton btnNewButton_2_1 = new JButton("Conseccutive Sessions");
 		btnNewButton_2_1.setBounds(0, 11, 268, 37);
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				frame.dispose();
+				new Consecutive_sessions();
+				
+			}
+		});
 		panel_6.add(btnNewButton_2_1);
 		
 		
 		//parallel sessions button
 		JButton btnNewButton_2_1_1 = new JButton("Parallel Sessions");
+		btnNewButton_2_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				frame.dispose();
+				new Parallel_sessions();
+				
+			}
+		});
 		btnNewButton_2_1_1.setBounds(267, 11, 275, 37);
 		panel_6.add(btnNewButton_2_1_1);
 		
