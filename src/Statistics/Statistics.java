@@ -1,3 +1,8 @@
+/**
+ * IT19207582
+ * R.M.S.J Rathnayake
+ * 
+ */
 package Statistics;
 
 import java.awt.BorderLayout;
