@@ -140,6 +140,9 @@ public class Manage_Subject {
 		//ManageSesFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		MngSubFrm.getContentPane().setLayout(null);
 		MngSubFrm.setLocationRelativeTo(null);
+		
+		
+		
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);

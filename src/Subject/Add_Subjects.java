@@ -94,6 +94,10 @@ public class Add_Subjects {
 		AddSubFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		AddSubFrm.getContentPane().setLayout(null);
 		
+		AddSubFrm.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
+		AddSubFrm.setVisible(true);
+		
+		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1344, 65);
 		panel.setBackground(new Color(51, 153, 153));

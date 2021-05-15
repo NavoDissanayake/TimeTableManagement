@@ -92,10 +92,13 @@ public class NotAvailableTime {
 	private JComboBox selectroom ;
 	private JTextField textField;
 	private JSpinner starttime;
+	private JSpinner starttime_1;
 	private JSpinner endtime;
+	private JSpinner endtime_1;
 	private JTextField start;
 	private JTextField end;
 	private JSpinner day;
+	private JSpinner day_1;
 	
 	
 	//refresh all the data
@@ -340,6 +343,10 @@ public void refreshtable() {
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
 		frame.setVisible(true);
+		
+		
+		
+		
 		
 		JPanel panel = new JPanel();
 		panel.setForeground(Color.WHITE);
@@ -612,12 +619,13 @@ public void refreshtable() {
 		
 		JPanel panel_6 = new JPanel();
 		panel_6.setLayout(null);
-		panel_6.setBounds(-11, 0, 1082, 49);
+		panel_6.setBounds(-11, 0, 1093, 39);
 		panel_3.add(panel_6);
 		
 		//conseccutive sessions button
 		JButton btnNewButton_2_1 = new JButton("Conseccutive Sessions");
-		btnNewButton_2_1.setBounds(0, 11, 268, 37);
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNewButton_2_1.setBounds(12, 0, 268, 37);
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -631,6 +639,7 @@ public void refreshtable() {
 		
 		//parallel sessions button
 		JButton btnNewButton_2_1_1 = new JButton("Parallel Sessions");
+		btnNewButton_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_2_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -639,7 +648,7 @@ public void refreshtable() {
 				
 			}
 		});
-		btnNewButton_2_1_1.setBounds(267, 11, 275, 37);
+		btnNewButton_2_1_1.setBounds(278, 0, 275, 37);
 		panel_6.add(btnNewButton_2_1_1);
 		
 		
@@ -647,7 +656,8 @@ public void refreshtable() {
 		//not available time button
 		JLabel lblNewLabel_1_1 = new JLabel("Not Available Time");
 		JButton button = new JButton("Not available time");
-		button.setBounds(819, 11, 263, 37);
+		button.setFont(new Font("Tahoma", Font.BOLD, 14));
+		button.setBounds(829, 0, 263, 37);
 		panel_6.add(button);	
 		button.addActionListener(new ActionListener() {
 			
@@ -661,7 +671,8 @@ public void refreshtable() {
 			
 		//non overlapping session button
 		JButton btnNewButton_2_1_2 = new JButton("Non Overlapping Sessions");
-		btnNewButton_2_1_2.setBounds(543, 11, 275, 37);
+		btnNewButton_2_1_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNewButton_2_1_2.setBounds(553, 0, 275, 37);
 		btnNewButton_2_1_2.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -683,24 +694,26 @@ public void refreshtable() {
 		panel_3.add(panel_4);
 		
 		JLabel lblSelectSessionId = new JLabel("Select Session ID");
-		lblSelectSessionId.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSelectSessionId.setBounds(106, 26, 113, 23);
+		lblSelectSessionId.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblSelectSessionId.setBounds(28, 27, 113, 23);
 		panel_4.add(lblSelectSessionId);
 		
 		selectsession = new JComboBox();
-		selectsession.setBounds(279, 27, 149, 22);
+		selectsession.setFont(new Font("Tahoma", Font.BOLD, 13));
+		selectsession.setBounds(175, 27, 149, 22);
 		selectsession.setModel(new DefaultComboBoxModel(new String[] {""}));
 		panel_4.add(selectsession);
 		fillsession() ;
 		
 		//select lecture 
 		JLabel lblNewLabel_2 = new JLabel("Select Lecturer");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2.setBounds(106, 82, 91, 23);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_2.setBounds(28, 83, 91, 23);
 		panel_4.add(lblNewLabel_2);
 		
 		selectlec = new JComboBox();
-		selectlec.setBounds(279, 83, 149, 22);
+		selectlec.setFont(new Font("Tahoma", Font.BOLD, 13));
+		selectlec.setBounds(175, 83, 149, 22);
 		selectlec.setModel(new DefaultComboBoxModel(new String[] {""}));
 		panel_4.add(selectlec);
 		
@@ -708,36 +721,38 @@ public void refreshtable() {
 		
 		//select student group
 		JLabel lblSelectGroup = new JLabel("Select Group");
-		lblSelectGroup.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSelectGroup.setBounds(106, 135, 91, 23);
+		lblSelectGroup.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblSelectGroup.setBounds(28, 136, 91, 23);
 		panel_4.add(lblSelectGroup);
 			
 		selectgroup = new JComboBox();
-		selectgroup.setBounds(279, 136, 149, 22);
+		selectgroup.setFont(new Font("Tahoma", Font.BOLD, 13));
+		selectgroup.setBounds(175, 136, 149, 22);
 		selectgroup.setModel(new DefaultComboBoxModel(new String[] {""}));
 		panel_4.add(selectgroup);
 		
 		fillgroups();
 		
 		JLabel lblSelectSubGroup = new JLabel("Select Sub Group");
-		lblSelectSubGroup.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSelectSubGroup.setBounds(106, 181, 113, 23);
+		lblSelectSubGroup.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblSelectSubGroup.setBounds(28, 182, 113, 23);
 		panel_4.add(lblSelectSubGroup);
 		
 		selectsubgroup = new JComboBox();
-		selectsubgroup.setBounds(279, 182, 149, 22);
+		selectsubgroup.setFont(new Font("Tahoma", Font.BOLD, 13));
+		selectsubgroup.setBounds(175, 182, 149, 22);
 		selectsubgroup.setModel(new DefaultComboBoxModel(new String[] {""}));
 		panel_4.add(selectsubgroup);
 		fillsubgroup();
 		
 		JLabel StartTime = new JLabel("Start Time");
-		StartTime.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		StartTime.setBounds(512, 135, 91, 23);
+		StartTime.setFont(new Font("Tahoma", Font.BOLD, 12));
+		StartTime.setBounds(502, 136, 91, 23);
 		panel_4.add(StartTime);
 		
 		JLabel EndTime = new JLabel("End Time");
-		EndTime.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		EndTime.setBounds(512, 181, 57, 23);
+		EndTime.setFont(new Font("Tahoma", Font.BOLD, 12));
+		EndTime.setBounds(502, 182, 57, 23);
 		panel_4.add(EndTime);
 		
 		
@@ -826,70 +841,78 @@ public void refreshtable() {
 		btnClear.setBackground(new Color(0, 153, 153));
 		
 		id = new JTextField();
-		id.setBounds(279, 0, 86, 20);
+		id.setBackground(SystemColor.menu);
+		id.setBounds(0, 0, 86, 7);
 		panel_4.add(id);
 		
 		//start time AM
 		starttime = new JSpinner();
 		String[] ampmString1 = {"am", "pm"};
-		starttime = new JSpinner(
+		starttime_1 = new JSpinner(
 		 new SpinnerListModel(ampmString1));
-		starttime.setBounds(728, 136, 43, 23);
-		panel_4.add(starttime);
+		starttime_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		starttime_1.setBounds(769, 136, 43, 23);
+		panel_4.add(starttime_1);
 		
 		//End time AM
 		endtime = new JSpinner();
 		String[] ampmString = {"am", "pm"};
-		endtime = new JSpinner(
+		endtime_1 = new JSpinner(
 		 new SpinnerListModel(ampmString1));
-		endtime.setBounds(728, 182, 43, 23);
-		panel_4.add(endtime);
+		endtime_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		endtime_1.setBounds(769, 182, 43, 23);
+		panel_4.add(endtime_1);
 		
 		start = new JTextField();
-		start.setBounds(613, 136, 107, 22);
+		start.setFont(new Font("Tahoma", Font.BOLD, 13));
+		start.setBounds(666, 136, 91, 22);
 		panel_4.add(start);
 		start.setColumns(10);
 		
 		end = new JTextField();
-		end.setBounds(611, 183, 107, 20);
+		end.setFont(new Font("Tahoma", Font.BOLD, 13));
+		end.setBounds(666, 183, 91, 20);
 		panel_4.add(end);
 		
 		
 		//Add date
 		JLabel date = new JLabel("Day");
-		date.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		date.setBounds(512, 87, 57, 14);
+		date.setFont(new Font("Tahoma", Font.BOLD, 12));
+		date.setBounds(502, 87, 74, 14);
 		panel_4.add(date);
 		
 		 day = new JSpinner();
 		String[] dayString = {"1.Monday", "2.Tuesday","3.Wednesday","4.Thursday","5.Friday","6.Saturday","7.Sunday"};//edited
-		day = new JSpinner(
+		day_1 = new JSpinner(
 		 new SpinnerListModel(dayString));
-		day.setBounds(627, 84, 107, 20);
-		panel_4.add(day);
+		day_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		day_1.setBounds(663, 84, 149, 20);
+		panel_4.add(day_1);
 		
 		
 		//Add session sign
 		JLabel session = new JLabel("Session Signature");
-		session.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		session.setFont(new Font("Tahoma", Font.BOLD, 12));
 		session.setBounds(499, 30, 113, 14);
 		panel_4.add(session);
 		
 		sessionsign = new JComboBox();
+		sessionsign.setFont(new Font("Tahoma", Font.BOLD, 13));
 		sessionsign.setModel(new DefaultComboBoxModel(new String[] {""}));
-		sessionsign.setBounds(622, 28, 149, 20);
+		sessionsign.setBounds(663, 28, 149, 20);
 		panel_4.add(sessionsign);
 		fillsign();
 		
 		JLabel lblNewLabel = new JLabel("Select Room");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(106, 241, 113, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel.setBounds(28, 241, 113, 14);
 		panel_4.add(lblNewLabel);
 		
 		
 		//select room
 		selectroom = new JComboBox();
-		selectroom.setBounds(279, 238, 149, 20);
+		selectroom.setFont(new Font("Tahoma", Font.BOLD, 13));
+		selectroom.setBounds(175, 235, 149, 23);
 		selectroom.setModel(new DefaultComboBoxModel(new String[] {""}));
 		panel_4.add(selectroom);
 		fillroom() ;
@@ -953,18 +976,18 @@ public void refreshtable() {
 		delete.setFont(new Font("Tahoma", Font.BOLD, 14));
 		delete.setEnabled(true);
 		delete.setBackground(new Color(0, 153, 153));
-		delete.setBounds(766, 567, 141, 31);
+		delete.setBounds(793, 556, 141, 31);
 		panel_3.add(delete);
 	
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(32, 178, 170));
 		separator.setBackground(new Color(0, 139, 139));
-		separator.setBounds(0, 40, 1082, 31);
+		separator.setBounds(-1, 40, 1082, 21);
 		panel_3.add(separator);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(92, 450, 852, 111);
+		scrollPane.setBounds(81, 430, 853, 113);
 		panel_3.add(scrollPane);
 		
 		
@@ -1098,7 +1121,7 @@ public void refreshtable() {
 		btnUpdate.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnUpdate.setEnabled(true);
 		btnUpdate.setBackground(new Color(0, 153, 153));
-		btnUpdate.setBounds(102, 567, 141, 31);
+		btnUpdate.setBounds(81, 556, 141, 31);
 		panel_3.add(btnUpdate);
 		
 		
@@ -1134,7 +1157,7 @@ public void refreshtable() {
 		btnrefresh.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnrefresh.setEnabled(true);
 		btnrefresh.setBackground(new Color(0, 153, 153));
-		btnrefresh.setBounds(581, 567, 141, 31);
+		btnrefresh.setBounds(439, 556, 141, 31);
 		panel_3.add(btnrefresh);
 	}
 }
