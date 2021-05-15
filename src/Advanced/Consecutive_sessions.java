@@ -360,8 +360,8 @@ public class Consecutive_sessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Add_Subjects add_sub= new Add_Subjects();
-				add_sub.main(null);
+				//Add_Subjects add_sub= new Add_Subjects();
+				//add_sub.main(null);
 				frmAddStudentGroup.dispose();
 				new Add_Subjects();
 				
@@ -447,8 +447,8 @@ public class Consecutive_sessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				AddWorkingdays w_days= new 	AddWorkingdays();
-				w_days.main(null);
+				//AddWorkingdays w_days= new 	AddWorkingdays();
+				//w_days.main(null);
 				frmAddStudentGroup.dispose();
 				new AddWorkingdays();
 				
@@ -618,8 +618,8 @@ public class Consecutive_sessions {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				NotAvailableTime not= new NotAvailableTime();
-				not.main(null);
+				//NotAvailableTime not= new NotAvailableTime();
+				//not.main(null);
 				frmAddStudentGroup.dispose();
 				new  NotAvailableTime();
 				

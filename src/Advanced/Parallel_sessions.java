@@ -611,8 +611,8 @@ public class Parallel_sessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				NotAvailableTime not= new NotAvailableTime();
-				not.main(null);
+				//NotAvailableTime not= new NotAvailableTime();
+				//not.main(null);
 				frmAddStudentGroup.dispose();
 				new  NotAvailableTime();
 				
