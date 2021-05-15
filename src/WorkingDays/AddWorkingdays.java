@@ -41,9 +41,11 @@ import DB.DbConnection;
 import Home.Home;
 import Lecturer.Add_Lecturer;
 import Locations.ManageLocations;
+import Rooms.ConsecutiveSessionRooms;
 import Rooms.ManageSessionsRooms;
 import Session.Add_Session;
 import Statistics.Statistics;
+import Student.Add_StudentGroup;
 import Student.Manage_studentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
@@ -166,9 +168,8 @@ public class AddWorkingdays {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Manage_studentGroup add_st = new Manage_studentGroup();
-				add_st.main(null);
 				frame.dispose();
+				new Add_StudentGroup();
 				
 			}
 		});
@@ -222,7 +223,7 @@ public class AddWorkingdays {
 		JButton btnTags = new JButton("Tags");
 		btnTags.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTags.setIcon(new ImageIcon(tag_logo));
-btnTags.addActionListener(new ActionListener() {
+		btnTags.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
@@ -247,9 +248,9 @@ btnTags.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
-				m_rooms.main(null);
+				
 				frame.dispose();
+				new ConsecutiveSessionRooms();
 				
 			}
 		});
@@ -267,9 +268,10 @@ btnTags.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				AddWorkingdays w_days= new 	AddWorkingdays();
-				w_days.main(null);
+
+
 				frame.dispose();
+				new AddWorkingdays();
 				
 			}
 		});
@@ -287,9 +289,9 @@ btnTags.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				ManageLocations m_locations= new ManageLocations();
-				m_locations.main(null);
+				
 				frame.dispose();
+				new ManageLocations();
 				
 			}
 		});
@@ -307,9 +309,9 @@ btnTags.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Statistics stat= new Statistics ();
-				stat.main(null);
+				
 				frame.dispose();
+				new Statistics();
 				
 			}
 		});
@@ -394,9 +396,9 @@ btnTags.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				AddWorkingdays m_stgroup = new AddWorkingdays ();
-				m_stgroup.main(null);
+				
 				frame.dispose();
+				new AddWorkingdays();
 				
 			}
 		});
@@ -409,9 +411,8 @@ btnTags.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				ManageWorkingDays m_stgroup = new ManageWorkingDays ();
-				m_stgroup.main(null);
 				frame.dispose();
+				new ManageWorkingDays();
 				
 			}
 		});

@@ -43,6 +43,7 @@ import Locations.ManageLocations;
 import Rooms.ManageSessionsRooms;
 import Session.Add_Session;
 import Statistics.Statistics;
+import Student.Add_StudentGroup;
 import Student.Manage_studentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
@@ -163,9 +164,9 @@ public void refreshtable() {
 				
 				public void actionPerformed(ActionEvent e) {
 					
-					Add_Lecturer add_lecture = new Add_Lecturer();
-					add_lecture.main(null);
+					
 					frmWorkingDays.dispose();
+					new Add_Lecturer();
 					
 				}
 			});
@@ -182,9 +183,9 @@ public void refreshtable() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Manage_studentGroup add_st = new Manage_studentGroup();
-				add_st.main(null);
+				
 				frmWorkingDays.dispose();
+				new Add_StudentGroup();
 				
 			}
 		});
@@ -258,10 +259,10 @@ btnRooms.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
-				m_rooms.main(null);
+				 
+			
 				frmWorkingDays.dispose();
-				
+				new ManageSessionsRooms ();
 			}
 		});
 		btnRooms.setForeground(Color.WHITE);
@@ -277,10 +278,10 @@ btnRooms.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				AddWorkingdays w_days= new 	AddWorkingdays();
-				w_days.main(null);
-				frmWorkingDays.dispose();
 				
+				frmWorkingDays.dispose();
+				 new AddWorkingdays();
+			
 			}
 		});
 		btnWorkingDays.setForeground(Color.WHITE);
@@ -296,10 +297,8 @@ btnRooms.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				ManageLocations m_locations= new ManageLocations();
-				m_locations.main(null);
 				frmWorkingDays.dispose();
-				
+				new ManageLocations();
 			}
 		});
 		btnLocations.setForeground(Color.WHITE);
@@ -314,11 +313,9 @@ btnRooms.addActionListener(new ActionListener() {
 	btnStatistics.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				
-				Statistics stat= new Statistics ();
-				stat.main(null);
+
 				frmWorkingDays.dispose();
-				
+				new Statistics ();
 			}
 		});
 		btnStatistics.setForeground(Color.WHITE);
@@ -399,11 +396,9 @@ btnRooms.addActionListener(new ActionListener() {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				
-				AddWorkingdays m_stgroup = new AddWorkingdays ();
-				m_stgroup.main(null);
+			
 				frmWorkingDays.dispose();
-				
+				new AddWorkingdays ();
 			}
 		});
 		
@@ -414,11 +409,9 @@ btnRooms.addActionListener(new ActionListener() {
 	btnNewButton_2_1.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				
-				ManageWorkingDays m_stgroup = new ManageWorkingDays ();
-				m_stgroup.main(null);
+			
 				frmWorkingDays.dispose();
-				
+				 new ManageWorkingDays ();
 			}
 		});
 		

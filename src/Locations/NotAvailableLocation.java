@@ -254,10 +254,9 @@ public void refreshtable() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Manage_studentGroup add_st = new Manage_studentGroup();
-				add_st.main(null);
-				frame.dispose();
 				
+				frame.dispose();
+				new Manage_studentGroup();
 			}
 		});
 		btnStudents.setForeground(Color.WHITE);
@@ -340,10 +339,9 @@ btnTags.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
-				m_rooms.main(null);
-				frame.dispose();
 				
+				frame.dispose();
+				new ManageSessionsRooms ();
 			}
 		});
 		btnRooms.setForeground(Color.WHITE);
@@ -359,10 +357,9 @@ btnTags.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				AddWorkingdays w_days= new 	AddWorkingdays();
-				w_days.main(null);
-				frame.dispose();
 				
+				frame.dispose();
+				new 	AddWorkingdays();
 			}
 		});
 		btnWorkingDays.setForeground(Color.WHITE);
@@ -378,10 +375,9 @@ btnTags.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				ManageLocations m_locations= new ManageLocations();
-				m_locations.main(null);
+			
 				frame.dispose();
-				
+				new ManageLocations();
 			}
 		});
 		btnLocations.setForeground(Color.WHITE);
@@ -397,10 +393,8 @@ btnTags.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				Statistics stat= new Statistics ();
-				stat.main(null);
 				frame.dispose();
-				
+				new Statistics ();
 			}
 		});
 		btnStatistics.setForeground(Color.WHITE);
