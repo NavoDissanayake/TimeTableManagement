@@ -47,6 +47,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 import Advanced.Consecutive_sessions;
 import DB.DbConnection;
@@ -618,6 +619,16 @@ public class Student {
 					PreparedStatement pst=con.prepareStatement(query);
 					ResultSet rs=pst.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
+					
+					
+					
+					
+					TableColumnModel columnModel = table.getColumnModel();
+					columnModel.getColumn(0).setPreferredWidth(5);
+					columnModel.getColumn(1).setPreferredWidth(5);
+					columnModel.getColumn(2).setPreferredWidth(5);
+					columnModel.getColumn(3).setPreferredWidth(600);
+					
 					
 				}
 				catch(Exception ex) {
