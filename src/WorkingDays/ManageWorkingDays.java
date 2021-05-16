@@ -34,6 +34,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
 import Advanced.Consecutive_sessions;
@@ -564,6 +565,14 @@ btnRooms.addActionListener(new ActionListener() {
 		panel_3.add(scrollPane);
 		
 		table = new JTable();
+		
+
+		//table header
+		JTableHeader h = table.getTableHeader();
+		h.setBackground(new Color(153,153,153));
+		h.setForeground(Color.WHITE);
+		h.setFont(new Font("Times New Roman", Font.BOLD, 17));
+		
 		table.addMouseListener(new MouseAdapter() {
 
 

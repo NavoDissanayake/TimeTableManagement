@@ -35,6 +35,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
 import DB.DbConnection;
@@ -223,14 +224,14 @@ public void refreshtable() {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from session";
+				 String query="select * from StudentGroup";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("studentGroup");
+					 String name =rs.getString("SubGroupID");
 					 
 					 selectsubgroup .addItem(name);
 					 
@@ -992,6 +993,12 @@ public void refreshtable() {
 		
 		//display data in the table
 		table = new JTable();
+		//table header
+		JTableHeader h = table.getTableHeader();
+		h.setBackground(new Color(153,153,153));
+		h.setForeground(Color.WHITE);
+		h.setFont(new Font("Times New Roman", Font.BOLD, 17));
+				
 		table.addMouseListener(new MouseAdapter() {
 
 

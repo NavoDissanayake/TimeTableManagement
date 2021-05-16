@@ -1,3 +1,6 @@
+// IT19210452
+// W.M.S.T Wijekoon
+
 package Session;
 
 import java.awt.Color;
@@ -71,7 +74,6 @@ public class Add_Session {
 	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
 
 	private JComboBox lec1;
 	private JComboBox lec2;
@@ -256,14 +258,14 @@ public class Add_Session {
 		AddsessFrm.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		AddsessFrm.setBackground(Color.YELLOW);
 		AddsessFrm.setResizable(false);
-		AddsessFrm.setTitle("Time Table Management System");
+		AddsessFrm.setTitle("Sessions");
 		AddsessFrm.setSize(1400, 860);
 		AddsessFrm.setBounds(0, 0, 1350, 700);
 		AddsessFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		AddsessFrm.getContentPane().setLayout(null);
 		AddsessFrm.setLocationRelativeTo(null);
 		AddsessFrm.setVisible(true);
-		AddsessFrm.setIconImage(logo);
+
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1344, 65);
 		panel.setBackground(new Color(51, 153, 153));
@@ -645,7 +647,7 @@ public class Add_Session {
 				
 				if(!(lec2.getSelectedItem().toString().matches(lecregx)))
 				{
-				sign.setText(lec1.getSelectedItem().toString()+ " - " + lec2.getSelectedItem().toString()+ " - "+ txtSubcod.getText()+" - "+ subname.getSelectedItem().toString()
+				sign.setText(lec1.getSelectedItem().toString()+" - " + lec2.getSelectedItem().toString()+ " - "+ txtSubcod.getText()+" - "+ subname.getSelectedItem().toString()
 						+" - "+tag.getSelectedItem().toString()+" - "+groupId.getSelectedItem().toString()+" - "+students.getValue().toString()+" - "+
 						duration.getValue().toString());
 				
@@ -782,7 +784,6 @@ public class Add_Session {
 		AddsessFrm.getContentPane().add(panel_4);
 
 		JButton button_3 = new JButton("Add New Session");
-		button_3.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -795,7 +796,6 @@ public class Add_Session {
 		AddsessFrm.getContentPane().add(button_3);
 
 		JButton button_4 = new JButton("Manage Sessions");
-		button_4.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -810,7 +810,6 @@ public class Add_Session {
 		AddsessFrm.getContentPane().add(button_4);
 
 		JButton button_5 = new JButton("Search Sessions");
-		button_5.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 

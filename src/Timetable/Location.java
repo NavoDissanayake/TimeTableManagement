@@ -493,7 +493,7 @@ public class Location {
 		panel_6_1_1.setBounds(0, 40, 1081, 38);
 		panel_6.add(panel_6_1_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Lecturer");
+		JLabel lblNewLabel_1_1 = new JLabel("Location");
 		lblNewLabel_1_1.setForeground(new Color(0, 128, 128));
 		lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_1_1.setBounds(494, 0, 278, 31);
@@ -634,7 +634,7 @@ public class Location {
 
 		//table header
 		JTableHeader h = table.getTableHeader();
-		h.setBackground(new Color(32, 178, 170));
+		h.setBackground(new Color(153,153,153));
 		h.setForeground(Color.WHITE);
 		h.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		h.setFont(new Font("Times New Roman", Font.BOLD, 17));

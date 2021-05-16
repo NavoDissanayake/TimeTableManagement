@@ -674,7 +674,7 @@ public class Non_overlappingSessions {
 		table.setRowHeight(30);
 		//table header
 		JTableHeader h = table.getTableHeader();
-		h.setBackground(new Color(32, 178, 170));
+		h.setBackground(new Color(153,153,153));
 		h.setForeground(Color.WHITE);
 		h.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		
