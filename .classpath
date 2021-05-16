@@ -6,7 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="Wallpaper"/>
 	<classpathentry kind="lib" path="C:/jar_files/sqlite-jdbc-3.20.1.jar"/>
 	<classpathentry kind="lib" path="C:/jar_files/rs2xml.jar"/>
 	<classpathentry kind="lib" path="C:/jar_files/swtgraphics2d.jar"/>
