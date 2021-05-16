@@ -76,8 +76,9 @@ public class Manage_Session {
 	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
+
 	private JTable table;
-	
 	private JComboBox lecr1;
 	private JComboBox lecr2;
 	private JComboBox sbj;
@@ -292,11 +293,12 @@ public class Manage_Session {
 
 		ManageSesFrm.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		ManageSesFrm.setBackground(Color.YELLOW);
-		ManageSesFrm.setTitle("Sessions");
+		ManageSesFrm.setTitle("Time Table Management System");
 		ManageSesFrm.setSize(1350, 715);
 		
 		//ManageSesFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ManageSesFrm.getContentPane().setLayout(null);
+		ManageSesFrm.setIconImage(logo);
 		ManageSesFrm.setLocationRelativeTo(null);
 		ManageSesFrm.setVisible(true);
 		

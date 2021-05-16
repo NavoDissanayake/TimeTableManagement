@@ -71,6 +71,7 @@ public class Add_Session {
 	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
 
 	private JComboBox lec1;
 	private JComboBox lec2;
@@ -255,14 +256,14 @@ public class Add_Session {
 		AddsessFrm.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		AddsessFrm.setBackground(Color.YELLOW);
 		AddsessFrm.setResizable(false);
-		AddsessFrm.setTitle("Sessions");
+		AddsessFrm.setTitle("Time Table Management System");
 		AddsessFrm.setSize(1400, 860);
 		AddsessFrm.setBounds(0, 0, 1350, 700);
 		AddsessFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		AddsessFrm.getContentPane().setLayout(null);
 		AddsessFrm.setLocationRelativeTo(null);
 		AddsessFrm.setVisible(true);
-
+		AddsessFrm.setIconImage(logo);
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1344, 65);
 		panel.setBackground(new Color(51, 153, 153));

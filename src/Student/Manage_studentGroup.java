@@ -84,7 +84,8 @@ public class Manage_studentGroup {
 	private Image time_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
+
 	
 	private JFrame frame2;
 	private JTextField subGroupID;
@@ -148,7 +149,7 @@ public class Manage_studentGroup {
 		frame2.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		frame2.setBackground(Color.YELLOW);
 		frame2.setResizable(false);
-		frame2.setTitle("Student");
+		frame2.setTitle("Time Table Management System");
 		frame2.setSize(1350, 728);
 		frame2.setBounds(320,  120, 1350, 700);
 		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

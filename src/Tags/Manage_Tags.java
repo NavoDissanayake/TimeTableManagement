@@ -81,7 +81,8 @@ public class Manage_Tags {
 	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
+
 	
 	private JFrame frmAddStudentGroup;
 	private JTextField txt_tagName;
@@ -147,7 +148,7 @@ public class Manage_Tags {
 		frmAddStudentGroup.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		frmAddStudentGroup.setBackground(Color.YELLOW);
 		frmAddStudentGroup.setResizable(false);
-		frmAddStudentGroup.setTitle("Tags");
+		frmAddStudentGroup.setTitle("Time Table Management System");
 		frmAddStudentGroup.setSize(1400, 860);
 		frmAddStudentGroup.setBounds(320, 120, 1350, 700);
 		frmAddStudentGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

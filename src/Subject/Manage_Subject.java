@@ -72,6 +72,8 @@ public class Manage_Subject {
 	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
+
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTable table;
@@ -133,10 +135,11 @@ public class Manage_Subject {
 
 		MngSubFrm.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		MngSubFrm.setBackground(Color.YELLOW);
-		MngSubFrm.setTitle("Subjects");
+		MngSubFrm.setTitle("Time Table Management System");
 		MngSubFrm.setSize(1350, 728);
 		MngSubFrm.setBounds(0, 0, 1350, 700);
 		MngSubFrm.setVisible(true);
+		MngSubFrm.setIconImage(logo);
 		//ManageSesFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		MngSubFrm.getContentPane().setLayout(null);
 		MngSubFrm.setLocationRelativeTo(null);

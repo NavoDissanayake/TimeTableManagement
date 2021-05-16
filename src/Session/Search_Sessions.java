@@ -65,8 +65,9 @@ public class Search_Sessions {
 	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private JTable table;
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
 
+	private JTable table;
 	private JComboBox lecbox;
 	private JComboBox subjBox;
 	private JComboBox groupBox;
@@ -228,9 +229,10 @@ public class Search_Sessions {
 
 		SrchSesFrm.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		SrchSesFrm.setBackground(Color.YELLOW);
-		SrchSesFrm.setTitle("Sessions");
-SrchSesFrm.setLocationRelativeTo(null);
-SrchSesFrm.setVisible(true);
+		SrchSesFrm.setTitle("Time Table Management System");
+		SrchSesFrm.setLocationRelativeTo(null);
+		SrchSesFrm.setIconImage(logo);
+		SrchSesFrm.setVisible(true);
 		//ManageSesFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		SrchSesFrm.getContentPane().setLayout(null);

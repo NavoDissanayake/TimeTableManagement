@@ -86,6 +86,7 @@ public class Add_Lecturer {
 	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
 	private JTextField EmpidTxt;
 	private JTextField RankTxt;
 	private JTextField EmpNameTxt;
@@ -123,14 +124,15 @@ public class Add_Lecturer {
 
 		addLecframe.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		addLecframe.setBackground(Color.YELLOW);
-		addLecframe.setTitle("Lecturers");
+		addLecframe.setTitle("Time Table Management System");
 		addLecframe.setSize(1400, 860);
 		addLecframe.setBounds(0, 0, 1350, 700);
 		addLecframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		addLecframe.getContentPane().setLayout(null);
 		addLecframe.setLocationRelativeTo(null);
 		addLecframe.setVisible(true);
-
+		addLecframe.setIconImage(logo);
+		
 
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1344, 65);

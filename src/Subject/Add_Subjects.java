@@ -53,6 +53,8 @@ public class Add_Subjects {
 	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
+
 	private JTextField textField;
 	private JTextField textField_1;
 	
@@ -88,12 +90,12 @@ public class Add_Subjects {
 		AddSubFrm.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		AddSubFrm.setBackground(Color.YELLOW);
 		AddSubFrm.setResizable(false);
-		AddSubFrm.setTitle("Subjects");
+		AddSubFrm.setTitle("Time Table Management System");
 		AddSubFrm.setSize(1400, 860);
 		AddSubFrm.setBounds(0, 0, 1350, 700);
 		AddSubFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		AddSubFrm.getContentPane().setLayout(null);
-		
+		AddSubFrm.setIconImage(logo);
 		AddSubFrm.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
 		AddSubFrm.setVisible(true);
 		

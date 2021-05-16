@@ -68,7 +68,8 @@ public class AddWorkingdays {
 	private Image time_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
+
 	
 	public JFrame frame;
 	private JTable table;
@@ -106,12 +107,12 @@ public class AddWorkingdays {
 		frame.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		frame.setBackground(Color.YELLOW);
 		frame.setResizable(false);
-		frame.setTitle("Working Days & Hours");
+		frame.setTitle("Time Table Management System");
 		frame.setSize(1350, 728);
 		frame.setBounds(0, 0, 1350, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		frame.setIconImage(logo);
 		frame.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
 		frame.setVisible(true);
 		

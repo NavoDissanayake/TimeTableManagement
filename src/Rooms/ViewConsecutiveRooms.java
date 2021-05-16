@@ -61,6 +61,7 @@ public class ViewConsecutiveRooms {
 	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
 
 	private JFrame vcrframe;
 	private JTable vcrtable_1;
@@ -126,12 +127,12 @@ public class ViewConsecutiveRooms {
 		vcrframe.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		vcrframe.setBackground(Color.YELLOW);
 		vcrframe.setResizable(false);
-		vcrframe.setTitle("Sessions");
+		vcrframe.setTitle("Time Table Management System");
 		vcrframe.setSize(1400, 860);
 		vcrframe.setBounds(0, 0, 1350, 700);
 		vcrframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		vcrframe.getContentPane().setLayout(null);
-		
+		vcrframe.setIconImage(logo);
 		vcrframe.setLocationRelativeTo(null);
 		vcrframe.setVisible(true);
 		

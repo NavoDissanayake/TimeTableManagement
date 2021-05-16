@@ -67,7 +67,8 @@ public class ManageWorkingDays {
 	private Image time_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Manage_studentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
+
 	
 	public JFrame frmWorkingDays;
 	private JTable table;	
@@ -127,14 +128,14 @@ public void refreshtable() {
 		frmWorkingDays.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		frmWorkingDays.setBackground(Color.YELLOW);
 		frmWorkingDays.setResizable(false);
-		frmWorkingDays.setTitle("Working Days & Hours");
+		frmWorkingDays.setTitle("Time Table Management System");
 		frmWorkingDays.setSize(1350, 728);
 		frmWorkingDays.setBounds(0, 0, 1350, 700);
 		frmWorkingDays.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmWorkingDays.getContentPane().setLayout(null);
 		frmWorkingDays.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
 		frmWorkingDays.setVisible(true);
-		
+		frmWorkingDays.setIconImage(logo);
 		JPanel panel = new JPanel();
 		panel.setForeground(Color.WHITE);
 		panel.setBounds(0, 0, 1344, 65);

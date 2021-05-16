@@ -78,7 +78,7 @@ public class Non_overlappingSessions {
 	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
 	
 	private JFrame frmAddStudentGroup;
 	private JTable table;
@@ -168,13 +168,13 @@ public class Non_overlappingSessions {
 		frmAddStudentGroup.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		frmAddStudentGroup.setBackground(Color.YELLOW);
 		frmAddStudentGroup.setResizable(false);
-		frmAddStudentGroup.setTitle(" Advanced ");
+		frmAddStudentGroup.setTitle(" Time Table Management System");
 		frmAddStudentGroup.setSize(1350, 728);
 		frmAddStudentGroup.setBounds(0, 0, 1350, 700);
 		frmAddStudentGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAddStudentGroup.getContentPane().setLayout(null);
 		frmAddStudentGroup.setExtendedState(frmAddStudentGroup.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-		
+		frmAddStudentGroup.setIconImage(logo);
 		frmAddStudentGroup.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
 		frmAddStudentGroup.setVisible(true);
 		

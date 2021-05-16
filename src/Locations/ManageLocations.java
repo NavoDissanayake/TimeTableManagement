@@ -74,6 +74,7 @@ public class ManageLocations {
 	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
 
 	private JFrame frmMangeLocationsGroup;
 	private JTable ltable;
@@ -138,11 +139,12 @@ public class ManageLocations {
 		frmMangeLocationsGroup.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		frmMangeLocationsGroup.setBackground(Color.YELLOW);
 		frmMangeLocationsGroup.setResizable(false);
-		frmMangeLocationsGroup.setTitle("Locations");
+		frmMangeLocationsGroup.setTitle("Time Table Management System");
 		frmMangeLocationsGroup.setSize(1350, 728);
 		frmMangeLocationsGroup.setBounds(0,0, 1350, 700);
 		frmMangeLocationsGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMangeLocationsGroup.getContentPane().setLayout(null);
+		frmMangeLocationsGroup.setIconImage(logo);
 		
 		frmMangeLocationsGroup.setLocationRelativeTo(null);
 		frmMangeLocationsGroup.setVisible(true);

@@ -69,6 +69,7 @@ public class ManageSessionsRooms {
 	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
 
 	private JFrame rframe;
 	private JTable rtable;
@@ -156,12 +157,12 @@ public class ManageSessionsRooms {
 		rframe.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		rframe.setBackground(Color.YELLOW);
 		rframe.setResizable(false);
-		rframe.setTitle("Sessions");
+		rframe.setTitle("Time Table Management System");
 		rframe.setSize(1400, 860);
 		rframe.setBounds(0, 0, 1350, 700);
 		rframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		rframe.getContentPane().setLayout(null);
-		
+		rframe.setIconImage(logo);
 		rframe.setLocationRelativeTo(null);
 		rframe.setVisible(true);
 		

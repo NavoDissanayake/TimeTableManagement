@@ -75,7 +75,8 @@ public class Statistics {
 	private Image time_logo = new ImageIcon(Home.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Home.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Home.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	
+	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
+
 
 	private JFrame staticFrame;
 	private JTextField statictextField;
@@ -199,12 +200,12 @@ public class Statistics {
 		staticFrame.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		staticFrame.setBackground(Color.YELLOW);
 		staticFrame.setResizable(false);
-		staticFrame.setTitle("Sessions");
+		staticFrame.setTitle("Time Table Management System");
 		staticFrame.setSize(1400, 860);
 		staticFrame.setBounds(0, 0, 1350, 700);
 		staticFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		staticFrame.getContentPane().setLayout(null);
-		
+		staticFrame.setIconImage(logo);
 		staticFrame.setLocationRelativeTo(null);
 		staticFrame.setVisible(true);
 		
