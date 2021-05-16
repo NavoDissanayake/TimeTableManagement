@@ -170,14 +170,13 @@ public class ViewConsecutiveRooms {
 				
 				public void actionPerformed(ActionEvent e) {
 					
-					//Add_Lecturer add_lecture = new Add_Lecturer();
-					//add_lecture.main(null);
-					vcrframe.dispose();
-					new Add_Lecturer();
 					
+					vcrframe.dispose();
+					new  Add_Lecturer();
 					
 				}
 			});
+		
 		btnLecturers.setForeground(Color.WHITE);
 		btnLecturers.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnLecturers.setBackground(new Color(0, 139, 139));
@@ -185,20 +184,22 @@ public class ViewConsecutiveRooms {
 		panel_1.add(btnLecturers);
 		
 		//Students
+		
 		JButton btnStudents = new JButton("Students");
 		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStudents.setIcon(new ImageIcon(stu_logo));
-		btnLecturers.addActionListener(new ActionListener() {
+        btnStudents.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				//Add_StudentGroup add_st = new Add_StudentGroup();
-				//add_st.main(null);
+				
 				vcrframe.dispose();
 				new Add_StudentGroup();
 				
 			}
 		});
+	
+		
 		btnStudents.setForeground(Color.WHITE);
 		btnStudents.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnStudents.setBackground(new Color(0, 139, 139));
@@ -454,6 +455,7 @@ public class ViewConsecutiveRooms {
 		panel_2.add(scrollPane);
 		
 		tableconRoom = new JTable();
+		tableconRoom.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		scrollPane.setViewportView(tableconRoom);
 		try {
 			

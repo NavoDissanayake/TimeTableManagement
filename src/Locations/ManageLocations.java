@@ -109,6 +109,15 @@ public class ManageLocations {
 			e.printStackTrace();
 		}
 	}
+	
+	public void taheader() {
+		JTableHeader ltahead = table_2.getTableHeader();
+		ltahead.setForeground(Color.WHITE);
+		ltahead.setFont(new Font("Tahoma", Font.BOLD,14));
+		ltahead.setBackground(new Color(	153, 153, 153));
+		ltahead.setFont(new Font("Times New Roman", Font.BOLD, 17));
+		
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -186,11 +195,11 @@ public class ManageLocations {
 					
 					
 					frmMangeLocationsGroup.dispose();
-					new Add_Lecturer();
-					
+					new  Add_Lecturer();
 					
 				}
 			});
+		
 		btnLecturers.setForeground(Color.WHITE);
 		btnLecturers.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnLecturers.setBackground(new Color(0, 139, 139));
@@ -198,10 +207,11 @@ public class ManageLocations {
 		panel_1.add(btnLecturers);
 		
 		//Students
+		
 		JButton btnStudents = new JButton("Students");
 		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStudents.setIcon(new ImageIcon(stu_logo));
-		btnLecturers.addActionListener(new ActionListener() {
+        btnStudents.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
@@ -209,9 +219,10 @@ public class ManageLocations {
 				frmMangeLocationsGroup.dispose();
 				new Add_StudentGroup();
 				
-				
 			}
 		});
+	
+		
 		btnStudents.setForeground(Color.WHITE);
 		btnStudents.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnStudents.setBackground(new Color(0, 139, 139));
@@ -674,7 +685,7 @@ public class ManageLocations {
 		lpanel_3.add(scrollPane);
 		
 		table_2 = new JTable();
-		
+		table_2.setFont(new Font("Times New Roman", Font.BOLD, 14));
 
 		
 		
@@ -706,7 +717,7 @@ public class ManageLocations {
 					PreparedStatement pst=con.prepareStatement(query);
 					ResultSet rs=pst.executeQuery();
 					table_2.setModel(DbUtils.resultSetToTableModel(rs));
-					
+					taheader();
 					
 				}catch(Exception e) {
 					e.printStackTrace();
@@ -751,15 +762,27 @@ public class ManageLocations {
 			public void actionPerformed(ActionEvent e) {
 				
 				NotAvailableLocation m_stgroup = new NotAvailableLocation ();
-				m_stgroup.main(null);
+				//m_stgroup.main(null);
 				frmMangeLocationsGroup.dispose();
 				
 			}
 		});
 		
-		notAvaliblebtn.setBounds(262, 69, 179, 39);
+		notAvaliblebtn.setBounds(440, 70, 237, 38);
 		frmMangeLocationsGroup.getContentPane().add(notAvaliblebtn);		
-	
+		
+		JButton btnNewButton_1 = new JButton("Manage Locations");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ManageLocations m_Location = new ManageLocations ();
+				//m_stgroup.main(null);
+				frmMangeLocationsGroup.dispose();
+			}
+		});
+		btnNewButton_1.setBounds(262, 70, 179, 38);
+		frmMangeLocationsGroup.getContentPane().add(btnNewButton_1);
+		
+		
 
 		
 	}
