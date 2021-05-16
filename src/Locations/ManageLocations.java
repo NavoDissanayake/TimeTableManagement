@@ -34,6 +34,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import javax.tools.DocumentationTool.Location;
 
@@ -673,6 +674,9 @@ public class ManageLocations {
 		lpanel_3.add(scrollPane);
 		
 		table_2 = new JTable();
+		
+
+		
 		
 		table_2.addMouseListener(new MouseAdapter() {
 			@Override

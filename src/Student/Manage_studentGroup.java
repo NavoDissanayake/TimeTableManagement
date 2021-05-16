@@ -154,6 +154,7 @@ public class Manage_studentGroup {
 		frame2.setBounds(320,  120, 1350, 700);
 		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame2.getContentPane().setLayout(null);
+		frame2.setIconImage(logo);
 		
 
 		frame2.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
@@ -260,8 +261,8 @@ public class Manage_studentGroup {
 					
 					public void actionPerformed(ActionEvent e) {
 						
-						Add_Subjects add_sub= new Add_Subjects();
-						add_sub.main(null);
+						//Add_Subjects add_sub= new Add_Subjects();
+						//add_sub.main(null);
 						frame2.dispose();
 						new Add_Subjects();
 						
@@ -648,7 +649,7 @@ public class Manage_studentGroup {
 
 		//table header
 		JTableHeader h = table.getTableHeader();
-		h.setBackground(new Color(32, 178, 170));
+		h.setBackground(new Color(	153, 153, 153));
 		h.setForeground(Color.WHITE);
 		h.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		

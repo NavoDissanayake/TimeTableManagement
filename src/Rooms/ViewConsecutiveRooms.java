@@ -93,7 +93,7 @@ public class ViewConsecutiveRooms {
 		JTableHeader tahead = tableconRoom.getTableHeader();
 		tahead.setForeground(Color.WHITE);
 		tahead.setFont(new Font("Tahoma", Font.BOLD,14));
-		tahead.setBackground(new Color(32, 178, 170));
+		tahead.setBackground(new Color(	153, 153, 153));
 		
 	}
 	/**

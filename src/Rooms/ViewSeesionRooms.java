@@ -93,7 +93,7 @@ public class ViewSeesionRooms {
 		JTableHeader thead = sessionRoomtable.getTableHeader();
 		thead.setForeground(Color.WHITE);
 		thead.setFont(new Font("Tahoma", Font.BOLD,14));
-		thead.setBackground(new Color(32, 178, 170));
+		thead.setBackground(new Color(	153, 153, 153));
 		
 	}
 

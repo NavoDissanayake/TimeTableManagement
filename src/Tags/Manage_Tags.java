@@ -143,7 +143,7 @@ public class Manage_Tags {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(){
 		frmAddStudentGroup = new JFrame();
 		frmAddStudentGroup.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		frmAddStudentGroup.setBackground(Color.YELLOW);
@@ -153,7 +153,7 @@ public class Manage_Tags {
 		frmAddStudentGroup.setBounds(320, 120, 1350, 700);
 		frmAddStudentGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAddStudentGroup.getContentPane().setLayout(null);
-		
+		frmAddStudentGroup.setIconImage(logo);
 
 		frmAddStudentGroup.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
 		frmAddStudentGroup.setVisible(true);
@@ -583,7 +583,7 @@ public class Manage_Tags {
 
 		//table header
 		JTableHeader h = table.getTableHeader();
-		h.setBackground(new Color(32, 178, 170));
+		h.setBackground(new Color(	153, 153, 153));
 		h.setForeground(Color.WHITE);
 		h.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		
