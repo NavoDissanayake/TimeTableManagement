@@ -43,6 +43,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 import DB.DbConnection;
 import Home.Home;
@@ -192,6 +193,13 @@ public class Parallel_sessions {
 				PreparedStatement pst=con.prepareStatement(query);
 				ResultSet rs=pst.executeQuery();
 				table.setModel(DbUtils.resultSetToTableModel(rs));
+				
+				
+				TableColumnModel columnModel = table.getColumnModel();
+				columnModel.getColumn(0).setPreferredWidth(6);
+				columnModel.getColumn(1).setPreferredWidth(900);
+				
+		
 				
 				
 				
@@ -627,7 +635,7 @@ public class Parallel_sessions {
 		
 		JPanel panel_7 = new JPanel();
 		panel_7.setLayout(null);
-		panel_7.setBounds(61, 107, 960, 460);
+		panel_7.setBounds(25, 107, 1032, 460);
 		panel_6.add(panel_7);
 		
 		
@@ -640,8 +648,8 @@ public class Parallel_sessions {
 		
 	    comboBox_s1 = new JComboBox();
 	    comboBox_s1.setFont(new Font("Times New Roman", Font.BOLD, 14));
-	    comboBox_s1.setModel(new DefaultComboBoxModel(new String[] {"------------select session_01-------------"}));
-		comboBox_s1.setBounds(150, 13, 764, 32);
+	    comboBox_s1.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox_s1.setBounds(204, 13, 764, 32);
 		panel_7.add(comboBox_s1);
 		
 	
@@ -656,8 +664,8 @@ public class Parallel_sessions {
 		
 		comboBox_s2 = new JComboBox();
 		comboBox_s2.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		comboBox_s2.setModel(new DefaultComboBoxModel(new String[] {"------------select session_02-------------"}));
-		comboBox_s2.setBounds(150, 76, 764, 32);
+		comboBox_s2.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox_s2.setBounds(204, 70, 764, 32);
 		panel_7.add( comboBox_s2);
 		
 	
@@ -672,8 +680,8 @@ public class Parallel_sessions {
 		
 		comboBox_s3= new JComboBox();
 		comboBox_s3.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		comboBox_s3.setModel(new DefaultComboBoxModel(new String[] {"------------select session_03-------------"}));
-		comboBox_s3.setBounds(150, 142, 764, 32);
+		comboBox_s3.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox_s3.setBounds(204, 134, 764, 32);
 		panel_7.add(comboBox_s3);
 		
 		
@@ -740,7 +748,7 @@ public class Parallel_sessions {
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton_2.setBackground(new Color(0, 139, 139));
-		btnNewButton_2.setBounds(571, 203, 164, 40);
+		btnNewButton_2.setBounds(606, 203, 164, 40);
 		panel_7.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("CLEAR");
@@ -758,7 +766,7 @@ public class Parallel_sessions {
 		btnNewButton_3.setForeground(Color.WHITE);
 		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton_3.setBackground(new Color(0, 139, 139));
-		btnNewButton_3.setBounds(759, 203, 155, 40);
+		btnNewButton_3.setBounds(813, 203, 155, 40);
 		panel_7.add(btnNewButton_3);
 		
 		
@@ -766,9 +774,7 @@ public class Parallel_sessions {
 		
 		//table view
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(44, 270, 869, 177);
+		scrollPane.setBounds(12, 270, 1008, 177);
 		panel_7.add(scrollPane);
 		
 		table = new JTable();
@@ -796,10 +802,16 @@ public class Parallel_sessions {
 			
 			Connection con = DbConnection.connect();
 			
-			String query="select parID AS ParallelID, ParallelSessions  from parallel ";
+			String query="select parID AS ParID, ParallelSessions  from parallel ";
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(6);
+			columnModel.getColumn(1).setPreferredWidth(900);
+			
 			
 		
 			//refreshTable();

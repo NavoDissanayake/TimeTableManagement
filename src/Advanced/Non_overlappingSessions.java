@@ -43,6 +43,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 import DB.DbConnection;
 import Home.Home;
@@ -666,8 +667,6 @@ public class Non_overlappingSessions {
 		
 		//table view
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBounds(52, 244, 827, 151);
 		panel_7.add(scrollPane);
 		
@@ -697,6 +696,15 @@ public class Non_overlappingSessions {
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
+			
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(6);
+			columnModel.getColumn(1).setPreferredWidth(700);
+			
+			
+			
 			
 			//refreshTable();
 			

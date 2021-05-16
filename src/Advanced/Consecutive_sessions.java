@@ -50,6 +50,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 import DB.DbConnection;
 import Home.Home;
@@ -194,10 +195,17 @@ public class Consecutive_sessions {
 			try {
 				Connection con = DbConnection.connect();
 				
-				String query="select conSessionID AS SessionID,conSession AS ConsecutiveSession from consecutiveSession ";
+				String query="select conSessionID AS SID,conSession AS ConsecutiveSession from consecutiveSession ";
 				PreparedStatement pst=con.prepareStatement(query);
 				ResultSet rs=pst.executeQuery();
 				table.setModel(DbUtils.resultSetToTableModel(rs));
+				
+				
+				TableColumnModel columnModel = table.getColumnModel();
+				columnModel.getColumn(0).setPreferredWidth(6);
+				columnModel.getColumn(1).setPreferredWidth(900);
+				
+				
 				
 				
 				
@@ -645,7 +653,7 @@ public class Consecutive_sessions {
 		
 		JPanel panel_7 = new JPanel();
 		panel_7.setLayout(null);
-		panel_7.setBounds(65, 91, 953, 476);
+		panel_7.setBounds(26, 91, 1030, 476);
 		panel_6.add(panel_7);
 		
 		
@@ -659,8 +667,8 @@ public class Consecutive_sessions {
 		
 		comboBox_s1 = new JComboBox();
 		comboBox_s1.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		comboBox_s1.setModel(new DefaultComboBoxModel(new String[] {"------------select session_01-------------"}));
-		comboBox_s1.setBounds(150, 13, 764, 32);
+		comboBox_s1.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox_s1.setBounds(189, 13, 764, 32);
 		panel_7.add(comboBox_s1);
 		
 		fillsesions1();
@@ -677,8 +685,8 @@ public class Consecutive_sessions {
 
 	    comboBox_s2 = new JComboBox();
 	    comboBox_s2.setFont(new Font("Times New Roman", Font.BOLD, 14));
-	    comboBox_s2.setModel(new DefaultComboBoxModel(new String[] {"------------select session_02--------------"}));
-		comboBox_s2.setBounds(150, 76, 764, 32);
+	    comboBox_s2.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox_s2.setBounds(189, 76, 764, 32);
 		panel_7.add(comboBox_s2);
 		
 		
@@ -693,8 +701,8 @@ public class Consecutive_sessions {
 		
 		comboBox_s3 = new JComboBox();
 		comboBox_s3.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		comboBox_s3.setModel(new DefaultComboBoxModel(new String[] {"------------select session_03---------------"}));
-		comboBox_s3.setBounds(150, 142, 764, 32);
+		comboBox_s3.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox_s3.setBounds(189, 142, 764, 32);
 		panel_7.add(comboBox_s3);
 		
 		
@@ -765,7 +773,7 @@ public class Consecutive_sessions {
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton_2.setBackground(new Color(0, 139, 139));
-		btnNewButton_2.setBounds(571, 203, 164, 40);
+		btnNewButton_2.setBounds(607, 203, 164, 40);
 		panel_7.add(btnNewButton_2);
 		
 		
@@ -789,7 +797,7 @@ public class Consecutive_sessions {
 		btnNewButton_3.setForeground(Color.WHITE);
 		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton_3.setBackground(new Color(0, 139, 139));
-		btnNewButton_3.setBounds(759, 203, 155, 40);
+		btnNewButton_3.setBounds(798, 203, 155, 40);
 		panel_7.add(btnNewButton_3);
 		
 		
@@ -798,7 +806,7 @@ public class Consecutive_sessions {
 		
 		//table view
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(24, 303, 890, 142);
+		scrollPane.setBounds(12, 303, 1006, 142);
 		panel_7.add(scrollPane);
 		
 		
@@ -827,10 +835,17 @@ public class Consecutive_sessions {
 			Connection con = DbConnection.connect();
 			 
 			 
-			String query="select conSessionID AS SessionID,conSession AS ConsecutiveSession from consecutiveSession ";
+			String query="select conSessionID AS SID,conSession AS ConsecutiveSession from consecutiveSession ";
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(6);
+			columnModel.getColumn(1).setPreferredWidth(900);
+			
+			
 			
 			
 			
