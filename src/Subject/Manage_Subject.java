@@ -43,7 +43,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.border.MatteBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.text.TabExpander;
 import javax.swing.JScrollPane;
@@ -90,6 +93,19 @@ public class Manage_Subject {
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(1);
+			columnModel.getColumn(1).setPreferredWidth(10);
+			columnModel.getColumn(2).setPreferredWidth(18);
+			columnModel.getColumn(3).setPreferredWidth(130);
+			columnModel.getColumn(4).setPreferredWidth(20);
+			columnModel.getColumn(5).setPreferredWidth(30);
+			columnModel.getColumn(6).setPreferredWidth(1);
+			columnModel.getColumn(7).setPreferredWidth(1);
+			columnModel.getColumn(8).setPreferredWidth(4);
+			columnModel.getColumn(9).setPreferredWidth(1);
+			columnModel.getColumn(10).setPreferredWidth(1);
 
 
 
@@ -376,6 +392,7 @@ public class Manage_Subject {
 		MngSubFrm.getContentPane().add(separator);
 
 		JButton btnManageSubjects = new JButton("Manage Subjects");
+		btnManageSubjects.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnManageSubjects.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -391,6 +408,7 @@ public class Manage_Subject {
 		MngSubFrm.getContentPane().add(btnManageSubjects);
 
 		JButton btnAddNewSubject = new JButton("Add New Subject");
+		btnAddNewSubject.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnAddNewSubject.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -449,6 +467,12 @@ public class Manage_Subject {
 		table = new JTable();
 		table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 		table.setBackground(SystemColor.window);
+		//table header
+		JTableHeader h = table.getTableHeader();
+		h.setBackground(new Color(	153, 153, 153));
+		h.setForeground(Color.WHITE);
+		h.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 13));
+		h.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -521,6 +545,20 @@ public class Manage_Subject {
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(1);
+			columnModel.getColumn(1).setPreferredWidth(10);
+			columnModel.getColumn(2).setPreferredWidth(18);
+			columnModel.getColumn(3).setPreferredWidth(130);
+			columnModel.getColumn(4).setPreferredWidth(20);
+			columnModel.getColumn(5).setPreferredWidth(30);
+			columnModel.getColumn(6).setPreferredWidth(1);
+			columnModel.getColumn(7).setPreferredWidth(1);
+			columnModel.getColumn(8).setPreferredWidth(4);
+			columnModel.getColumn(9).setPreferredWidth(1);
+			columnModel.getColumn(10).setPreferredWidth(1);
+		
+		
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -673,8 +711,10 @@ public class Manage_Subject {
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.executeUpdate();
 					
-					JLabel label = new JLabel("Data Updated Successfully");
+					
 					refreshtable();
+					JLabel label = new JLabel("Data Updated Successfully");
+					
 					label.setHorizontalAlignment(SwingConstants.CENTER);
 					JOptionPane.showMessageDialog(null, label);
 					pst.close();
@@ -699,10 +739,10 @@ public class Manage_Subject {
 					PreparedStatement pst=con.prepareStatement(query);
 					pst.execute();
 					
-					
+					refreshtable();
 					//JOptionPane.showMessageDialog(null, "","Alert",JOptionPane.WARNING_MESSAGE);
 					JLabel label9 = new JLabel("Data Deleted Successfully");
-					refreshtable();
+				
 
 					textField.setText("");
 					textField_1.setText("");

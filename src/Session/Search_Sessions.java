@@ -38,7 +38,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import javax.swing.border.MatteBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 import Advanced.Consecutive_sessions;
 import DB.DbConnection;
@@ -79,12 +82,24 @@ public class Search_Sessions {
 
 			Connection con = DbConnection.connect();
 
-			String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As Code,subName As Name,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session ";
+			String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As SubCode,subName As SubName,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session ";
 			
 			
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
+
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(1);
+			columnModel.getColumn(1).setPreferredWidth(80);
+			columnModel.getColumn(2).setPreferredWidth(80);
+			columnModel.getColumn(3).setPreferredWidth(20);
+			columnModel.getColumn(4).setPreferredWidth(40);
+			columnModel.getColumn(5).setPreferredWidth(30);
+			columnModel.getColumn(6).setPreferredWidth(50);
+			columnModel.getColumn(7).setPreferredWidth(1);
+			columnModel.getColumn(8).setPreferredWidth(1);
+			columnModel.getColumn(9).setPreferredWidth(300);
 
 
 
@@ -473,6 +488,7 @@ public class Search_Sessions {
 		SrchSesFrm.getContentPane().add(separator);
 
 		JButton button = new JButton("Add New Session");
+		button.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -484,6 +500,7 @@ public class Search_Sessions {
 		SrchSesFrm.getContentPane().add(button);
 
 		JButton button_1 = new JButton("Manage Sessions");
+		button_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -497,6 +514,7 @@ public class Search_Sessions {
 		SrchSesFrm.getContentPane().add(button_1);
 
 		JButton button_2 = new JButton("Search Sessions");
+		button_2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -539,6 +557,14 @@ public class Search_Sessions {
 		table.setBackground(SystemColor.window);
 		table.setForeground(SystemColor.textText);
 		table.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
+		
+		//table header
+				JTableHeader h = table.getTableHeader();
+				h.setBackground(new Color(	153, 153, 153));
+				h.setForeground(Color.WHITE);
+				h.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 13));
+				h.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				
 
 		table.setBorder(UIManager.getBorder("Table.focusCellHighlightBorder"));
 
@@ -554,13 +580,23 @@ public class Search_Sessions {
 					Connection con = DbConnection.connect();
 
 					//String query="select * from session ";
-					String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As Code,subName As Name,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session ";
+					String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As SubCode,subName As SubName,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session ";
 					
 			
 					PreparedStatement pst=con.prepareStatement(query);
 					ResultSet rs=pst.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
-
+					TableColumnModel columnModel = table.getColumnModel();
+					columnModel.getColumn(0).setPreferredWidth(1);
+					columnModel.getColumn(1).setPreferredWidth(80);
+					columnModel.getColumn(2).setPreferredWidth(80);
+					columnModel.getColumn(3).setPreferredWidth(20);
+					columnModel.getColumn(4).setPreferredWidth(40);
+					columnModel.getColumn(5).setPreferredWidth(30);
+					columnModel.getColumn(6).setPreferredWidth(50);
+					columnModel.getColumn(7).setPreferredWidth(1);
+					columnModel.getColumn(8).setPreferredWidth(1);
+					columnModel.getColumn(9).setPreferredWidth(300);
 
 
 				}
@@ -581,7 +617,7 @@ public class Search_Sessions {
 							String l2 = lecbox.getSelectedItem().toString();
 							 Connection con = DbConnection.connect();
 							// String selection=(String)searchcomboBox.getSelectedItem();
-							 String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As Code,subName As Name,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session  where lec1=? or lec2= '"+l2+"'";
+							 String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As SubCode,subName As SubName,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session  where lec1=? or lec2= '"+l2+"'";
 							 PreparedStatement pst= con.prepareStatement(query);
 							 pst.setString(1,(String)lecbox.getSelectedItem());
 							 ResultSet rs=pst.executeQuery();
@@ -613,7 +649,7 @@ public class Search_Sessions {
 						try {
 							 Connection con = DbConnection.connect();
 							// String selection=(String)searchcomboBox.getSelectedItem();
-							 String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As Code,subName As Name,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session  where subName=?";
+							 String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As SubCode,subName As SubName,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session  where subName=?";
 							 PreparedStatement pst= con.prepareStatement(query);
 							 pst.setString(1,(String)subjBox.getSelectedItem());
 							 ResultSet rs=pst.executeQuery();
@@ -641,7 +677,7 @@ public class Search_Sessions {
 							try {
 								 Connection con = DbConnection.connect();
 								// String selection=(String)searchcomboBox.getSelectedItem();
-								 String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As Code,subName As Name,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session  where studentGroup=?";
+								 String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As SubCode,subName As SubName,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session  where studentGroup=?";
 								 PreparedStatement pst= con.prepareStatement(query);
 								 pst.setString(1,(String)groupBox.getSelectedItem());
 								 ResultSet rs=pst.executeQuery();

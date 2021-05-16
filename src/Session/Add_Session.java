@@ -782,6 +782,7 @@ public class Add_Session {
 		AddsessFrm.getContentPane().add(panel_4);
 
 		JButton button_3 = new JButton("Add New Session");
+		button_3.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -794,6 +795,7 @@ public class Add_Session {
 		AddsessFrm.getContentPane().add(button_3);
 
 		JButton button_4 = new JButton("Manage Sessions");
+		button_4.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -808,6 +810,7 @@ public class Add_Session {
 		AddsessFrm.getContentPane().add(button_4);
 
 		JButton button_5 = new JButton("Search Sessions");
+		button_5.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 

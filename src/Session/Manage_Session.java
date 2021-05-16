@@ -49,7 +49,10 @@ import javax.swing.JTextArea;
 import javax.swing.JSpinner;
 import javax.swing.JSeparator;
 import javax.swing.border.MatteBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import Advanced.Consecutive_sessions;
@@ -94,15 +97,23 @@ public class Manage_Session {
 		try {
 
 			Connection con = DbConnection.connect();
-
-			String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As Code,subName As Name,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session ";
+String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As SubCode,subName As SubName,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session ";
 			
 			
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-
-
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(1);
+			columnModel.getColumn(1).setPreferredWidth(80);
+			columnModel.getColumn(2).setPreferredWidth(80);
+			columnModel.getColumn(3).setPreferredWidth(20);
+			columnModel.getColumn(4).setPreferredWidth(40);
+			columnModel.getColumn(5).setPreferredWidth(30);
+			columnModel.getColumn(6).setPreferredWidth(50);
+			columnModel.getColumn(7).setPreferredWidth(1);
+			columnModel.getColumn(8).setPreferredWidth(1);
+			columnModel.getColumn(9).setPreferredWidth(300);
 
 		}
 		catch(Exception e) {
@@ -531,6 +542,7 @@ public class Manage_Session {
 		panel_1.add(btnTimetableGenerate);
 
 		JButton btnAddNewSession = new JButton("Add New Session");
+		btnAddNewSession.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnAddNewSession.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -543,6 +555,7 @@ public class Manage_Session {
 		ManageSesFrm.getContentPane().add(btnAddNewSession);
 
 		JButton btnManageSessions = new JButton("Manage Sessions");
+		btnManageSessions.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnManageSessions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -554,6 +567,7 @@ public class Manage_Session {
 		ManageSesFrm.getContentPane().add(btnManageSessions);
 
 		JButton btnSearchSessions = new JButton("Search Sessions");
+		btnSearchSessions.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnSearchSessions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -581,6 +595,13 @@ public class Manage_Session {
 		table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 		table.setBackground(SystemColor.window);
 		
+		//table header
+		JTableHeader h = table.getTableHeader();
+		h.setBackground(new Color(	153, 153, 153));
+		h.setForeground(Color.WHITE);
+		h.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
+		h.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
 		table.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 11));
 		table.setModel(new DefaultTableModel( new Object[][] { }, new String[] { }
 				));
@@ -591,14 +612,23 @@ public class Manage_Session {
 			Connection con = DbConnection.connect();
 
 			//String query="select * from session ";
-			String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As Code,subName As Name,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session ";
+			String query="select sessionID As SID, lec1 As Lecturer1,lec2 As Lecturer2,subCode As SubCode,subName As SubName,tag As Tag,studentGroup As GroupID,NoOfStudents As Students,duration As Duration,sessionSignature As SessionSignature from session ";
 			
-	
+			
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-
-
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(1);
+			columnModel.getColumn(1).setPreferredWidth(80);
+			columnModel.getColumn(2).setPreferredWidth(80);
+			columnModel.getColumn(3).setPreferredWidth(20);
+			columnModel.getColumn(4).setPreferredWidth(40);
+			columnModel.getColumn(5).setPreferredWidth(30);
+			columnModel.getColumn(6).setPreferredWidth(50);
+			columnModel.getColumn(7).setPreferredWidth(1);
+			columnModel.getColumn(8).setPreferredWidth(1);
+			columnModel.getColumn(9).setPreferredWidth(300);
 
 		}
 		catch(Exception e) {
@@ -907,10 +937,11 @@ public class Manage_Session {
 					PreparedStatement pst=con.prepareStatement(query);
 
 					pst.executeUpdate();
+					refreshtable();
 					JLabel label = new JLabel("Session Updated Successfully");
 					label.setHorizontalAlignment(SwingConstants.CENTER);
 					JOptionPane.showMessageDialog(null, label);
-					refreshtable();
+					
 
 					
 					//JOptionPane.showMessageDialog(null, "Data Updated"); pst.close();
@@ -935,7 +966,7 @@ public class Manage_Session {
 					String  query="Delete from session where sessionID='"+txtSid.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query); 
 					pst.execute();
-
+					refreshtable();
 					JOptionPane.showMessageDialog(null, "       Session Deleted Successfully","Message",JOptionPane.INFORMATION_MESSAGE);
 					pst.close();
 					cod.setText("");
@@ -947,7 +978,7 @@ public class Manage_Session {
 					sign.setText("");
 					noStud.setValue(0);
 					duration.setValue(0);
-					refreshtable();
+					
 					//table.revalidate();
 
 				} catch(Exception en) { en.printStackTrace();

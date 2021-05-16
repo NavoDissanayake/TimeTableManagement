@@ -45,10 +45,13 @@ import javax.swing.JCheckBox;
 import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import Advanced.Consecutive_sessions;
@@ -96,6 +99,25 @@ public class Manage_Lecturer {
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(1);
+			columnModel.getColumn(1).setPreferredWidth(82);
+			columnModel.getColumn(2).setPreferredWidth(18);
+			columnModel.getColumn(3).setPreferredWidth(40);
+			columnModel.getColumn(4).setPreferredWidth(20);
+			columnModel.getColumn(5).setPreferredWidth(30);
+			columnModel.getColumn(6).setPreferredWidth(1);
+			columnModel.getColumn(7).setPreferredWidth(1);
+			columnModel.getColumn(8).setPreferredWidth(4);
+			columnModel.getColumn(9).setPreferredWidth(1);
+			columnModel.getColumn(10).setPreferredWidth(1);
+			columnModel.getColumn(11).setPreferredWidth(1);
+			columnModel.getColumn(12).setPreferredWidth(1);
+			columnModel.getColumn(13).setPreferredWidth(1);
+			columnModel.getColumn(14).setPreferredWidth(1);
+			columnModel.getColumn(15).setPreferredWidth(1);
+			columnModel.getColumn(16).setPreferredWidth(1);
+			columnModel.getColumn(17).setPreferredWidth(1);
 
 
 
@@ -395,7 +417,14 @@ public class Manage_Lecturer {
 		table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 		table.setBackground(SystemColor.window);
 		table.setForeground(SystemColor.textText);
-		table.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		
+		//table header
+		JTableHeader h = table.getTableHeader();
+		h.setBackground(new Color(	153, 153, 153));
+		h.setForeground(Color.WHITE);
+		h.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
+		h.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		//table.setCellSelectionEnabled(true);
 
@@ -415,7 +444,25 @@ public class Manage_Lecturer {
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 
-
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(1);
+			columnModel.getColumn(1).setPreferredWidth(82);
+			columnModel.getColumn(2).setPreferredWidth(18);
+			columnModel.getColumn(3).setPreferredWidth(40);
+			columnModel.getColumn(4).setPreferredWidth(20);
+			columnModel.getColumn(5).setPreferredWidth(30);
+			columnModel.getColumn(6).setPreferredWidth(1);
+			columnModel.getColumn(7).setPreferredWidth(1);
+			columnModel.getColumn(8).setPreferredWidth(4);
+			columnModel.getColumn(9).setPreferredWidth(1);
+			columnModel.getColumn(10).setPreferredWidth(1);
+			columnModel.getColumn(11).setPreferredWidth(1);
+			columnModel.getColumn(12).setPreferredWidth(1);
+			columnModel.getColumn(13).setPreferredWidth(1);
+			columnModel.getColumn(14).setPreferredWidth(1);
+			columnModel.getColumn(15).setPreferredWidth(1);
+			columnModel.getColumn(16).setPreferredWidth(1);
+			columnModel.getColumn(17).setPreferredWidth(1);
 
 		}
 		catch(Exception e) {
@@ -643,6 +690,7 @@ public class Manage_Lecturer {
 		panel_4.add(lblManageLecturers);
 
 		JButton btnAddNewLecturer = new JButton("Add New Lecturer");
+		btnAddNewLecturer.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnAddNewLecturer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -655,6 +703,7 @@ public class Manage_Lecturer {
 		ManageLecfrm.getContentPane().add(btnAddNewLecturer);
 
 		JButton btnManageLecturers = new JButton("Manage Lecturers");
+		btnManageLecturers.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnManageLecturers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ManageLecfrm.dispose();
@@ -956,9 +1005,10 @@ public class Manage_Lecturer {
 					PreparedStatement pst=con.prepareStatement(query); 
 					pst.execute();
 
+					refreshtable();
 					JOptionPane.showMessageDialog(null, "       Data Deleted Successfully","Message",JOptionPane.INFORMATION_MESSAGE);
 					pst.close();
-					refreshtable();
+					
 
 					textField.setText("");
 					textField_1.setText(" ");
