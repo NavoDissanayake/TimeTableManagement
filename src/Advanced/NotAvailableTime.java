@@ -93,13 +93,10 @@ public class NotAvailableTime {
 	private JComboBox selectroom ;
 	private JTextField textField;
 	private JSpinner starttime;
-	private JSpinner starttime_1;
 	private JSpinner endtime;
-	private JSpinner endtime_1;
 	private JTextField start;
 	private JTextField end;
 	private JSpinner day;
-	private JSpinner day_1;
 	
 	
 	//refresh all the data
@@ -850,20 +847,20 @@ public void refreshtable() {
 		//start time AM
 		starttime = new JSpinner();
 		String[] ampmString1 = {"am", "pm"};
-		starttime_1 = new JSpinner(
+		starttime = new JSpinner(
 		 new SpinnerListModel(ampmString1));
-		starttime_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		starttime_1.setBounds(769, 136, 43, 23);
-		panel_4.add(starttime_1);
+		starttime.setFont(new Font("Tahoma", Font.BOLD, 13));
+		starttime.setBounds(769, 136, 43, 23);
+		panel_4.add(starttime);
 		
 		//End time AM
 		endtime = new JSpinner();
 		String[] ampmString = {"am", "pm"};
-		endtime_1 = new JSpinner(
+		endtime = new JSpinner(
 		 new SpinnerListModel(ampmString1));
-		endtime_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		endtime_1.setBounds(769, 182, 43, 23);
-		panel_4.add(endtime_1);
+		endtime.setFont(new Font("Tahoma", Font.BOLD, 13));
+		endtime.setBounds(769, 182, 43, 23);
+		panel_4.add(endtime);
 		
 		start = new JTextField();
 		start.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -885,11 +882,11 @@ public void refreshtable() {
 		
 		 day = new JSpinner();
 		String[] dayString = {"1.Monday", "2.Tuesday","3.Wednesday","4.Thursday","5.Friday","6.Saturday","7.Sunday"};//edited
-		day_1 = new JSpinner(
-		 new SpinnerListModel(dayString));
-		day_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		day_1.setBounds(663, 84, 149, 20);
-		panel_4.add(day_1);
+		day = new JSpinner(
+		new SpinnerListModel(dayString));
+		day.setFont(new Font("Tahoma", Font.BOLD, 13));
+		day.setBounds(663, 84, 149, 20);
+		panel_4.add(day);
 		
 		
 		//Add session sign
