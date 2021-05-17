@@ -527,6 +527,7 @@ public class Add_Subjects {
 		AddSubFrm.getContentPane().add(separator);
 
 		JButton button_2 = new JButton("Add New Subject");
+		button_2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -538,6 +539,7 @@ public class Add_Subjects {
 		AddSubFrm.getContentPane().add(button_2);
 
 		JButton button_3 = new JButton("Manage Subjects");
+		button_3.setFont(new Font("Tahoma", Font.BOLD, 13));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
