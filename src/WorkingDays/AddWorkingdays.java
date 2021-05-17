@@ -36,6 +36,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 import Advanced.Consecutive_sessions;
 import DB.DbConnection;
@@ -75,7 +76,33 @@ public class AddWorkingdays {
 	public JFrame frame;
 	private JTable table;
 
-	
+	public void refreshtable() {	
+	try {
+		Connection con = DbConnection.connect();
+		
+		String query="SELECT WID as WID, NoOfDays as Days, monday as Monday, tuesday as Tuesday, wednesday as Wednesday, thursday as Thursday, friday as Friday, saturday as Saturday, sunday as Sunday, hours as Hours,minutes as Minutes FROM WorkingDays ";
+		PreparedStatement pst=con.prepareStatement(query);
+		ResultSet rs=pst.executeQuery();
+		table.setModel(DbUtils.resultSetToTableModel(rs));
+		TableColumnModel columnModel = table.getColumnModel();
+		columnModel.getColumn(0).setPreferredWidth(1);
+		columnModel.getColumn(1).setPreferredWidth(1);
+		columnModel.getColumn(2).setPreferredWidth(50);
+		columnModel.getColumn(3).setPreferredWidth(50);
+		columnModel.getColumn(4).setPreferredWidth(40);
+		columnModel.getColumn(5).setPreferredWidth(20);
+		columnModel.getColumn(6).setPreferredWidth(50);
+		columnModel.getColumn(7).setPreferredWidth(1);
+		columnModel.getColumn(8).setPreferredWidth(1);
+		columnModel.getColumn(9).setPreferredWidth(1);
+		columnModel.getColumn(10).setPreferredWidth(1);
+		
+		
+	}
+	catch(Exception e) {
+		e.printStackTrace();
+	}
+	}	
 	/**
 	 * Launch the application.
 	 */
@@ -587,7 +614,7 @@ public class AddWorkingdays {
 				}
 			}
 		});
-		
+		refreshtable() ;
 
 		btnAdd.setEnabled(true);
 		btnAdd.setBackground(new Color(0, 153, 153));
@@ -656,11 +683,23 @@ public class AddWorkingdays {
 		try {
 			Connection con = DbConnection.connect();
 			
-			String query="SELECT * FROM WorkingDays ";
+			String query="SELECT WID as WID, NoOfDays as Days, monday as Monday, tuesday as Tuesday, wednesday as Wednesday, thursday as Thursday, friday as Friday, saturday as Saturday, sunday as Sunday, hours as Hours,minutes as Minutes FROM WorkingDays ";
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(1);
+			columnModel.getColumn(1).setPreferredWidth(1);
+			columnModel.getColumn(2).setPreferredWidth(50);
+			columnModel.getColumn(3).setPreferredWidth(50);
+			columnModel.getColumn(4).setPreferredWidth(40);
+			columnModel.getColumn(5).setPreferredWidth(20);
+			columnModel.getColumn(6).setPreferredWidth(50);
+			columnModel.getColumn(7).setPreferredWidth(1);
+			columnModel.getColumn(8).setPreferredWidth(1);
+			columnModel.getColumn(9).setPreferredWidth(1);
+			columnModel.getColumn(10).setPreferredWidth(1);
+			refreshtable() ;
 			
 			
 		}

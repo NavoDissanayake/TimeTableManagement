@@ -37,6 +37,7 @@ import javax.swing.SpinnerListModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import Advanced.Consecutive_sessions;
@@ -79,7 +80,7 @@ public class NotAvailableLocation {
 	private JTable table;
 	private JTextField start;
 	private JTextField end;
-	private JTextField date;
+	private JSpinner date;
 	private JTextField id;
 	private JComboBox selectroom ;
 	private JComboBox sessionsign ;
@@ -93,11 +94,19 @@ public void refreshtable() {
 			
 			Connection con = DbConnection.connect();
 			
-			String query="select *  from notavailableloc ";
+			String query="select locID as LID , selectRoom as Room, sessionSign as Signature,selectDate as Date, startTime as Start, start as Time, endTime as End , end as Time  from notavailableloc ";
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(1);
+			columnModel.getColumn(1).setPreferredWidth(1);
+			columnModel.getColumn(2).setPreferredWidth(350);
+			columnModel.getColumn(3).setPreferredWidth(50);
+			columnModel.getColumn(4).setPreferredWidth(1);
+			columnModel.getColumn(5).setPreferredWidth(1);
+			columnModel.getColumn(6).setPreferredWidth(1);
+			columnModel.getColumn(7).setPreferredWidth(1);
 			
 			
 		}
@@ -502,15 +511,21 @@ btnTags.addActionListener(new ActionListener() {
 		fillRoom();
 		
 		//add date
-		JLabel lblSelectSubGroup = new JLabel("Select Date");
-		lblSelectSubGroup.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSelectSubGroup.setBounds(108, 93, 113, 23);
-		panel_4.add(lblSelectSubGroup);
+		JLabel lbldate = new JLabel("Select Date");
+		lbldate.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lbldate.setBounds(108, 93, 113, 23);
+		panel_4.add(lbldate);
 		
-		date = new JTextField();
-		date.setColumns(10);
-		date.setBounds(279, 94, 149, 23);
+		
+		
+		date = new JSpinner();
+		String[] dayString = {"1.Monday", "2.Tuesday","3.Wednesday","4.Thursday","5.Friday","6.Saturday","7.Sunday"};//edited
+		date = new JSpinner(
+		new SpinnerListModel(dayString));
+		date.setFont(new Font("Tahoma", Font.BOLD, 13));
+		date.setBounds(279, 93, 149, 23);
 		panel_4.add(date);
+		
 		
 		
 		//start Time
@@ -547,7 +562,7 @@ btnTags.addActionListener(new ActionListener() {
 				
 				String selectRoom = selectroom.getSelectedItem().toString();
 				String sessionSign = sessionsign.getSelectedItem().toString();
-				String selectDate = date.getText();
+				String selectDate = date.getValue().toString();
 				String startTime = start.getText();	
 				String endTime = end.getText();
 				String startAMPM = starttime.getValue().toString();
@@ -606,7 +621,7 @@ btnTags.addActionListener(new ActionListener() {
 				id.setText("");
 				selectroom.setSelectedIndex(0);
 				sessionsign.setSelectedIndex(0);
-				date.setText("");
+				date.setValue(null);
 				start.setText("");
 				end.setText("");
 				starttime.setValue(null);
@@ -653,7 +668,7 @@ btnTags.addActionListener(new ActionListener() {
 				
 				try {
 					Connection con = DbConnection.connect();					
-					String query="Update notavailableloc set selectRoom='"+selectroom.getSelectedItem()+ "',sessionSign='"+sessionsign.getSelectedItem()+"',selectDate='"+date.getText()+
+					String query="Update notavailableloc set selectRoom='"+selectroom.getSelectedItem()+ "',sessionSign='"+sessionsign.getSelectedItem()+"',selectDate='"+date.getValue()+
 					"',startTime='"+start.getText()+"',start='"+starttime.getValue()+"',endTime='"+end.getText()+"',end='"+endtime.getValue()+"'"
 							+ " where locID='"+id.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
@@ -765,7 +780,7 @@ btnTags.addActionListener(new ActionListener() {
 				if(sessionsign.getItemAt(j).toString().equalsIgnoreCase(combo1)) {
 					sessionsign.setSelectedIndex(j); } }
 			
-			date.setText(table.getValueAt(selectedRow, 3).toString());
+			date.setValue(table.getValueAt(selectedRow, 3).toString());
 			start.setText(table.getValueAt(selectedRow, 4).toString());
 			starttime.setValue(table.getValueAt(selectedRow, 5).toString());
 			end.setText(table.getValueAt(selectedRow, 6).toString());
@@ -782,10 +797,19 @@ btnTags.addActionListener(new ActionListener() {
 			Connection con = DbConnection.connect();
 			 
 			 
-			String query="select * from notavailableloc ";
+			String query="select locID as LID , selectRoom as Room, sessionSign as Signature,selectDate as Date, startTime as Start, start as Time, endTime as End , end as Time  from notavailableloc ";
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(1);
+			columnModel.getColumn(1).setPreferredWidth(1);
+			columnModel.getColumn(2).setPreferredWidth(350);
+			columnModel.getColumn(3).setPreferredWidth(1);
+			columnModel.getColumn(4).setPreferredWidth(1);
+			columnModel.getColumn(5).setPreferredWidth(1);
+			columnModel.getColumn(6).setPreferredWidth(1);
+			columnModel.getColumn(7).setPreferredWidth(1);
 			
 			
 			

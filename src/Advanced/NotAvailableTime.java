@@ -32,10 +32,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import DB.DbConnection;
@@ -62,8 +64,8 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerListModel;
 
 import java.util.Date;
-import java.util.Calendar;
-import javax.swing.SpinnerNumberModel;
+
+
 
 
 public class NotAvailableTime {
@@ -87,18 +89,16 @@ public class NotAvailableTime {
 	private JTable table;
 	private JTextField id;
 	private JComboBox selectlec;
-	private JComboBox selectgroup;
-	private JComboBox selectsession;
-	private JComboBox selectsubgroup;
 	private JComboBox sessionsign;
-	private JComboBox selectroom ;
 	private JTextField textField;
 	private JSpinner starttime;
 	private JSpinner endtime;
 	private JTextField start;
 	private JTextField end;
 	private JSpinner day;
-	
+	private JComboBox selectsubgroup ;
+	private JComboBox selectroom ;
+	private JComboBox selectgroup ;
 	
 	//refresh all the data
 	
@@ -108,11 +108,23 @@ public void refreshtable() {
 			
 			Connection con = DbConnection.connect();
 			
-			String query="select *  from notavailableTime ";
+			String query="SELECT timeID as TID,selectLec as Lecturer,selectGroup AS Main,selectSubGroup AS SUB,selectRoom as Room,sessionSign as SessionSignature,Date as Days,startTime as Start,start as Time,endTime as End, end as Time FROM notavailableTime";
+			//String query="select *  from notavailableTime ";
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(1);
+			columnModel.getColumn(1).setPreferredWidth(100);
+			columnModel.getColumn(2).setPreferredWidth(50);
+			columnModel.getColumn(3).setPreferredWidth(50);
+			columnModel.getColumn(4).setPreferredWidth(40);
+			columnModel.getColumn(5).setPreferredWidth(350);
+			columnModel.getColumn(6).setPreferredWidth(50);
+			columnModel.getColumn(7).setPreferredWidth(1);
+			columnModel.getColumn(8).setPreferredWidth(1);
+			columnModel.getColumn(9).setPreferredWidth(1);
+			columnModel.getColumn(10).setPreferredWidth(1);
 			
 			
 		}
@@ -154,34 +166,7 @@ public void refreshtable() {
 			
 	     	}
 	  
-	  //fill session ID field
-	  public void fillsession() {
-			
-			try {
-				
-				 Connection con = DbConnection.connect();
-				 
-				 String query="select * from session";
-				 
-				 PreparedStatement pst = con.prepareStatement(query);
-				 ResultSet rs = pst.executeQuery();
-				 
-				 while(rs.next()) {
-					 
-					 String name =rs.getString("sessionID");
-					 
-					 selectsession.addItem(name);
-					 
-				}
-				con.close();
-			}
-			
-			catch(Exception e) {
-				
-					e.printStackTrace();
-				}
-			
-	     	}
+	 
 	  
 	  
 	  //fill Group ID field
@@ -690,69 +675,38 @@ public void refreshtable() {
 		panel_4.setLayout(null);
 		panel_4.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_4.setBackground(SystemColor.menu);
-		panel_4.setBounds(81, 102, 853, 315);
+		panel_4.setBounds(24, 91, 1036, 326);
 		panel_3.add(panel_4);
-		
-		JLabel lblSelectSessionId = new JLabel("Select Session ID");
-		lblSelectSessionId.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSelectSessionId.setBounds(28, 27, 113, 23);
-		panel_4.add(lblSelectSessionId);
-		
-		selectsession = new JComboBox();
-		selectsession.setFont(new Font("Tahoma", Font.BOLD, 13));
-		selectsession.setBounds(175, 27, 149, 22);
-		selectsession.setModel(new DefaultComboBoxModel(new String[] {""}));
-		panel_4.add(selectsession);
-		fillsession() ;
-		
+	
 		//select lecture 
 		JLabel lblNewLabel_2 = new JLabel("Select Lecturer");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_2.setBounds(28, 83, 91, 23);
+		lblNewLabel_2.setBounds(28, 26, 149, 23);
 		panel_4.add(lblNewLabel_2);
 		
 		selectlec = new JComboBox();
 		selectlec.setFont(new Font("Tahoma", Font.BOLD, 13));
-		selectlec.setBounds(175, 83, 149, 22);
+		selectlec.setBounds(214, 26, 218, 22);
 		selectlec.setModel(new DefaultComboBoxModel(new String[] {""}));
 		panel_4.add(selectlec);
 		
 		filllecture();
+	
 		
-		//select student group
-		JLabel lblSelectGroup = new JLabel("Select Group");
-		lblSelectGroup.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSelectGroup.setBounds(28, 136, 91, 23);
-		panel_4.add(lblSelectGroup);
-			
-		selectgroup = new JComboBox();
-		selectgroup.setFont(new Font("Tahoma", Font.BOLD, 13));
-		selectgroup.setBounds(175, 136, 149, 22);
-		selectgroup.setModel(new DefaultComboBoxModel(new String[] {""}));
-		panel_4.add(selectgroup);
-		
-		fillgroups();
-		
-		JLabel lblSelectSubGroup = new JLabel("Select Sub Group");
+		JLabel lblSelectSubGroup = new JLabel("Selected sub Group");
 		lblSelectSubGroup.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSelectSubGroup.setBounds(28, 182, 113, 23);
+		lblSelectSubGroup.setBounds(28, 182, 149, 23);
 		panel_4.add(lblSelectSubGroup);
 		
-		selectsubgroup = new JComboBox();
-		selectsubgroup.setFont(new Font("Tahoma", Font.BOLD, 13));
-		selectsubgroup.setBounds(175, 182, 149, 22);
-		selectsubgroup.setModel(new DefaultComboBoxModel(new String[] {""}));
-		panel_4.add(selectsubgroup);
-		fillsubgroup();
 		
-		JLabel StartTime = new JLabel("Start Time");
+		JLabel StartTime = new JLabel("Sart Time");
 		StartTime.setFont(new Font("Tahoma", Font.BOLD, 12));
-		StartTime.setBounds(502, 136, 91, 23);
+		StartTime.setBounds(560, 111, 91, 23);
 		panel_4.add(StartTime);
 		
 		JLabel EndTime = new JLabel("End Time");
 		EndTime.setFont(new Font("Tahoma", Font.BOLD, 12));
-		EndTime.setBounds(502, 182, 57, 23);
+		EndTime.setBounds(560, 170, 57, 23);
 		panel_4.add(EndTime);
 		
 		
@@ -762,7 +716,7 @@ public void refreshtable() {
 		add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				String sessionId = selectsession.getSelectedItem().toString();
+				
 				String selectLec = selectlec.getSelectedItem().toString();
 				String selectGroup = selectgroup.getSelectedItem().toString();
 				String selectSubGroup = selectsubgroup.getSelectedItem().toString();
@@ -789,7 +743,7 @@ public void refreshtable() {
 						Connection con = DbConnection.connect();
 						
 				
-						String query = "INSERT INTO notavailableTime values(null,'"+ sessionId +"','"+ selectLec +"','"+ selectGroup + "','"+ selectSubGroup + 
+						String query = "INSERT INTO notavailableTime values(null,'"+ selectLec +"','"+ selectGroup + "','"+ selectSubGroup + 
 								"','"+ selectRoom +"','"+ sessionSign +"','"+ Date +"','"+ startTime +"','"+ startAMPM +"','"+ endTime +"','"+ endAMPM +"')";
 
 	                    Statement sta = con.createStatement();
@@ -823,7 +777,7 @@ public void refreshtable() {
 				
 			}
 		});
-		add.setBounds(494, 273, 141, 31);
+		add.setBounds(717, 273, 141, 31);
 		panel_4.add(add);
 		add.setForeground(Color.WHITE);
 		add.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -833,7 +787,7 @@ public void refreshtable() {
 		
 		//clear data from fields
 		JButton btnClear = new JButton("CLEAR");
-		btnClear.setBounds(671, 273, 141, 31);
+		btnClear.setBounds(885, 273, 141, 31);
 		panel_4.add(btnClear);
 		btnClear.setForeground(Color.WHITE);
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -842,7 +796,7 @@ public void refreshtable() {
 		
 		id = new JTextField();
 		id.setBackground(SystemColor.menu);
-		id.setBounds(0, 0, 86, 7);
+		id.setBounds(0, 0, 43, 23);
 		panel_4.add(id);
 		
 		//start time AM
@@ -851,7 +805,7 @@ public void refreshtable() {
 		starttime = new JSpinner(
 		 new SpinnerListModel(ampmString1));
 		starttime.setFont(new Font("Tahoma", Font.BOLD, 13));
-		starttime.setBounds(769, 136, 43, 23);
+		starttime.setBounds(855, 111, 43, 23);
 		panel_4.add(starttime);
 		
 		//End time AM
@@ -860,25 +814,25 @@ public void refreshtable() {
 		endtime = new JSpinner(
 		 new SpinnerListModel(ampmString1));
 		endtime.setFont(new Font("Tahoma", Font.BOLD, 13));
-		endtime.setBounds(769, 182, 43, 23);
+		endtime.setBounds(855, 170, 43, 23);
 		panel_4.add(endtime);
 		
 		start = new JTextField();
 		start.setFont(new Font("Tahoma", Font.BOLD, 13));
-		start.setBounds(666, 136, 91, 22);
+		start.setBounds(717, 111, 128, 22);
 		panel_4.add(start);
 		start.setColumns(10);
 		
 		end = new JTextField();
 		end.setFont(new Font("Tahoma", Font.BOLD, 13));
-		end.setBounds(666, 183, 91, 20);
+		end.setBounds(717, 171, 128, 20);
 		panel_4.add(end);
 		
 		
 		//Add date
 		JLabel date = new JLabel("Day");
 		date.setFont(new Font("Tahoma", Font.BOLD, 12));
-		date.setBounds(502, 87, 74, 14);
+		date.setBounds(560, 47, 74, 14);
 		panel_4.add(date);
 		
 		 day = new JSpinner();
@@ -886,20 +840,19 @@ public void refreshtable() {
 		day = new JSpinner(
 		new SpinnerListModel(dayString));
 		day.setFont(new Font("Tahoma", Font.BOLD, 13));
-		day.setBounds(663, 84, 149, 20);
+		day.setBounds(717, 43, 182, 23);
 		panel_4.add(day);
 		
 		
 		//Add session sign
 		JLabel session = new JLabel("Session Signature");
 		session.setFont(new Font("Tahoma", Font.BOLD, 12));
-		session.setBounds(499, 30, 113, 14);
+		session.setBounds(28, 87, 113, 14);
 		panel_4.add(session);
-		
 		sessionsign = new JComboBox();
 		sessionsign.setFont(new Font("Tahoma", Font.BOLD, 13));
 		sessionsign.setModel(new DefaultComboBoxModel(new String[] {""}));
-		sessionsign.setBounds(663, 28, 149, 20);
+		sessionsign.setBounds(214, 83, 218, 23);
 		panel_4.add(sessionsign);
 		fillsign();
 		
@@ -907,22 +860,50 @@ public void refreshtable() {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel.setBounds(28, 241, 113, 14);
 		panel_4.add(lblNewLabel);
-		
-		
-		//select room
 		selectroom = new JComboBox();
 		selectroom.setFont(new Font("Tahoma", Font.BOLD, 13));
-		selectroom.setBounds(175, 235, 149, 23);
+		selectroom.setBounds(214, 239, 218, 23);
+		panel_4.add(selectroom);
 		selectroom.setModel(new DefaultComboBoxModel(new String[] {""}));
 		panel_4.add(selectroom);
 		fillroom() ;
+	
+
+	
+		//select group
+		JLabel lblSelectGroup = new JLabel("Select Group");
+		lblSelectGroup.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblSelectGroup.setBounds(28, 136, 137, 14);
+		panel_4.add(lblSelectGroup);
+		selectgroup = new JComboBox();
+		selectgroup.setFont(new Font("Tahoma", Font.BOLD, 13));
+		selectgroup.setBounds(214, 134, 218, 23);
+		panel_4.add(selectgroup);
+		selectgroup.setModel(new DefaultComboBoxModel(new String[] {""}));
+		fillgroups();
+
+	
+	
+		//select sub group
+		 selectsubgroup = new JComboBox();
+		 selectsubgroup.setFont(new Font("Tahoma", Font.BOLD, 13));
+		 selectsubgroup.setBounds(214, 184, 218, 23);
+		 panel_4.add( selectsubgroup);
+			selectsubgroup.setModel(new DefaultComboBoxModel(new String[] {""}));
+		 fillsubgroup();
+		
+	
+		
+		
 		
 
-		btnClear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+	
+	
+	btnClear.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
 			
-				selectsession.setSelectedIndex(0);
+			
+				id.setText("");
 				selectlec.setSelectedIndex(0);
 				selectgroup.setSelectedIndex(0);
 				selectsubgroup.setSelectedIndex(0);
@@ -976,7 +957,7 @@ public void refreshtable() {
 		delete.setFont(new Font("Tahoma", Font.BOLD, 14));
 		delete.setEnabled(true);
 		delete.setBackground(new Color(0, 153, 153));
-		delete.setBounds(793, 556, 141, 31);
+		delete.setBounds(909, 554, 141, 31);
 		panel_3.add(delete);
 	
 		
@@ -987,7 +968,7 @@ public void refreshtable() {
 		panel_3.add(separator);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(81, 430, 853, 113);
+		scrollPane.setBounds(24, 419, 1036, 124);
 		panel_3.add(scrollPane);
 		
 		
@@ -1011,21 +992,15 @@ public void refreshtable() {
 			
 			 	id.setText(table.getValueAt(selectedRow, 0).toString());
 
-				String combo1 = table.getValueAt(selectedRow, 1).toString(); 
-				for(int j=0
-						;j<selectsession.getItemCount();j++) {
-
-					if(selectsession.getItemAt(j).toString().equalsIgnoreCase(combo1)) {
-						selectsession.setSelectedIndex(j); } }
-
-				String combo2 = table.getValueAt(selectedRow, 2).toString(); 
+			
+				String combo2 = table.getValueAt(selectedRow, 1).toString(); 
 				for(int j=0
 						;j<selectlec.getItemCount();j++) {
 
 					if(selectlec.getItemAt(j).toString().equalsIgnoreCase(combo2)) {
 						selectlec.setSelectedIndex(j); } }
 
-				String combo3 = table.getValueAt(selectedRow, 3).toString(); 
+				String combo3 = table.getValueAt(selectedRow, 2).toString(); 
 				for(int j=0
 						;j<selectgroup.getItemCount();j++) {
 
@@ -1034,32 +1009,32 @@ public void refreshtable() {
 				
 				
 
-				String combo4 = table.getValueAt(selectedRow, 4).toString(); 
+				String combo4 = table.getValueAt(selectedRow, 3).toString(); 
 				for(int j=0
 						;j<selectsubgroup.getItemCount();j++) {
 
 					if(selectsubgroup.getItemAt(j).toString().equalsIgnoreCase(combo4)) {
 						selectsubgroup.setSelectedIndex(j); } }
 				
-				String combo5 = table.getValueAt(selectedRow, 5).toString(); 
+				String combo5 = table.getValueAt(selectedRow, 4).toString(); 
 				for(int j=0
 						;j<selectroom.getItemCount();j++) {
 
 					if(selectroom.getItemAt(j).toString().equalsIgnoreCase(combo5)) {
 						selectroom.setSelectedIndex(j); } }
 				
-				String combo6 = table.getValueAt(selectedRow, 6).toString(); 
+				String combo6 = table.getValueAt(selectedRow, 5).toString(); 
 				for(int j=0
 						;j<sessionsign.getItemCount();j++) {
 
 					if(sessionsign.getItemAt(j).toString().equalsIgnoreCase(combo6)) {
 						sessionsign.setSelectedIndex(j); } }
 				
-					day.setValue(table.getValueAt(selectedRow, 7).toString());
-					start.setText(table.getValueAt(selectedRow, 8).toString());
-					end.setText(table.getValueAt(selectedRow, 10).toString());//edited
-					starttime.setValue(table.getValueAt(selectedRow, 9).toString());//edited
-					endtime.setValue(table.getValueAt(selectedRow, 11).toString());
+					day.setValue(table.getValueAt(selectedRow, 6).toString());
+					start.setText(table.getValueAt(selectedRow, 7).toString());
+					end.setText(table.getValueAt(selectedRow, 9).toString());//edited
+					starttime.setValue(table.getValueAt(selectedRow, 8).toString());//edited
+					endtime.setValue(table.getValueAt(selectedRow, 10).toString());
 				  
 				  
 			
@@ -1067,17 +1042,30 @@ public void refreshtable() {
 	});
 	
 		scrollPane.setViewportView(table);
+		
 		try {
 			
 			
 			Connection con = DbConnection.connect();
 			 
 			 
-			String query="select * from notavailableTime ";
+			//String query="SELECT timeID as TID, selectLec as Lecturer, selectGroup as Group, selectSubGroup as SubGroup, selectRoom as Room, sessionSign as Signature, Date as Day, startTime as Start, start as STime,endTime as End, end as ETime FROM notavailableTime ";
+			String query="SELECT timeID as TID,selectLec as Lecturer,selectGroup AS Main,selectSubGroup AS SUB,selectRoom as Room,sessionSign as SessionSignature,Date as Days,startTime as Start,start as Time,endTime as End, end as Time FROM notavailableTime";
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(1);
+			columnModel.getColumn(1).setPreferredWidth(100);
+			columnModel.getColumn(2).setPreferredWidth(50);
+			columnModel.getColumn(3).setPreferredWidth(50);
+			columnModel.getColumn(4).setPreferredWidth(40);
+			columnModel.getColumn(5).setPreferredWidth(350);
+			columnModel.getColumn(6).setPreferredWidth(50);
+			columnModel.getColumn(7).setPreferredWidth(1);
+			columnModel.getColumn(8).setPreferredWidth(1);
+			columnModel.getColumn(9).setPreferredWidth(1);
+			columnModel.getColumn(10).setPreferredWidth(1);
 			
 			
 			refreshtable();
@@ -1101,7 +1089,7 @@ public void refreshtable() {
 				
 				try {
 					Connection con = DbConnection.connect();					
-					String query="Update notavailableTime set SessionID='"+selectsession.getSelectedItem()+ "',selectLec='"+selectlec.getSelectedItem()+"',selectGroup='"+selectgroup.getSelectedItem()+ "',selectSubGroup='"
+					String query="Update notavailableTime set selectLec='"+selectlec.getSelectedItem()+"',selectGroup='"+selectgroup.getSelectedItem()+ "',selectSubGroup='"
 					+selectsubgroup.getSelectedItem()+"',selectRoom='"+selectroom.getSelectedItem()+"',sessionSign='"+sessionsign.getSelectedItem()+"',Date='"+day.getValue()+"',startTime='"+start.getText()+"',start='"+starttime.getValue()+"',endTime='"+end.getText()+"',end='"+endtime.getValue()+"'"
 							+ " where timeID='"+id.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
@@ -1139,14 +1127,14 @@ public void refreshtable() {
 		panel_3.add(label);
 		
 		
-		//refresh table
+		/*refresh table
 		JButton btnrefresh = new JButton("REFRESH");
 		btnrefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					Connection con = DbConnection.connect();
 					
-					String query="select * from notavailableTime ";
+					String query="select timeID AS TID,selectLec as Lecturer,selectGroup as Group,selectSubGroup as SubGroup,selectRoom as Room,sessionSign as SessionSignature,Date as Day,startTime as StartTime,start as AMPM,endTime as EndTime,end as AMPM from notavailableTime ";
 					PreparedStatement pst=con.prepareStatement(query);
 					ResultSet rs=pst.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -1163,7 +1151,7 @@ public void refreshtable() {
 		btnrefresh.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnrefresh.setEnabled(true);
 		btnrefresh.setBackground(new Color(0, 153, 153));
-		btnrefresh.setBounds(439, 556, 141, 31);
-		panel_3.add(btnrefresh);
+		btnrefresh.setBounds(744, 554, 141, 31);
+		panel_3.add(btnrefresh);*/
 	}
 }
