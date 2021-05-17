@@ -405,7 +405,7 @@ btnRooms.addActionListener(new ActionListener() {
 		panel_6.add(lblNewLabel_1);
 		
 		JButton btnNewButton_2 = new JButton("Add Working Days");
-		btnNewButton_2.setBounds(0, 2, 362, 37);
+		btnNewButton_2.setBounds(0, 2, 554, 37);
 		panel_3.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			
@@ -418,7 +418,7 @@ btnRooms.addActionListener(new ActionListener() {
 		
 		
 		JButton btnNewButton_2_1 = new JButton("Manage Working Days");
-		btnNewButton_2_1.setBounds(361, 2, 362, 37);
+		btnNewButton_2_1.setBounds(554, 2, 528, 37);
 		panel_3.add(btnNewButton_2_1);
 	btnNewButton_2_1.addActionListener(new ActionListener() {
 			
@@ -437,7 +437,7 @@ btnRooms.addActionListener(new ActionListener() {
 		panel_4.setLayout(null);
 		panel_4.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_4.setBackground(SystemColor.menu);
-		panel_4.setBounds(142, 245, 853, 284);
+		panel_4.setBounds(33, 245, 985, 284);
 		panel_3.add(panel_4);
 		
 		JLabel lblNewLabel = new JLabel("Working Hours");
@@ -511,11 +511,56 @@ btnRooms.addActionListener(new ActionListener() {
 		id = new JTextField();
 		id.setBounds(219, 11, 86, 20);
 		panel_4.add(id);
+		
+
+		
+		
+
+		//Delete
+		JButton btnDelete = new JButton("DELETE");
+		btnDelete.setBounds(809, 242, 141, 31);
+		panel_4.add(btnDelete);
+		
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				try {
+					
+					
+					Connection con = DbConnection.connect();
+					String query="Delete from WorkingDays where WID='"+id.getText()+"'";
+					PreparedStatement pst=con.prepareStatement(query);
+					pst.execute();
+					
+				
+					  JOptionPane.showMessageDialog(null, "Data Deleted","Alert",JOptionPane.WARNING_MESSAGE);
+				
+					
+					refreshtable();
+					pst.close();
+					
+					}
+					catch(Exception en) {
+						en.printStackTrace();
+						
+					}
+				
+				
+				
+			}
+		});
+		btnDelete.setForeground(Color.WHITE);
+		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnDelete.setEnabled(true);
+		btnDelete.setBackground(new Color(0, 153, 153));
 	
 		
 		
 		//Update
 		JButton btnupdate = new JButton("UPDATE");
+		btnupdate.setBounds(809, 43, 141, 31);
+		panel_4.add(btnupdate);
 		
 		
 		
@@ -563,8 +608,34 @@ btnRooms.addActionListener(new ActionListener() {
 		btnupdate.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnupdate.setEnabled(true);
 		btnupdate.setBackground(new Color(0, 153, 153));
-		btnupdate.setBounds(393, 540, 141, 31);
-		panel_3.add(btnupdate);
+		
+		
+		//clear
+		JButton btnClear_1 = new JButton("CLEAR");
+		btnClear_1.setBounds(809, 151, 141, 31);
+		panel_4.add(btnClear_1);
+		btnClear_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				spinner_2.setValue(0);
+				spinner.setValue(0);
+				spinner_1.setValue(0);
+				chckbxNewCheckBox.setSelected(false);
+				chckbxTeusday.setSelected(false);
+				chckbxWednesday.setSelected(false);
+				chckbxThursday.setSelected(false);
+				chckbxFriday.setSelected(false);
+				chckbxSaturday.setSelected(false);
+				chckbxSunday.setSelected(false);
+				
+			
+			}
+		});
+		
+		btnClear_1.setForeground(Color.WHITE);
+		btnClear_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnClear_1.setEnabled(true);
+		btnClear_1.setBackground(new Color(0, 153, 153));
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(32, 178, 170));
@@ -573,7 +644,7 @@ btnRooms.addActionListener(new ActionListener() {
 		panel_3.add(separator);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(142, 105, 852, 137);
+		scrollPane.setBounds(33, 105, 985, 137);
 		panel_3.add(scrollPane);
 		
 		table = new JTable();
@@ -664,76 +735,5 @@ btnRooms.addActionListener(new ActionListener() {
 		}
 		
 		scrollPane.setViewportView(table);
-		
-
-		
-		
-
-		//Delete
-		JButton btnDelete = new JButton("DELETE");
-		
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				try {
-					
-					
-					Connection con = DbConnection.connect();
-					String query="Delete from WorkingDays where WID='"+id.getText()+"'";
-					PreparedStatement pst=con.prepareStatement(query);
-					pst.execute();
-					
-				
-					  JOptionPane.showMessageDialog(null, "Data Deleted","Alert",JOptionPane.WARNING_MESSAGE);
-				
-					
-					refreshtable();
-					pst.close();
-					
-					}
-					catch(Exception en) {
-						en.printStackTrace();
-						
-					}
-				
-				
-				
-			}
-		});
-		btnDelete.setForeground(Color.WHITE);
-		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnDelete.setEnabled(true);
-		btnDelete.setBackground(new Color(0, 153, 153));
-		btnDelete.setBounds(854, 540, 141, 31);
-		panel_3.add(btnDelete);
-		
-		
-		//clear
-		JButton btnClear_1 = new JButton("CLEAR");
-		btnClear_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				spinner_2.setValue(0);
-				spinner.setValue(0);
-				spinner_1.setValue(0);
-				chckbxNewCheckBox.setSelected(false);
-				chckbxTeusday.setSelected(false);
-				chckbxWednesday.setSelected(false);
-				chckbxThursday.setSelected(false);
-				chckbxFriday.setSelected(false);
-				chckbxSaturday.setSelected(false);
-				chckbxSunday.setSelected(false);
-				
-			
-			}
-		});
-		
-		btnClear_1.setForeground(Color.WHITE);
-		btnClear_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnClear_1.setEnabled(true);
-		btnClear_1.setBackground(new Color(0, 153, 153));
-		btnClear_1.setBounds(628, 540, 141, 31);
-		panel_3.add(btnClear_1);
 	}
 }

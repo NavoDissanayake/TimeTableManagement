@@ -21,6 +21,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -75,27 +76,29 @@ public class AddWorkingdays {
 	
 	public JFrame frame;
 	private JTable table;
-
+	private JComboBox selectlec;
+	
 	public void refreshtable() {	
 	try {
 		Connection con = DbConnection.connect();
 		
-		String query="SELECT WID as WID, NoOfDays as Days, monday as Monday, tuesday as Tuesday, wednesday as Wednesday, thursday as Thursday, friday as Friday, saturday as Saturday, sunday as Sunday, hours as Hours,minutes as Minutes FROM WorkingDays ";
+		String query="SELECT WID as WID,selectlec as Lecturer, NoOfDays as Days, monday as Monday, tuesday as Tuesday, wednesday as Wednesday, thursday as Thursday, friday as Friday, saturday as Saturday, sunday as Sunday, hours as Hours,minutes as Minutes FROM WorkingDays ";
 		PreparedStatement pst=con.prepareStatement(query);
 		ResultSet rs=pst.executeQuery();
 		table.setModel(DbUtils.resultSetToTableModel(rs));
 		TableColumnModel columnModel = table.getColumnModel();
 		columnModel.getColumn(0).setPreferredWidth(1);
-		columnModel.getColumn(1).setPreferredWidth(1);
-		columnModel.getColumn(2).setPreferredWidth(50);
+		columnModel.getColumn(1).setPreferredWidth(100);
+		columnModel.getColumn(2).setPreferredWidth(1);
 		columnModel.getColumn(3).setPreferredWidth(50);
-		columnModel.getColumn(4).setPreferredWidth(40);
-		columnModel.getColumn(5).setPreferredWidth(20);
-		columnModel.getColumn(6).setPreferredWidth(50);
-		columnModel.getColumn(7).setPreferredWidth(1);
+		columnModel.getColumn(4).setPreferredWidth(50);
+		columnModel.getColumn(5).setPreferredWidth(40);
+		columnModel.getColumn(6).setPreferredWidth(20);
+		columnModel.getColumn(7).setPreferredWidth(50);
 		columnModel.getColumn(8).setPreferredWidth(1);
 		columnModel.getColumn(9).setPreferredWidth(1);
 		columnModel.getColumn(10).setPreferredWidth(1);
+		columnModel.getColumn(11).setPreferredWidth(1);
 		
 		
 	}
@@ -103,6 +106,36 @@ public class AddWorkingdays {
 		e.printStackTrace();
 	}
 	}	
+
+	//fill select Lecture
+	  public void fillselectlec() {
+			
+			try {
+				
+				 Connection con = DbConnection.connect();
+				 
+				 String query="select * from lecturers";
+				 
+				 PreparedStatement pst = con.prepareStatement(query);
+				 ResultSet rs = pst.executeQuery();
+				 
+				 while(rs.next()) {
+					 
+					 String name =rs.getString("lectureName");
+					 
+					 selectlec.addItem(name);
+				
+					 
+				}
+				con.close();
+			}
+			
+			catch(Exception e) {
+				
+					e.printStackTrace();
+				}
+			
+	     	}
 	/**
 	 * Launch the application.
 	 */
@@ -274,7 +307,7 @@ public class AddWorkingdays {
 		btnRooms.setHorizontalAlignment(SwingConstants.LEFT);
 		btnRooms.setIcon(new ImageIcon(room_logo));
 	btnRooms.addActionListener(new ActionListener() {
-			
+		
 			public void actionPerformed(ActionEvent e) {
 				
 				
@@ -452,78 +485,85 @@ public class AddWorkingdays {
 		panel_4.setLayout(null);
 		panel_4.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_4.setBackground(SystemColor.menu);
-		panel_4.setBounds(92, 129, 853, 310);
+		panel_4.setBounds(10, 101, 1041, 338);
 		panel_3.add(panel_4);
 		
 
 		
 		JLabel lblNewLabel = new JLabel("Working Hours");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(35, 276, 108, 23);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel.setBounds(35, 276, 128, 23);
 		panel_4.add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("Number Of Working Days");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2.setBounds(35, 11, 185, 23);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_2.setBounds(35, 101, 175, 23);
 		panel_4.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Select Days");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_3.setBounds(35, 57, 108, 23);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_3.setBounds(35, 161, 108, 23);
 		panel_4.add(lblNewLabel_3);
 		
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		spinner.setBounds(153, 277, 73, 23);
+		spinner.setBounds(232, 277, 73, 23);
 		panel_4.add(spinner);
 		
 		JSpinner spinner_1 = new JSpinner();
 		spinner_1.setModel(new SpinnerNumberModel(0, 0, 30, 30));
-		spinner_1.setBounds(282, 277, 67, 23);
+		spinner_1.setBounds(445, 277, 67, 23);
 		panel_4.add(spinner_1);
 		
 		JSpinner spinner_2 = new JSpinner();
 		spinner_2.setModel(new SpinnerNumberModel(0, 0, 7, 1));
-		spinner_2.setBounds(219, 12, 161, 23);
+		spinner_2.setBounds(230, 102, 161, 23);
 		panel_4.add(spinner_2);
 
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Monday");
-		chckbxNewCheckBox.setBounds(219, 58, 97, 23);
+		chckbxNewCheckBox.setFont(new Font("Verdana", Font.PLAIN, 11));
+		chckbxNewCheckBox.setBounds(232, 162, 97, 23);
 		panel_4.add(chckbxNewCheckBox);
 		
 		JCheckBox chckbxTeusday = new JCheckBox("Tuesday");
-		chckbxTeusday.setBounds(219, 84, 97, 23);
+		chckbxTeusday.setFont(new Font("Verdana", Font.PLAIN, 11));
+		chckbxTeusday.setBounds(338, 162, 97, 23);
 		panel_4.add(chckbxTeusday);
 		
 		JCheckBox chckbxWednesday = new JCheckBox("Wednesday");
-		chckbxWednesday.setBounds(219, 110, 97, 23);
+		chckbxWednesday.setFont(new Font("Verdana", Font.PLAIN, 11));
+		chckbxWednesday.setBounds(445, 162, 97, 23);
 		panel_4.add(chckbxWednesday);
 		
 		JCheckBox chckbxThursday = new JCheckBox("Thursday");
-		chckbxThursday.setBounds(219, 136, 80, 23);
+		chckbxThursday.setFont(new Font("Verdana", Font.PLAIN, 11));
+		chckbxThursday.setBounds(544, 162, 80, 23);
 		panel_4.add(chckbxThursday);
 				
 		JCheckBox chckbxFriday = new JCheckBox("Friday");
-		chckbxFriday.setBounds(219, 162, 97, 23);
+		chckbxFriday.setFont(new Font("Verdana", Font.PLAIN, 11));
+		chckbxFriday.setBounds(626, 162, 97, 23);
 		panel_4.add(chckbxFriday);
 		
 		JCheckBox chckbxSaturday = new JCheckBox("Saturday");
-		chckbxSaturday.setBounds(219, 186, 97, 23);
+		chckbxSaturday.setFont(new Font("Verdana", Font.PLAIN, 11));
+		chckbxSaturday.setBounds(232, 211, 97, 23);
 		panel_4.add(chckbxSaturday);
 		
 		JCheckBox chckbxSunday = new JCheckBox("Sunday");
-		chckbxSunday.setBounds(219, 212, 97, 23);
+		chckbxSunday.setFont(new Font("Verdana", Font.PLAIN, 11));
+		chckbxSunday.setBounds(338, 211, 97, 23);
 		panel_4.add(chckbxSunday);
 		
 		JLabel lblHours = new JLabel("Hours");
-		lblHours.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblHours.setBounds(232, 276, 42, 23);
+		lblHours.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		lblHours.setBounds(315, 276, 42, 23);
 		panel_4.add(lblHours);
 		
 		JLabel lblMinutes = new JLabel("Minutes");
-		lblMinutes.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMinutes.setBounds(354, 276, 55, 23);
+		lblMinutes.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		lblMinutes.setBounds(522, 276, 55, 23);
 		panel_4.add(lblMinutes);
 		
 		//Add Working Days
@@ -533,7 +573,7 @@ public class AddWorkingdays {
 			public void actionPerformed(ActionEvent arg0) {
 				String NoOfWorkingDays= spinner_2.getValue().toString();
 				
-				
+				String selectLec = selectlec.getSelectedItem().toString();
 				String monday="-";
 				String tuesday="-";
 				String wednesday="-";
@@ -588,7 +628,7 @@ public class AddWorkingdays {
 					try {
 					 Connection con = DbConnection.connect();
 
-	                    String query = "INSERT INTO WorkingDays values(null, '" + NoOfWorkingDays + "','" + monday + "','" + tuesday + "','" +
+	                    String query = "INSERT INTO WorkingDays values(null,'" + selectLec + "', '" + NoOfWorkingDays + "','" + monday + "','" + tuesday + "','" +
 	                    		wednesday + "','" + thursday + "','" + friday + "','"+ saturday +"','"+ sunday +"','"+ hours +"','"+ minutes +"')";
 
 	                    Statement sta = con.createStatement();
@@ -618,7 +658,7 @@ public class AddWorkingdays {
 
 		btnAdd.setEnabled(true);
 		btnAdd.setBackground(new Color(0, 153, 153));
-		btnAdd.setBounds(671, 57, 141, 31);
+		btnAdd.setBounds(833, 52, 141, 31);
 		panel_4.add(btnAdd);
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -628,6 +668,7 @@ public class AddWorkingdays {
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				selectlec.setSelectedIndex(0);
 				spinner_2.setValue(0);
 				spinner.setValue(0);
 				spinner_1.setValue(0);
@@ -643,17 +684,28 @@ public class AddWorkingdays {
 			}
 		});
 		
-		btnClear.setBounds(671, 130, 141, 31);
+		btnClear.setBounds(833, 130, 141, 31);
 		panel_4.add(btnClear);
 		btnClear.setForeground(Color.WHITE);
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnClear.setEnabled(true);
 		btnClear.setBackground(new Color(0, 153, 153));
 		
+		JLabel lblNewLabel_1 = new JLabel("Select Lecturer");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_1.setBounds(35, 48, 148, 23);
+		panel_4.add(lblNewLabel_1);
+		
+		selectlec = new JComboBox();
+		selectlec .setBounds(232, 50, 159, 20);
+		selectlec.setModel(new DefaultComboBoxModel(new String[] {""}));
+		panel_4.add(selectlec );
+		fillselectlec();
+		
 
 		//Table View
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(92, 439, 853, 114);
+		scrollPane.setBounds(10, 439, 1041, 114);
 		panel_3.add(scrollPane);
 		
 		 table = new JTable();
@@ -670,9 +722,16 @@ public class AddWorkingdays {
 			public void mouseClicked(MouseEvent arg0) {
 				int selectedRow=table.getSelectedRow();
 				 
-					spinner_2.setValue(table.getValueAt(selectedRow, 2).toString());
-					spinner.setValue(table.getValueAt(selectedRow, 9).toString());
+				String combo = table.getValueAt(selectedRow, 2).toString(); 
+				for(int j=0
+						;j<selectlec.getItemCount();j++) {
+
+					if(selectlec.getItemAt(j).toString().equalsIgnoreCase(combo)) {
+						selectlec.setSelectedIndex(j); } }
+				
+					spinner_2.setValue(table.getValueAt(selectedRow, 3).toString());
 					spinner.setValue(table.getValueAt(selectedRow, 10).toString());
+					spinner.setValue(table.getValueAt(selectedRow, 11).toString());
 					
 					 
 				
@@ -683,22 +742,23 @@ public class AddWorkingdays {
 		try {
 			Connection con = DbConnection.connect();
 			
-			String query="SELECT WID as WID, NoOfDays as Days, monday as Monday, tuesday as Tuesday, wednesday as Wednesday, thursday as Thursday, friday as Friday, saturday as Saturday, sunday as Sunday, hours as Hours,minutes as Minutes FROM WorkingDays ";
+			String query="SELECT WID as WID,selectlec as Lecturer, NoOfDays as Days, monday as Monday, tuesday as Tuesday, wednesday as Wednesday, thursday as Thursday, friday as Friday, saturday as Saturday, sunday as Sunday, hours as Hours,minutes as Minutes FROM WorkingDays ";
 			PreparedStatement pst=con.prepareStatement(query);
 			ResultSet rs=pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 			TableColumnModel columnModel = table.getColumnModel();
 			columnModel.getColumn(0).setPreferredWidth(1);
-			columnModel.getColumn(1).setPreferredWidth(1);
-			columnModel.getColumn(2).setPreferredWidth(50);
+			columnModel.getColumn(1).setPreferredWidth(100);
+			columnModel.getColumn(2).setPreferredWidth(1);
 			columnModel.getColumn(3).setPreferredWidth(50);
-			columnModel.getColumn(4).setPreferredWidth(40);
-			columnModel.getColumn(5).setPreferredWidth(20);
-			columnModel.getColumn(6).setPreferredWidth(50);
-			columnModel.getColumn(7).setPreferredWidth(1);
+			columnModel.getColumn(4).setPreferredWidth(50);
+			columnModel.getColumn(5).setPreferredWidth(40);
+			columnModel.getColumn(6).setPreferredWidth(20);
+			columnModel.getColumn(7).setPreferredWidth(50);
 			columnModel.getColumn(8).setPreferredWidth(1);
 			columnModel.getColumn(9).setPreferredWidth(1);
 			columnModel.getColumn(10).setPreferredWidth(1);
+			columnModel.getColumn(11).setPreferredWidth(1);
 			refreshtable() ;
 			
 			
@@ -730,7 +790,7 @@ public class AddWorkingdays {
 		btnRefresh.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnRefresh.setEnabled(true);
 		btnRefresh.setBackground(new Color(0, 153, 153));
-		btnRefresh.setBounds(611, 564, 141, 31);
+		btnRefresh.setBounds(650, 564, 141, 31);
 		panel_3.add(btnRefresh);	
 
 		
@@ -740,7 +800,7 @@ public class AddWorkingdays {
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.setEnabled(true);
 		btnNewButton.setBackground(new Color(0, 153, 153));
-		btnNewButton.setBounds(766, 564, 141, 31);
+		btnNewButton.setBounds(870, 564, 141, 31);
 		panel_3.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			
