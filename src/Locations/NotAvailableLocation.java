@@ -289,7 +289,7 @@ public void refreshtable() {
 				frame.dispose();
 				new Add_Subjects();
 				
-			}
+			} 
 		});
 		btnSubjects.setForeground(Color.WHITE);
 		btnSubjects.setFont(new Font("Tahoma", Font.BOLD, 17));
