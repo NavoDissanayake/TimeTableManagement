@@ -126,6 +126,7 @@ public class Add_StudentGroup {
 		frmAddStudentGroup.setBounds(0,0, 1350, 700);
 		frmAddStudentGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAddStudentGroup.getContentPane().setLayout(null);
+		frmAddStudentGroup.setIconImage(logo);
 		
 		
 		frmAddStudentGroup.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
