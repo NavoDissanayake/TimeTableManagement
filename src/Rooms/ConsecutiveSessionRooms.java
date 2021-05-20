@@ -44,6 +44,8 @@ import Tags.Add_Tags;
 import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class ConsecutiveSessionRooms {
 	
@@ -432,28 +434,31 @@ public class ConsecutiveSessionRooms {
 		crpanel_2.setLayout(null);
 		
 		JPanel crpanel_3 = new JPanel();
-		crpanel_3.setBounds(138, 83, 756, 428);
+		crpanel_3.setBounds(43, 83, 1017, 444);
 		crpanel_2.add(crpanel_3);
 		crpanel_3.setLayout(null);
 		
 		JLabel crlblNewLabel = new JLabel("Select Consecutive Session");
-		crlblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		crlblNewLabel.setBounds(73, 79, 161, 13);
+		crlblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		crlblNewLabel.setBounds(73, 79, 172, 13);
 		crpanel_3.add(crlblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Select Room");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(462, 79, 78, 13);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_1.setBounds(586, 79, 78, 13);
 		crpanel_3.add(lblNewLabel_1);
 		
 		JLabel crlblNewLabel_2 = new JLabel("Selected ConsecutiveSession Room");
-		crlblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		crlblNewLabel_2.setBounds(73, 164, 200, 32);
+		crlblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		crlblNewLabel_2.setBounds(73, 175, 217, 32);
 		crpanel_3.add(crlblNewLabel_2);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(317, 180, 610, 71);
+		crpanel_3.add(scrollPane);
+		
 		JTextArea generateConSesRoom = new JTextArea();
-		generateConSesRoom.setBounds(276, 169, 339, 82);
-		crpanel_3.add(generateConSesRoom);
+		scrollPane.setViewportView(generateConSesRoom);
 		
 		JButton crbtnNewButton_4 = new JButton("SUBMIT");
 		crbtnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -492,7 +497,7 @@ public class ConsecutiveSessionRooms {
 			}
 		});
 		crbtnNewButton_4.setBackground(new Color(0, 139, 139));
-		crbtnNewButton_4.setBounds(317, 291, 105, 32);
+		crbtnNewButton_4.setBounds(439, 302, 105, 32);
 		crpanel_3.add(crbtnNewButton_4);
 		
 		JButton crbtnNewButton_5 = new JButton("CLEAR");
@@ -507,19 +512,19 @@ public class ConsecutiveSessionRooms {
 			}
 		});
 		crbtnNewButton_5.setBackground(new Color(0, 139, 139));
-		crbtnNewButton_5.setBounds(490, 291, 105, 32);
+		crbtnNewButton_5.setBounds(685, 302, 105, 32);
 		crpanel_3.add(crbtnNewButton_5);
 		
 		consession = new JComboBox();
 		consession.setModel(new DefaultComboBoxModel(new String[] {"Select Consecutive Session-------"}));
-		consession.setBounds(262, 76, 176, 21);
+		consession.setBounds(317, 71, 242, 30);
 		crpanel_3.add(consession);
 		
 		loadConSession();
 		
 		consessionroom = new JComboBox();
 		consessionroom.setModel(new DefaultComboBoxModel(new String[] {"Select Room-----------"}));
-		consessionroom.setBounds(550, 76, 161, 21);
+		consessionroom.setBounds(685, 71, 242, 30);
 		crpanel_3.add(consessionroom);
 		
 		loadConsessionRoom();

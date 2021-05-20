@@ -7,8 +7,7 @@
 package Locations;
 
 import java.awt.Color;
-
-
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -29,12 +28,15 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.tools.DocumentationTool.Location;
 
@@ -681,10 +683,28 @@ public class ManageLocations {
 		lpanel_3.add(searchcomboBox);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBounds(347, 102, 494, 251);
 		lpanel_3.add(scrollPane);
 		
-		table_2 = new JTable();
+		table_2 = new JTable(){
+			@Override
+				public Component prepareRenderer(TableCellRenderer  renderer , int row ,int column) {
+				
+				Component c =super.prepareRenderer(  renderer ,  row , column);
+				int renderWidth = c.getPreferredSize().width;
+				TableColumn tbc =getColumnModel().getColumn(column);
+				tbc.setPreferredWidth(Math.max(renderWidth + getIntercellSpacing().width, tbc.getPreferredWidth()));
+				
+				return c; 
+				}
+			};
+			
+			
+			
+			table_2.setRowHeight(30);
+			//table_2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table_2.setFont(new Font("Times New Roman", Font.BOLD, 14));
 
 		

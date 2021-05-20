@@ -6,7 +6,7 @@
 package Rooms;
 
 import java.awt.Color;
-
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -30,6 +30,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 import Advanced.Consecutive_sessions;
 import DB.DbConnection;
@@ -454,7 +456,24 @@ public class ViewConsecutiveRooms {
 		scrollPane.setBounds(162, 82, 588, 186);
 		panel_2.add(scrollPane);
 		
-		tableconRoom = new JTable();
+		
+		tableconRoom = new JTable(){
+			@Override
+				public Component prepareRenderer(TableCellRenderer  renderer , int row ,int column) {
+				
+				Component c =super.prepareRenderer(  renderer ,  row , column);
+				int renderWidth = c.getPreferredSize().width;
+				TableColumn tbc =getColumnModel().getColumn(column);
+				tbc.setPreferredWidth(Math.max(renderWidth + getIntercellSpacing().width, tbc.getPreferredWidth()));
+				
+				return c; 
+				}
+			};
+			
+			
+			
+			tableconRoom.setRowHeight(30);
+			tableconRoom.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		tableconRoom.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		scrollPane.setViewportView(tableconRoom);
 		try {

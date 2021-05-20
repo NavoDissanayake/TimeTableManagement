@@ -55,6 +55,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
 import net.proteanit.sql.DbUtils;
+import javax.swing.ScrollPaneConstants;
 
 public class ManageSessionsRooms {
 	private Image home_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/home.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
@@ -449,28 +450,31 @@ public class ManageSessionsRooms {
 		srpanel_2.setLayout(null);
 		
 		JPanel srpanel_3 = new JPanel();
-		srpanel_3.setBounds(138, 83, 756, 428);
+		srpanel_3.setBounds(36, 82, 1018, 448);
 		srpanel_2.add(srpanel_3);
 		srpanel_3.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Select Session");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(108, 79, 85, 13);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel.setBounds(108, 79, 116, 13);
 		srpanel_3.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Select Room");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(462, 79, 78, 13);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_1.setBounds(560, 79, 78, 13);
 		srpanel_3.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Selected Session Room");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2.setBounds(108, 164, 134, 32);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_2.setBounds(108, 179, 167, 32);
 		srpanel_3.add(lblNewLabel_2);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(280, 184, 647, 60);
+		srpanel_3.add(scrollPane);
+		
 		generateroom = new JTextArea();
-		generateroom.setBounds(252, 169, 455, 60);
-		srpanel_3.add(generateroom);
+		scrollPane.setViewportView(generateroom);
 		generateroom.setColumns(10);
 		
 		JButton btnNewButton_4 = new JButton("SUBMIT");
@@ -514,7 +518,7 @@ public class ManageSessionsRooms {
 	});
 		
 		btnNewButton_4.setBackground(new Color(0, 139, 139));
-		btnNewButton_4.setBounds(303, 254, 105, 32);
+		btnNewButton_4.setBounds(404, 299, 105, 32);
 		srpanel_3.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("CLEAR");
@@ -530,19 +534,19 @@ public class ManageSessionsRooms {
 			}
 		});
 		btnNewButton_5.setBackground(new Color(0, 139, 139));
-		btnNewButton_5.setBounds(511, 254, 105, 32);
+		btnNewButton_5.setBounds(685, 299, 105, 32);
 		srpanel_3.add(btnNewButton_5);
 		
 		session = new JComboBox();
 		session.setModel(new DefaultComboBoxModel(new String[] {"Select Session---------------"}));
-		session.setBounds(252, 76, 180, 21);
+		session.setBounds(280, 71, 242, 30);
 		srpanel_3.add(session);
 		
 		loadSession();
 		
 		sessionroom = new JComboBox();
 		sessionroom.setModel(new DefaultComboBoxModel(new String[] {"Select Room-------------"}));
-		sessionroom.setBounds(561, 76, 134, 21);
+		sessionroom.setBounds(685, 71, 242, 30);
 		srpanel_3.add(sessionroom);
 		
 		loadsessionRoom();
