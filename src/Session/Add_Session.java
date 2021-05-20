@@ -260,7 +260,7 @@ public class Add_Session {
 		AddsessFrm.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		AddsessFrm.setBackground(Color.YELLOW);
 		AddsessFrm.setResizable(false);
-		AddsessFrm.setTitle("Sessions");
+		AddsessFrm.setTitle("Time Table Management System");
 		AddsessFrm.setSize(1400, 860);
 		AddsessFrm.setBounds(0, 0, 1350, 700);
 		AddsessFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
