@@ -144,14 +144,14 @@ public void refreshtable() {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from session";
+				 String query="select * from lecturers";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("lec1");
+					 String name =rs.getString("lectureName");
 					 
 					 selectlec.addItem(name);
 				

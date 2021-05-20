@@ -100,14 +100,14 @@ public class Location {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from location";
+				 String query="select DISTINCT selectRoom from notavailableTime";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("roomName");
+					 String name =rs.getString("selectRoom");
 					 comboBox.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 

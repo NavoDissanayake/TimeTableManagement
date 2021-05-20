@@ -100,14 +100,14 @@ public class Student {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from StudentGroup";
+				 String query="select DISTINCT selectGroup from notavailableTime";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("GroupID");
+					 String name =rs.getString("selectGroup");
 					 comboBox.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -129,14 +129,14 @@ public class Student {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from StudentGroup";
+				 String query="select DISTINCT selectSubGroup from notavailableTime";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("SubGroupID");
+					 String name =rs.getString("selectSubGroup");
 					 comboBox.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -626,11 +626,11 @@ public class Student {
 					
 					
 					
-					TableColumnModel columnModel = table.getColumnModel();
-					columnModel.getColumn(0).setPreferredWidth(5);
-					columnModel.getColumn(1).setPreferredWidth(5);
-					columnModel.getColumn(2).setPreferredWidth(5);
-					columnModel.getColumn(3).setPreferredWidth(600);
+					//TableColumnModel columnModel = table.getColumnModel();
+					//columnModel.getColumn(0).setPreferredWidth(5);
+					//columnModel.getColumn(1).setPreferredWidth(5);
+					//columnModel.getColumn(2).setPreferredWidth(5);
+					//columnModel.getColumn(3).setPreferredWidth(600);
 					
 					
 				}

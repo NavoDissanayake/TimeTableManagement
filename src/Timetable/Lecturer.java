@@ -101,14 +101,14 @@ public class Lecturer {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from lecturers";
+				 String query="select DISTINCT selectLec from notavailableTime";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("lectureName");
+					 String name =rs.getString("selectLec");
 					 comboBox.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 

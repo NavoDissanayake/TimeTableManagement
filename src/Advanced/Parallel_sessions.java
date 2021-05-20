@@ -705,7 +705,7 @@ public class Parallel_sessions {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				genPara.setText(comboBox_s1.getSelectedItem().toString()+"+"+comboBox_s2.getSelectedItem().toString()+"+"+comboBox_s3.getSelectedItem().toString());
+				genPara.setText("("+comboBox_s1.getSelectedItem().toString()+")"+" "+"("+comboBox_s2.getSelectedItem().toString()+")"+" "+"("+comboBox_s3.getSelectedItem().toString()+")");
 				
 				String session1=comboBox_s1.getSelectedItem().toString();
 				String session2=comboBox_s2.getSelectedItem().toString();
