@@ -30,6 +30,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -50,6 +51,8 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import DB.DbConnection;
@@ -104,14 +107,14 @@ public class Consecutive_sessions {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from session";
+				 String query="select * from roomSession";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("sessionSignature");
+					 String name =rs.getString("sessionRoomCode");
 					 comboBox_s1.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -134,14 +137,14 @@ public class Consecutive_sessions {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from session";
+				 String query="select * from roomSession";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("sessionSignature");
+					 String name =rs.getString("sessionRoomCode");
 					 comboBox_s2.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -164,14 +167,14 @@ public class Consecutive_sessions {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from session";
+				 String query="select * from roomSession";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("sessionSignature");
+					 String name =rs.getString("sessionRoomCode");
 					 comboBox_s3.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -201,9 +204,9 @@ public class Consecutive_sessions {
 				table.setModel(DbUtils.resultSetToTableModel(rs));
 				
 				
-				TableColumnModel columnModel = table.getColumnModel();
-				columnModel.getColumn(0).setPreferredWidth(6);
-				columnModel.getColumn(1).setPreferredWidth(900);
+				//TableColumnModel columnModel = table.getColumnModel();
+				//columnModel.getColumn(0).setPreferredWidth(6);
+				//columnModel.getColumn(1).setPreferredWidth(900);
 				
 				
 				
@@ -701,7 +704,7 @@ public class Consecutive_sessions {
 		
 		comboBox_s3 = new JComboBox();
 		comboBox_s3.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		comboBox_s3.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		comboBox_s3.setModel(new DefaultComboBoxModel(new String[] {""}));
 		comboBox_s3.setBounds(189, 142, 764, 32);
 		panel_7.add(comboBox_s3);
 		
@@ -725,7 +728,7 @@ public class Consecutive_sessions {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				gensession.setText(comboBox_s1.getSelectedItem().toString()+"+"+comboBox_s2.getSelectedItem().toString()+"+"+comboBox_s3.getSelectedItem().toString());
+				gensession.setText("("+comboBox_s1.getSelectedItem().toString()+")"+" "+"("+comboBox_s2.getSelectedItem().toString()+")"+comboBox_s3.getSelectedItem().toString());
 				
 				String session1=comboBox_s1.getSelectedItem().toString();
 				String session2=comboBox_s2.getSelectedItem().toString();
@@ -810,8 +813,23 @@ public class Consecutive_sessions {
 		panel_7.add(scrollPane);
 		
 		
-		table = new JTable();
+		table = new JTable(){
+		@Override
+			public Component prepareRenderer(TableCellRenderer  renderer , int row ,int column) {
+			
+			Component c =super.prepareRenderer(  renderer ,  row , column);
+			int renderWidth = c.getPreferredSize().width;
+			TableColumn tbc =getColumnModel().getColumn(column);
+			tbc.setPreferredWidth(Math.max(renderWidth + getIntercellSpacing().width, tbc.getPreferredWidth()));
+			
+			return c; 
+			}
+		};
+		
+		
+		
 		table.setRowHeight(30);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		
 		//table header
@@ -841,9 +859,9 @@ public class Consecutive_sessions {
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 			
 			
-			TableColumnModel columnModel = table.getColumnModel();
-			columnModel.getColumn(0).setPreferredWidth(6);
-			columnModel.getColumn(1).setPreferredWidth(900);
+			//TableColumnModel columnModel = table.getColumnModel();
+			//columnModel.getColumn(0).setPreferredWidth(8);
+			//columnModel.getColumn(1).setPreferredWidth(600);
 			
 			
 			

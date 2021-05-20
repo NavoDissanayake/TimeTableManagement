@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -47,6 +48,8 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import Advanced.Consecutive_sessions;
@@ -628,9 +631,21 @@ public class Location {
 		scrollPane.setBounds(20, 92, 1009, 378);
 		panel_7.add(scrollPane);
 		
-		table = new JTable();
+		table = new JTable(){
+		@Override
+			public Component prepareRenderer(TableCellRenderer  renderer , int row ,int column) {
+			
+			Component c =super.prepareRenderer(  renderer ,  row , column);
+			int renderWidth = c.getPreferredSize().width;
+			TableColumn tbc =getColumnModel().getColumn(column);
+			tbc.setPreferredWidth(Math.max(renderWidth + getIntercellSpacing().width, tbc.getPreferredWidth()));
+			
+			return c; 
+			}
+		};
 		table.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
-		table.setRowHeight(90);
+		table.setRowHeight(100);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		//table header
 		JTableHeader h = table.getTableHeader();
@@ -666,11 +681,11 @@ public class Location {
 						
 						
 						
-						TableColumnModel columnModel = table.getColumnModel();
-						columnModel.getColumn(0).setPreferredWidth(5);
-						columnModel.getColumn(1).setPreferredWidth(5);
-						columnModel.getColumn(2).setPreferredWidth(5);
-						columnModel.getColumn(3).setPreferredWidth(600);
+						//TableColumnModel columnModel = table.getColumnModel();
+						//columnModel.getColumn(0).setPreferredWidth(5);
+						//columnModel.getColumn(1).setPreferredWidth(5);
+						//columnModel.getColumn(2).setPreferredWidth(5);
+						//columnModel.getColumn(3).setPreferredWidth(600);
 						
 						
 					}

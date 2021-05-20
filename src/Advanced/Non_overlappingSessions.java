@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,6 +44,8 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import DB.DbConnection;
@@ -93,14 +96,14 @@ public class Non_overlappingSessions {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from session";
+				 String query="select * from roomSession";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("sessionSignature");
+					 String name =rs.getString("sessionRoomCode");
 					 comboBox_ps.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -126,6 +129,12 @@ public class Non_overlappingSessions {
 				PreparedStatement pst=con.prepareStatement(query);
 				ResultSet rs=pst.executeQuery();
 				table.setModel(DbUtils.resultSetToTableModel(rs));
+				
+				
+
+				TableColumnModel columnModel = table.getColumnModel();
+				columnModel.getColumn(0).setPreferredWidth(6);
+				columnModel.getColumn(1).setPreferredWidth(700);
 				
 				
 				
@@ -672,6 +681,8 @@ public class Non_overlappingSessions {
 		
 		table = new JTable();
 		table.setRowHeight(30);
+		
+		
 		//table header
 		JTableHeader h = table.getTableHeader();
 		h.setBackground(new Color(153,153,153));

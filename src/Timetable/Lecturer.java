@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -49,6 +50,8 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import Advanced.Consecutive_sessions;
@@ -680,11 +683,24 @@ public class Lecturer {
 		//frmAddStudentGroup.getContentPane().add(scrollPane);
 		panel_7.add(scrollPane);
 		
-		table = new JTable();
-		table.setRowHeight(90);
+		table = new JTable() {
+		
+		@Override
+		public Component prepareRenderer(TableCellRenderer  renderer , int row ,int column) {
+		
+		Component c =super.prepareRenderer(  renderer ,  row , column);
+		int renderWidth = c.getPreferredSize().width;
+		TableColumn tbc =getColumnModel().getColumn(column);
+		tbc.setPreferredWidth(Math.max(renderWidth + getIntercellSpacing().width, tbc.getPreferredWidth()));
+		
+			return c; 
+		}
+		};
+		table.setRowHeight(100);
 		table.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		scrollPane.setViewportView(table);
-		
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+	
 		
 		//table header
 		JTableHeader h = table.getTableHeader();

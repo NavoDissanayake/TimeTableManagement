@@ -7,6 +7,7 @@
 package Advanced;
 
 import java.awt.Color;
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -232,20 +233,20 @@ public void refreshtable() {
 	     	}
 	  
 	  //fill session signature field
-	  public void fillsign() {
+	  public void fillsign1() {
 			
 			try {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from roomSession";
+				 String query="select * from consecutiveSession";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("sessionRoomCode");
+					 String name =rs.getString("conSession");
 					 
 					 sessionsign.addItem(name);
 					 
@@ -259,6 +260,74 @@ public void refreshtable() {
 				}
 			
 	     	}
+	  
+	  
+	//fill session signature field
+	  public void fillsign2() {
+			
+			try {
+				
+				 Connection con = DbConnection.connect();
+				 
+				 String query="select * from parallel";
+				 
+				 PreparedStatement pst = con.prepareStatement(query);
+				 ResultSet rs = pst.executeQuery();
+				 
+				 while(rs.next()) {
+					 
+					 String name =rs.getString("ParallelSessions");
+					 
+					 sessionsign.addItem(name);
+					 
+				}
+				con.close();
+			}
+			
+			catch(Exception e) {
+				
+					e.printStackTrace();
+				}
+			
+	     	}
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	//fill session signature field
+	  public void fillsign3() {
+			
+			try {
+				
+				 Connection con = DbConnection.connect();
+				 
+				 String query="select * from nonOverlapping";
+				 
+				 PreparedStatement pst = con.prepareStatement(query);
+				 ResultSet rs = pst.executeQuery();
+				 
+				 while(rs.next()) {
+					 
+					 String name =rs.getString("nonOverlappingSignature");
+					 
+					 sessionsign.addItem(name);
+					 
+				}
+				con.close();
+			}
+			
+			catch(Exception e) {
+				
+					e.printStackTrace();
+				}
+			
+	     	}
+	  
+	  
+	  
 	  //fill select room
 	  public void fillroom() {
 			
@@ -681,12 +750,12 @@ public void refreshtable() {
 		//select lecture 
 		JLabel lblNewLabel_2 = new JLabel("Select Lecturer");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_2.setBounds(28, 26, 149, 23);
+		lblNewLabel_2.setBounds(28, 83, 149, 23);
 		panel_4.add(lblNewLabel_2);
 		
 		selectlec = new JComboBox();
 		selectlec.setFont(new Font("Tahoma", Font.BOLD, 13));
-		selectlec.setBounds(214, 26, 218, 22);
+		selectlec.setBounds(214, 83, 218, 22);
 		selectlec.setModel(new DefaultComboBoxModel(new String[] {""}));
 		panel_4.add(selectlec);
 		
@@ -701,12 +770,12 @@ public void refreshtable() {
 		
 		JLabel StartTime = new JLabel("Sart Time");
 		StartTime.setFont(new Font("Tahoma", Font.BOLD, 12));
-		StartTime.setBounds(560, 111, 91, 23);
+		StartTime.setBounds(725, 155, 91, 23);
 		panel_4.add(StartTime);
 		
 		JLabel EndTime = new JLabel("End Time");
 		EndTime.setFont(new Font("Tahoma", Font.BOLD, 12));
-		EndTime.setBounds(560, 170, 57, 23);
+		EndTime.setBounds(725, 202, 57, 23);
 		panel_4.add(EndTime);
 		
 		
@@ -805,7 +874,7 @@ public void refreshtable() {
 		starttime = new JSpinner(
 		 new SpinnerListModel(ampmString1));
 		starttime.setFont(new Font("Tahoma", Font.BOLD, 13));
-		starttime.setBounds(855, 111, 43, 23);
+		starttime.setBounds(967, 155, 43, 23);
 		panel_4.add(starttime);
 		
 		//End time AM
@@ -814,25 +883,25 @@ public void refreshtable() {
 		endtime = new JSpinner(
 		 new SpinnerListModel(ampmString1));
 		endtime.setFont(new Font("Tahoma", Font.BOLD, 13));
-		endtime.setBounds(855, 170, 43, 23);
+		endtime.setBounds(967, 202, 43, 23);
 		panel_4.add(endtime);
 		
 		start = new JTextField();
 		start.setFont(new Font("Tahoma", Font.BOLD, 13));
-		start.setBounds(717, 111, 128, 22);
+		start.setBounds(829, 156, 127, 22);
 		panel_4.add(start);
 		start.setColumns(10);
 		
 		end = new JTextField();
 		end.setFont(new Font("Tahoma", Font.BOLD, 13));
-		end.setBounds(717, 171, 128, 20);
+		end.setBounds(828, 203, 128, 20);
 		panel_4.add(end);
 		
 		
 		//Add date
 		JLabel date = new JLabel("Day");
 		date.setFont(new Font("Tahoma", Font.BOLD, 12));
-		date.setBounds(560, 47, 74, 14);
+		date.setBounds(727, 123, 74, 14);
 		panel_4.add(date);
 		
 		 day = new JSpinner();
@@ -840,29 +909,31 @@ public void refreshtable() {
 		day = new JSpinner(
 		new SpinnerListModel(dayString));
 		day.setFont(new Font("Tahoma", Font.BOLD, 13));
-		day.setBounds(717, 43, 182, 23);
+		day.setBounds(828, 119, 182, 23);
 		panel_4.add(day);
 		
 		
 		//Add session sign
 		JLabel session = new JLabel("Session Signature");
 		session.setFont(new Font("Tahoma", Font.BOLD, 12));
-		session.setBounds(28, 87, 113, 14);
+		session.setBounds(28, 35, 113, 14);
 		panel_4.add(session);
 		sessionsign = new JComboBox();
 		sessionsign.setFont(new Font("Tahoma", Font.BOLD, 13));
 		sessionsign.setModel(new DefaultComboBoxModel(new String[] {""}));
-		sessionsign.setBounds(214, 83, 218, 23);
+		sessionsign.setBounds(214, 31, 796, 23);
 		panel_4.add(sessionsign);
-		fillsign();
+		fillsign1();
+		fillsign2();
+		fillsign3();
 		
 		JLabel lblNewLabel = new JLabel("Select Room");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel.setBounds(28, 241, 113, 14);
+		lblNewLabel.setBounds(28, 236, 113, 14);
 		panel_4.add(lblNewLabel);
 		selectroom = new JComboBox();
 		selectroom.setFont(new Font("Tahoma", Font.BOLD, 13));
-		selectroom.setBounds(214, 239, 218, 23);
+		selectroom.setBounds(214, 232, 218, 23);
 		panel_4.add(selectroom);
 		selectroom.setModel(new DefaultComboBoxModel(new String[] {""}));
 		panel_4.add(selectroom);
@@ -1115,7 +1186,7 @@ public void refreshtable() {
 		btnUpdate.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnUpdate.setEnabled(true);
 		btnUpdate.setBackground(new Color(0, 153, 153));
-		btnUpdate.setBounds(81, 556, 141, 31);
+		btnUpdate.setBounds(740, 554, 141, 31);
 		panel_3.add(btnUpdate);
 		
 		

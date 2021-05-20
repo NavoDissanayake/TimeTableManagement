@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,6 +44,8 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import DB.DbConnection;
@@ -97,14 +100,14 @@ public class Parallel_sessions {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from session";
+				 String query="select * from roomSession";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("sessionSignature");
+					 String name =rs.getString("sessionRoomCode");
 					 comboBox_s1.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -127,14 +130,14 @@ public class Parallel_sessions {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from session";
+				 String query="select * from roomSession";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("sessionSignature");
+					 String name =rs.getString("sessionRoomCode");
 					 comboBox_s2.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -157,14 +160,14 @@ public class Parallel_sessions {
 				
 				 Connection con = DbConnection.connect();
 				 
-				 String query="select * from session";
+				 String query="select * from roomSession";
 				 
 				 PreparedStatement pst = con.prepareStatement(query);
 				 ResultSet rs = pst.executeQuery();
 				 
 				 while(rs.next()) {
 					 
-					 String name =rs.getString("sessionSignature");
+					 String name =rs.getString("sessionRoomCode");
 					 comboBox_s3.addItem(name);
 					 //comboBox_4_1.addItem(rs.getString("SubGroupID"));
 					 
@@ -195,9 +198,9 @@ public class Parallel_sessions {
 				table.setModel(DbUtils.resultSetToTableModel(rs));
 				
 				
-				TableColumnModel columnModel = table.getColumnModel();
-				columnModel.getColumn(0).setPreferredWidth(6);
-				columnModel.getColumn(1).setPreferredWidth(900);
+				//TableColumnModel columnModel = table.getColumnModel();
+				//columnModel.getColumn(0).setPreferredWidth(6);
+				//columnModel.getColumn(1).setPreferredWidth(900);
 				
 		
 				
@@ -777,8 +780,23 @@ public class Parallel_sessions {
 		scrollPane.setBounds(12, 270, 1008, 177);
 		panel_7.add(scrollPane);
 		
-		table = new JTable();
+		table = new JTable() {
+		
+				@Override
+					public Component prepareRenderer(TableCellRenderer  renderer , int row ,int column) {
+					
+					Component c =super.prepareRenderer(  renderer ,  row , column);
+					int renderWidth = c.getPreferredSize().width;
+					TableColumn tbc =getColumnModel().getColumn(column);
+					tbc.setPreferredWidth(Math.max(renderWidth + getIntercellSpacing().width, tbc.getPreferredWidth()));
+					
+					return c; 
+					}
+				};
+		
 		table.setRowHeight(30);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		
 		
 		//table header
 		JTableHeader h = table.getTableHeader();
@@ -808,9 +826,9 @@ public class Parallel_sessions {
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 			
 			
-			TableColumnModel columnModel = table.getColumnModel();
-			columnModel.getColumn(0).setPreferredWidth(6);
-			columnModel.getColumn(1).setPreferredWidth(900);
+			//TableColumnModel columnModel = table.getColumnModel();
+			//columnModel.getColumn(0).setPreferredWidth(6);
+			//columnModel.getColumn(1).setPreferredWidth(900);
 			
 			
 		
