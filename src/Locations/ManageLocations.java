@@ -1,13 +1,8 @@
-/**
- * IT19207582
- * R.M.S.J Rathnayake
- * 
- */
-
 package Locations;
 
 import java.awt.Color;
-import java.awt.Component;
+
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -28,15 +23,11 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.tools.DocumentationTool.Location;
 
@@ -50,9 +41,7 @@ import Statistics.Statistics;
 import Student.Add_StudentGroup;
 import Subject.Add_Subjects;
 import Tags.Add_Tags;
-import Timetable.Lecturer;
 import WorkingDays.AddWorkingdays;
-import WorkingDays.ManageWorkingDays;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.DefaultComboBoxModel;
@@ -77,7 +66,6 @@ public class ManageLocations {
 	private Image time_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/time.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image adv_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/adv1.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
 	private Image room_logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/room.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-	private Image logo = new ImageIcon(Add_StudentGroup.class.getResource("/images/pp.png")).getImage().getScaledInstance(1000,1000,Image.SCALE_SMOOTH);
 
 	private JFrame frmMangeLocationsGroup;
 	private JTable ltable;
@@ -111,15 +99,6 @@ public class ManageLocations {
 			e.printStackTrace();
 		}
 	}
-	
-	public void taheader() {
-		JTableHeader ltahead = table_2.getTableHeader();
-		ltahead.setForeground(Color.WHITE);
-		ltahead.setFont(new Font("Tahoma", Font.BOLD,14));
-		ltahead.setBackground(new Color(	153, 153, 153));
-		ltahead.setFont(new Font("Times New Roman", Font.BOLD, 17));
-		
-	}
 	/**
 	 * Launch the application.
 	 */
@@ -151,12 +130,11 @@ public class ManageLocations {
 		frmMangeLocationsGroup.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		frmMangeLocationsGroup.setBackground(Color.YELLOW);
 		frmMangeLocationsGroup.setResizable(false);
-		frmMangeLocationsGroup.setTitle("Time Table Management System");
+		frmMangeLocationsGroup.setTitle("Locations");
 		frmMangeLocationsGroup.setSize(1350, 728);
 		frmMangeLocationsGroup.setBounds(0,0, 1350, 700);
 		frmMangeLocationsGroup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMangeLocationsGroup.getContentPane().setLayout(null);
-		frmMangeLocationsGroup.setIconImage(logo);
 		
 		frmMangeLocationsGroup.setLocationRelativeTo(null);
 		frmMangeLocationsGroup.setVisible(true);
@@ -187,7 +165,7 @@ public class ManageLocations {
 		frmMangeLocationsGroup.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-	//lecture button
+	
 		JButton btnLecturers = new JButton("Lecturers");
 		btnLecturers.setHorizontalAlignment(SwingConstants.LEFT);
 		btnLecturers.setIcon(new ImageIcon(lec_logo));
@@ -195,49 +173,45 @@ public class ManageLocations {
 				
 				public void actionPerformed(ActionEvent e) {
 					
-					
+					Add_Lecturer add_lecture = new Add_Lecturer();
+					add_lecture.main(null);
 					frmMangeLocationsGroup.dispose();
-					new  Add_Lecturer();
+					
 					
 				}
 			});
-		
 		btnLecturers.setForeground(Color.WHITE);
 		btnLecturers.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnLecturers.setBackground(new Color(0, 139, 139));
 		btnLecturers.setBounds(0, 59, 264, 38);
 		panel_1.add(btnLecturers);
 		
-		//Students
-		
 		JButton btnStudents = new JButton("Students");
 		btnStudents.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStudents.setIcon(new ImageIcon(stu_logo));
-        btnStudents.addActionListener(new ActionListener() {
+		btnLecturers.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				Add_StudentGroup add_st = new Add_StudentGroup();
+				add_st.main(null);
 				frmMangeLocationsGroup.dispose();
-				new Add_StudentGroup();
+				
 				
 			}
 		});
-	
-		
 		btnStudents.setForeground(Color.WHITE);
 		btnStudents.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnStudents.setBackground(new Color(0, 139, 139));
 		btnStudents.setBounds(0, 108, 264, 38);
 		panel_1.add(btnStudents);
 		
-		//Subjects
 		JButton btnSubjects = new JButton("Subjects");
 		btnSubjects.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Add_Subjects add_sub= new Add_Subjects();
+				add_sub.main(null);
 				frmMangeLocationsGroup.dispose();
-				new Add_Subjects();
 				
 			}
 		});
@@ -249,14 +223,12 @@ public class ManageLocations {
 		btnSubjects.setBounds(0, 157, 264, 38);
 		panel_1.add(btnSubjects);
 		
-		//session
 		JButton btnSessions = new JButton("Sessions");
 		btnSessions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Add_Session add_session= new Add_Session();
-				//add_session.main(null);
+				Add_Session add_session= new Add_Session();
+				add_session.main(null);
 				frmMangeLocationsGroup.dispose();
-				new Add_Session();
 				
 			}
 		});
@@ -268,15 +240,13 @@ public class ManageLocations {
 		btnSessions.setBounds(0, 206, 264, 38);
 		panel_1.add(btnSessions);
 		
-		//Tag
 		JButton btnTags = new JButton("Tags");
 		btnTags.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				//Add_Tags add_tag= new Add_Tags();
-				//add_tag.main(null);
+				Add_Tags add_tag= new Add_Tags();
+				add_tag.main(null);
 				frmMangeLocationsGroup.dispose();
-				new Add_Tags();
 				
 			}
 		});
@@ -288,15 +258,13 @@ public class ManageLocations {
 		btnTags.setBounds(0, 255, 264, 38);
 		panel_1.add(btnTags);
 		
-		//Room
 		JButton btnRooms = new JButton("Rooms");
 		btnRooms.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				//ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
-				//m_rooms.main(null);
+				ManageSessionsRooms m_rooms= new ManageSessionsRooms ();
+				m_rooms.main(null);
 				frmMangeLocationsGroup.dispose();
-				new  ManageSessionsRooms();
 				
 			}
 		});
@@ -308,14 +276,12 @@ public class ManageLocations {
 		btnRooms.setBounds(0, 304, 264, 38);
 		panel_1.add(btnRooms);
 		
-		//working days
 		JButton btnWorkingDays = new JButton("Working days & Hours");
 		btnWorkingDays.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//AddWorkingdays w_days= new 	AddWorkingdays();
-				//w_days.main(null);
+				AddWorkingdays w_days= new 	AddWorkingdays();
+				w_days.main(null);
 				frmMangeLocationsGroup.dispose();
-				new AddWorkingdays();
 				
 			}
 		});
@@ -327,14 +293,13 @@ public class ManageLocations {
 		btnWorkingDays.setBounds(0, 353, 264, 38);
 		panel_1.add(btnWorkingDays);
 		
-		//Location
 		JButton btnLocations = new JButton("Locations");
 		btnLocations.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ManageLocations m_locations= new ManageLocations();
-				//m_locations.main(null);
+				ManageLocations m_locations= new ManageLocations();
+				m_locations.main(null);
 				frmMangeLocationsGroup.dispose();
-				new ManageLocations();
+				
 				
 				
 			}
@@ -347,15 +312,13 @@ public class ManageLocations {
 		btnLocations.setBounds(0, 402, 264, 38);
 		panel_1.add(btnLocations);
 		
-		//Statistics
 		JButton btnStatistics = new JButton("Statistics");
 		btnStatistics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				//Statistics stat= new Statistics ();
-				//stat.main(null);
+				Statistics stat= new Statistics ();
+				stat.main(null);
 				frmMangeLocationsGroup.dispose();
-				new   Statistics();
 				
 			}
 		});
@@ -367,14 +330,12 @@ public class ManageLocations {
 		btnStatistics.setBounds(0, 451, 264, 38);
 		panel_1.add(btnStatistics);
 		
-		//Advanced
 		JButton btnAdvanced = new JButton("Advanced");
 		btnAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Consecutive_sessions a_session= new Consecutive_sessions ();
-				//a_session.main(null);
+				Consecutive_sessions a_session= new Consecutive_sessions ();
+				a_session.main(null);
 				frmMangeLocationsGroup.dispose();
-				new Consecutive_sessions();
 				
 				
 			}
@@ -388,12 +349,6 @@ public class ManageLocations {
 		panel_1.add(btnAdvanced);
 		
 		JButton btnTimetableGenerate = new JButton("Timetable Generate");
-		btnTimetableGenerate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmMangeLocationsGroup.dispose();
-				new Lecturer();
-			}
-		});
 		btnTimetableGenerate.setHorizontalAlignment(SwingConstants.LEFT);
 		btnTimetableGenerate.setIcon(new ImageIcon(time_logo));
 		btnTimetableGenerate.setForeground(Color.WHITE);
@@ -402,14 +357,13 @@ public class ManageLocations {
 		btnTimetableGenerate.setBounds(0, 549, 264, 38);
 		panel_1.add(btnTimetableGenerate);
 		
-		//Home
+		
 		JButton btnManageGroups = new JButton("Home");
 		btnManageGroups.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Home home = new Home();
-				//home.main(null);
+				Home home = new Home();
+				home.main(null);
 				frmMangeLocationsGroup.dispose();
-				new Home();
 				
 				
 			}
@@ -469,6 +423,11 @@ public class ManageLocations {
 				String roomtype=type.getSelectedItem().toString();
 				String rcapacity=capacity.getText().toString();
 				
+				if(bName.getText().isEmpty() || rName.getText().isEmpty() || capacity.getText().isEmpty()){
+					JOptionPane.showMessageDialog(null, "Please Enter all fields");
+					
+				}else {
+				
 				try {
 					Connection con = DbConnection.connect();
 					
@@ -480,7 +439,7 @@ public class ManageLocations {
     					label.setHorizontalAlignment(SwingConstants.CENTER);
     					JOptionPane.showMessageDialog(null, label);
 					}else {
-    						JLabel label = new JLabel("Inserted Group Details Sucessfully");
+    						JLabel label = new JLabel("Sucessfully Inserted");
 	    					label.setHorizontalAlignment(SwingConstants.CENTER);
 	    					JOptionPane.showMessageDialog(null, label);
 	    					
@@ -492,12 +451,9 @@ public class ManageLocations {
 					System.out.println("xxxxxxxxxxxxxxxxx");
 					
 				}
-				if(bName.getText().isEmpty() || rName.getText().isEmpty() || capacity.getText().isEmpty()){
-					JOptionPane.showMessageDialog(null, "Please Enter all fields");
-					
-				}
 				
-			
+				
+				}
 			
 			}
 		});
@@ -511,8 +467,15 @@ public class ManageLocations {
 		JButton lbtnEditButton_1 = new JButton("EDIT"); 
 		lbtnEditButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if(bName.getText().isEmpty() || rName.getText().isEmpty() || capacity.getText().isEmpty()){
+					JOptionPane.showMessageDialog(null, "Please Enter all fields");
+					
+				}
+				else {
 				try {
+					
+					
+					
 					Connection con = DbConnection.connect();					
 					String query="Update location set buildingName='"+bName.getText()+"',roomName='"+rName.getText()+"',type='"+type.getSelectedItem()+"',capacity='"+capacity.getText()+"' where locationID='"+locationId.getText()+"'";
 					PreparedStatement pst=con.prepareStatement(query);
@@ -529,10 +492,8 @@ public class ManageLocations {
 				catch(Exception ea) {
 					ea.printStackTrace();
 				}
-				if(bName.getText().isEmpty() || rName.getText().isEmpty() || capacity.getText().isEmpty()){
-					JOptionPane.showMessageDialog(null, "Please Enter all fields");
-					
-				}
+				
+			}
 			}
 		});
 		lbtnEditButton_1.setForeground(new Color(255, 255, 255));
@@ -638,19 +599,7 @@ public class ManageLocations {
 		type.setBounds(139, 195, 161, 23);
 		lpanel_3.add(type);
 		lpanel_3.add(type);
-		//retrive table
-		try {
-			Connection con = DbConnection.connect();
-			
-			String query="select * from location ";
-			PreparedStatement pst=con.prepareStatement(query);
-			ResultSet rs=pst.executeQuery();
-			
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			
-		}
+	
 		
 		//search
 		JComboBox searchcomboBox = new JComboBox();
@@ -683,31 +632,10 @@ public class ManageLocations {
 		lpanel_3.add(searchcomboBox);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBounds(347, 102, 494, 251);
 		lpanel_3.add(scrollPane);
 		
-		table_2 = new JTable(){
-			@Override
-				public Component prepareRenderer(TableCellRenderer  renderer , int row ,int column) {
-				
-				Component c =super.prepareRenderer(  renderer ,  row , column);
-				int renderWidth = c.getPreferredSize().width;
-				TableColumn tbc =getColumnModel().getColumn(column);
-				tbc.setPreferredWidth(Math.max(renderWidth + getIntercellSpacing().width, tbc.getPreferredWidth()));
-				
-				return c; 
-				}
-			};
-			
-			
-			
-			table_2.setRowHeight(30);
-			//table_2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		table_2.setFont(new Font("Times New Roman", Font.BOLD, 14));
-
-		
+		table_2 = new JTable();
 		
 		table_2.addMouseListener(new MouseAdapter() {
 			@Override
@@ -737,7 +665,7 @@ public class ManageLocations {
 					PreparedStatement pst=con.prepareStatement(query);
 					ResultSet rs=pst.executeQuery();
 					table_2.setModel(DbUtils.resultSetToTableModel(rs));
-					taheader();
+					
 					
 				}catch(Exception e) {
 					e.printStackTrace();
@@ -800,9 +728,8 @@ public class ManageLocations {
 			}
 		});
 		btnNewButton_1.setBounds(262, 70, 179, 38);
-		frmMangeLocationsGroup.getContentPane().add(btnNewButton_1);
-		
-		
+		frmMangeLocationsGroup.getContentPane().add(btnNewButton_1);		
+	
 
 		
 	}
