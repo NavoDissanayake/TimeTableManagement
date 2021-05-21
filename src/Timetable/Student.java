@@ -626,11 +626,11 @@ public class Student {
 					
 					
 					
-					//TableColumnModel columnModel = table.getColumnModel();
-					//columnModel.getColumn(0).setPreferredWidth(5);
-					//columnModel.getColumn(1).setPreferredWidth(5);
-					//columnModel.getColumn(2).setPreferredWidth(5);
-					//columnModel.getColumn(3).setPreferredWidth(600);
+					TableColumnModel columnModel = table.getColumnModel();
+					columnModel.getColumn(0).setPreferredWidth(5);
+					columnModel.getColumn(1).setPreferredWidth(5);
+					columnModel.getColumn(2).setPreferredWidth(5);
+					columnModel.getColumn(3).setPreferredWidth(600);
 					
 					
 				}

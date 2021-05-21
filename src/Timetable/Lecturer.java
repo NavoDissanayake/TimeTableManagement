@@ -610,9 +610,9 @@ public class Lecturer {
 					
 					
 					TableColumnModel columnModel = table.getColumnModel();
-					columnModel.getColumn(0).setPreferredWidth(5);
-					columnModel.getColumn(1).setPreferredWidth(5);
-					columnModel.getColumn(2).setPreferredWidth(5);
+					columnModel.getColumn(0).setPreferredWidth(20);
+					columnModel.getColumn(1).setPreferredWidth(20);
+					columnModel.getColumn(2).setPreferredWidth(20);
 					columnModel.getColumn(3).setPreferredWidth(600);
 					
 					
