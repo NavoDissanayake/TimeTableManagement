@@ -166,7 +166,7 @@ public class Search_Sessions {
 
 				Connection con = DbConnection.connect();
 
-				String query="select * from StudentGroup ";
+				String query="select DISTINCT GroupID from StudentGroup ";
 				PreparedStatement pst=con.prepareStatement(query);
 				ResultSet rs=pst.executeQuery();
 				
